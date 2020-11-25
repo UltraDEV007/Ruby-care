@@ -74,32 +74,48 @@ src
       |__ graphics
       |__ images
       |__ mockups
+|__ CurrentUser/
+  |__ CurrentUserContext.jsx
 |__ components/
-      |__ Header.jsx
+   |__MoodComponents
+      |__ MoodCard.jsx
+   |__ AffirmationComponents/
+       |__ AffirmationCard.jsx 
+       |__ AffirmationCreate.jsx
+       |__ AffirmationDetail.jsx
+   |__ PostComponents/
+       |__ PostCard.jsx
+|__ layouts/
+  |__Layout/
+     |__ Layout.jsx
+     |__ Header.jsx
+     |__ Footer.jsx
 |__ services/
- |__ apiConfig.js
- |__ moods.js
- |__ auth.js
- |__ affirmations.js
- |__ posts.js
+   |__ apiConfig.js
+   |__ moods.js
+   |__ auth.js
+   |__ affirmations.js
+   |__ posts.js
 |_ containers/
    |__ MoodsContainer.jsx
    |__ AffirmationsContainer.jsx
    |__ PostsContainer.jsx
 |_ screens/
  |__Main/ 
-  |__ Home.jsx
-  |__ Community.jsx
-  |__ Account.jsx
-  |__ Login.jsx
-  |__ Register.jsx
+   |__ Home.jsx
+   |__ Community.jsx
+   |__ Account.jsx
+   |__ Login.jsx
+   |__ Register.jsx
  |__ AffirmationScreens/
-  |__ AffirmationDetail
-  |__ AffirmationEdit
+   |__ AffirmationDetail.jsx
+   |__ AffirmationEdit.jsx
 |__ MoodScreens/
- |__ MoodEdit
+   |__ MoodEdit.jsx
+   |__ MoodCreate.jsx
 |__ PostScreens/
- |__ PostEdit
+   |__ PostEdit.jsx
+   |__ PostCreate.jsx
   
 ```
 
