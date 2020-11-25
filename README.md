@@ -47,11 +47,17 @@ A post mvp feature will allow the user to track his symptoms.
 
 > Use the Wireframes section to display desktop, tablet and mobile views. No hand-drawn wireframes. Use a tool like wireframe.cc, Whimsical or AdobeXD
 
-
+## Mobile Login
 ![mobile landing](https://i.imgur.com/plRRI3d.png)
+ <br />
+## Mobile Home
 ![mobile home](https://i.imgur.com/Mf4LgvJ.png)
-
-
+<br / >
+## Mobile Community
+![mobile community](https://i.imgur.com/stMsHrP.png)
+<br />
+## Mobile Account 
+![mobile account](https://i.imgur.com/lUa06rG.png)
 #### Component Tree
 
 > Use this section to display the structure of how your React components are being rendered. This should show the parent to child relation between you components. In other words, show which components are rendering the other components. 
