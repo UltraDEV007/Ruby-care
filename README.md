@@ -49,13 +49,13 @@ A post mvp feature will allow the user to track his symptoms.
 
 ## Mobile Login
 ![mobile landing](https://i.imgur.com/plRRI3d.png)
- <br />
+ <br>
 ## Mobile Home
 ![mobile home](https://i.imgur.com/Mf4LgvJ.png)
-<br / >
+<br>
 ## Mobile Community
 ![mobile community](https://i.imgur.com/stMsHrP.png)
-<br />
+<br>
 ## Mobile Account 
 ![mobile account](https://i.imgur.com/lUa06rG.png)
 #### Component Tree
