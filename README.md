@@ -104,7 +104,7 @@ src
  |__Main/ 
    |__ Home.jsx
    |__ Community.jsx
-   |__ Account.jsx
+   |__ More.jsx
    |__ Login.jsx
    |__ Register.jsx
  |__ AffirmationScreens/
