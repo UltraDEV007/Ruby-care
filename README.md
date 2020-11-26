@@ -14,7 +14,7 @@ A post mvp feature will allow the user to track his symptoms.
 
 - *Care* will feature full-crud (create-read-update-destroy) functionality for: moods, affirmations and posts, which will be managed by a user.
 - *Care* will be user-friendly.
-- *Care* will feature mobile-first design, that follows some of the[material-design](https://en.wikipedia.org/wiki/Material_Design) principles.
+- *Care* will feature mobile-first design, that follows some of the [material-design](https://en.wikipedia.org/wiki/Material_Design) principles.
 <br>
 
 ### Goals
