@@ -81,12 +81,15 @@ src
 |__ components/
    |__MoodComponents
       |__ MoodCard.jsx
+      |__ Moods.jsx
    |__ AffirmationComponents/
        |__ AffirmationCard.jsx 
+       |__ Affirmations.jsx
        |__ AffirmationCreate.jsx
        |__ AffirmationDetail.jsx
    |__ PostComponents/
        |__ PostCard.jsx
+       |__ Posts.jsx
 |__ layouts/
   |__Layout/
      |__ Layout.jsx
@@ -127,10 +130,11 @@ src
 
 |  Component   |    Type    | state | props | Description                                                      |
 | :----------: | :--------: | :---: | :---: | :--------------------------------------------------------------- |
-|    Header    | functional |   y   |   y  | _The header will contain the page name and current user name and logout_|
-| Moods Card   | functional |   y   |   y   | _The cards will render the Mood info via props._                |
+|    Header    | functional |   y   |   y  | _The header will contain the page name, current time and current user name and logout_|
+| Mood Card    | functional |   y   |   y   | _The card will render the Mood info via props._                |
 | Affirmations Card   | functional |   y   |   y   | _The cards will render the affirmation info via props._  |
 | Posts Card  | functional |   y   |   y  | _The cards will render the post info via props._                |
+|  CurrentUserContext   |    functional  |   y   |   n    |    CurrentUserContext.jsx will contain the provider and context for current user to be used globally throughtout the app  |
 |    Footer    | functional |   n   |   n  | _The footer will contain the links to the pages _ |
 
 #### Time Estimates
@@ -144,8 +148,8 @@ src
 | Create Home Page    |    H     |     2 hrs      |    TBD        |     TBD     |
 | Create Community Page |  H     |     2 hr       |    TBD        |     TBD     |
 | Create Account Page |    L     |   1 hr         |    TBD        |     TBD     |
-| Create CRUD Actions |    H     |     7 hrs      |    TBD        |     TBD     |
-| PostMVP             |    L     |   4 hrs        |    TBD        |     TBD     |
+| Create CRUD Actions in BE and FE|    H     |     7 hrs      |    TBD        |     TBD     |
+| Create Dark Mode    |    L     |   1 hr         |   TBD         |    TBD      |
 | TOTAL               |          |     50 hrs     |     TBD       |     TBD     |
 
 > _Why is this necessary? Time frames are key to the development cycle. You have limited time to code your app, and your estimates can then be used to evaluate possibilities of your MVP and post-MVP based on time needed. It's best you assume an additional hour for each component, as well as a few hours added to the total time, to play it safe._
