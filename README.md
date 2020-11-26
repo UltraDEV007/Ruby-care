@@ -57,7 +57,7 @@ A post mvp feature will allow the user to track his symptoms.
 ![mobile community](https://i.imgur.com/stMsHrP.png)
 <br>
 ## Mobile More 
-![mobile more](https://i.imgur.com/tdiXpN1.png)
+![mobile more](https://i.imgur.com/Faj6lY9.png)
 #### Component Tree
 
 > Use this section to display the structure of how your React components are being rendered. This should show the parent to child relation between you components. In other words, show which components are rendering the other components. 
