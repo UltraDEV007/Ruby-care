@@ -66,6 +66,7 @@ A post mvp feature will allow the user to track his symptoms.
 ![component tree](https://i.imgur.com/rplvwSg.png)
 
 <br>
+
 #### Component Hierarchy
 
 ``` structure
