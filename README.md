@@ -33,9 +33,11 @@ A post mvp feature will allow the user to track his symptoms.
 | :--------------: | :----------------------------------------- |
 |      React       | _Front-end client server_ |
 |   React Router   | _Front-end navigation between pages_ |
+|  Axios           | _NPM Package to help make API requests_ |
 | Styled-Components| _Front-end styling package_ |
-| Material-UI | _Front-end styling package_ |
+| Material-UI      | _Front-end styling package_ |
 |  Ruby on Rails   | _Back-end server_ |
+
 
 
 <br>
@@ -44,8 +46,6 @@ A post mvp feature will allow the user to track his symptoms.
 
 #### Wireframes
 > for the rest of the wireframes please visit this [link:](https://www.figma.com/file/w81a4kRRTnBui5JkqWn5ZN/Care-Wireframes)
-
-> Use the Wireframes section to display desktop, tablet and mobile views. No hand-drawn wireframes. Use a tool like wireframe.cc, Whimsical or AdobeXD
 
 ## Mobile Login
 ![mobile landing](https://i.imgur.com/plRRI3d.png)
@@ -60,9 +60,11 @@ A post mvp feature will allow the user to track his symptoms.
 ![mobile more](https://i.imgur.com/Faj6lY9.png)
 #### Component Tree
 
-[Component Tree Link (Whimsical)](https://whimsical.com/care-JWXTaZdt8XN5jBPYfiuagm)
+> [Component Tree Link (Whimsical)](https://whimsical.com/care-JWXTaZdt8XN5jBPYfiuagm)
 
 ![component tree](https://i.imgur.com/mk9I1IQ.png)
+
+<br>
 #### Component Hierarchy
 
 ``` structure
@@ -120,7 +122,7 @@ src
 
 #### Component Breakdown
 
-> Use this section to go into further depth regarding your components, including breaking down the components as stateless or stateful, and considering the passing of data between those components.
+
 
 |  Component   |    Type    | state | props | Description                                                      |
 | :----------: | :--------: | :---: | :---: | :--------------------------------------------------------------- |
@@ -131,8 +133,6 @@ src
 |    Footer    | functional |   n   |   n  | _The footer will contain the links to the pages _ |
 
 #### Time Estimates
-
-> Use this section to estimate the time necessary to build out each of the components you've described above.
 
 | Task                | Priority | Estimated Time | Time Invested | Actual Time |
 | ------------------- | :------: | :------------: | :-----------: | :---------: |
