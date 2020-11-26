@@ -135,9 +135,9 @@ src
 | Affirmations Card   | functional |   y   |   y   | _The cards will render the affirmation info via props._  |
 | Posts Card  | functional |   y   |   y  | _The cards will render the post info via props._                |
 |  CurrentUserContext   |    functional  |   y   |   n    |_CurrentUserContext.jsx will contain the provider and context for current user to be used globally throughtout the app_  |
-|    Home      | functional |  n   |   n   |  _ The Home screen will include all the logged moods and affirmations_ |
+|    Home      | functional |  n   |   n   |  _The Home screen will include all the logged moods and affirmations_ |
 |    Community      | functional |  n   |   n   |   _The Community screen will include all posts made by users and the option to edit or delete a post_  |
-|    More      | functional |      |   y  | _The More page will comtain current user info such as name email and password (will be editable as postmvp feature, and will have a dark mode switcher_ |
+|    More      | functional |  y    |   y  | _The More page will comtain current user info such as name email and password (will be editable as postmvp feature, and will have a dark mode switcher_ |
 |    Footer    | functional |   n   |   n  | _The footer will contain the links to the pages_ |
 
 #### Time Estimates
