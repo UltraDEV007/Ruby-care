@@ -43,7 +43,7 @@ A post mvp feature will allow the user to track his symptoms.
 ### Client (Front End)
 
 #### Wireframes
-> for the rest of the wireframes please visit this link : https://www.figma.com/file/w81a4kRRTnBui5JkqWn5ZN/Care-Wireframes
+> for the rest of the wireframes please visit this [link:](https://www.figma.com/file/w81a4kRRTnBui5JkqWn5ZN/Care-Wireframes)
 
 > Use the Wireframes section to display desktop, tablet and mobile views. No hand-drawn wireframes. Use a tool like wireframe.cc, Whimsical or AdobeXD
 
@@ -60,11 +60,10 @@ A post mvp feature will allow the user to track his symptoms.
 ![mobile more](https://i.imgur.com/Faj6lY9.png)
 #### Component Tree
 
-> Use this section to display the structure of how your React components are being rendered. This should show the parent to child relation between you components. In other words, show which components are rendering the other components. 
+[Component Tree Link (Whimsical)](https://whimsical.com/care-JWXTaZdt8XN5jBPYfiuagm)
 
+![component tree](https://i.imgur.com/mk9I1IQ.png)
 #### Component Hierarchy
-
-> Use this section to define your React components and the data architecture of your app. This should be a reflection of how you expect your directory/file tree to look like. 
 
 ``` structure
 
