@@ -139,7 +139,7 @@ src
 |    Home      | functional |  n   |   n   |  _The Home screen will include all the logged moods and affirmations_ |
 |    Community      | functional |  n   |   n   |   _The Community screen will include all posts made by users and the option to edit or delete a post_  |
 |    More      | functional |  y    |   y  | _The More page will comtain current user info such as name email and password (will be editable as postmvp feature, and will have a dark mode switcher_ |
-|    Footer    | functional |   n   |   n  | _The footer will contain the links to the pages_ |
+|    Footer    | functional |   y   |   n  | _The footer will contain the links to the pages_ |
 
 #### Time Estimates
 
