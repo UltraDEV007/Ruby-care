@@ -62,21 +62,23 @@ A post mvp feature will allow the user to track his symptoms.
 
 ### Client (Front End)
 
-#### Wireframes
+### Wireframes
 > for the rest of the wireframes please visit this [link:](https://www.figma.com/file/w81a4kRRTnBui5JkqWn5ZN/Care-Wireframes)
 
-## Mobile Login
+### Mobile Login
 ![mobile landing](https://i.imgur.com/plRRI3d.png)
  <br>
-## Mobile Home
+### Mobile Home
 ![mobile home](https://i.imgur.com/C5il2wu.png)
 <br>
-## Mobile Community
+### Mobile Community
 ![mobile community](https://i.imgur.com/BRyPhsQ.png)
 <br>
-## Mobile More 
+### Mobile More 
 ![mobile more](https://i.imgur.com/Faj6lY9.png)
-#### Component Tree
+<br>
+
+### Component Tree
 
 > [Component Tree Link (Whimsical)](https://whimsical.com/care-JWXTaZdt8XN5jBPYfiuagm)
 
