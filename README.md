@@ -81,7 +81,6 @@ src
   |__ CurrentUserContext.jsx
 |__ components/
    |__MoodComponents
-      |__ MoodCard.jsx
       |__ Moods.jsx
    |__ AffirmationComponents/
        |__ AffirmationCard.jsx 
@@ -89,7 +88,6 @@ src
        |__ AffirmationCreate.jsx
        |__ AffirmationDetail.jsx
    |__ PostComponents/
-       |__ PostCard.jsx
        |__ Posts.jsx
 |__ layouts/
   |__Layout/
