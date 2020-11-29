@@ -101,7 +101,6 @@ src
 |__ components/
    |__MoodComponents
       |__ Moods.jsx
-      |__ MoodDetail.jsx
    |__ AffirmationComponents/
        |__ Affirmations.jsx
        |__ AffirmationCreate.jsx
