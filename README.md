@@ -101,10 +101,9 @@ src
 |__ components/
    |__MoodComponents
       |__ Moods.jsx
+      |__ MoodCard.jsx
    |__ AffirmationComponents/
        |__ Affirmations.jsx
-       |__ AffirmationCreate.jsx
-       |__ AffirmationDetail.jsx
    |__ PostComponents/
        |__ Posts.jsx
 |__ layouts/
@@ -132,6 +131,7 @@ src
  |__ AffirmationScreens/
    |__ AffirmationDetail.jsx
    |__ AffirmationEdit.jsx
+   |__ AffirmationCreate.jsx
 |__ MoodScreens/
    |__ MoodEdit.jsx
    |__ MoodCreate.jsx
