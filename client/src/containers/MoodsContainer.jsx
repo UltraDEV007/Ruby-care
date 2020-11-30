@@ -1,29 +1,47 @@
 import React from "react";
 import Moods from "../components/MoodComponents/Moods.jsx";
+import { useState, useEffect } from 'react';
+import { Switch, Route, useHistory } from 'react-router-dom';
+// import MoodCreate from '../screens/MoodScreens/MoodCreate'
+import { destroyMood, getAllMoods, postMood, putMood } from '../services/moods'
 
 export default function MoodsContainer() {
-  const allMoods = [
-    {
-      status: "okay",
-      created_at: "11-20-2020 4:01PM"
-    },
-    {
-      status: "poor",
-      created_at: "11-20-2020 4:01PM"
-    },
-    {
-      status: "good",
-      created_at: "11-20-2020 4:01PM"
-    },
-    {
-      status: "great",
-      created_at: "11-20-2020 4:01PM"
+  const [moods, setMoods] = useState([]);
+  const history = useHistory()
+  
+  useEffect(() => {
+    const fetchMoods = async () => {
+      const moodData = await getAllMoods();
+      setMoods(moodData);
     }
-  ];
+    fetchMoods();
+  }, [])
+
+  const handleCreate = async (moodData) => {
+    const newMood = await postMood(moodData);
+    setMoods(prevState => [...prevState, newMood]);
+    history.push('/home');
+  }
+
+  const handleUpdate = async (id, moodData) => {
+    const updatedMood = await putMood(id, moodData);
+    setMoods(prevState => prevState.map(mood => {
+      return mood.id === Number(id) ? updatedMood : mood
+    }))
+    history.push('/foods');
+  }
+
+  const handleDelete = async (id) => {
+    await destroyMood(id);
+    setMoods(prevState => prevState.filter(mood => mood.id !== id))
+  }
+
 
   return (
     <>
-      <Moods allMoods={allMoods} />
+      <Moods moods={moods}
+        handleDelete={handleDelete}
+      />
     </>
   );
 }
