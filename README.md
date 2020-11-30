@@ -67,10 +67,13 @@ A post mvp feature will allow the user to track his symptoms.
 > for the rest of the wireframes please visit this [link:](https://www.figma.com/file/w81a4kRRTnBui5JkqWn5ZN/Care-Wireframes)
 
 ### Mobile Login
-![mobile landing](https://i.imgur.com/plRRI3d.png)
-<div>Care icon made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+![mobile login](https://i.imgur.com/plRRI3d.png)
+
+> <div>Care logo made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
  <br>
+ 
 ### Mobile Home
+
 [Low-fi Code Sandbox](https://codesandbox.io/s/moods-test-87shf?file=/Home.jsx) <br>
 
 ![mobile home](https://i.imgur.com/C5il2wu.png)
@@ -78,10 +81,12 @@ A post mvp feature will allow the user to track his symptoms.
 <br>
 
 ### Mobile Community
+
 ![mobile community](https://i.imgur.com/BRyPhsQ.png)
 <br>
 
 ### Mobile More 
+
 ![mobile more](https://i.imgur.com/Faj6lY9.png)
 <br>
 
