@@ -162,14 +162,14 @@ src
 
 | Task                | Priority | Estimated Time | Time Invested | Actual Time |
 | ------------------- | :------: | :------------: | :-----------: | :---------: |
+| Create CRUD Actions BE |    H     |     3 hrs      |    TBD        |     TBD     |
 | Create Layout       |    M     |     3 hrs      |    TBD        |     TBD     |
-| Create User         |    H     |     3 hrs      |    TBD        |     TBD     |
-| Create Post         |    H     |     3 hrs      |    TBD        |     TBD     |
-| Create Mood         |    H     |     3 hrs      |    TBD        |     TBD     |
+| Create User FE-CRUD      |    H     |     3 hrs      |    TBD        |     TBD     |
+| Create Insight FE-CRUD        |    H     |     3 hrs      |    TBD        |     TBD     |
+| Create Mood  FE-CRUD    |    H     |     3 hrs      |    TBD        |     TBD     |
 | Create Home Page    |    H     |     2 hrs      |    TBD        |     TBD     |
-| Create Insights Page |  H     |     2 hr       |    TBD        |     TBD     |
+| Create Community Page |  H     |     2 hr       |    TBD        |     TBD     |
 | Create Account Page |    L     |   1 hr         |    TBD        |     TBD     |
-| Create CRUD Actions in BE and FE|    H     |     7 hrs      |    TBD        |     TBD     |
 | Create Dark Mode    |    L     |   1 hr         |   TBD         |    TBD      |
 | TOTAL               |          |     50 hrs     |     TBD       |     TBD     |
 
