@@ -8,12 +8,12 @@ class MoodsController < ApplicationController
   def index
     @moods = Mood.all
     # @moods = @current_user.moods #only get current users moods
-    render json: @moods, include: :users
+    render json: @moods, include: :user
   end
 
   # GET /moods/1
   def show
-    render json: @mood, include: :users
+    render json: @mood, include: :user
   end
 
   # POST /moods
