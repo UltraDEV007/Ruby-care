@@ -5,6 +5,7 @@ import SentimentSatisfiedIcon from "@material-ui/icons/SentimentSatisfied";
 import SentimentSatisfiedSharpIcon from "@material-ui/icons/SentimentSatisfiedSharp";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
+import { Link } from "react-router-dom";
 
 export default function MoodCard({ mood, openOptions, handleDelete }) {
   return (
@@ -16,7 +17,7 @@ export default function MoodCard({ mood, openOptions, handleDelete }) {
               style={{
                 border: "1px solid black",
                 background: "#00FF00",
-                fontSize: "36px"
+                fontSize: "36px",
               }}
             />
           ) : mood.status === "poor" ? (
@@ -24,7 +25,7 @@ export default function MoodCard({ mood, openOptions, handleDelete }) {
               style={{
                 border: "1px solid black",
                 background: "red",
-                fontSize: "36px"
+                fontSize: "36px",
               }}
             />
           ) : mood.status === "okay" ? (
@@ -32,7 +33,7 @@ export default function MoodCard({ mood, openOptions, handleDelete }) {
               style={{
                 border: "1px solid black",
                 background: "yellow",
-                fontSize: "36px"
+                fontSize: "36px",
               }}
             />
           ) : mood.status === "good" ? (
@@ -40,7 +41,7 @@ export default function MoodCard({ mood, openOptions, handleDelete }) {
               style={{
                 border: "1px solid black",
                 background: "#228B22",
-                fontSize: "36px"
+                fontSize: "36px",
               }}
             />
           ) : (
@@ -55,8 +56,16 @@ export default function MoodCard({ mood, openOptions, handleDelete }) {
           className="buttons"
           style={openOptions ? { display: "flex" } : { display: "none" }}
         >
-          <Button variant="contained" color="primary" className="edit-button">
-          <span role="img" aria-label="edit">🔧</span>
+          <Button
+            component={Link}
+            to={`/moods/${mood.id}/edit`}
+            variant="contained"
+            color="primary"
+            className="edit-button"
+          >
+            <span role="img" aria-label="edit">
+              🔧
+            </span>
           </Button>
           <Button
             variant="contained"
@@ -64,7 +73,9 @@ export default function MoodCard({ mood, openOptions, handleDelete }) {
             className="delete-button"
             onClick={() => handleDelete(mood.id)}
           >
-            <span role="img" aria-label="delete">🗑️</span>
+            <span role="img" aria-label="delete">
+              🗑️
+            </span>
           </Button>
         </div>
       </div>

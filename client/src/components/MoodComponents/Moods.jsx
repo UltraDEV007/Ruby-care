@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import SettingsSharpIcon from "@material-ui/icons/SettingsSharp";
 import MoodCard from "./MoodCard";
+import { Link } from "react-router-dom";
 
 export default function Moods({ moods, handleDelete }) {
   const [openOptions, setOpenOptions] = useState(false);
@@ -35,7 +36,13 @@ export default function Moods({ moods, handleDelete }) {
           >
             <SettingsSharpIcon className="options-icon" />
           </Button>
-          <Button variant="outlined" color="primary" className="add-mood">
+          <Button
+            component={Link}
+            to="/moods/new"
+            variant="outlined"
+            color="primary"
+            className="add-mood"
+          >
             <AddIcon className="add-icon" />
           </Button>
         </div>
