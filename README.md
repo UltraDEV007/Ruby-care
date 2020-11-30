@@ -63,8 +63,7 @@ A post mvp feature will allow the user to track his symptoms.
 |  React-Moment   | _React component for the moment date library._ |
 | Rack-CORS    |  _back-end support for Cross-Origin Resource Sharing (CORS) for Rack compatible web applications._
 | JWT |  _back-end authentication dependency_ |
-
-
+| PostgreSQL | _object-relational database system_ |
 
 <br>
 
