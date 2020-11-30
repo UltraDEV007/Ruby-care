@@ -21,7 +21,7 @@
 
 ## Overview
 
-**Care** is a therapy/self-care app where a user will be able to track his mood, create affirmations, and read/share positive posts with the community.
+**Care** is a therapy/self-care app where a user will be able to track his mood, create affirmations, and read/share educational insights with the community.
 A post mvp feature will allow the user to track his symptoms.
 
 
@@ -104,8 +104,8 @@ src
       |__ MoodCard.jsx
    |__ AffirmationComponents/
        |__ Affirmations.jsx
-   |__ PostComponents/
-       |__ Posts.jsx
+   |__ InsightComponents/
+       |__ Insights.jsx
 |__ layouts/
   |__Layout/
      |__ Layout.jsx
@@ -116,11 +116,11 @@ src
    |__ moods.js
    |__ auth.js
    |__ affirmations.js
-   |__ posts.js
+   |__ insights.js
 |_ containers/
    |__ MoodsContainer.jsx
    |__ AffirmationsContainer.jsx
-   |__ PostsContainer.jsx
+   |__ InsightsContainer.jsx
 |_ screens/
  |__Main/ 
    |__ Home.jsx
@@ -135,10 +135,10 @@ src
 |__ MoodScreens/
    |__ MoodEdit.jsx
    |__ MoodCreate.jsx
-|__ PostScreens/
-   |__ PostEdit.jsx
-   |__ PostCreate.jsx
-  
+|__ InsightScreens/
+   |__ InsightEdit.jsx
+   |__ InsightCreate.jsx
+   |__ InsightDetail.jsx
 ```
 
 #### Component Breakdown
@@ -150,7 +150,7 @@ src
 |    Header    | functional |   y   |   y  | _The header will contain the page name, current time and current user name and logout_|
 | Mood Card    | functional |   y   |   y   | _The card will render the Mood info via props._                |
 | Affirmations Card   | functional |   y   |   y   | _The cards will render the affirmation info via props._  |
-| Posts Card  | functional |   y   |   y  | _The cards will render the post info via props._                |
+| Insights Card  | functional |   y   |   y  | _The cards will render the insight post info via props._                |
 |  CurrentUserContext   |    functional  |   y   |   n    |_CurrentUserContext.jsx will contain the provider and context for current user to be used globally throughtout the app_  |
 |    Home      | functional |  n   |   n   |  _The Home screen will include all the logged moods and affirmations_ |
 |    Community      | functional |  n   |   n   |   _The Community screen will include all posts made by users and the option to edit or delete a post_  |
@@ -166,7 +166,7 @@ src
 | Create Post         |    H     |     3 hrs      |    TBD        |     TBD     |
 | Create Mood         |    H     |     3 hrs      |    TBD        |     TBD     |
 | Create Home Page    |    H     |     2 hrs      |    TBD        |     TBD     |
-| Create Community Page |  H     |     2 hr       |    TBD        |     TBD     |
+| Create Insights Page |  H     |     2 hr       |    TBD        |     TBD     |
 | Create Account Page |    L     |   1 hr         |    TBD        |     TBD     |
 | Create CRUD Actions in BE and FE|    H     |     7 hrs      |    TBD        |     TBD     |
 | Create Dark Mode    |    L     |   1 hr         |   TBD         |    TBD      |
@@ -189,7 +189,7 @@ src
 
 ## Post-MVP
 - dark mode, the user will be able to switch between light mode and dark mode.
-- affirmations, the user will be abel to add,edit and delte affirmations.
+- affirmations, the user will be abel to add,edit and delete affirmations.
 - symptoms, the user will be able to add, edit and delete symtpoms.
 - password confirm on register: you will need to confirm your password to create your account.
 
