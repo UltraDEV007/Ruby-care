@@ -29,17 +29,18 @@ A post mvp feature will allow the user to track his symptoms.
 
 ## MVP
 
-- *Care* will feature full-crud (create-read-update-destroy) functionality for: moods and posts, which will be managed by a user.
-- *Care* will be user-friendly.
-- *Care* will feature mobile-first design, that follows some of the [material-design](https://en.wikipedia.org/wiki/Material_Design) principles.
+- _*Care* will feature full-crud (create-read-update-destroy) functionality for: moods and posts, which will be managed by a user._
+- _Allow for user sign up, authentication, login, and verification._
+- _*Care* will feature mobile-first design, that follows some of the [material-design](https://en.wikipedia.org/wiki/Material_Design) principles._
 <br>
 
 ### Goals
 
-- _Allow for user sign up, authentication, login, and verification._
 - _Restrict the app only for logged in users (unlogged in users will be redirected to register/login)._
-- _Posts page: user will be able to delete+edit his own posts, but not other users posts._
-- _Mobile friendly design_ 
+- _Insights page: user will be able to delete+edit his own insights, but not other users insights._
+- _Mobile-friendly design_ 
+- _*Care* will be user-friendly._
+
 
 <br>
 
