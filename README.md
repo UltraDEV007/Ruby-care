@@ -189,11 +189,12 @@ src
 
 | Task                | Priority | Estimated Time | Time Invested | Actual Time |
 | ------------------- | :------: | :------------: | :-----------: | :---------: |
-| Create CRUD Actions BE |    H     |     3 hrs      |    TBD        |     TBD     |
+| Create CRUD Actions in BE |    H     |     4 hrs      |    TBD        |     TBD     |
 | Create Layout       |    M     |     3 hrs      |    TBD        |     TBD     |
 | Create User FE-CRUD      |    H     |     3 hrs      |    TBD        |     TBD     |
 | Create Insight FE-CRUD        |    H     |     3 hrs      |    TBD        |     TBD     |
 | Create Mood  FE-CRUD    |    H     |     3 hrs      |    TBD        |     TBD     |
+| Create Affirmation FE-CRUD | M  |  3 hrs | TBD | TBD |
 | Create Home Page    |    H     |     2 hrs      |    TBD        |     TBD     |
 | Create Community Page |  H     |     2 hr       |    TBD        |     TBD     |
 | Create Account Page |    L     |   1 hr         |    TBD        |     TBD     |
