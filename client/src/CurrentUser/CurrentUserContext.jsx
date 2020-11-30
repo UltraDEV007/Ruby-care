@@ -14,6 +14,8 @@ function CurrentUserProvider(props) {
       setCurrentUser(userData);
       if (!userData) {
         history.push("/login");
+      } else if (userData) {
+        history.push("/home")
       }
     };
     handleVerify();

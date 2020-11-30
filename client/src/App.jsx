@@ -4,14 +4,12 @@ import { useState } from "react";
 import { yellow, red, blue } from "@material-ui/core/colors";
 import { Paper } from "@material-ui/core";
 import { Route, Switch } from "react-router-dom";
-import Layout from "./layouts/Layout/Layout";
-import Login from "./screens/auth/Login";
+  import Login from "./screens/auth/Login";
 import Register from "./screens/auth/Register";
 import { CurrentUserProvider } from "./CurrentUser/CurrentUserContext";
+import Home from './screens/main/Home/Home'
 
 function App() {
-
-
   const [darkMode, setDarkMode] = useState(false);
 
   const darkTheme = createMuiTheme({
@@ -45,21 +43,16 @@ function App() {
 
   return (
     <CurrentUserProvider>
-    <Paper>
-      <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
-        <Layout darkMode={darkMode} setDarkMode={setDarkMode} title="care">
-          <Switch>
-            <Route path="/login" component={Login}>
-            </Route>
-            <Route path="/register" component={Register}>
-            </Route>
-
-            {/* <Route path="/" component={Home} /> */}
-          </Switch>
-        </Layout>
-      </ThemeProvider>
-    </Paper>
-  </CurrentUserProvider>
+      <Paper>
+        <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+            <Switch>
+              <Route path="/login" component={Login}></Route>
+              <Route path="/register" component={Register}></Route>
+              <Route path="/home" component={Home} />
+            </Switch>
+        </ThemeProvider>
+      </Paper>
+    </CurrentUserProvider>
   );
 }
 

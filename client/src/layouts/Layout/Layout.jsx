@@ -6,7 +6,7 @@ function Layout({ title, children, darkMode, setDarkMode }) {
   return (
     <>
       <Header title={title} darkMode={darkMode} setDarkMode={setDarkMode} />
-      <div className="layout-children" style={{ minHeight: "100vh" }}>
+      <div className="layout-children" style={{ minHeight: '100vh'}}>
         {children}
       </div>
       <Footer />

@@ -10,7 +10,7 @@ export default function Register() {
     const handleRegister = async (registerData) => {
     const userData = await registerUser(registerData);
     setCurrentUser(userData);
-    history.push('/');
+    history.push('/home');
   }
 
   const [formData, setFormData] = useState({
