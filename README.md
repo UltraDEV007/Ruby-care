@@ -74,9 +74,11 @@ A post mvp feature will allow the user to track his symptoms.
 ![mobile home](https://i.imgur.com/C5il2wu.png)
 
 <br>
+
 ### Mobile Community
 ![mobile community](https://i.imgur.com/BRyPhsQ.png)
 <br>
+
 ### Mobile More 
 ![mobile more](https://i.imgur.com/Faj6lY9.png)
 <br>
