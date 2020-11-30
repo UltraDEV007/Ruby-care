@@ -29,7 +29,7 @@ A post mvp feature will allow the user to track his symptoms.
 
 ## MVP
 
-- _*Care* will feature full-crud (create-read-update-destroy) functionality for: moods and posts, which will be managed by a user._
+- _*Care* will feature full-crud (create-read-update-destroy) functionality for: moods, affirmations and insights, which will be managed by a user._
 - _Allow for user sign up, authentication, login, and verification._
 - _*Care* will feature mobile-first design, that follows some of the [material-design](https://en.wikipedia.org/wiki/Material_Design) principles._
 <br>
@@ -223,10 +223,9 @@ src
 
 ## Post-MVP
 - dark mode, the user will be able to switch between light mode and dark mode.
-- affirmations, the user will be abel to add,edit and delete affirmations.
 - symptoms, the user will be able to add, edit and delete symtpoms.
 - password confirm on register: you will need to confirm your password to create your account.
-
+- likes, be able to like an insight.
 ***
 
 ## Code Showcase
