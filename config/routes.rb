@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :affirmations
   resources :insights
   resources :moods
   post '/auth/login', to: 'authentication#login'

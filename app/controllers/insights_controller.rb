@@ -47,6 +47,10 @@ class InsightsController < ApplicationController
       @insight = Insight.find(params[:id])
     end
 
+    def set_user_insight
+      @insight = @current_user.insights.find(params[:id])
+    end
+    
     # Only allow a trusted parameter "white list" through.
     def insight_params
       params.require(:insight).permit(:title, :description, :body, :user_id)
