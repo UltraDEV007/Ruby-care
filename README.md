@@ -197,7 +197,7 @@ src
 | Create Affirmation FE-CRUD | M  |  3 hrs | TBD | TBD |
 | Create Home Page    |    H     |     2 hrs      |    TBD        |     TBD     |
 | Create Community Page |  H     |     2 hr       |    TBD        |     TBD     |
-| Create Account Page |    L     |   1 hr         |    TBD        |     TBD     |
+| Create More Page |    L     |   1 hr         |    TBD        |     TBD     |
 | Create Dark Mode    |    L     |   1 hr         |   TBD         |    TBD      |
 | TOTAL               |          |     50 hrs     |     TBD       |     TBD     |
 
