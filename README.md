@@ -157,6 +157,9 @@ src
 | MoodEdit    | functional | y     |  y    | _will contain the form to edit a mood_                        |
 | MoodCreate  | functional | y     |  y    | _will contain the form to create a mood_   |
 | AffirmationsCard   | functional |   y   |   y   | _The cards will render the affirmation info via props._  |
+| AffirmationDetail | functional |  y     |  y    | _AffirmationDetail will render the affirmation content text and have links to edit or delete one_ |
+| AffirmationCreate | functional  | y     |   y   | _AffirmationCreate will have the form to submit text content and create an affirmation_ |
+| AffirmationEdit   | functional  | y     |   y   | _AffirmationEdit will have the input field to edit an affirmation | 
 | InsightsCard  | functional |   y   |   y  | _The cards will render the insight post info via props._                |
 | InsightDetail | functional | y     |  y   | _The InsightDetail screen will render the insight title, body and user name_|
 |  CurrentUserContext   |    functional  |   y   |   n    |_CurrentUserContext.jsx will contain the provider and context for current user to be used globally throughtout the app_  |
@@ -164,6 +167,7 @@ src
 |    Community      | functional |  n   |   n   |   _The Community screen will include all insights made by users and the option to edit or delete an insight_  |
 |    More      | functional |  y    |   y  | _The More page will comtain current user info such as name email and password (will be editable as postmvp feature, and will have a dark mode switcher_ |
 |    Footer    | functional |   y   |   n  | _The footer will contain the links to the pages_ |
+|    Header    | functional | y     |   y  | _The header will contain the logged in user name, page name, and current time_ |
 
 #### Time Estimates
 
