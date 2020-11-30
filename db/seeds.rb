@@ -8,8 +8,8 @@
 
 Mood.destroy_all
 # Affirmation.destroy_all
-# Insight.destroy_all
-# User.destroy_all
+Insight.destroy_all
+User.destroy_all
 
 @admin = User.create!(name: 'admin', email: 'admin@email.com', password: '12345678')
 @daniel = User.create!(name: 'daniel', email: 'daniel@email.com', password: '12345678')
@@ -29,7 +29,7 @@ puts "#{Mood.count} moods created"
 
 # puts "#{Affirmation.count} affirmations created"
 
-# @insight1 = Insight.create!(title: "Hello", description: "I dont know this is a description", body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", user: @admin)
-# @insight2 = Insight.create!(title: "Hello", description: "I dont know this is a description", body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", user: @daniel)
+@insight1 = Insight.create!(title: "Hello", description: "I dont know this is a description", body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", user: @admin)
+@insight2 = Insight.create!(title: "Hello", description: "I dont know this is a description", body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", user: @daniel)
 
-# puts "#{Insight.count} insights created"
+puts "#{Insight.count} insights created"
