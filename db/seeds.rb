@@ -11,8 +11,8 @@ Affirmation.destroy_all
 Insight.destroy_all
 User.destroy_all
 
-@admin = User.create!(name: 'admin', email: 'admin@email.com', password: '123456')
-@daniel = User.create!(name: 'daniel', email: 'daniel@email.com', password: '123456')
+@admin = User.create!(name: 'admin', email: 'admin@email.com', password: '12345678')
+@daniel = User.create!(name: 'daniel', email: 'daniel@email.com', password: '12345678')
 
 puts "#{User.count} users created"
 
