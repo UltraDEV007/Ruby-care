@@ -1,19 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Switch from "@material-ui/core/Switch";
-import HomeIcon from '@material-ui/icons/Home'
+import HomeIcon from "@material-ui/icons/Home";
+import { CurrentUserContext } from "../../CurrentUser/CurrentUserContext";
+import { removeToken } from "../../services/auth";
+import { useHistory, Link } from "react-router-dom";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     marginBottom: "20px",
-    height: '80px'
+    height: "80px",
   },
   appBar: {
-    height: '60px',
+    // height: '60px',
     marginBottom: "20px",
   },
   menuButton: {
@@ -23,12 +27,20 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   timeClass: {
-    marginRight: '20px',
+    marginRight: "20px",
   },
 }));
 
-export default function Header({title, darkMode, setDarkMode}) {
-  
+export default function Header({ title, darkMode, setDarkMode }) {
+  const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
+  const history = useHistory();
+  const handleLogout = () => {
+    setCurrentUser(null);
+    localStorage.removeItem("authToken");
+    removeToken();
+    history.push("/login");
+  };
+
   const classes = useStyles();
   let time = new Date();
   let timeWithoutSeconds = time.toLocaleTimeString([], {
@@ -42,15 +54,33 @@ export default function Header({title, darkMode, setDarkMode}) {
         <Toolbar>
           <HomeIcon className={classes.menuButton} />
           <Typography variant="h6" className={classes.title}>
-              {title}
+            {title}
           </Typography>
-            <Typography className={classes.timeClass}>{timeWithoutSeconds}</Typography>
-            <Switch
+          <Typography className={classes.timeClass}>
+            {timeWithoutSeconds}
+          </Typography>
+          {/* <Switch
               checked={darkMode}
               onChange={() => setDarkMode(!darkMode)}
-            />
+            /> */}
+          {currentUser ? (
+            <>
+              <Typography>{currentUser.name}</Typography>
+              <Button onClick={handleLogout}>
+                <Typography style={{ color: "white" }}>Logout</Typography>
+              </Button>
+            </>
+          ) : (
+            <Link style={{ textDecoration: "none" }} to="/login">
+              <Button>
+                <Typography style={{ color: "white" }}>
+                  Login/Register
+                </Typography>
+              </Button>
+            </Link>
+          )}
         </Toolbar>
-        </AppBar>
+      </AppBar>
     </div>
   );
 }
