@@ -182,7 +182,7 @@ src
 
 [ERD Model Link](https://drive.google.com/file/d/16G7t1UU_fHARCdY8dVpV2eJWvtP0pbsW/view?usp=sharing)
 
-![ERD Model](https://i.imgur.com/y2NJq7T.png)
+![ERD Model](https://i.imgur.com/ZifAHJY.png)
 <br>
 
 ***
