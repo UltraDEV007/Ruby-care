@@ -82,12 +82,14 @@ A post mvp feature will allow the user to track his symptoms.
 
 ### Mobile Community
 
-![mobile community](https://i.imgur.com/BRyPhsQ.png)
+![mobile community](https://i.imgur.com/CkX7VA5.png)
+
 <br>
 
 ### Mobile More 
 
 ![mobile more](https://i.imgur.com/Faj6lY9.png)
+
 <br>
 
 ### Component Tree
