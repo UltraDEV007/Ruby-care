@@ -70,6 +70,7 @@ A post mvp feature will allow the user to track his symptoms.
  <br>
 ### Mobile Home
 ![mobile home](https://i.imgur.com/C5il2wu.png)
+[!Low-fi Code Sandbox](https://codesandbox.io/s/moods-test-87shf?file=/Home.jsx)
 <br>
 ### Mobile Community
 ![mobile community](https://i.imgur.com/BRyPhsQ.png)
