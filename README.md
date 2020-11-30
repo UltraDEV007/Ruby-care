@@ -167,11 +167,15 @@ src
 | MoodCard    | functional |   y   |   y   | _The card will render the Mood info via props._                |
 | MoodEdit    | functional | y     |  y    | _will contain the form to edit a mood_                        |
 | MoodCreate  | functional | y     |  y    | _will contain the form to create a mood_   |
+| AffirmationsContainer | functional| y    |   n   | _Affirmations container will have all axios requests and pass them as props to other affirmation components_|
 | AffirmationsCard   | functional |   y   |   y   | _The cards will render the affirmation info via props._  |
 | AffirmationDetail | functional |  y     |  y    | _AffirmationDetail will render the affirmation content text and have links to edit or delete one_ |
 | AffirmationCreate | functional  | y     |   y   | _AffirmationCreate will have the form to submit text content and create an affirmation_ |
 | AffirmationEdit   | functional  | y     |   y   | _AffirmationEdit will have the input field to edit an affirmation | 
+| InsightsContainer | functional| y    |   n   | _Insights container will have all axios requests and pass them as props to other insight components_|
 | InsightsCard  | functional |   y   |   y  | _The cards will render the insight post info via props._                |
+| InsightCreate | functional |   y   |   y  | _InsightCreate will have the form with the input fields to create an insight_ |
+| InsightEdit   | functional |   y   |   y  | _InsightEdit will have the form with the input fields to edit an insight_ |
 | InsightDetail | functional | y     |  y   | _The InsightDetail screen will render the insight title, body and user name_|
 |  CurrentUserContext   |    functional  |   y   |   n    |_CurrentUserContext.jsx will contain the provider and context for current user to be used globally throughtout the app_  |
 |    Home      | functional |  n   |   n   |  _The Home screen will include all the logged moods and affirmations_ |
