@@ -149,12 +149,16 @@ src
 |  Component   |    Type    | state | props | Description                                                      |
 | :----------: | :--------: | :---: | :---: | :--------------------------------------------------------------- |
 |    Header    | functional |   y   |   y  | _The header will contain the page name, current time and current user name and logout_|
-| Mood Card    | functional |   y   |   y   | _The card will render the Mood info via props._                |
-| Affirmations Card   | functional |   y   |   y   | _The cards will render the affirmation info via props._  |
-| Insights Card  | functional |   y   |   y  | _The cards will render the insight post info via props._                |
+| MoodsContainer| functional| y    |   n   | _Moods container will have all axios requests and pass them as props to other Mood components_|
+| MoodCard    | functional |   y   |   y   | _The card will render the Mood info via props._                |
+| MoodEdit    | functional | y     |  y    | _will contain the form to edit a mood_                        |
+| MoodCreate  | functional | y     |  y    | _will contain the form to create a mood_   |
+| AffirmationsCard   | functional |   y   |   y   | _The cards will render the affirmation info via props._  |
+| InsightsCard  | functional |   y   |   y  | _The cards will render the insight post info via props._                |
+| InsightDetail | functional | y     |  y   | _The InsightDetail screen will render the insight title, body and user name_|
 |  CurrentUserContext   |    functional  |   y   |   n    |_CurrentUserContext.jsx will contain the provider and context for current user to be used globally throughtout the app_  |
 |    Home      | functional |  n   |   n   |  _The Home screen will include all the logged moods and affirmations_ |
-|    Community      | functional |  n   |   n   |   _The Community screen will include all posts made by users and the option to edit or delete a post_  |
+|    Community      | functional |  n   |   n   |   _The Community screen will include all insights made by users and the option to edit or delete an insight_  |
 |    More      | functional |  y    |   y  | _The More page will comtain current user info such as name email and password (will be editable as postmvp feature, and will have a dark mode switcher_ |
 |    Footer    | functional |   y   |   n  | _The footer will contain the links to the pages_ |
 
