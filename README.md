@@ -44,6 +44,10 @@ A post mvp feature will allow the user to track his symptoms.
 
 <br>
 
+### Challenges 
+
+- _thinking about a transition from mobile to desktop mode (Media query) that makes sense, since this is a heavily mobile focused app_
+
 ### Libraries and Dependencies
 
 
