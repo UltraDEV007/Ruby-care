@@ -6,6 +6,8 @@ import SentimentSatisfiedSharpIcon from "@material-ui/icons/SentimentSatisfiedSh
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import { Link } from "react-router-dom";
+import Moment from "react-moment";
+import 'moment-timezone';
 
 export default function MoodCard({ mood, openOptions, handleDelete }) {
   return (
@@ -50,7 +52,7 @@ export default function MoodCard({ mood, openOptions, handleDelete }) {
           <p>{mood.status}</p>
         </div>
         <div className="time">
-          <p>{mood.created_at}</p>
+          <Moment format="MMM/DD/yyyy hh:mm A">{mood.created_at}</Moment>
         </div>
         <div
           className="buttons"

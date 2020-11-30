@@ -19,7 +19,7 @@ function CurrentUserProvider(props) {
       }
     };
     handleVerify();
-  }, []);
+  }, [history]);
 
   return (
     <CurrentUserContext.Provider value={[currentUser, setCurrentUser]}>
