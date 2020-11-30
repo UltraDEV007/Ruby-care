@@ -68,6 +68,7 @@ A post mvp feature will allow the user to track his symptoms.
 
 ### Mobile Login
 ![mobile landing](https://i.imgur.com/plRRI3d.png)
+<div>Care icon made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
  <br>
 ### Mobile Home
 [Low-fi Code Sandbox](https://codesandbox.io/s/moods-test-87shf?file=/Home.jsx) <br>
