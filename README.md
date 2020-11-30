@@ -194,11 +194,13 @@ src
 | Create CRUD Actions in BE |    H     |     4 hrs      |    TBD        |     TBD     |
 | Create Authentication in BE | H  | 2 hrs | TBD | TBD |
 | Create Layout       |    M     |     3 hrs      |    TBD        |     TBD     |
-| Create User FE-CRUD      |    H     |     3 hrs      |    TBD        |     TBD     |
+| Create Front-End auth     |    H     |     3 hrs      |    TBD        |     TBD     |
 | Create Insight FE-CRUD        |    H     |     3 hrs      |    TBD        |     TBD     |
 | Create Mood  FE-CRUD    |    H     |     3 hrs      |    TBD        |     TBD     |
 | Create Affirmation FE-CRUD | M  |  3 hrs | TBD | TBD |
 | Create Home Page    |    H     |     2 hrs      |    TBD        |     TBD     |
+| Create Register Page | H | 2 hrs | TBD | TBD |
+| Create Sign-in Page | H | 2 hrs | TBD | TBD |
 | Create Community Page |  H     |     2 hr       |    TBD        |     TBD     |
 | Create More Page |    L     |   1 hr         |    TBD        |     TBD     |
 | Create Dark Mode    |    L     |   1 hr         |   TBD         |    TBD      |
