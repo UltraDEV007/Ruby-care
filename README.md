@@ -106,6 +106,7 @@ src
        |__ Affirmations.jsx
    |__ InsightComponents/
        |__ Insights.jsx
+       |__ InsightCard.jsx
 |__ layouts/
   |__Layout/
      |__ Layout.jsx
