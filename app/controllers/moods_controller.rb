@@ -1,13 +1,13 @@
 class MoodsController < ApplicationController
   before_action :set_mood, only: [:show]
-  before_action :authorize_request, only: [ :create, :update, :destroy] #add :index if showing moods of current user, get rid of showing foods of all users
+  before_action :authorize_request, only: [:index, :create, :update, :destroy] #add :index if showing moods of current user, get rid of showing foods of all users
   before_action :set_user_mood, only: [ :update, :destroy]
 
   
   # GET /moods
   def index
-    @moods = Mood.all
-    # @moods = @current_user.moods #only get current users moods
+    # @moods = Mood.all
+    @moods = @current_user.moods #only get current users moods
     render json: @moods, include: :user
   end
 

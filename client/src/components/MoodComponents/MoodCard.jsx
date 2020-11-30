@@ -6,7 +6,7 @@ import SentimentSatisfiedSharpIcon from "@material-ui/icons/SentimentSatisfiedSh
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 
-export default function MoodCard({ mood, openOptions }) {
+export default function MoodCard({ mood, openOptions, handleDelete }) {
   return (
     <Card className="mood-card">
       <div className="mood-container">
@@ -62,6 +62,7 @@ export default function MoodCard({ mood, openOptions }) {
             variant="contained"
             color="secondary"
             className="delete-button"
+            onClick={() => handleDelete(mood.id)}
           >
             <span role="img" aria-label="delete">🗑️</span>
           </Button>

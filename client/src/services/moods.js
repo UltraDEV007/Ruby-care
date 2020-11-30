@@ -11,7 +11,7 @@ export const getOneMood = async (id) => {
 }
 
 export const postMood = async (moodData) => {
-  const resp = await api.post('/Moods', { mood: moodData });
+  const resp = await api.post('/moods', { mood: moodData });
   return resp.data;
 }
 
@@ -21,6 +21,6 @@ export const putMood = async (id, moodData) => {
 }
 
 export const destroyMood = async (id) => {
-  const resp = await api.delete(`/mods/${id}`);
+  const resp = await api.delete(`/moods/${id}`);
   return resp;
 }

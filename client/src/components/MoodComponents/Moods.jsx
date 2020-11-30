@@ -5,7 +5,7 @@ import AddIcon from "@material-ui/icons/Add";
 import SettingsSharpIcon from "@material-ui/icons/SettingsSharp";
 import MoodCard from "./MoodCard";
 
-export default function Moods({ allMoods }) {
+export default function Moods({ moods, handleDelete }) {
   const [openOptions, setOpenOptions] = useState(false);
 
   const handleMouseClick = () => {
@@ -13,7 +13,13 @@ export default function Moods({ allMoods }) {
   };
 
   const MOODS = React.Children.toArray(
-    allMoods.map((mood) => <MoodCard mood={mood} openOptions={openOptions} />)
+    moods.map((mood) => (
+      <MoodCard
+        mood={mood}
+        openOptions={openOptions}
+        handleDelete={handleDelete}
+      />
+    ))
   );
 
   return (
