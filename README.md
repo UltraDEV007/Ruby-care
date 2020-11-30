@@ -177,7 +177,7 @@ src
 | AffirmationsCard   | functional |   y   |   y   | _The cards will render the affirmation info via props._  |
 | AffirmationDetail | functional |  y     |  y    | _AffirmationDetail will render the affirmation content text and have links to edit or delete one_ |
 | AffirmationCreate | functional  | y     |   y   | _AffirmationCreate will have the form to submit text content and create an affirmation_ |
-| AffirmationEdit   | functional  | y     |   y   | _AffirmationEdit will have the input field to edit an affirmation | 
+| AffirmationEdit   | functional  | y     |   y   | _AffirmationEdit will have the input field to edit an affirmation and a submit button_ | 
 | InsightsContainer | functional| y    |   n   | _Insights container will have all axios requests and pass them as props to other insight components_|
 | InsightsCard  | functional |   y   |   y  | _The cards will render the insight post info via props._                |
 | InsightCreate | functional |   y   |   y  | _InsightCreate will have the form with the input fields to create an insight_ |
