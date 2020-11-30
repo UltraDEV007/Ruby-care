@@ -57,6 +57,8 @@ A post mvp feature will allow the user to track his symptoms.
 | Material-UI      | _Front-end styling package_ |
 |  Ruby on Rails   | _Back-end server_ |
 |  React-Moment   | _React component for the moment date library._ |
+| Rack-CORS    |  _back-end support for Cross-Origin Resource Sharing (CORS) for Rack compatible web applications._
+| JWT |  _back-end authentication dependency_ |
 
 
 
@@ -190,6 +192,7 @@ src
 | Task                | Priority | Estimated Time | Time Invested | Actual Time |
 | ------------------- | :------: | :------------: | :-----------: | :---------: |
 | Create CRUD Actions in BE |    H     |     4 hrs      |    TBD        |     TBD     |
+| Create Authentication in BE | H  | 2 hrs | TBD | TBD |
 | Create Layout       |    M     |     3 hrs      |    TBD        |     TBD     |
 | Create User FE-CRUD      |    H     |     3 hrs      |    TBD        |     TBD     |
 | Create Insight FE-CRUD        |    H     |     3 hrs      |    TBD        |     TBD     |
