@@ -56,6 +56,7 @@ A post mvp feature will allow the user to track his symptoms.
 | Styled-Components| _Front-end styling package_ |
 | Material-UI      | _Front-end styling package_ |
 |  Ruby on Rails   | _Back-end server_ |
+|  React-Moment   | _React component for the moment date library._ |
 
 
 
