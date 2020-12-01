@@ -68,7 +68,9 @@ function App() {
       <Paper>
         <ThemeProvider theme={darkTheme}>
           <Switch>
-            <Route path="/login" exact component={Login}></Route>
+            <Route path="/login">
+              <Login darkMode={darkMode} />
+            </Route>
             <Route path="/register" component={Register}></Route>
             <Route path="/insights" component={InsightsContainer} />
             <Route path="/settings">

@@ -15,6 +15,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 import EmailIcon from "@material-ui/icons/Email";
 import LockIcon from "@material-ui/icons/Lock";
+import { yellow, grey } from "@material-ui/core/colors";
 
 const useStyles = makeStyles({
   root: {
@@ -24,6 +25,16 @@ const useStyles = makeStyles({
     alignItems: "center",
     width: "100%",
     height: "100vh",
+    background: "#fff",
+  },
+  rootDark: {
+    display: "flex",
+    flexDirection: "column",
+    flexFlow: "wrap",
+    alignItems: "center",
+    width: "100%",
+    height: "100vh",
+    background: grey[900],
   },
   logoContainer: {
     display: "flex",
@@ -38,6 +49,14 @@ const useStyles = makeStyles({
     padding: "15px",
     marginTop: "10px",
     textShadow: "0.5px 4px 10px #999",
+  },
+  titleDark: {
+    fontFamily: ["Montserrat", "sans-serif"].join(","),
+    fontSize: "36px",
+    padding: "15px",
+    marginTop: "10px",
+    textShadow: "0.5px 4px 10px #999",
+    color: yellow[700],
   },
   logo: {
     maxWidth: "100px",
@@ -56,15 +75,32 @@ const useStyles = makeStyles({
     fontFamily: ["Montserrat", "sans-serif"].join(","),
     textTransform: "capitalize",
   },
+  loginButtonDark: {
+    margin: "20px auto",
+    padding: "20px",
+    color: yellow[700],
+    fontSize: "28px",
+    fontFamily: ["Montserrat", "sans-serif"].join(","),
+    textTransform: "capitalize",
+  },
   register: {
     fontFamily: ["Montserrat", "sans-serif"].join(","),
     fontSize: "26px",
     textDecoration: "none",
-    // color: "#000",
+  },
+  registerDark: {
+    fontFamily: ["Montserrat", "sans-serif"].join(","),
+    fontSize: "26px",
+    textDecoration: "none",
+    color: "#fff",
   },
   registerLink: {
     textDecoration: "none",
     color: "#62B5D9",
+  },
+  registerLinkDark: {
+    textDecoration: "none",
+    color: yellow[700],
   },
   inputField: {
     color: "black",
@@ -86,7 +122,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Login() {
+export default function Login({ darkMode }) {
   const history = useHistory();
   const classes = useStyles();
 
@@ -123,9 +159,11 @@ export default function Login() {
 
   return (
     <>
-      <div className={classes.root}>
+      <div className={!darkMode ? classes.root : classes.rootDark}>
         <div className={classes.logoContainer}>
-          <Typography className={classes.title}>Care</Typography>
+          <Typography className={!darkMode ? classes.title : classes.titleDark}>
+            Care
+          </Typography>
           <img
             className={classes.logo}
             src="https://i.imgur.com/1QePclv.png"
@@ -180,13 +218,25 @@ export default function Login() {
             </FormControl>
           </div>
           <br />
-          <Button type="submit" className={classes.loginButton}>
+          <Button
+            type="submit"
+            className={
+              !darkMode ? classes.loginButton : classes.loginButtonDark
+            }
+          >
             Login
           </Button>
         </form>
-        <Typography className={classes.register}>
+        <Typography
+          className={!darkMode ? classes.register : classes.registerDark}
+        >
           Don't have an account? &nbsp;
-          <Link className={classes.registerLink} to="/register">
+          <Link
+            className={
+              !darkMode ? classes.registerLink : classes.registerLinkDark
+            }
+            to="/register"
+          >
             Register
           </Link>
         </Typography>
