@@ -4,7 +4,6 @@ import { CurrentUserContext } from "../../CurrentUser/CurrentUserContext";
 import { loginUser } from "../../services/auth";
 import { makeStyles } from "@material-ui/styles";
 import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
@@ -108,7 +107,19 @@ const useStyles = makeStyles({
     width: "300px",
     marginLeft: "10px",
   },
+  inputFieldDark: {
+    color: "#fff",
+    marginBottom: "20px",
+    width: "300px",
+    marginLeft: "10px",
+  },
   passwordField: {
+    color: "black",
+    marginBottom: "20px",
+    width: "300px",
+  },
+  passwordFieldDark: {
+    color: "#fff",
     marginBottom: "20px",
     width: "300px",
   },
@@ -120,6 +131,26 @@ const useStyles = makeStyles({
     alignItems: "center",
     color: "black",
   },
+  inputContainerDark: {
+    display: "flex",
+    alignItems: "center",
+    color: "#fff",
+  },
+  darkLabel: {
+    color: "#fff",
+    marginLeft: "10px",
+  },
+  label: {
+    color: "#000",
+    marginLeft: "10px",
+  },
+  darkPasswordLabel: {
+    color: "#fff",
+  },
+  passwordLabel: {
+    color: "#000",
+    marginLeft: "10px",
+  },
 });
 
 export default function Login({ darkMode }) {
@@ -127,6 +158,10 @@ export default function Login({ darkMode }) {
   const classes = useStyles();
 
   const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
+
+  if (currentUser) {
+    history.push("/");
+  }
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -159,9 +194,11 @@ export default function Login({ darkMode }) {
 
   return (
     <>
-      <div className={!darkMode ? classes.root : classes.rootDark}>
+      <div className={darkMode === "dark" ? classes.rootDark : classes.root}>
         <div className={classes.logoContainer}>
-          <Typography className={!darkMode ? classes.title : classes.titleDark}>
+          <Typography
+            className={darkMode === "light" ? classes.title : classes.titleDark}
+          >
             Care
           </Typography>
           <img
@@ -178,28 +215,66 @@ export default function Login({ darkMode }) {
             handleLogin(formData);
           }}
         >
-          <div className={classes.inputContainer}>
+          <div
+            className={
+              darkMode === "light"
+                ? classes.inputContainer
+                : classes.inputContainerDark
+            }
+          >
             <EmailIcon />
-            <TextField
-              className={classes.inputField}
-              type="text"
-              name="email"
-              label="Email Address"
-              value={formData.email}
-              onChange={handleChange}
-            />
+            <FormControl>
+              <InputLabel
+                className={
+                  darkMode === "light" ? classes.label : classes.darkLabel
+                }
+                htmlFor="email"
+              >
+                Email Address
+              </InputLabel>
+              <Input
+                id="email"
+                type="text"
+                style={{ color: "#fff" }}
+                className={
+                  darkMode === "light"
+                    ? classes.inputField
+                    : classes.inputFieldDark
+                }
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+              />
+            </FormControl>
           </div>
           <br />
-          <div className={classes.inputContainer}>
+          <div
+            className={
+              darkMode === "light"
+                ? classes.inputContainer
+                : classes.inputContainerDark
+            }
+          >
             <LockIcon className={classes.lockIcon} />
             <FormControl>
-              <InputLabel htmlFor="standard-adornment-password">
+              <InputLabel
+                className={
+                  darkMode === "light"
+                    ? classes.lasswordLabel
+                    : classes.darkPasswordLabel
+                }
+                htmlFor="password"
+              >
                 Password
               </InputLabel>
               <Input
-                className={classes.passwordField}
+                className={
+                  darkMode === "light"
+                    ? classes.passwordField
+                    : classes.passwordFieldDark
+                }
                 name="password"
-                id="standard-adornment-password"
+                id="password"
                 type={showPassword ? "text" : "password"}
                 value={formData.password}
                 onChange={handleChange}
@@ -210,7 +285,23 @@ export default function Login({ darkMode }) {
                       onClick={handleClickShowPassword}
                       onMouseDown={handleMouseDownPassword}
                     >
-                      {showPassword ? <Visibility /> : <VisibilityOff />}
+                      {showPassword ? (
+                        <Visibility
+                          style={
+                            darkMode === "dark"
+                              ? { color: "#fff" }
+                              : { color: "#000" }
+                          }
+                        />
+                      ) : (
+                        <VisibilityOff
+                          style={
+                            darkMode === "dark"
+                              ? { color: "#fff" }
+                              : { color: "#000" }
+                          }
+                        />
+                      )}
                     </IconButton>
                   </InputAdornment>
                 }
@@ -221,19 +312,25 @@ export default function Login({ darkMode }) {
           <Button
             type="submit"
             className={
-              !darkMode ? classes.loginButton : classes.loginButtonDark
+              darkMode === "light"
+                ? classes.loginButton
+                : classes.loginButtonDark
             }
           >
             Login
           </Button>
         </form>
         <Typography
-          className={!darkMode ? classes.register : classes.registerDark}
+          className={
+            darkMode === "light" ? classes.register : classes.registerDark
+          }
         >
           Don't have an account? &nbsp;
           <Link
             className={
-              !darkMode ? classes.registerLink : classes.registerLinkDark
+              darkMode === "light"
+                ? classes.registerLink
+                : classes.registerLinkDark
             }
             to="/register"
           >
