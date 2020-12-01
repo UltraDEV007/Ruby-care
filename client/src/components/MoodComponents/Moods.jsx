@@ -4,11 +4,25 @@ import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import SettingsSharpIcon from "@material-ui/icons/SettingsSharp";
 import MoodCard from "./MoodCard";
-import { Link } from "react-router-dom";
+import MoodCreate from "../Dialogs/MoodCreate";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
-export default function Moods({ moods, updated, handleDelete }) {
+export default function Moods({
+  moods,
+  updated,
+  handleDelete,
+  handleCreate,
+  loaded,
+}) {
   const [openOptions, setOpenOptions] = useState(false);
+  const [openDialog, setOpenDialog] = useState(false);
 
+  const handleClickOpen = () => {
+    setOpenDialog(true);
+  };
+  const handleClose = () => {
+    setOpenDialog(false);
+  };
   const handleMouseClick = () => {
     setOpenOptions(!openOptions);
   };
@@ -24,10 +38,15 @@ export default function Moods({ moods, updated, handleDelete }) {
     ))
   );
 
+  const onSave = (formData) => {
+    handleCreate(formData);
+    setOpenDialog(false);
+  };
+
   return (
     <>
       <div className="moods">
-        {MOODS}
+        {loaded ? MOODS : <CircularProgress />}
         <div className="buttons-container1">
           <Button
             className="edit-moods"
@@ -38,14 +57,18 @@ export default function Moods({ moods, updated, handleDelete }) {
             <SettingsSharpIcon className="options-icon" />
           </Button>
           <Button
-            component={Link}
-            to="/moods/new"
+            onClick={handleClickOpen}
             variant="outlined"
             color="primary"
             className="add-mood"
           >
             <AddIcon className="add-icon" />
           </Button>
+          <MoodCreate
+            open={openDialog}
+            onSave={onSave}
+            handleClose={handleClose}
+          />
         </div>
       </div>
     </>

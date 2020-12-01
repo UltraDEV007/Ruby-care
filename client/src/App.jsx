@@ -52,7 +52,7 @@ function App() {
             <Route path="/register" component={Register}></Route>
             <Route path="/community" component={Community} />
             <Route path="/more" component={More} />
-            <Route path="/" component={Home} />
+            <Route exact path="/" component={Home} />
           </Switch>
         </ThemeProvider>
       </Paper>

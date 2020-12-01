@@ -5,7 +5,7 @@ import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import HomeIcon from "@material-ui/icons/Home";
 import ForumIcon from "@material-ui/icons/Forum";
 import { makeStyles } from "@material-ui/core/styles";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
@@ -18,35 +18,35 @@ const useStyles = makeStyles({
 
 function Footer() {
   const classes = useStyles();
-  const [value, setValue] = useState(0);
+  const routerMap = {
+    0: "/",
+    1: "/community",
+    2: "/more",
+  };
+  const history = useHistory();
+  const [value, setValue] = useState(() => {
+    if (history.location.pathname === "/community") {
+      return 1;
+    } else if (history.location.pathname === "/more") {
+      return 2;
+    } else {
+      return 0;
+    }
+  });
 
   return (
     <BottomNavigation
       value={value}
       onChange={(_event, newValue) => {
+        history.push(routerMap[newValue]);
         setValue(newValue);
       }}
       showLabels
       className={classes.root}
     >
-      <BottomNavigationAction
-        label="Home"
-        icon={<HomeIcon />}
-        component={Link}
-        to="/"
-      />
-      <BottomNavigationAction
-        label="Community"
-        icon={<ForumIcon />}
-        component={Link}
-        to="/community"
-      />
-      <BottomNavigationAction
-        label="More"
-        component={Link}
-        to="/more"
-        icon={<MoreHorizIcon />}
-      />
+      <BottomNavigationAction label="Home" icon={<HomeIcon />} />
+      <BottomNavigationAction label="Community" icon={<ForumIcon />} />
+      <BottomNavigationAction label="More" icon={<MoreHorizIcon />} />
     </BottomNavigation>
   );
 }
