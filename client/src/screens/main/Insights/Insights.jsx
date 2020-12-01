@@ -1,37 +1,22 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import Moment from "react-moment";
-import "moment-timezone";
-import { CurrentUserContext } from "../../../CurrentUser/CurrentUserContext";
 import Layout from "../../../layouts/Layout/Layout";
+import InsightCard from "../../../components/InsightComponents/InsightCard";
 export default function Insights(props) {
-  const [currentUser] = useContext(CurrentUserContext);
+  const INSIGHTS = React.Children.toArray(
+    props.insights.map((insight) => (
+      <InsightCard
+        updated={props.updated}
+        insight={insight}
+        handleDelete={props.handleDelete}
+      />
+    ))
+  );
 
   return (
     <Layout title="Insights">
       <h3>Insights</h3>
-      {props.insights.map((insight) => (
-        <React.Fragment key={insight.id}>
-          <Link to={`/insights/${insight.id}`}>
-            <p>{insight.title}</p>
-          </Link>
-          <p>{insight.description}</p>
-          <p>{insight.body}</p>
-          <Moment format="MMM-DD-yyyy hh:mm A">{insight.created_at}</Moment>
-          {insight.user_id === currentUser?.id && (
-            <>
-              <div>
-                <Link to={`/insights/${insight.id}/edit`}>
-                  <button>Edit</button>
-                </Link>
-                <button onClick={() => props.handleDelete(insight.id)}>
-                  Delete
-                </button>
-              </div>
-            </>
-          )}
-        </React.Fragment>
-      ))}
+      {INSIGHTS}
       <br />
       <Link to="/insights/new">
         <button>Create</button>

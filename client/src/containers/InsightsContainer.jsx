@@ -1,4 +1,3 @@
-import Layout from "../layouts/Layout/Layout";
 import { makeStyles } from "@material-ui/styles";
 import { useState, useEffect } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
@@ -7,14 +6,18 @@ import {
   getAllInsights,
   postInsight,
   putInsight,
+  getOneInsight,
 } from "../services/insights";
 import Insights from "../screens/main/Insights/Insights";
 import InsightCreate from "../screens/InsightScreens/InsightCreate";
+import InsightEdit from "../screens/InsightScreens/InsightEdit";
+import InsightDetail from "../screens/InsightScreens/InsightDetail";
 const useStyles = makeStyles({});
 
 export default function Community() {
   const classes = useStyles();
   const [insights, setInsights] = useState([]);
+  const [updated, setUpdated] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
@@ -38,6 +41,7 @@ export default function Community() {
         return insight.id === Number(id) ? updatedInsight : insight;
       })
     );
+    setUpdated(true);
     history.push("/insights");
   };
 
@@ -46,6 +50,7 @@ export default function Community() {
     setInsights((prevState) =>
       prevState.filter((insight) => insight.id !== id)
     );
+    history.push("/insights");
   };
   return (
     <>
@@ -53,9 +58,22 @@ export default function Community() {
         <Route path="/insights/new">
           <InsightCreate handleCreate={handleCreate} />
         </Route>
+        <Route path="/insights/:id/edit">
+          <InsightEdit insights={insights} handleUpdate={handleUpdate} />
+        </Route>
+        <Route path="/insights/:id">
+          <InsightDetail
+            getOneInsight={getOneInsight}
+            handleDelete={handleDelete}
+          />
+        </Route>
         <div className={classes.root}>
           <Route path="/insights">
-            <Insights insights={insights} handleDelete={handleDelete} />
+            <Insights
+              updated={updated}
+              insights={insights}
+              handleDelete={handleDelete}
+            />
           </Route>
         </div>
       </Switch>
