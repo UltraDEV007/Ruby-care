@@ -7,8 +7,10 @@ import Switch from "@material-ui/core/Switch";
 import HomeIcon from "@material-ui/icons/Home";
 import { CurrentUserContext } from "../../CurrentUser/CurrentUserContext";
 import { removeToken } from "../../services/auth";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory, Link, useLocation } from "react-router-dom";
 import Button from "@material-ui/core/Button";
+import ForumIcon from "@material-ui/icons/Forum";
+import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,11 +50,20 @@ export default function Header({ title, darkMode, setDarkMode }) {
     minute: "2-digit",
   });
 
+  let location = useLocation();
+
   return (
     <div className={classes.root}>
       <AppBar className={classes.appBar} position="fixed">
         <Toolbar>
-          <HomeIcon className={classes.menuButton} />
+          {location.pathname === "/home" ? (
+            <HomeIcon className={classes.menuButton} />
+          ) : location.pathname === "/community" ? (
+            <ForumIcon className={classes.menuButton} />
+          ) : (
+            <></>
+          )}
+
           <Typography variant="h6" className={classes.title}>
             {title}
           </Typography>

@@ -8,6 +8,7 @@ import { Route, Switch } from "react-router-dom";
 import Register from "./screens/auth/Register";
 import { CurrentUserProvider } from "./CurrentUser/CurrentUserContext";
 import Home from './screens/main/Home/Home'
+import Community from './screens/main/Community/Community'
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -49,7 +50,8 @@ function App() {
               <Route path="/login" component={Login}></Route>
               <Route path="/register" component={Register}></Route>
             <Route path="/home" component={Home} />
-            {/* <Home /> */}
+            <Route path="/community" component={Community} />
+
             </Switch>
         </ThemeProvider>
       </Paper>
