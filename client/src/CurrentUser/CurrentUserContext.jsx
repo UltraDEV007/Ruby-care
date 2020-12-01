@@ -14,8 +14,9 @@ function CurrentUserProvider(props) {
       setCurrentUser(userData);
       if (!userData) {
         history.push("/");
-      } else if (userData) {
-        history.push("/");
+        // } else if (userData) {
+        //   history.push("/");
+        // }
       }
     };
     handleVerify();

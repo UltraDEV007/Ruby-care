@@ -60,13 +60,14 @@ const useStyles = makeStyles({
     fontFamily: ["Montserrat", "sans-serif"].join(","),
     fontSize: "26px",
     textDecoration: "none",
-    color: "#000",
+    // color: "#000",
   },
   registerLink: {
     textDecoration: "none",
     color: "#62B5D9",
   },
   inputField: {
+    color: "black",
     marginBottom: "20px",
     width: "300px",
     marginLeft: "10px",
@@ -81,6 +82,7 @@ const useStyles = makeStyles({
   inputContainer: {
     display: "flex",
     alignItems: "center",
+    color: "black",
   },
 });
 

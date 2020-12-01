@@ -8,19 +8,24 @@ import Login from "./screens/auth/Login";
 import Register from "./screens/auth/Register";
 import { CurrentUserProvider } from "./CurrentUser/CurrentUserContext";
 import Home from "./screens/main/Home/Home";
-import Community from "./screens/main/Community/Community";
+import InsightsContainer from "./containers/InsightsContainer";
 import Settings from "./screens/main/Settings/Settings";
 
 function App() {
   const [darkMode, setDarkMode] = useState("light");
   const palletType = darkMode === "dark" ? "dark" : "light";
+  const themeTextColor = darkMode === "dark" ? "#fff" : "#000";
+
   const [switchState, setSwitchState] = useState();
-  const [mainPrimaryColor, setMainPrimaryColor] = useState(blue[600]);
-  const [mainSecondaryColor, setMainSecondaryColor] = useState(red[600]);
-  // darkmode is now saved in local storage, but the main and priamry colors need fixing on refresh.
+  const mainPrimaryColor = darkMode === "light" ? blue[600] : yellow[700];
+  const mainSecondaryColor = darkMode === "light" ? red[600] : "#ff8f00";
+
   const darkTheme = createMuiTheme({
     palette: {
       type: palletType,
+      text: {
+        primary: themeTextColor,
+      },
       typography: {
         fontFamily: ["Roboto", "sans-serif"].join(","),
       },
@@ -49,14 +54,10 @@ function App() {
     setSwitchState(switchState === true ? false : true);
     if (darkMode === "light") {
       setDarkMode("dark");
-      setMainPrimaryColor(yellow[700]);
-      setMainSecondaryColor("#ff8f00");
       localStorage.setItem("darkMode", "dark");
       localStorage.setItem("switchState", true);
     } else {
       setDarkMode("light");
-      setMainSecondaryColor(red[600]);
-      setMainPrimaryColor(blue[600]);
       localStorage.setItem("darkMode", "light");
       localStorage.setItem("switchState", false);
     }
@@ -67,9 +68,9 @@ function App() {
       <Paper>
         <ThemeProvider theme={darkTheme}>
           <Switch>
-            <Route path="/login" component={Login}></Route>
+            <Route path="/login" exact component={Login}></Route>
             <Route path="/register" component={Register}></Route>
-            <Route path="/community" component={Community} />
+            <Route path="/insights" component={InsightsContainer} />
             <Route path="/settings">
               <Settings
                 darkMode={darkMode}
