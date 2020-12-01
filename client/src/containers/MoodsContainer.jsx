@@ -1,13 +1,16 @@
 import React from "react";
 import Moods from "../components/MoodComponents/Moods.jsx";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
 import MoodCreate from "../screens/MoodScreens/MoodCreate";
 import MoodEdit from "../screens/MoodScreens/MoodEdit";
 import Blah from '../screens/Blah'
 import { destroyMood, getAllMoods, postMood, putMood } from "../services/moods";
+import { CurrentUserContext } from "../CurrentUser/CurrentUserContext"
 
 export default function MoodsContainer() {
+  const [currentUser] = useContext(CurrentUserContext);
+
   const [moods, setMoods] = useState([]);
   const [updated, setUpdated] = useState(false)
   const history = useHistory();
@@ -18,7 +21,7 @@ export default function MoodsContainer() {
       setMoods(moodData);
     };
     fetchMoods();
-  }, []);
+  }, [currentUser]);
 
   const handleCreate = async (moodData) => {
     const newMood = await postMood(moodData);

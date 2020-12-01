@@ -48,11 +48,11 @@ function App() {
       <Paper>
         <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
           <Switch>
-            <Route exact path="/login" component={Login}></Route>
-            <Route exact path="/register" component={Register}></Route>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/community" component={Community} />
-            <Route exact path="/more" component={More} />
+            <Route path="/login" component={Login}></Route>
+            <Route path="/register" component={Register}></Route>
+            <Route path="/community" component={Community} />
+            <Route path="/more" component={More} />
+            <Route path="/" component={Home} />
           </Switch>
         </ThemeProvider>
       </Paper>
