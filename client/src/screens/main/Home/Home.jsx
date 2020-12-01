@@ -28,7 +28,7 @@ export default function SimpleAccordion() {
   const classes = useStyles();
 
   return (
-    <Layout>
+    <Layout title="Home">
     <div className={classes.root}>
       <Accordion className={classes.accordion}>
         <AccordionSummary

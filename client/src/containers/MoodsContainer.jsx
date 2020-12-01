@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
 import MoodCreate from "../screens/MoodScreens/MoodCreate";
 import MoodEdit from "../screens/MoodScreens/MoodEdit";
-
+import Blah from '../screens/Blah'
 import { destroyMood, getAllMoods, postMood, putMood } from "../services/moods";
 
 export default function MoodsContainer() {
@@ -41,16 +41,19 @@ export default function MoodsContainer() {
   };
 
   return (
-    <Switch>
-      {/* <> */}
+      <>
       <Moods moods={moods} handleDelete={handleDelete} />
-      <Route path="/moods/new">
+    <Switch>
+      <Route exact path="/moods/new">
         <MoodCreate handleCreate={handleCreate} />
+      </Route>
+      <Route path="/blah">
+        <Blah  />
       </Route>
       <Route path='/moods/:id/edit'>
         <MoodEdit moods={moods} handleUpdate={handleUpdate} />
       </Route>
-      {/* </> */}
     </Switch>
+      </>
   );
 }
