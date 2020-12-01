@@ -23,7 +23,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Settings({ darkMode, setDarkMode }) {
+export default function Settings({
+  darkMode,
+  switchState,
+  setDarkMode,
+  handleThemeChange,
+}) {
   const classes = useStyles();
   const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
 
@@ -43,10 +48,13 @@ export default function Settings({ darkMode, setDarkMode }) {
         <Card className={classes.card}>
           <CardActions className={classes.actionsContainer}>
             <Typography className={classes.typography}>Dark mode</Typography>
+            {/* <Typography onClick={handleThemeChange}>HELLO</Typography> */}
             <Switch
               className={classes.darkModeSwitch}
-              checked={darkMode}
-              onChange={() => setDarkMode(!darkMode)}
+              // checked={darkMode}
+              checked={switchState}
+              // onChange={() => setDarkMode(!darkMode)}
+              onChange={handleThemeChange}
             />
           </CardActions>
         </Card>
