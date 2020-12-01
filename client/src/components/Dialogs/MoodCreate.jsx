@@ -11,6 +11,8 @@ import MuiDialogActions from "@material-ui/core/DialogActions";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
+import Moment from "react-moment";
+import "moment-timezone";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -113,6 +115,7 @@ export default function MoodCreate({ open, onSave, handleClose }) {
       status: name,
     });
   };
+  let time = new Date();
 
   return (
     <div className={classes.root}>
@@ -128,9 +131,12 @@ export default function MoodCreate({ open, onSave, handleClose }) {
           }}
         >
           <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-            Create Mood
+            How are you feeling?
           </DialogTitle>
           <DialogContent dividers>
+            <Typography>
+              Today, <Moment format="MMMM-DD-yyyy hh:mm A">{time}</Moment>
+            </Typography>
             <FormLabel>
               Poor
               <PoorRadio
@@ -172,7 +178,9 @@ export default function MoodCreate({ open, onSave, handleClose }) {
             <Button type="submit" variant="contained" color="primary">
               Save
             </Button>
-            <Button onClick={handleClose}>Cancel</Button>
+            <Button variant="contained" color="secondary" onClick={handleClose}>
+              Cancel
+            </Button>
           </DialogActions>
         </form>
       </Dialog>

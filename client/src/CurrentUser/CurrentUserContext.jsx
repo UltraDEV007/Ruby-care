@@ -13,7 +13,7 @@ function CurrentUserProvider(props) {
       const userData = await verifyUser();
       setCurrentUser(userData);
       if (!userData) {
-        history.push("/login");
+        history.push("/");
       } else if (userData) {
         history.push("/");
       }

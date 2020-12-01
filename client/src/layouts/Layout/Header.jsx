@@ -7,9 +7,9 @@ import HomeIcon from "@material-ui/icons/Home";
 import { CurrentUserContext } from "../../CurrentUser/CurrentUserContext";
 import { removeToken } from "../../services/auth";
 import { useHistory, Link, useLocation } from "react-router-dom";
-import Button from "@material-ui/core/Button";
 import ForumIcon from "@material-ui/icons/Forum";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,14 +24,26 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(1),
   },
   title: {
-    flexGrow: 1,
+    flexGrow: 0.5,
   },
   timeClass: {
+    // marginRight: "20px",
+    flexGrow: 0.5,
+  },
+  userName: {
+    display: "flex",
+    alignItems: "center",
     marginRight: "20px",
+  },
+  userIcon: {
+    marginRight: "10px",
+  },
+  logOut: {
+    marginLeft: "20px",
   },
 }));
 
-export default function Header({ title, darkMode, setDarkMode }) {
+export default function Header({ title }) {
   const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
   const history = useHistory();
   const handleLogout = () => {
@@ -58,7 +70,7 @@ export default function Header({ title, darkMode, setDarkMode }) {
             <HomeIcon className={classes.menuButton} />
           ) : location.pathname === "/community" ? (
             <ForumIcon className={classes.menuButton} />
-          ) : location.pathname === "/more" ? (
+          ) : location.pathname === "/settings" ? (
             <MoreHorizIcon className={classes.menuButton} />
           ) : (
             <></>
@@ -70,25 +82,24 @@ export default function Header({ title, darkMode, setDarkMode }) {
           <Typography className={classes.timeClass}>
             {timeWithoutSeconds}
           </Typography>
-          {/* <Switch
-              checked={darkMode}
-              onChange={() => setDarkMode(!darkMode)}
-            /> */}
           {currentUser ? (
             <>
-              <Typography>{currentUser.name}</Typography>
-              <Button onClick={handleLogout}>
-                <Typography style={{ color: "white" }}>Logout</Typography>
-              </Button>
+              <Typography className={classes.userName}>
+                <AccountCircleIcon className={classes.userIcon} />
+                {currentUser?.name}
+              </Typography>
             </>
           ) : (
             <Link style={{ textDecoration: "none" }} to="/login">
-              <Button>
-                <Typography style={{ color: "white" }}>
-                  Login/Register
-                </Typography>
-              </Button>
+              <Typography style={{ color: "white" }}>Login/Register</Typography>
             </Link>
+          )}
+          {location.pathname === "/settings" ? (
+            <Typography className={classes.logOut} onClick={handleLogout}>
+              Log out
+            </Typography>
+          ) : (
+            <></>
           )}
         </Toolbar>
       </AppBar>

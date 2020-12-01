@@ -68,9 +68,9 @@ export default function MoodEdit(props) {
 
   useEffect(() => {
     const prefillForm = () => {
-      const moodItem = props.moods.find((mood) => mood.id === Number(id));
+      const moodItem = props.moods?.find((mood) => mood?.id === Number(id));
       setFormData({
-        status: moodItem.status,
+        status: moodItem?.status,
       });
     };
     if (props.moods.length) {
