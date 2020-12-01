@@ -9,12 +9,12 @@ import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import 'moment-timezone';
 
-export default function MoodCard({ mood, openOptions, handleDelete }) {
+export default function MoodCard({ mood, updated, openOptions, handleDelete }) {
   return (
     <Card className="mood-card">
       <div className="mood-container">
         <div className="status">
-          {mood.status === "great" ? (
+          {mood.status === "Great" ? (
             <InsertEmoticonIcon
               style={{
                 border: "1px solid black",
@@ -22,7 +22,7 @@ export default function MoodCard({ mood, openOptions, handleDelete }) {
                 fontSize: "36px",
               }}
             />
-          ) : mood.status === "poor" ? (
+          ) : mood.status === "Poor" ? (
             <SentimentVeryDissatisfiedIcon
               style={{
                 border: "1px solid black",
@@ -30,7 +30,7 @@ export default function MoodCard({ mood, openOptions, handleDelete }) {
                 fontSize: "36px",
               }}
             />
-          ) : mood.status === "okay" ? (
+          ) : mood.status === "Okay" ? (
             <SentimentSatisfiedIcon
               style={{
                 border: "1px solid black",
@@ -38,7 +38,7 @@ export default function MoodCard({ mood, openOptions, handleDelete }) {
                 fontSize: "36px",
               }}
             />
-          ) : mood.status === "good" ? (
+          ) : mood.status === "Good" ? (
             <SentimentSatisfiedSharpIcon
               style={{
                 border: "1px solid black",
@@ -52,7 +52,7 @@ export default function MoodCard({ mood, openOptions, handleDelete }) {
           <p>{mood.status}</p>
         </div>
         <div className="time">
-          <Moment format="MMM/DD/yyyy hh:mm A">{mood.created_at}</Moment>
+          {!updated ? <Moment format="MMM/DD/yyyy hh:mm A">{mood.created_at}</Moment> : <Moment format="MMM/DD/yyyy hh:mm A">{mood.updated_at}</Moment>}
         </div>
         <div
           className="buttons"

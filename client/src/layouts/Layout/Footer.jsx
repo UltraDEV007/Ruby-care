@@ -33,7 +33,7 @@ function Footer() {
         label="Home"
         icon={<HomeIcon />}
         component={Link}
-        to="/home"
+        to="/"
       />
       <BottomNavigationAction
         label="Community"

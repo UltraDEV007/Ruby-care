@@ -6,7 +6,7 @@ import SettingsSharpIcon from "@material-ui/icons/SettingsSharp";
 import MoodCard from "./MoodCard";
 import { Link } from "react-router-dom";
 
-export default function Moods({ moods, handleDelete }) {
+export default function Moods({ moods, updated, handleDelete }) {
   const [openOptions, setOpenOptions] = useState(false);
 
   const handleMouseClick = () => {
@@ -16,6 +16,7 @@ export default function Moods({ moods, handleDelete }) {
   const MOODS = React.Children.toArray(
     moods.map((mood) => (
       <MoodCard
+        updated={updated}
         mood={mood}
         openOptions={openOptions}
         handleDelete={handleDelete}

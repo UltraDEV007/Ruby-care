@@ -56,7 +56,7 @@ export default function Header({ title, darkMode, setDarkMode }) {
     <div className={classes.root}>
       <AppBar className={classes.appBar} position="fixed">
         <Toolbar>
-          {location.pathname === "/home" ? (
+          {location.pathname === "/" ? (
             <HomeIcon className={classes.menuButton} />
           ) : location.pathname === "/community" ? (
             <ForumIcon className={classes.menuButton} />

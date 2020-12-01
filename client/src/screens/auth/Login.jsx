@@ -103,7 +103,7 @@ export default function Login() {
   const handleLogin = async (loginData) => {
     const userData = await loginUser(loginData);
     setCurrentUser(userData);
-    history.push("/home");
+    history.push("/");
   };
 
   const [formData, setFormData] = useState({

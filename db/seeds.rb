@@ -16,11 +16,11 @@ User.destroy_all
 
 puts "#{User.count} users created"
 
-@mood1 = Mood.create!(status: 'good', user: @admin)
-@mood2 = Mood.create!(status: 'poor', user: @admin)
-@mood3 = Mood.create!(status: 'great', user: @admin)
-@mood4 = Mood.create!(status: 'okay', user: @admin)
-@mood5 = Mood.create!(status: 'great', user: @daniel)
+@mood1 = Mood.create!(status: 'Good', user: @admin)
+@mood2 = Mood.create!(status: 'Poor', user: @admin)
+@mood3 = Mood.create!(status: 'Great', user: @admin)
+@mood4 = Mood.create!(status: 'Okay', user: @admin)
+@mood5 = Mood.create!(status: 'Great', user: @daniel)
 
 puts "#{Mood.count} moods created"
 

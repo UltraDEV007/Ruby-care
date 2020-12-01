@@ -19,7 +19,7 @@ class MoodsController < ApplicationController
   # POST /moods
   def create
     @mood = Mood.new(mood_params)
-    @food.user = @current_user
+    @mood.user = @current_user
 
     if @mood.save
       render json: @mood, status: :created, location: @mood

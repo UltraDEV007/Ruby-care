@@ -4,11 +4,12 @@ import { useState } from "react";
 import { yellow, red, blue } from "@material-ui/core/colors";
 import { Paper } from "@material-ui/core";
 import { Route, Switch } from "react-router-dom";
-  import Login from "./screens/auth/Login";
+import Login from "./screens/auth/Login";
 import Register from "./screens/auth/Register";
 import { CurrentUserProvider } from "./CurrentUser/CurrentUserContext";
-import Home from './screens/main/Home/Home'
-import Community from './screens/main/Community/Community'
+import Home from "./screens/main/Home/Home";
+import Community from "./screens/main/Community/Community";
+import More from "./screens/main/More/More";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -46,13 +47,13 @@ function App() {
     <CurrentUserProvider>
       <Paper>
         <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
-            <Switch>
-              <Route path="/login" component={Login}></Route>
-              <Route path="/register" component={Register}></Route>
-            <Route path="/home" component={Home} />
-            <Route path="/community" component={Community} />
-
-            </Switch>
+          <Switch>
+            <Route exact path="/login" component={Login}></Route>
+            <Route exact path="/register" component={Register}></Route>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/community" component={Community} />
+            <Route exact path="/more" component={More} />
+          </Switch>
         </ThemeProvider>
       </Paper>
     </CurrentUserProvider>

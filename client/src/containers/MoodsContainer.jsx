@@ -9,6 +9,7 @@ import { destroyMood, getAllMoods, postMood, putMood } from "../services/moods";
 
 export default function MoodsContainer() {
   const [moods, setMoods] = useState([]);
+  const [updated, setUpdated] = useState(false)
   const history = useHistory();
 
   useEffect(() => {
@@ -22,7 +23,7 @@ export default function MoodsContainer() {
   const handleCreate = async (moodData) => {
     const newMood = await postMood(moodData);
     setMoods((prevState) => [...prevState, newMood]);
-    history.push("/home");
+    history.push("/");
   };
 
   const handleUpdate = async (id, moodData) => {
@@ -31,8 +32,9 @@ export default function MoodsContainer() {
       prevState.map((mood) => {
         return mood.id === Number(id) ? updatedMood : mood;
       })
-    );
-    history.push("/foods");
+      );
+      setUpdated(true)
+      history.push("/");
   };
 
   const handleDelete = async (id) => {
@@ -42,9 +44,9 @@ export default function MoodsContainer() {
 
   return (
       <>
-      <Moods moods={moods} handleDelete={handleDelete} />
+      <Moods moods={moods} updated={updated} handleDelete={handleDelete} />
     <Switch>
-      <Route exact path="/moods/new">
+      <Route path="/moods/new" exact component={MoodCreate}>
         <MoodCreate handleCreate={handleCreate} />
       </Route>
       <Route path="/blah">
