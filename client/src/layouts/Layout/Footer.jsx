@@ -21,13 +21,13 @@ function Footer() {
   const routerMap = {
     0: "/",
     1: "/community",
-    2: "/more",
+    2: "/settings",
   };
   const history = useHistory();
   const [value, setValue] = useState(() => {
     if (history.location.pathname === "/community") {
       return 1;
-    } else if (history.location.pathname === "/more") {
+    } else if (history.location.pathname === "/settings") {
       return 2;
     } else {
       return 0;
@@ -46,7 +46,7 @@ function Footer() {
     >
       <BottomNavigationAction label="Home" icon={<HomeIcon />} />
       <BottomNavigationAction label="Community" icon={<ForumIcon />} />
-      <BottomNavigationAction label="More" icon={<MoreHorizIcon />} />
+      <BottomNavigationAction label="Settings" icon={<MoreHorizIcon />} />
     </BottomNavigation>
   );
 }

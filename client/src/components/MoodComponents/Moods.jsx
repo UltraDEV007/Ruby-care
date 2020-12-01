@@ -13,6 +13,7 @@ export default function Moods({
   handleDelete,
   handleCreate,
   loaded,
+  darkMode,
 }) {
   const [openOptions, setOpenOptions] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
@@ -30,6 +31,7 @@ export default function Moods({
   const MOODS = React.Children.toArray(
     moods.map((mood) => (
       <MoodCard
+        darkMode={darkMode}
         updated={updated}
         mood={mood}
         openOptions={openOptions}

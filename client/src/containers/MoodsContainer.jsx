@@ -6,7 +6,7 @@ import MoodEdit from "../screens/MoodScreens/MoodEdit";
 import { destroyMood, getAllMoods, postMood, putMood } from "../services/moods";
 import { CurrentUserContext } from "../CurrentUser/CurrentUserContext";
 
-export default function MoodsContainer() {
+export default function MoodsContainer({ darkMode }) {
   const [currentUser] = useContext(CurrentUserContext);
   const [moods, setMoods] = useState([]);
   const [updated, setUpdated] = useState(false);
@@ -46,6 +46,7 @@ export default function MoodsContainer() {
   return (
     <>
       <Moods
+        darkMode={darkMode}
         moods={moods}
         updated={updated}
         loaded={loaded}

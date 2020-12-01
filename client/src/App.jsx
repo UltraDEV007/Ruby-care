@@ -9,7 +9,7 @@ import Register from "./screens/auth/Register";
 import { CurrentUserProvider } from "./CurrentUser/CurrentUserContext";
 import Home from "./screens/main/Home/Home";
 import Community from "./screens/main/Community/Community";
-import More from "./screens/main/More/More";
+import Settings from "./screens/main/Settings/Settings";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -51,8 +51,12 @@ function App() {
             <Route path="/login" component={Login}></Route>
             <Route path="/register" component={Register}></Route>
             <Route path="/community" component={Community} />
-            <Route path="/more" component={More} />
-            <Route exact path="/" component={Home} />
+            <Route path="/settings">
+              <Settings darkMode={darkMode} setDarkMode={setDarkMode} />
+            </Route>
+            <Route path="/">
+              <Home darkMode={darkMode} />
+            </Route>
           </Switch>
         </ThemeProvider>
       </Paper>
