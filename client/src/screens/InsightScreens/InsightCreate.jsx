@@ -33,7 +33,6 @@ const Div = styled.div`
     .warning {
       font-size: 1.5rem;
       margin-bottom: 20px;
-
   }
 `;
 const Form = styled.form`
@@ -58,6 +57,8 @@ const Form = styled.form`
   }
   .buttons {
     margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
   }
   .cancel {
     margin-left: 20px;

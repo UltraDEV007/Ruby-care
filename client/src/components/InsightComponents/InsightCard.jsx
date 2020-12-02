@@ -7,6 +7,7 @@ import { CurrentUserContext } from "../../Context/CurrentUser/CurrentUserContext
 import Card from "@material-ui/core/Card";
 import { makeStyles } from "@material-ui/styles";
 import { yellow } from "@material-ui/core/colors";
+import Button from "@material-ui/core/Button";
 
 function InsightCard({ updated, insight, handleDelete, darkMode }) {
   const useStyles = makeStyles({
@@ -15,6 +16,7 @@ function InsightCard({ updated, insight, handleDelete, darkMode }) {
       minWidth: "350px",
       width: "350px",
       minHeight: "150px",
+      padding: "20px",
     },
     link: {
       textDecoration: "none",
@@ -23,6 +25,12 @@ function InsightCard({ updated, insight, handleDelete, darkMode }) {
       color: darkMode === "dark" ? yellow[700] : "#000",
       fontWeight: "bold",
       fontSize: "24px",
+    },
+    buttons: {
+      marginTop: "20px",
+    },
+    delete: {
+      marginLeft: "20px",
     },
   });
   const [currentUser] = useContext(CurrentUserContext);
@@ -52,11 +60,20 @@ function InsightCard({ updated, insight, handleDelete, darkMode }) {
       <Typography>{insight?.description}</Typography>
       {insight?.user_id === currentUser?.id && (
         <>
-          <div>
+          <div className={classes.buttons}>
             <Link to={`/insights/${insight.id}/edit`}>
-              <button>Edit</button>
+              <Button variant="contained" color="primary">
+                Edit
+              </Button>
             </Link>
-            <button onClick={() => handleDelete(insight.id)}>Delete</button>
+            <Button
+              className={classes.delete}
+              variant="contained"
+              color="secondary"
+              onClick={() => handleDelete(insight.id)}
+            >
+              Delete
+            </Button>
           </div>
         </>
       )}
