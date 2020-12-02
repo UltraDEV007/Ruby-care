@@ -14,8 +14,22 @@ export default function Home() {
 
   const useStyles = makeStyles((theme) => ({
     root: {
-      maxWidth: "95vw",
       margin: "0 auto",
+      [theme.breakpoints.down("xs")]: {
+        maxWidth: "90vw",
+      },
+      [theme.breakpoints.up("sm")]: {
+        maxWidth: "90vw",
+      },
+      [theme.breakpoints.up("md")]: {
+        maxWidth: "900px",
+      },
+      [theme.breakpoints.up("lg")]: {
+        maxWidth: "1000px",
+      },
+      [theme.breakpoints.up("xl")]: {
+        maxWidth: "60vw",
+      },
     },
     heading: {
       fontSize: theme.typography.pxToRem(17),
