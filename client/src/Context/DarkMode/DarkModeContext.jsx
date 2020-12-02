@@ -4,7 +4,7 @@ import { yellow, red, blue } from "@material-ui/core/colors";
 
 const DarkModeContext = React.createContext([{}, () => {}]);
 
-function DarkModeProvider(props) {
+function DarkModeProvider({ children }) {
   const [darkMode, setDarkMode] = useState("light");
   const palletType = darkMode === "dark" ? "dark" : "light";
   const themeTextColor = darkMode === "dark" ? "#fff" : "#000";
@@ -45,7 +45,7 @@ function DarkModeProvider(props) {
   return (
     <ThemeProvider theme={darkTheme}>
       <DarkModeContext.Provider value={[darkMode, setDarkMode]}>
-        {props.children}
+        {children}
       </DarkModeContext.Provider>
     </ThemeProvider>
   );

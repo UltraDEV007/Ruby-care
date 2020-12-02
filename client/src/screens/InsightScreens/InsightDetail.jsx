@@ -3,10 +3,10 @@ import { Link, useParams } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import { CurrentUserContext } from "../../Context/CurrentUser/CurrentUserContext";
 import styled from "styled-components";
+import Moment from "react-moment";
+import Typography from "@material-ui/core/Typography";
+
 const Wrapper = styled.div`
-  /* display: flex;
-  flex-direction: column; */
-  /* align-content: center; */
   min-height: 100vh;
   max-height: 100%;
   .content-container {
@@ -20,16 +20,35 @@ const Wrapper = styled.div`
       justify-content: space-evenly;
     }
     .buttons2 {
-      margin-top: -50px;
+      margin-top: -60px;
     }
   }
+  .title-container {
+    align-self: center;
+    padding: 20px;
+  }
+  .title {
+    font-size: 1.3rem;
+  }
   .insight-body {
+    margin-left: auto;
+    margin-top: 40px;
     min-width: 400px;
     min-height: 200px;
   }
   .edit,
   .delete {
     margin: 20px;
+  }
+
+  @media screen and (min-width: 600px) {
+    .title {
+      font-size: 1.5rem;
+    }
+  @media screen and (min-width: 1280px) {
+    .title {
+      font-size: 2rem;
+    }
   }
 `;
 export default function InsightDetail({ getOneInsight, handleDelete }) {
@@ -43,15 +62,18 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
       setInsight(getInsight);
     };
     getData();
-  }, [id]);
+  }, [getOneInsight, id]);
 
   return (
     <Wrapper>
       <div className="content-container">
         <div className="title-container">
-          <h1>{insight?.title}</h1>
+          <Typography className="title">{insight?.title}</Typography>
+          <Moment format="MMMM-DD-yyyy">
+            <small>{insight?.created_at}</small>
+          </Moment>
         </div>
-        <small>{insight?.description}</small>
+        <Typography>{insight?.description}</Typography>
         <div className="insight-body">
           <p>{insight?.body}</p>
         </div>

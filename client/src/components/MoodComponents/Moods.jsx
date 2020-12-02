@@ -6,6 +6,7 @@ import SettingsSharpIcon from "@material-ui/icons/SettingsSharp";
 import MoodCard from "./MoodCard";
 import MoodCreate from "../Dialogs/MoodCreate";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import Typography from "@material-ui/core/Typography";
 
 export default function Moods({
   moods,
@@ -28,14 +29,23 @@ export default function Moods({
   };
 
   const MOODS = React.Children.toArray(
-    moods.map((mood) => (
-      <MoodCard
-        updated={updated}
-        mood={mood}
-        openOptions={openOptions}
-        handleDelete={handleDelete}
-      />
-    ))
+    moods.length === 0 ? (
+      <div className="log-your-mood">
+        <Typography> Click the </Typography>&nbsp;
+        <AddIcon className="plus-icon-moods" />
+        &nbsp;
+        <Typography>button to log your mood!</Typography>
+      </div>
+    ) : (
+      moods.map((mood) => (
+        <MoodCard
+          updated={updated}
+          mood={mood}
+          openOptions={openOptions}
+          handleDelete={handleDelete}
+        />
+      ))
+    )
   );
 
   const onSave = (formData) => {
@@ -47,7 +57,7 @@ export default function Moods({
     <>
       <div className="moods">
         {loaded ? MOODS : <CircularProgress />}
-        <div className="buttons-container1">
+        <div className="mood-buttons-container">
           <Button
             className="edit-moods"
             variant="outlined"

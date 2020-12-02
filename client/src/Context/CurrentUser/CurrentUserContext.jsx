@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 
 const CurrentUserContext = React.createContext([{}, () => {}]);
 
-function CurrentUserProvider(props) {
+function CurrentUserProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
   const history = useHistory();
 
@@ -12,18 +12,16 @@ function CurrentUserProvider(props) {
     const handleVerify = async () => {
       const userData = await verifyUser();
       setCurrentUser(userData);
-      // if (!userData) {
-      //   history.push("/login");
-      // } else if (userData) {
-      //   history.push("/");
-      // }
+      if (!userData) {
+        history.push("/login");
+      }
     };
     handleVerify();
   }, [history]);
 
   return (
     <CurrentUserContext.Provider value={[currentUser, setCurrentUser]}>
-      {props.children}
+      {children}
     </CurrentUserContext.Provider>
   );
 }

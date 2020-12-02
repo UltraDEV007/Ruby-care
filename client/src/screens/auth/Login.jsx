@@ -244,7 +244,7 @@ export default function Login() {
                     : classes.inputFieldDark
                 }
                 name="email"
-                value={formData.email}
+                value={formData.email.toLowerCase()}
                 onChange={handleChange}
               />
             </FormControl>
