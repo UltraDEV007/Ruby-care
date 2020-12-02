@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Layout from "../../../layouts/Layout/Layout";
 import InsightCard from "../../../components/InsightComponents/InsightCard";
+import { DarkModeContext } from "../../../Context/DarkMode/DarkModeContext";
+
 import styled from "styled-components";
 import Typography from "@material-ui/core/Typography";
 import { yellow, blue } from "@material-ui/core/colors";
@@ -26,10 +28,12 @@ const Wrapper = styled.div`
   }
 `;
 export default function Insights(props) {
+  const [darkMode] = useContext(DarkModeContext);
+
   const INSIGHTS = React.Children.toArray(
     props.insights.map((insight) => (
       <InsightCard
-        darkMode={props.darkMode}
+        darkMode={darkMode}
         updated={props.updated}
         insight={insight}
         handleDelete={props.handleDelete}
@@ -39,7 +43,7 @@ export default function Insights(props) {
 
   return (
     <Layout title="Insights">
-      <Wrapper darkMode={props.darkMode}>
+      <Wrapper darkMode={darkMode}>
         <div className="sentence-container">
           <Typography className="sentence">
             Anything on your mind? &nbsp;

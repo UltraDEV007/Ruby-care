@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoodsContainer from "../../../containers/MoodsContainer";
 import Layout from "../../../layouts/Layout/Layout";
+import { DarkModeContext } from "../../../Context/DarkMode/DarkModeContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,8 +23,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Home({ darkMode }) {
+export default function Home() {
   const classes = useStyles();
+  const [darkMode] = useContext(DarkModeContext);
 
   return (
     <Layout title="Home">

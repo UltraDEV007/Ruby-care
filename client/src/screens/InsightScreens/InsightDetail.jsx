@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import Button from "@material-ui/core/Button";
-import { CurrentUserContext } from "../../CurrentUser/CurrentUserContext";
+import { CurrentUserContext } from "../../Context/CurrentUser/CurrentUserContext";
 import styled from "styled-components";
 const Wrapper = styled.div`
   .content-container {

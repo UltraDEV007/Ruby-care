@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { CurrentUserContext } from "../../CurrentUser/CurrentUserContext";
+import { CurrentUserContext } from "../../Context/CurrentUser/CurrentUserContext";
 import { registerUser } from "../../services/auth";
 import { Link, useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/styles";
@@ -15,7 +15,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 import EmailIcon from "@material-ui/icons/Email";
 import LockIcon from "@material-ui/icons/Lock";
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 const useStyles = makeStyles({
   root: {

@@ -6,12 +6,12 @@ import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import { useContext, useState } from "react";
-import { CurrentUserContext } from "../../../CurrentUser/CurrentUserContext";
+import { CurrentUserContext } from "../../../Context/CurrentUser/CurrentUserContext";
 import Moment from "react-moment";
 import "moment-timezone";
-import { DarkModeContext } from "../../../DarkMode/DarkModeContext";
+import { DarkModeContext } from "../../../Context/DarkMode/DarkModeContext";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     width: "95vw",
     margin: "0 auto",
@@ -24,14 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Settings(
-  {
-    // darkMode,
-    // switchState,
-    // setDarkMode,
-    // handleThemeChange,
-  }
-) {
+export default function Settings() {
   const classes = useStyles();
   const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
   const [darkMode, setDarkMode] = useContext(DarkModeContext);

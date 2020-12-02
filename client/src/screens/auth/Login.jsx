@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { CurrentUserContext } from "../../CurrentUser/CurrentUserContext";
+import { CurrentUserContext } from "../../Context/CurrentUser/CurrentUserContext";
+import { DarkModeContext } from "../../Context/DarkMode/DarkModeContext";
 import { loginUser } from "../../services/auth";
 import { makeStyles } from "@material-ui/styles";
 import Typography from "@material-ui/core/Typography";
@@ -153,11 +154,12 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Login({ darkMode }) {
+export default function Login() {
   const history = useHistory();
   const classes = useStyles();
 
   const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
+  const [darkMode] = useContext(DarkModeContext);
 
   if (currentUser) {
     history.push("/");

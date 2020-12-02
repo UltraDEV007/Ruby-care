@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import SentimentVeryDissatisfiedIcon from "@material-ui/icons/SentimentVeryDissatisfied";
 import SentimentSatisfiedIcon from "@material-ui/icons/SentimentSatisfied";
@@ -8,14 +8,10 @@ import Card from "@material-ui/core/Card";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import "moment-timezone";
+import { DarkModeContext } from "../../Context/DarkMode/DarkModeContext";
 
-export default function MoodCard({
-  darkMode,
-  mood,
-  updated,
-  openOptions,
-  handleDelete,
-}) {
+export default function MoodCard({ mood, updated, openOptions, handleDelete }) {
+  const [darkMode] = useContext(DarkModeContext);
   return (
     <Card className="mood-card">
       <div className="mood-container">

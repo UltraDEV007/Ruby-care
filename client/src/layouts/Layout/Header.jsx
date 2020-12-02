@@ -4,7 +4,8 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import HomeIcon from "@material-ui/icons/Home";
-import { CurrentUserContext } from "../../CurrentUser/CurrentUserContext";
+import { CurrentUserContext } from "../../Context/CurrentUser/CurrentUserContext";
+import { DarkModeContext } from "../../Context/DarkMode/DarkModeContext";
 import { removeToken } from "../../services/auth";
 import { useHistory, Link, useLocation } from "react-router-dom";
 import ForumIcon from "@material-ui/icons/Forum";
@@ -44,6 +45,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Header({ title }) {
   const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
+  const [darkMode] = useContext(DarkModeContext);
+
   const history = useHistory();
   const handleLogout = () => {
     setCurrentUser(null);
@@ -92,7 +95,13 @@ export default function Header({ title }) {
             </>
           ) : (
             <Link style={{ textDecoration: "none" }} to="/login">
-              <Typography style={{ color: "#fff" }}>Login/Register</Typography>
+              <Typography
+                style={
+                  darkMode === "dark" ? { color: "#000" } : { color: "#fff" }
+                }
+              >
+                Login/Register
+              </Typography>
             </Link>
           )}
           {location.pathname === "/settings" ? (
