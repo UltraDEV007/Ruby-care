@@ -62,9 +62,7 @@ export default function Home() {
             <Typography className={classes.heading}>Symptoms</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <div className="content-container">
-              <MoodsContainer />
-            </div>
+            <div className="content-container"></div>
           </AccordionDetails>
         </Accordion>
       </div>
