@@ -9,7 +9,7 @@ import { DarkModeContext } from "../../Context/DarkMode/DarkModeContext";
 import { removeToken } from "../../services/auth";
 import { useHistory, Link, useLocation } from "react-router-dom";
 import ForumIcon from "@material-ui/icons/Forum";
-import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
+import SettingsIcon from "@material-ui/icons/Settings";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 const useStyles = makeStyles((theme) => ({
@@ -82,7 +82,7 @@ export default function Header({ title }) {
             "insights/:id/edit" ? (
             <ForumIcon className={classes.menuButton} />
           ) : location.pathname === "/settings" ? (
-            <MoreHorizIcon className={classes.menuButton} />
+            <SettingsIcon className={classes.menuButton} />
           ) : (
             <></>
           )}

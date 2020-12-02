@@ -61,7 +61,7 @@ export default function Insights(props) {
 
   const INSIGHTS = React.Children.toArray(
     props.insights.map((insight) => (
-      <Link to="/insights/:id">
+      <Link to={`/insights/${insight?.id}`}>
         <InsightCard
           darkMode={darkMode}
           updated={props.updated}

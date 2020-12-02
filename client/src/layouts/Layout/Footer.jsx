@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
+import SettingsIcon from "@material-ui/icons/Settings";
 import HomeIcon from "@material-ui/icons/Home";
 import ForumIcon from "@material-ui/icons/Forum";
 import { makeStyles } from "@material-ui/core/styles";
@@ -59,7 +59,7 @@ function Footer() {
         >
           <BottomNavigationAction label="Home" icon={<HomeIcon />} />
           <BottomNavigationAction label="Insights" icon={<ForumIcon />} />
-          <BottomNavigationAction label="Settings" icon={<MoreHorizIcon />} />
+          <BottomNavigationAction label="Settings" icon={<SettingsIcon />} />
         </BottomNavigation>
       </div>
     </>

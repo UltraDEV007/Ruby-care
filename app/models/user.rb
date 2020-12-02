@@ -1,6 +1,15 @@
 class User < ApplicationRecord
   has_secure_password
 
+  # found this on stack overflow : https://stackoverflow.com/questions/16342779/activerecord-hide-column-while-returning-object
+
+  # show user details EXCEPT token and password/password_digest when looking for users in database,
+  #yes the data is hashed, but it bothers me that it's even viewable.
+
+  def as_json(options = {})
+    super(options.merge({ except: [:password_digest, :oauth_token] }))
+  end
+
   validates :name, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }

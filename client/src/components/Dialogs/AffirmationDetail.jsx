@@ -9,6 +9,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 import Moment from "react-moment";
 import "moment-timezone";
+import CreateIcon from "@material-ui/icons/Create";
 
 const styles = (theme) => ({
   root: {
@@ -69,7 +70,13 @@ export default function AffirmationDetail({
       open={openDetail}
     >
       <DialogTitle id="customized-dialog-title" onClose={handleDetailClose}>
-        To: {affirmation?.user?.name}
+        {affirmation?.user?.name ? (
+          <> To: {affirmation?.user?.name}</>
+        ) : (
+          <>
+            <CreateIcon /> Dear me,{" "}
+          </>
+        )}
       </DialogTitle>
       <DialogContent dividers style={{ minWidth: "300px" }}>
         <Moment format="MMMM-DD-yyyy hh:mm A">
