@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Layout from "../../../layouts/Layout/Layout";
 import Switch from "@material-ui/core/Switch";
@@ -60,12 +59,9 @@ export default function Settings() {
         <Card className={classes.card}>
           <CardActions className={classes.actionsContainer}>
             <Typography className={classes.typography}>Dark mode</Typography>
-            {/* <Typography onClick={handleThemeChange}>HELLO</Typography> */}
             <Switch
               className={classes.darkModeSwitch}
-              // checked={darkMode}
               checked={switchState}
-              // onChange={() => setDarkMode(!darkMode)}
               onChange={handleThemeChange}
             />
           </CardActions>
