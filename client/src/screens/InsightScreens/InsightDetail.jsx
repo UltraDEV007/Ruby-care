@@ -4,15 +4,32 @@ import Button from "@material-ui/core/Button";
 import { CurrentUserContext } from "../../Context/CurrentUser/CurrentUserContext";
 import styled from "styled-components";
 const Wrapper = styled.div`
+  /* display: flex;
+  flex-direction: column; */
+  /* align-content: center; */
+  min-height: 100vh;
+  max-height: 100%;
   .content-container {
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    align-content: center;
-    min-height: 100vh;
-    max-height: 100%;
+
+    .buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+    }
+    .buttons2 {
+      margin-top: -50px;
+    }
   }
   .insight-body {
     min-width: 400px;
+    min-height: 200px;
+  }
+  .edit,
+  .delete {
+    margin: 20px;
   }
 `;
 export default function InsightDetail({ getOneInsight, handleDelete }) {
@@ -31,7 +48,9 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
   return (
     <Wrapper>
       <div className="content-container">
-        <h1>{insight?.title}</h1>
+        <div className="title-container">
+          <h1>{insight?.title}</h1>
+        </div>
         <small>{insight?.description}</small>
         <div className="insight-body">
           <p>{insight?.body}</p>
@@ -48,11 +67,20 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
         </div>
         {insight?.user_id === currentUser?.id && (
           <>
-            <div>
+            <div className="buttons2">
               <Link to={`/insights/${insight?.id}/edit`}>
-                <button>Edit</button>
+                <Button className="edit" variant="contained" color="primary">
+                  Edit
+                </Button>
               </Link>
-              <button onClick={() => handleDelete(insight.id)}>Delete</button>
+              <Button
+                className="delete"
+                variant="contained"
+                color="secondary"
+                onClick={() => handleDelete(insight.id)}
+              >
+                Delete
+              </Button>
             </div>
           </>
         )}
