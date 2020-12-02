@@ -18,12 +18,14 @@ export default function InsightsContainer({ darkMode }) {
   const classes = useStyles();
   const [insights, setInsights] = useState([]);
   const [updated, setUpdated] = useState(false);
+  const [loaded, setLoaded] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
     const fetchInsights = async () => {
       const insightData = await getAllInsights();
       setInsights(insightData);
+      setLoaded(true);
     };
     fetchInsights();
   }, []);
@@ -70,6 +72,7 @@ export default function InsightsContainer({ darkMode }) {
         <div className={classes.root}>
           <Route path="/insights">
             <Insights
+              loaded={loaded}
               darkMode={darkMode}
               updated={updated}
               insights={insights}

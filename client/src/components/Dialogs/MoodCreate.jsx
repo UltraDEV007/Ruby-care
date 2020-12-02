@@ -2,7 +2,7 @@ import { useState } from "react";
 import Radio from "@material-ui/core/Radio";
 import FormLabel from "@material-ui/core/FormLabel";
 import { red, green, yellow } from "@material-ui/core/colors";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import MuiDialogTitle from "@material-ui/core/DialogTitle";
@@ -13,10 +13,6 @@ import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 import Moment from "react-moment";
 import "moment-timezone";
-
-const useStyles = makeStyles((theme) => ({
-  root: {},
-}));
 
 const styles = (theme) => ({
   root: {
@@ -62,6 +58,7 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
+// code for radio styling learned from material-ui's docs.
 const PoorRadio = withStyles({
   root: {
     color: red[500],
@@ -103,10 +100,8 @@ const OkayRadio = withStyles({
 })((props) => <Radio color="default" {...props} />);
 
 export default function MoodCreate({ open, onSave, handleClose }) {
-  const classes = useStyles();
-
   const [formData, setFormData] = useState({
-    status: "",
+    status: "Okay",
   });
 
   const handleChange = (e) => {
@@ -118,72 +113,70 @@ export default function MoodCreate({ open, onSave, handleClose }) {
   let time = new Date();
 
   return (
-    <div className={classes.root}>
-      <Dialog
-        onClose={handleClose}
-        aria-labelledby="customized-dialog-title"
-        open={open}
+    <Dialog
+      onClose={handleClose}
+      aria-labelledby="customized-dialog-title"
+      open={open}
+    >
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          onSave(formData);
+        }}
       >
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            onSave(formData);
-          }}
-        >
-          <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-            How are you feeling?
-          </DialogTitle>
-          <DialogContent dividers>
-            <Typography>
-              Today, <Moment format="MMMM-DD-yyyy hh:mm A">{time}</Moment>
-            </Typography>
-            <FormLabel>
-              Poor
-              <PoorRadio
-                type="radio"
-                name="Poor"
-                checked={formData.status === "Poor"}
-                onChange={handleChange}
-              />
-            </FormLabel>
-            <FormLabel>
-              Okay
-              <OkayRadio
-                type="radio"
-                name="Okay"
-                checked={formData.status === "Okay"}
-                onChange={handleChange}
-              />
-            </FormLabel>
-            <FormLabel>
-              Good
-              <GoodRadio
-                type="radio"
-                name="Good"
-                checked={formData.status === "Good"}
-                onChange={handleChange}
-              />
-            </FormLabel>
-            <FormLabel>
-              Great
-              <GreatRadio
-                type="radio"
-                name="Great"
-                checked={formData.status === "Great"}
-                onChange={handleChange}
-              />
-            </FormLabel>
-          </DialogContent>
-          <DialogActions>
-            <Button type="submit" variant="contained" color="primary">
-              Save
-            </Button>
-            <Button variant="contained" color="secondary" onClick={handleClose}>
-              Cancel
-            </Button>
-          </DialogActions>
-        </form>
-      </Dialog>
-    </div>
+        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+          How are you feeling?
+        </DialogTitle>
+        <DialogContent dividers>
+          <Typography>
+            Today, <Moment format="MMMM-DD-yyyy hh:mm A">{time}</Moment>
+          </Typography>
+          <FormLabel>
+            Poor
+            <PoorRadio
+              type="radio"
+              name="Poor"
+              checked={formData.status === "Poor"}
+              onChange={handleChange}
+            />
+          </FormLabel>
+          <FormLabel>
+            Okay
+            <OkayRadio
+              type="radio"
+              name="Okay"
+              checked={formData.status === "Okay"}
+              onChange={handleChange}
+            />
+          </FormLabel>
+          <FormLabel>
+            Good
+            <GoodRadio
+              type="radio"
+              name="Good"
+              checked={formData.status === "Good"}
+              onChange={handleChange}
+            />
+          </FormLabel>
+          <FormLabel>
+            Great
+            <GreatRadio
+              type="radio"
+              name="Great"
+              checked={formData.status === "Great"}
+              onChange={handleChange}
+            />
+          </FormLabel>
+        </DialogContent>
+        <DialogActions>
+          <Button type="submit" variant="contained" color="primary">
+            Save
+          </Button>
+          <Button variant="contained" color="secondary" onClick={handleClose}>
+            Cancel
+          </Button>
+        </DialogActions>
+      </form>
+    </Dialog>
   );
 }

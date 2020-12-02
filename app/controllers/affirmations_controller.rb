@@ -1,5 +1,5 @@
 class AffirmationsController < ApplicationController
-  # before_action :set_affirmation, only: [:show]
+  # before_action :set_affirmation, only: [:show] 
   before_action :authorize_request, only: [:index, :show, :create, :update, :destroy] #add :index if showing moods of current user, get rid of showing foods of all users
   before_action :set_user_affirmation, only: [ :update, :destroy]
   # GET /affirmations
@@ -7,12 +7,12 @@ class AffirmationsController < ApplicationController
     # @affirmations = Affirmation.all
     @affirmations = @current_user.affirmations #only get current users affirmations
 
-    render json: @affirmations
+    render json: @affirmations, include: :user
   end
 
   # GET /affirmations/1
   def show
-    render json: @affirmation
+    render json: @affirmation, include: :user
   end
 
   # POST /affirmations

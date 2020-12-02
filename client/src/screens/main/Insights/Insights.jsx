@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Layout from "../../../layouts/Layout/Layout";
 import InsightCard from "../../../components/InsightComponents/InsightCard";
 import { DarkModeContext } from "../../../Context/DarkMode/DarkModeContext";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 import styled from "styled-components";
 import Typography from "@material-ui/core/Typography";
@@ -60,12 +61,14 @@ export default function Insights(props) {
 
   const INSIGHTS = React.Children.toArray(
     props.insights.map((insight) => (
-      <InsightCard
-        darkMode={darkMode}
-        updated={props.updated}
-        insight={insight}
-        handleDelete={props.handleDelete}
-      />
+      <Link to="/insights/:id">
+        <InsightCard
+          darkMode={darkMode}
+          updated={props.updated}
+          insight={insight}
+          handleDelete={props.handleDelete}
+        />
+      </Link>
     ))
   );
 
@@ -81,7 +84,9 @@ export default function Insights(props) {
           </Typography>
         </div>
         <br />
-        <div className="insights-container">{INSIGHTS}</div>
+        <div className="insights-container">
+          {props.loaded ? INSIGHTS : <CircularProgress />}
+        </div>
       </Wrapper>
     </Layout>
   );

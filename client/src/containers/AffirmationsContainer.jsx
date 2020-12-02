@@ -19,12 +19,12 @@ export default function AffirmationsContainer() {
   const history = useHistory();
 
   useEffect(() => {
-    const fetchMoods = async () => {
+    const fetchAffirmations = async () => {
       const affirmationData = await getAllAffirmations();
       setAffirmations(affirmationData);
       setLoaded(true);
     };
-    fetchMoods();
+    fetchAffirmations();
   }, [currentUser]);
 
   const handleCreate = async (affirmationData) => {
@@ -60,11 +60,12 @@ export default function AffirmationsContainer() {
         handleDelete={handleDelete}
       />
       <Switch>
-        <Route path="/affirmations/:id/edit">
-          {/* <AffirmationEdit
+        {/* <Route path="/affirmations/:id/edit">
+          <AffirmationEdit
             affirmations={affirmations}
-            handleUpdate={handleUpdate}/> */}
-        </Route>
+            handleUpdate={handleUpdate}
+          />
+        </Route> */}
       </Switch>
     </>
   );

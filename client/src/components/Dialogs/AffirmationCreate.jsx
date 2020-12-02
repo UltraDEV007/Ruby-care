@@ -11,6 +11,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 import Moment from "react-moment";
 import "moment-timezone";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 
 const styles = (theme) => ({
   root: {
@@ -25,6 +26,7 @@ const styles = (theme) => ({
   },
 });
 
+// code for dialog referenced from Material-ui's docs
 const DialogTitle = withStyles(styles)((props) => {
   const { children, classes, onClose, ...other } = props;
   return (
@@ -83,7 +85,10 @@ export default function MoodCreate({ open, onSave, handleClose }) {
         }}
       >
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Write something nice for yourself.
+          <div style={{ display: "flex", alignItems: "center" }}>
+            Write something nice!
+            <FavoriteIcon style={{ marginLeft: "10px", color: "red" }} />
+          </div>
         </DialogTitle>
         <DialogContent dividers>
           <Typography>
@@ -93,13 +98,18 @@ export default function MoodCreate({ open, onSave, handleClose }) {
           <div className="input-container">
             <TextField
               required
-              className="string-input title"
-              label="Affirmation"
               autoFocus
+              multiline
+              rowsMax={10}
               type="text"
               name="content"
+              label="Enter affirmation"
+              style={{ width: "300px" }}
               value={formData.content}
               onChange={handleChange}
+              id="outlined-multiline-static"
+              rows={4}
+              variant="filled"
             />
           </div>
         </DialogContent>

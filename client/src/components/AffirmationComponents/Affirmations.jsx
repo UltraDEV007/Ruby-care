@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Affirmations.css";
+import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import SettingsSharpIcon from "@material-ui/icons/SettingsSharp";
@@ -17,6 +18,7 @@ export default function Affirmation({
 }) {
   const [openOptions, setOpenOptions] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
+  const [openDetail, setOpenDetail] = useState(false);
 
   const handleClickOpen = () => {
     setOpenDialog(true);
@@ -24,15 +26,30 @@ export default function Affirmation({
   const handleClose = () => {
     setOpenDialog(false);
   };
+  const onSave = (formData) => {
+    handleCreate(formData);
+    setOpenDialog(false);
+  };
+  const onDelete = (id) => {
+    handleDelete(id);
+    setOpenDetail(false);
+  };
   const handleMouseClick = () => {
     setOpenOptions(!openOptions);
   };
+  const handleDetailOpen = () => {
+    setOpenDetail(true);
+  };
+
+  const handleDetailClose = () => {
+    setOpenDetail(false);
+  };
 
   const AFFIRMATIONS = React.Children.toArray(
-    affirmations.length === 0 ? (
-      <div className="log-your-mood">
+    affirmations?.length === 0 ? (
+      <div className="log-your-affirmation">
         <Typography> Click the </Typography>&nbsp;
-        <AddIcon className="plus-icon-moods" />
+        <AddIcon className="plus-icon-affirmations" />
         &nbsp;
         <Typography>button to write yourself an affirmation!</Typography>
       </div>
@@ -40,18 +57,17 @@ export default function Affirmation({
       affirmations.map((affirmation) => (
         <AffirmationCard
           updated={updated}
+          onDelete={onDelete}
           affirmation={affirmation}
           openOptions={openOptions}
+          openDetail={openDetail}
           handleDelete={handleDelete}
+          handleDetailOpen={handleDetailOpen}
+          handleDetailClose={handleDetailClose}
         />
       ))
     )
   );
-
-  const onSave = (formData) => {
-    handleCreate(formData);
-    setOpenDialog(false);
-  };
 
   return (
     <>
