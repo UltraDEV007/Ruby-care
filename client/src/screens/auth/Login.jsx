@@ -150,7 +150,6 @@ const useStyles = makeStyles({
   },
   passwordLabel: {
     color: "#000",
-    marginLeft: "10px",
   },
 });
 
@@ -237,7 +236,6 @@ export default function Login() {
               <Input
                 id="email"
                 type="text"
-                style={{ color: "#fff" }}
                 className={
                   darkMode === "light"
                     ? classes.inputField
@@ -262,7 +260,7 @@ export default function Login() {
               <InputLabel
                 className={
                   darkMode === "light"
-                    ? classes.lasswordLabel
+                    ? classes.passwordLabel
                     : classes.darkPasswordLabel
                 }
                 htmlFor="password"

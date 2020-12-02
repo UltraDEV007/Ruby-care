@@ -146,6 +146,12 @@ const useStyles = makeStyles({
     alignItems: "center",
     color: "#fff",
   },
+  darkPasswordLabel: {
+    color: "#fff",
+  },
+  passwordLabel: {
+    color: "#000",
+  },
 });
 
 export default function Register() {
@@ -212,14 +218,27 @@ export default function Register() {
           }
         >
           <AccountCircleIcon />
-          <TextField
-            className={classes.inputField}
-            type="text"
-            name="name"
-            label="Name"
-            value={formData.name}
-            onChange={handleChange}
-          />
+          <FormControl>
+            <InputLabel
+              className={
+                darkMode === "light" ? classes.label : classes.darkLabel
+              }
+              htmlFor="name"
+            >
+              Name
+            </InputLabel>
+            <Input
+              className={
+                darkMode === "light"
+                  ? classes.inputField
+                  : classes.inputFieldDark
+              }
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+            />
+          </FormControl>
         </div>
         <br />
         <div
@@ -242,7 +261,6 @@ export default function Register() {
             <Input
               id="email"
               type="text"
-              style={{ color: "#fff" }}
               className={
                 darkMode === "light"
                   ? classes.inputField
@@ -267,7 +285,7 @@ export default function Register() {
             <InputLabel
               className={
                 darkMode === "light"
-                  ? classes.lasswordLabel
+                  ? classes.passwordLabel
                   : classes.darkPasswordLabel
               }
               htmlFor="password"

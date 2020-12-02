@@ -40,6 +40,14 @@ const useStyles = makeStyles((theme) => ({
   },
   logOut: {
     marginLeft: "20px",
+    padding: "20px",
+    transition: "transform 250ms ease-in-out",
+
+    "&:hover": {
+      transition: "transform 250ms ease-in-out",
+      cursor: "pointer",
+      transform: "scale(1.5)",
+    },
   },
 }));
 
