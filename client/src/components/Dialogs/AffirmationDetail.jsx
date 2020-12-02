@@ -74,7 +74,7 @@ export default function AffirmationDetail({
           <> To: {affirmation?.user?.name}</>
         ) : (
           <>
-            <CreateIcon /> Dear me,{" "}
+            <CreateIcon /> Dear me,
           </>
         )}
       </DialogTitle>

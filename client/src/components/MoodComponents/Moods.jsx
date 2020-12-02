@@ -5,7 +5,6 @@ import AddIcon from "@material-ui/icons/Add";
 import SettingsSharpIcon from "@material-ui/icons/SettingsSharp";
 import MoodCard from "./MoodCard";
 import MoodCreate from "../Dialogs/MoodCreate";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import Typography from "@material-ui/core/Typography";
 
 export default function Moods({
@@ -24,7 +23,7 @@ export default function Moods({
   const handleClose = () => {
     setOpenDialog(false);
   };
-  const handleMouseClick = () => {
+  const handleOptionsClick = () => {
     setOpenOptions(!openOptions);
   };
 
@@ -56,13 +55,13 @@ export default function Moods({
   return (
     <>
       <div className="moods">
-        {loaded ? MOODS : <CircularProgress />}
+        {loaded ? MOODS : <>Loading...</>}
         <div className="mood-buttons-container">
           <Button
             className="edit-moods"
             variant="outlined"
             color="primary"
-            onClick={handleMouseClick}
+            onClick={handleOptionsClick}
           >
             <SettingsSharpIcon className="options-icon" />
           </Button>

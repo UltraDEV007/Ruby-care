@@ -6,7 +6,6 @@ import AddIcon from "@material-ui/icons/Add";
 import SettingsSharpIcon from "@material-ui/icons/SettingsSharp";
 import AffirmationCard from "./AffirmationCard";
 import AffirmationCreate from "../Dialogs/AffirmationCreate";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import Typography from "@material-ui/core/Typography";
 
 export default function Affirmation({
@@ -34,7 +33,7 @@ export default function Affirmation({
     handleDelete(id);
     setOpenDetail(false);
   };
-  const handleMouseClick = () => {
+  const handleOptionsClick = () => {
     setOpenOptions(!openOptions);
   };
   const handleDetailOpen = () => {
@@ -72,13 +71,13 @@ export default function Affirmation({
   return (
     <>
       <div className="affirmations">
-        {loaded ? AFFIRMATIONS : <CircularProgress />}
+        {loaded ? AFFIRMATIONS : <>Loading...</>}
         <div className="mood-buttons-container">
           <Button
             className="edit-affirmations"
             variant="outlined"
             color="primary"
-            onClick={handleMouseClick}
+            onClick={handleOptionsClick}
           >
             <SettingsSharpIcon className="options-icon" />
           </Button>

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
@@ -9,10 +9,25 @@ import MoodsContainer from "../../../containers/MoodsContainer";
 import AffirmationsContainer from "../../../containers/AffirmationsContainer";
 import Layout from "../../../layouts/Layout/Layout";
 import { DarkModeContext } from "../../../Context/DarkMode/DarkModeContext";
+import { CurrentUserContext } from "../../../Context/CurrentUser/CurrentUserContext";
 import { indigo } from "@material-ui/core/colors";
+import { getAllAffirmations } from "../../../services/affirmations";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
 export default function Home() {
   const [darkMode] = useContext(DarkModeContext);
+  const [currentUser] = useContext(CurrentUserContext);
+  const [affirmations, setAffirmations] = useState([]);
+  const [loadedAffirmation, setLoadedAffirmation] = useState(false);
+
+  useEffect(() => {
+    const fetchAffirmations = async () => {
+      const affirmationData = await getAllAffirmations();
+      setAffirmations(affirmationData);
+      setLoadedAffirmation(true);
+    };
+    fetchAffirmations();
+  }, [currentUser]);
 
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -49,48 +64,69 @@ export default function Home() {
   return (
     <Layout title="Home">
       <div className={classes.root}>
-        <Accordion className={classes.accordion}>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
-            <Typography className={classes.heading}>Mood</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <div className="content-container">
-              <MoodsContainer />
-            </div>
-          </AccordionDetails>
-        </Accordion>
+        {!loadedAffirmation ? (
+          <LinearProgress style={{ margin: "50px auto", width: "30vw" }} />
+        ) : (
+          <>
+            <Accordion className={classes.accordion}>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography className={classes.heading}>Mood</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <div className="content-container">
+                  <MoodsContainer />
+                </div>
+              </AccordionDetails>
+            </Accordion>
 
-        <Accordion className={classes.accordion}>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
-            <Typography className={classes.heading}>Affirmations</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <div className="content-container">
-              <AffirmationsContainer />
-            </div>
-          </AccordionDetails>
-        </Accordion>
+            <Accordion className={classes.accordion}>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography className={classes.heading}>
+                  {affirmations?.length === 0 ? (
+                    <></>
+                  ) : (
+                    <> {affirmations?.length} </>
+                  )}
+                  {affirmations?.length === 1 ? (
+                    <> Affirmation</>
+                  ) : (
+                    <> Affirmations</>
+                  )}
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <div className="content-container">
+                  <AffirmationsContainer
+                    affirmations={affirmations}
+                    loadedAffirmation={loadedAffirmation}
+                    setAffirmations={setAffirmations}
+                  />
+                </div>
+              </AccordionDetails>
+            </Accordion>
 
-        <Accordion className={classes.accordion}>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
-            <Typography className={classes.heading}>Symptoms</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <div className="content-container"></div>
-          </AccordionDetails>
-        </Accordion>
+            <Accordion className={classes.accordion}>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography className={classes.heading}>Symptoms</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <div className="content-container"></div>
+              </AccordionDetails>
+            </Accordion>
+          </>
+        )}
       </div>
     </Layout>
   );
