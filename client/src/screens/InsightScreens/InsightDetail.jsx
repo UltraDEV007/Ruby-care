@@ -1,9 +1,20 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
 import { CurrentUserContext } from "../../CurrentUser/CurrentUserContext";
-
+import styled from "styled-components";
+const Wrapper = styled.div`
+  .content-container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    min-height: 100vh;
+    max-height: 100%;
+  }
+  .insight-body {
+    min-width: 400px;
+  }
+`;
 export default function InsightDetail({ getOneInsight, handleDelete }) {
   const [insight, setInsight] = useState(null);
   const [currentUser] = useContext(CurrentUserContext);
@@ -18,11 +29,13 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
   }, [id]);
 
   return (
-    <div>
-      <>
+    <Wrapper>
+      <div className="content-container">
         <h1>{insight?.title}</h1>
         <small>{insight?.description}</small>
-        <p>{insight?.body}</p>
+        <div className="insight-body">
+          <p>{insight?.body}</p>
+        </div>
         <div className="buttons">
           <Button
             variant="contained"
@@ -36,14 +49,14 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
         {insight?.user_id === currentUser?.id && (
           <>
             <div>
-              <Link to={`/insights/${insight.id}/edit`}>
+              <Link to={`/insights/${insight?.id}/edit`}>
                 <button>Edit</button>
               </Link>
               <button onClick={() => handleDelete(insight.id)}>Delete</button>
             </div>
           </>
         )}
-      </>
-    </div>
+      </div>
+    </Wrapper>
   );
 }

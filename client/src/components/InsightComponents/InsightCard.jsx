@@ -21,6 +21,8 @@ function InsightCard({ updated, insight, handleDelete, darkMode }) {
     },
     title: {
       color: darkMode === "dark" ? yellow[700] : "#000",
+      fontWeight: "bold",
+      fontSize: "24px",
     },
   });
   const [currentUser] = useContext(CurrentUserContext);
@@ -30,7 +32,7 @@ function InsightCard({ updated, insight, handleDelete, darkMode }) {
     <Card className={classes.root}>
       <Link className={classes.link} to={`/insights/${insight?.id}`}>
         <Typography className={classes.title}>{insight?.title}</Typography>
-        <Typography className={classes.title}>{insight?.user.name}</Typography>
+        <Typography className={classes.title}>{insight?.user?.name}</Typography>
       </Link>
       {!updated ? (
         <>
