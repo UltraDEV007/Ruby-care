@@ -14,6 +14,10 @@ const useStyles = makeStyles({
     bottom: 0,
     marginTop: "20px",
   },
+  footer: {
+    height: "50px",
+    marginTop: "20px",
+  },
 });
 
 function Footer() {
@@ -35,19 +39,23 @@ function Footer() {
   });
 
   return (
-    <BottomNavigation
-      value={value}
-      onChange={(_event, newValue) => {
-        history.push(routerMap[newValue]);
-        setValue(newValue);
-      }}
-      showLabels
-      className={classes.root}
-    >
-      <BottomNavigationAction label="Home" icon={<HomeIcon />} />
-      <BottomNavigationAction label="Insights" icon={<ForumIcon />} />
-      <BottomNavigationAction label="Settings" icon={<MoreHorizIcon />} />
-    </BottomNavigation>
+    <>
+      <div className={classes.footer}>
+        <BottomNavigation
+          value={value}
+          onChange={(_event, newValue) => {
+            history.push(routerMap[newValue]);
+            setValue(newValue);
+          }}
+          showLabels
+          className={classes.root}
+        >
+          <BottomNavigationAction label="Home" icon={<HomeIcon />} />
+          <BottomNavigationAction label="Insights" icon={<ForumIcon />} />
+          <BottomNavigationAction label="Settings" icon={<MoreHorizIcon />} />
+        </BottomNavigation>
+      </div>
+    </>
   );
 }
 

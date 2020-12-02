@@ -12,6 +12,13 @@ const Wrapper = styled.div`
   flex-direction: column;
   min-height: 800px;
   max-height: 100%;
+
+  .insights-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
   .sentence-container {
     margin: 10px auto;
   }
@@ -24,7 +31,14 @@ const Wrapper = styled.div`
   }
   .span {
     color: ${({ darkMode }) =>
-      darkMode === "light" ? blue[400] : yellow[700]};
+      darkMode === "light" ? blue[500] : yellow[700]};
+  }
+  @media screen and (min-width: 1400px) {
+    .insights-container {
+      display: flex;
+      justify-content: center;
+      flex-flow: row wrap;
+    }
   }
 `;
 export default function Insights(props) {
@@ -53,7 +67,7 @@ export default function Insights(props) {
           </Typography>
         </div>
         <br />
-        {INSIGHTS}
+        <div className="insights-container">{INSIGHTS}</div>
       </Wrapper>
     </Layout>
   );

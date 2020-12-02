@@ -9,7 +9,6 @@ function DarkModeProvider(props) {
   const palletType = darkMode === "dark" ? "dark" : "light";
   const themeTextColor = darkMode === "dark" ? "#fff" : "#000";
 
-  // const [switchState, setSwitchState] = useState(false);
   const mainPrimaryColor = darkMode === "light" ? blue[600] : yellow[700];
   const mainSecondaryColor = darkMode === "light" ? red[600] : "#ff8f00";
 
@@ -42,19 +41,6 @@ function DarkModeProvider(props) {
       localStorage.setItem("darkMode", "light");
     }
   }, []);
-
-  // const handleThemeChange = () => {
-  //   setSwitchState(switchState === true ? false : true);
-  //   if (darkMode === "light") {
-  //     setDarkMode("dark");
-  //     localStorage.setItem("darkMode", "dark");
-  //     localStorage.setItem("switchState", true);
-  //   } else {
-  //     setDarkMode("light");
-  //     localStorage.setItem("darkMode", "light");
-  //     localStorage.setItem("switchState", false);
-  //   }
-  // };
 
   return (
     <ThemeProvider theme={darkTheme}>
