@@ -20,10 +20,10 @@ const Wrapper = styled.div`
     align-items: center;
   }
   .sentence-container {
-    margin: 10px auto;
+    margin: 20px auto;
   }
   .sentence {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     margin: 0 auto;
   }
   a {
@@ -33,11 +33,25 @@ const Wrapper = styled.div`
     color: ${({ darkMode }) =>
       darkMode === "light" ? blue[500] : yellow[700]};
   }
-  @media screen and (min-width: 1400px) {
+  @media screen and (min-width: 1930px) {
     .insights-container {
       display: flex;
       justify-content: center;
       flex-flow: row wrap;
+    }
+  }
+  @media screen and (min-width: 600px) {
+    .sentence {
+      font-size: 1.5rem;
+      margin: 0 auto;
+    }
+  @media screen and (min-width: 1280px) {
+    .sentence {
+      font-size: 2rem;
+      margin: 0 auto;
+    }
+    .sentence-container {
+      margin-bottom: 40px;
     }
   }
 `;

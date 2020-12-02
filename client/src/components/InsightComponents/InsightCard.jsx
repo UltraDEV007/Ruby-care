@@ -24,7 +24,7 @@ function InsightCard({ updated, insight, handleDelete, darkMode }) {
       [theme.breakpoints.up("md")]: {
         minWidth: "350px",
         width: "350px",
-        padding: "30px",
+        padding: "20px",
         margin: "20px",
       },
       [theme.breakpoints.up("lg")]: {
