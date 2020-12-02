@@ -72,7 +72,9 @@ function App() {
               <Login darkMode={darkMode} />
             </Route>
             <Route path="/register" component={Register}></Route>
-            <Route path="/insights" component={InsightsContainer} />
+            <Route path="/insights">
+              <InsightsContainer darkMode={darkMode} />
+            </Route>
             <Route path="/settings">
               <Settings
                 darkMode={darkMode}

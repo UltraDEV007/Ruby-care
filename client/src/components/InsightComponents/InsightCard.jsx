@@ -4,33 +4,51 @@ import "moment-timezone";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
 import { CurrentUserContext } from "../../CurrentUser/CurrentUserContext";
+import Card from "@material-ui/core/Card";
+import { makeStyles } from "@material-ui/styles";
+import { yellow } from "@material-ui/core/colors";
 
-function InsightCard({ updated, insight, handleDelete }) {
+function InsightCard({ updated, insight, handleDelete, darkMode }) {
+  const useStyles = makeStyles({
+    root: {
+      margin: "30px auto",
+      minWidth: "350px",
+      width: "350px",
+      minHeight: "150px",
+    },
+    link: {
+      textDecoration: "none",
+    },
+    title: {
+      color: darkMode === "dark" ? yellow[700] : "#000",
+    },
+  });
   const [currentUser] = useContext(CurrentUserContext);
+  const classes = useStyles();
 
   return (
-    <div>
-      <Link to={`/insights/${insight.id}`}>
-        <p>{insight.title}</p>
+    <Card className={classes.root}>
+      <Link className={classes.link} to={`/insights/${insight?.id}`}>
+        <Typography className={classes.title}>{insight?.title}</Typography>
+        <Typography className={classes.title}>{insight?.user.name}</Typography>
       </Link>
-      <p>{insight.description}</p>
-      <p>{insight.body}</p>
       {!updated ? (
         <>
           <Typography>
             Created at:&nbsp;
-            <Moment format="MMM-DD-yyyy hh:mm A">{insight.created_at}</Moment>
+            <Moment format="MMM-DD-yyyy hh:mm A">{insight?.created_at}</Moment>
           </Typography>
         </>
       ) : (
         <>
           <Typography>
             Updated at:&nbsp;
-            <Moment format="MMM-DD-yyyy hh:mm A">{insight.updated_at}</Moment>
+            <Moment format="MMM-DD-yyyy hh:mm A">{insight?.updated_at}</Moment>
           </Typography>
         </>
       )}
-      {insight.user_id === currentUser?.id && (
+      <Typography>{insight?.description}</Typography>
+      {insight?.user_id === currentUser?.id && (
         <>
           <div>
             <Link to={`/insights/${insight.id}/edit`}>
@@ -40,7 +58,7 @@ function InsightCard({ updated, insight, handleDelete }) {
           </div>
         </>
       )}
-    </div>
+    </Card>
   );
 }
 

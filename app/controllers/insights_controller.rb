@@ -7,12 +7,12 @@ class InsightsController < ApplicationController
   def index
     @insights = Insight.all
 
-    render json: @insights
+    render json: @insights, include: :user
   end
 
   # GET /insights/1
   def show
-    render json: @insight
+    render json: @insight, include: :user
   end
 
   # POST /insights

@@ -27,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 0.5,
   },
   timeClass: {
-    // marginRight: "20px",
     flexGrow: 0.5,
   },
   userName: {
@@ -93,7 +92,7 @@ export default function Header({ title }) {
             </>
           ) : (
             <Link style={{ textDecoration: "none" }} to="/login">
-              <Typography style={{ color: "white" }}>Login/Register</Typography>
+              <Typography style={{ color: "#fff" }}>Login/Register</Typography>
             </Link>
           )}
           {location.pathname === "/settings" ? (

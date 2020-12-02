@@ -12,12 +12,12 @@ function CurrentUserProvider(props) {
     const handleVerify = async () => {
       const userData = await verifyUser();
       setCurrentUser(userData);
-      if (!userData) {
-        history.push("/login");
-        // } else if (userData) {
-        //   history.push("/");
-        // }
-      }
+      // if (!userData) {
+      //   history.push("/login");
+      // } else if (userData) {
+      //   history.push("/");
+      // }
+      // }
     };
     handleVerify();
   }, [history]);

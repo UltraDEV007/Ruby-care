@@ -14,7 +14,7 @@ import InsightEdit from "../screens/InsightScreens/InsightEdit";
 import InsightDetail from "../screens/InsightScreens/InsightDetail";
 const useStyles = makeStyles({});
 
-export default function Community() {
+export default function InsightsContainer({ darkMode }) {
   const classes = useStyles();
   const [insights, setInsights] = useState([]);
   const [updated, setUpdated] = useState(false);
@@ -70,6 +70,7 @@ export default function Community() {
         <div className={classes.root}>
           <Route path="/insights">
             <Insights
+              darkMode={darkMode}
               updated={updated}
               insights={insights}
               handleDelete={handleDelete}
