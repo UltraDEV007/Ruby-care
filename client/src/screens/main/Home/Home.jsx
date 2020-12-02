@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
@@ -7,22 +7,27 @@ import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoodsContainer from "../../../containers/MoodsContainer";
 import Layout from "../../../layouts/Layout/Layout";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    maxWidth: "95vw",
-    margin: "0 auto",
-  },
-  heading: {
-    fontSize: theme.typography.pxToRem(17),
-    fontWeight: theme.typography.fontWeightRegular,
-  },
-  accordion: {
-    marginTop: "20px",
-  },
-}));
-
+import { DarkModeContext } from "../../../Context/DarkMode/DarkModeContext";
+import { indigo } from "@material-ui/core/colors";
 export default function Home() {
+  const [darkMode] = useContext(DarkModeContext);
+
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      maxWidth: "95vw",
+      margin: "0 auto",
+    },
+    heading: {
+      fontSize: theme.typography.pxToRem(17),
+      fontWeight: theme.typography.fontWeightRegular,
+    },
+    accordion: {
+      boxShadow:
+        darkMode === "light" ? "default" : `0px 0px 4px 1.2px ${indigo[50]}`,
+      marginTop: "20px",
+      marginBottom: "30px",
+    },
+  }));
   const classes = useStyles();
 
   return (

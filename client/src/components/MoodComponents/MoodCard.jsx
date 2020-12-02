@@ -9,11 +9,19 @@ import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import "moment-timezone";
 import { DarkModeContext } from "../../Context/DarkMode/DarkModeContext";
+import { indigo } from "@material-ui/core/colors/";
 
 export default function MoodCard({ mood, updated, openOptions, handleDelete }) {
   const [darkMode] = useContext(DarkModeContext);
   return (
-    <Card className="mood-card">
+    <Card
+      style={
+        darkMode === "light"
+          ? { boxShadow: "default" }
+          : { boxShadow: `0px 0px 4px 1.2px ${indigo[50]}` }
+      }
+      className="mood-card"
+    >
       <div className="mood-container">
         <div className="status">
           {mood.status === "Great" ? (
