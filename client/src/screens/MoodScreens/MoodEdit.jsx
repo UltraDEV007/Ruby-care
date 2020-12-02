@@ -8,6 +8,9 @@ import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
+  root: {
+    padding: "20px",
+  },
   form: {
     display: "flex",
     flexDirection: "column",
@@ -76,7 +79,7 @@ export default function MoodEdit(props) {
     if (props.moods.length) {
       prefillForm();
     }
-  }, [props.moods]);
+  }, [props.moods, id]);
 
   const handleChange = (e) => {
     const { name } = e.target;

@@ -1,6 +1,6 @@
 class MoodsController < ApplicationController
-  before_action :set_mood, only: [:show]
-  before_action :authorize_request, only: [:index, :create, :update, :destroy] #add :index if showing moods of current user, get rid of showing foods of all users
+  # before_action :set_mood, only: [:show]
+  before_action :authorize_request, only: [:index, :show, :create, :update, :destroy] #add :index if showing moods of current user, get rid of showing foods of all users
   before_action :set_user_mood, only: [ :update, :destroy]
 
   

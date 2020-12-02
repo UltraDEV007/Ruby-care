@@ -42,7 +42,6 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "20px",
     padding: "20px",
     transition: "transform 250ms ease-in-out",
-
     "&:hover": {
       transition: "transform 250ms ease-in-out",
       cursor: "pointer",

@@ -6,9 +6,11 @@ import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoodsContainer from "../../../containers/MoodsContainer";
+import AffirmationsContainer from "../../../containers/AffirmationsContainer";
 import Layout from "../../../layouts/Layout/Layout";
 import { DarkModeContext } from "../../../Context/DarkMode/DarkModeContext";
 import { indigo } from "@material-ui/core/colors";
+
 export default function Home() {
   const [darkMode] = useContext(DarkModeContext);
 
@@ -70,6 +72,11 @@ export default function Home() {
           >
             <Typography className={classes.heading}>Affirmations</Typography>
           </AccordionSummary>
+          <AccordionDetails>
+            <div className="content-container">
+              <AffirmationsContainer />
+            </div>
+          </AccordionDetails>
         </Accordion>
 
         <Accordion className={classes.accordion}>
