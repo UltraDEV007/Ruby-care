@@ -5,10 +5,11 @@ import Switch from "@material-ui/core/Switch";
 import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CurrentUserContext } from "../../../CurrentUser/CurrentUserContext";
 import Moment from "react-moment";
 import "moment-timezone";
+import { DarkModeContext } from "../../../DarkMode/DarkModeContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,14 +24,32 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Settings({
-  darkMode,
-  switchState,
-  setDarkMode,
-  handleThemeChange,
-}) {
+export default function Settings(
+  {
+    // darkMode,
+    // switchState,
+    // setDarkMode,
+    // handleThemeChange,
+  }
+) {
   const classes = useStyles();
   const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
+  const [darkMode, setDarkMode] = useContext(DarkModeContext);
+
+  const [switchState, setSwitchState] = useState(false);
+
+  const handleThemeChange = () => {
+    setSwitchState(switchState === true ? false : true);
+    if (darkMode === "light") {
+      setDarkMode("dark");
+      localStorage.setItem("darkMode", "dark");
+      localStorage.setItem("switchState", true);
+    } else {
+      setDarkMode("light");
+      localStorage.setItem("darkMode", "light");
+      localStorage.setItem("switchState", false);
+    }
+  };
 
   const userDate = currentUser?.created_at.toLocaleString();
   return (
