@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_30_190741) do
+ActiveRecord::Schema.define(version: 2020_12_03_050402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,15 @@ ActiveRecord::Schema.define(version: 2020_11_30_190741) do
     t.index ["user_id"], name: "index_moods_on_user_id"
   end
 
+  create_table "symptoms", force: :cascade do |t|
+    t.string "name", limit: 20
+    t.datetime "time"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_symptoms_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -52,4 +61,5 @@ ActiveRecord::Schema.define(version: 2020_11_30_190741) do
   add_foreign_key "affirmations", "users"
   add_foreign_key "insights", "users"
   add_foreign_key "moods", "users"
+  add_foreign_key "symptoms", "users"
 end

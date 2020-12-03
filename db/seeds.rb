@@ -10,6 +10,7 @@ Mood.destroy_all
 Affirmation.destroy_all
 Insight.destroy_all
 User.destroy_all
+Symptom.destroy_all
 
 @admin = User.create!(name: 'admin', email: 'admin@email.com', password: '12345678')
 @daniel = User.create!(name: 'daniel', email: 'daniel@email.com', password: '12345678')
@@ -34,3 +35,9 @@ puts "#{Affirmation.count} affirmations created"
 @insight3 = Insight.create!(title: "Hello", description: "I dont know this is a description", body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", user: @admin)
 
 puts "#{Insight.count} insights created"
+
+# learned strptime from stack overflow : https://stackoverflow.com/questions/5474164/rails-seeding-database-data-and-date-formats
+@symptom1 = Symptom.create!(name: "Chills", time: DateTime.strptime("09/01/2009 17:00", "%m/%d/%Y %H:%M"),  user: @daniel)
+@symptom2 = Symptom.create!(name: "Fever", time: DateTime.strptime("09/01/2009 17:00", "%m/%d/%Y %H:%M"),  user: @admin)
+
+puts "#{Symptom.count} symptoms created"

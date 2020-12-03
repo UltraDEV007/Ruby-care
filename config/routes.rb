@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :symptoms
   resources :affirmations
   resources :insights
   resources :moods
