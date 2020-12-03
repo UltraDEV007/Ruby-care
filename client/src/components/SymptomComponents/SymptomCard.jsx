@@ -7,12 +7,7 @@ import "moment-timezone";
 import { DarkModeContext } from "../Context/DarkModeContext";
 import { indigo } from "@material-ui/core/colors/";
 
-export default function SymptomCard({
-  symptom,
-  updated,
-  openOptions,
-  handleDelete,
-}) {
+export default function SymptomCard({ symptom, openOptions, handleDelete }) {
   const [darkMode] = useContext(DarkModeContext);
   return (
     <Card
@@ -21,17 +16,14 @@ export default function SymptomCard({
           ? { boxShadow: "default" }
           : { boxShadow: `0px 0px 4px 1.2px ${indigo[50]}` }
       }
-      className="mood-card"
+      className="symptom-card"
     >
-      <div className="mood-container">
+      <div className="symptom-container">
         {symptom.name}
-        {symptom.time}
         <div className="time">
-          {!updated ? (
-            <Moment format="MMM/DD/yyyy hh:mm A">{symptom.created_at}</Moment>
-          ) : (
-            <Moment format="MMM/DD/yyyy hh:mm A">{symptom.updated_at}</Moment>
-          )}
+          <Moment format="MMM/DD/yyyy hh:mm A">
+            {symptom.time?.toLocaleString()}
+          </Moment>
         </div>
         <div
           className="buttons"

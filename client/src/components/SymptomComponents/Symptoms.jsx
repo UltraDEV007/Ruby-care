@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Moods.css";
+import "./Symptoms.css";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import SettingsSharpIcon from "@material-ui/icons/SettingsSharp";
@@ -29,9 +29,9 @@ export default function Symptoms({
 
   const SYMPTOMS = React.Children.toArray(
     symptoms.length === 0 ? (
-      <div className="log-your-mood">
+      <div className="log-your-symptom">
         <Typography> Click the </Typography>&nbsp;
-        <AddIcon className="plus-icon-moods" />
+        <AddIcon className="plus-icon-symptoms" />
         &nbsp;
         <Typography>button to track your symtpoms!</Typography>
       </div>
@@ -54,11 +54,11 @@ export default function Symptoms({
 
   return (
     <>
-      <div className="moods">
+      <div className="symptoms">
         {loaded ? SYMPTOMS : <>Loading...</>}
-        <div className="mood-buttons-container">
+        <div className="symptom-buttons-container">
           <Button
-            className="edit-moods"
+            className="edit-symptoms"
             variant="outlined"
             color="primary"
             onClick={handleOptionsClick}

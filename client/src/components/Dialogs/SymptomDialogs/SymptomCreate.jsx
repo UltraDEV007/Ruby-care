@@ -9,8 +9,6 @@ import MuiDialogActions from "@material-ui/core/DialogActions";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
-import Moment from "react-moment";
-import "moment-timezone";
 import CreateIcon from "@material-ui/icons/Create";
 
 const styles = (theme) => ({
@@ -61,7 +59,7 @@ const DialogActions = withStyles((theme) => ({
 export default function SymptomCreate({ open, onSave, handleClose }) {
   const [formData, setFormData] = useState({
     name: "",
-    time: "",
+    time: "2020-11-02T10:30",
   });
 
   const handleChange = (e) => {
@@ -71,7 +69,6 @@ export default function SymptomCreate({ open, onSave, handleClose }) {
       [name]: value,
     }));
   };
-  let time = new Date();
 
   return (
     <Dialog
@@ -88,22 +85,18 @@ export default function SymptomCreate({ open, onSave, handleClose }) {
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           <div style={{ display: "flex", alignItems: "center" }}>
             <CreateIcon style={{ marginRight: "10px" }} />
-            Write something nice!
+            Log symptom
           </div>
         </DialogTitle>
         <DialogContent dividers>
-          <Typography>
-            Today, <Moment format="MMMM-DD-yyyy hh:mm A">{time}</Moment>
-          </Typography>
-
           <div className="input-container">
             <TextField
               required
               autoFocus
               type="text"
               name="name"
-              label="Enter name"
-              style={{ width: "300px" }}
+              label="Enter symptom"
+              style={{ width: "300px", margin: "10px" }}
               value={formData.name}
               onChange={handleChange}
               id="outlined-multiline-static"
@@ -113,19 +106,19 @@ export default function SymptomCreate({ open, onSave, handleClose }) {
 
           <div className="input-container">
             <TextField
-              required
-              autoFocus
-              multiline
-              rowsMax={10}
-              type="text"
               name="time"
-              label="Enter time"
-              style={{ width: "300px" }}
+              id="datetime-local"
+              label="When did this happen?"
+              type="datetime-local"
+              variant="filled"
+              color="primary"
+              style={{ width: "300px", margin: "10px" }}
               value={formData.time}
               onChange={handleChange}
-              id="outlined-multiline-static"
-              rows={4}
-              variant="filled"
+              InputLabelProps={{
+                className: "hello",
+                shrink: true,
+              }}
             />
           </div>
         </DialogContent>
