@@ -58,7 +58,6 @@ const DialogActions = withStyles((theme) => ({
 export default function AffirmationDetail({
   affirmation,
   openDetail,
-  handleDetailOpen,
   handleDetailClose,
   onDelete,
 }) {

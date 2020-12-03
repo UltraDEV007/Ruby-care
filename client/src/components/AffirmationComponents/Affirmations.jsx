@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./Affirmations.css";
-import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import SettingsSharpIcon from "@material-ui/icons/SettingsSharp";
@@ -8,7 +7,7 @@ import AffirmationLetter from "./AffirmationLetter";
 import AffirmationCreate from "../Dialogs/AffirmationDialogs/AffirmationCreate";
 import Typography from "@material-ui/core/Typography";
 
-export default function Affirmation({
+export default function Affirmations({
   affirmations,
   updated,
   handleDelete,
@@ -60,7 +59,6 @@ export default function Affirmation({
           affirmation={affirmation}
           openOptions={openOptions}
           openDetail={openDetail}
-          handleDelete={handleDelete}
           handleDetailOpen={handleDetailOpen}
           handleDetailClose={handleDetailClose}
         />

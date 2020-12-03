@@ -9,8 +9,26 @@ import { makeStyles } from "@material-ui/styles";
 import { yellow, indigo } from "@material-ui/core/colors";
 import Button from "@material-ui/core/Button";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import DeleteInsight from "../Modals/DeleteInsight";
 
-function InsightCard({ updated, insight, handleDelete, darkMode }) {
+function InsightCard({
+  // updated,
+  // insight,
+  // handleDelete,
+  // onDelete,
+  // openDelete,
+  // darkMode,
+  // handleClose,
+  // handleOpen,
+  insight,
+  handleDelete,
+  handleOpen,
+  handleClose,
+  openDelete,
+  onDelete,
+  darkMode,
+  updated,
+}) {
   const useStyles = makeStyles((theme) => ({
     root: {
       margin: "20px auto",
@@ -73,52 +91,67 @@ function InsightCard({ updated, insight, handleDelete, darkMode }) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
-      <Link className={classes.link} to={`/insights/${insight?.id}`}>
-        <Typography className={classes.title}>{insight?.title}</Typography>
-      </Link>
-      <div className={classes.userContainer}>
-        <AccountCircleIcon className={classes.userIcon} />
-        <Typography className={classes.userName}>
-          {insight?.user?.name}
-        </Typography>
-      </div>
-      {!updated ? (
-        <>
-          <Typography>
-            Created at:&nbsp;
-            <Moment format="MMM-DD-yyyy hh:mm A">{insight?.created_at}</Moment>
+    <>
+      <Card className={classes.root}>
+        <Link className={classes.link} to={`/insights/${insight?.id}`}>
+          <Typography className={classes.title}>{insight?.title}</Typography>
+        </Link>
+        <div className={classes.userContainer}>
+          <AccountCircleIcon className={classes.userIcon} />
+          <Typography className={classes.userName}>
+            {insight?.user?.name}
           </Typography>
-        </>
-      ) : (
-        <>
-          <Typography>
-            Updated at:&nbsp;
-            <Moment format="MMM-DD-yyyy hh:mm A">{insight?.updated_at}</Moment>
-          </Typography>
-        </>
-      )}
-      <Typography>{insight?.description}</Typography>
-      {insight?.user_id === currentUser?.id && (
-        <>
-          <div className={classes.buttons}>
-            <Link to={`/insights/${insight.id}/edit`}>
-              <Button variant="contained" color="primary">
-                Edit
+        </div>
+        {!updated ? (
+          <>
+            <Typography>
+              Created at:&nbsp;
+              <Moment format="MMM-DD-yyyy hh:mm A">
+                {insight?.created_at}
+              </Moment>
+            </Typography>
+          </>
+        ) : (
+          <>
+            <Typography>
+              Updated at:&nbsp;
+              <Moment format="MMM-DD-yyyy hh:mm A">
+                {insight?.updated_at}
+              </Moment>
+            </Typography>
+          </>
+        )}
+        <Typography>{insight?.description}</Typography>
+        {insight?.user_id === currentUser?.id && (
+          <>
+            <div className={classes.buttons}>
+              <Link to={`/insights/${insight.id}/edit`}>
+                <Button variant="contained" color="primary">
+                  Edit
+                </Button>
+              </Link>
+              <Button
+                className={classes.delete}
+                variant="contained"
+                color="secondary"
+                // onClick={() => handleDelete(insight.id)}
+                onClick={handleOpen}
+              >
+                Delete
               </Button>
-            </Link>
-            <Button
-              className={classes.delete}
-              variant="contained"
-              color="secondary"
-              onClick={() => handleDelete(insight.id)}
-            >
-              Delete
-            </Button>
-          </div>
-        </>
-      )}
-    </Card>
+            </div>
+          </>
+        )}
+      </Card>
+      <DeleteInsight
+        insight={insight}
+        openDelete={openDelete}
+        onDelete={onDelete}
+        handleOpen={handleOpen}
+        handleDelete={handleDelete}
+        handleClose={handleClose}
+      />
+    </>
   );
 }
 

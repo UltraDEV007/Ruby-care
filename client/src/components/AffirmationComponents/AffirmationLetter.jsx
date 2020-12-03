@@ -4,7 +4,6 @@ import AffirmationDetail from "../Dialogs/AffirmationDialogs/AffirmationDetail";
 
 export default function AffirmationLetter({
   affirmation,
-  // updated,
   openOptions,
   handleDelete,
   handleDetailOpen,
@@ -21,22 +20,10 @@ export default function AffirmationLetter({
             onClick={handleDetailOpen}
             width="80px"
             height="80px"
-            // src="https://www.pngrepo.com/download/180681/love-letter-hearts.png"
             src="https://www.pngrepo.com/download/180697/love-letter-hearts.png"
             alt="closed affirmation letter"
           />
         </div>
-        {/* <div className="time">
-          {!updated ? (
-            <Moment format="MMM/DD/yyyy hh:mm A">
-              {affirmation.created_at}
-            </Moment>
-          ) : (
-            <Moment format="MMM/DD/yyyy hh:mm A">
-              {affirmation.updated_at}
-            </Moment>
-          )}
-        </div> */}
         <div
           className="buttons"
           style={openOptions ? { display: "flex" } : { display: "none" }}

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Layout from "../../layouts/Layout/Layout";
 import InsightCard from "../../components/InsightComponents/InsightCard";
@@ -58,17 +58,33 @@ const Wrapper = styled.div`
 `;
 export default function Insights(props) {
   const [darkMode] = useContext(DarkModeContext);
+  const [openDelete, setOpenDelete] = useState(false);
+
+  const onDelete = (id) => {
+    props.handleDelete(id);
+    setOpenDelete(false);
+  };
+
+  const handleDeleteOpen = () => {
+    setOpenDelete(true);
+  };
+
+  const handleDeleteClose = () => {
+    setOpenDelete(false);
+  };
 
   const INSIGHTS = React.Children.toArray(
     props.insights.map((insight) => (
-      <Link to={`/insights/${insight?.id}`}>
-        <InsightCard
-          darkMode={darkMode}
-          updated={props.updated}
-          insight={insight}
-          handleDelete={props.handleDelete}
-        />
-      </Link>
+      <InsightCard
+        darkMode={darkMode}
+        updated={props.updated}
+        insight={insight}
+        handleOpen={handleDeleteOpen}
+        handleClose={handleDeleteClose}
+        onDelete={onDelete}
+        openDelete={openDelete}
+        handleDelete={props.handleDelete}
+      />
     ))
   );
 

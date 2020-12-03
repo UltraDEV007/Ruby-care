@@ -90,11 +90,15 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
         {insight?.user_id === currentUser?.id && (
           <>
             <div className="buttons2">
-              <Link to={`/insights/${insight?.id}/edit`}>
-                <Button className="edit" variant="contained" color="primary">
-                  Edit
-                </Button>
-              </Link>
+              <Button
+                component={Link}
+                to={`/insights/${insight?.id}/edit`}
+                className="edit"
+                variant="contained"
+                color="primary"
+              >
+                Edit
+              </Button>
               <Button
                 className="delete"
                 variant="contained"
