@@ -26,15 +26,36 @@ export default function Settings() {
       [theme.breakpoints.up("md")]: {
         maxWidth: "600px",
       },
-      [theme.breakpoints.up("lg")]: {
-        maxWidth: "800",
-      },
       [theme.breakpoints.up("xl")]: {
         maxWidth: "41.5vw",
       },
     },
     categories: {
       textAlign: "center",
+      padding: "20px",
+      fontSize: "1.5rem",
+      [theme.breakpoints.up("md")]: {
+        fontSize: "1.7rem",
+      },
+      [theme.breakpoints.up("lg")]: {
+        fontSize: "2rem",
+      },
+      [theme.breakpoints.up("xl")]: {
+        fontSize: "2.2rem",
+      },
+    },
+    accountTitle: {
+      textAlign: "center",
+      fontSize: "1.5rem",
+      [theme.breakpoints.up("md")]: {
+        fontSize: "1.7rem",
+      },
+      [theme.breakpoints.up("lg")]: {
+        fontSize: "2rem",
+      },
+      [theme.breakpoints.up("xl")]: {
+        fontSize: "2.2rem",
+      },
     },
     card: {
       display: "flex",
@@ -64,8 +85,12 @@ export default function Settings() {
   const [switchState, setSwitchState] = useState(() => {
     let state = localStorage.getItem("switchState");
     if (state !== null) {
+      // dark mode is on by default
+      // if you want light mode to be on by default change it to :
+      // return state === "true" ? true : false;
       return state === "true" ? true : false;
     }
+    // change this to return false if you want it to be light mode on default
     return false;
   });
 
@@ -86,16 +111,15 @@ export default function Settings() {
   return (
     <Layout title="Settings">
       <div className={classes.userContainer}>
-        <Typography className={classes.userText}>Your Account</Typography>
-
+        <Typography className={classes.accountTitle}>Your Account</Typography>
         <Typography className={classes.userText}>
-          Name:&nbsp;{currentUser?.name}
+          <strong>Name:</strong>&nbsp;{currentUser?.name}
         </Typography>
         <Typography className={classes.userText}>
-          Email:&nbsp;{currentUser?.email}
+          <strong>Email:</strong>&nbsp;{currentUser?.email}
         </Typography>
         <Typography>
-          Joined&nbsp;
+          <strong>Joined:</strong>&nbsp;
           <Moment format="MM/DD/yyyy">{userDate}</Moment>
         </Typography>
       </div>

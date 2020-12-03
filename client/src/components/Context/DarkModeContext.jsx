@@ -4,7 +4,7 @@ import { yellow, red, blue } from "@material-ui/core/colors";
 
 const DarkModeContext = React.createContext([{}, () => {}]);
 function DarkModeProvider({ children }) {
-  const [darkMode, setDarkMode] = useState("light");
+  const [darkMode, setDarkMode] = useState("");
   const palletType = darkMode === "dark" ? "dark" : "light";
   const themeTextColor = darkMode === "dark" ? "#fff" : "#000";
 
@@ -38,7 +38,10 @@ function DarkModeProvider({ children }) {
         ? setDarkMode("light")
         : setDarkMode("dark");
     } else {
+      // if you want darkMode to be off by default, do
+      // setDarkMode("light")
       setDarkMode("light");
+      // and then do localStorage.setItem("darkMode,"light")
       localStorage.setItem("darkMode", "light");
     }
   }, []);

@@ -30,7 +30,7 @@ export default function Header({ title }) {
       flexGrow: 0.5,
     },
     timeClass: {
-      flexGrow: location.pathname === "/settings" ? 5 : 0.5,
+      flexGrow: location.pathname === "/settings" ? 5.5 : 0.5,
       textAlign: location.pathname === "/settings" ? "center" : "default",
     },
     userName: {
