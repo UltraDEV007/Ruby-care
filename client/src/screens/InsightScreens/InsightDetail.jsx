@@ -13,32 +13,39 @@ const Wrapper = styled.div`
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-
+    text-align: center;
     .buttons {
       display: flex;
       flex-direction: row;
-      justify-content: space-evenly;
+      justify-content: center;
+      margin-top: 20px;   
     }
     .buttons2 {
-      margin-top: -60px;
+      display: flex;
+      flex-direction: row;
+        align-self: center;
     }
   }
   .title-container {
     align-self: center;
     padding: 20px;
+    margin-top: 40px;
   }
   .title {
     font-size: 1.3rem;
   }
   .insight-body {
-    margin-left: auto;
-    margin-top: 40px;
+    margin: 0 auto;
+    margin-top: 20px;
     min-width: 400px;
-    min-height: 200px;
+    min-height: 400px;
   }
-  .edit,
-  .delete {
-    margin: 20px;
+  .edit
+   {
+     margin-right: 10px;
+  }
+  hr{
+    margin-top: 20px;
   }
 
   @media screen and (min-width: 600px) {
@@ -73,20 +80,6 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
             <small>{insight?.created_at}</small>
           </Moment>
         </div>
-        <Typography>{insight?.description}</Typography>
-        <div className="insight-body">
-          <p>{insight?.body}</p>
-        </div>
-        <div className="buttons">
-          <Button
-            variant="contained"
-            color="secondary"
-            to="/insights"
-            component={Link}
-          >
-            Go Back
-          </Button>
-        </div>
         {insight?.user_id === currentUser?.id && (
           <>
             <div className="buttons2">
@@ -110,6 +103,22 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
             </div>
           </>
         )}
+        <hr />
+        <div className="insight-body">
+          <p>{insight?.body}</p>
+        </div>
+        <br />
+        <hr />
+        <div className="buttons">
+          <Button
+            variant="contained"
+            color="secondary"
+            to="/insights"
+            component={Link}
+          >
+            Go Back
+          </Button>
+        </div>
       </div>
     </Wrapper>
   );

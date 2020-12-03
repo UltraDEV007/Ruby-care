@@ -156,28 +156,16 @@ export default function DeleteInsight({
       aria-labelledby="customized-dialog-title"
       open={openDelete}
     >
-      <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-        w
-      </DialogTitle>
-      <DialogContent
-        dividers
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          width: "300px",
-          overflowWrap: "break-word",
-        }}
+      <DialogTitle
+        style={{ minWidth: "200px" }}
+        id="customized-dialog-title"
+        onClose={handleClose}
       >
-        <Typography>{insight.content}</Typography>
-      </DialogContent>
-      <DialogTitle>
-        <Typography>
-          <Moment format="dddd, MMMM yyyy hh:mm A">
-            {insight?.created_at}
-          </Moment>
-        </Typography>
+        Are you sure?
       </DialogTitle>
-      <DialogActions>
+      <DialogActions
+        style={{ display: "flex", justifyContent: "space-evenly" }}
+      >
         <Button variant="contained" color="primary" onClick={handleClose}>
           Exit
         </Button>

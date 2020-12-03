@@ -12,14 +12,6 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import DeleteInsight from "../Modals/DeleteInsight";
 
 function InsightCard({
-  // updated,
-  // insight,
-  // handleDelete,
-  // onDelete,
-  // openDelete,
-  // darkMode,
-  // handleClose,
-  // handleOpen,
   insight,
   handleDelete,
   handleOpen,
@@ -134,7 +126,6 @@ function InsightCard({
                 className={classes.delete}
                 variant="contained"
                 color="secondary"
-                // onClick={() => handleDelete(insight.id)}
                 onClick={handleOpen}
               >
                 Delete

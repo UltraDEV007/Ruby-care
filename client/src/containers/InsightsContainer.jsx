@@ -16,8 +16,21 @@ export default function InsightsContainer({ darkMode }) {
   const [insights, setInsights] = useState([]);
   const [updated, setUpdated] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const [openDelete, setOpenDelete] = useState(false);
   const history = useHistory();
 
+  const onDelete = (id) => {
+    handleDelete(id);
+    setOpenDelete(false);
+  };
+
+  const handleDeleteOpen = () => {
+    setOpenDelete(true);
+  };
+
+  const handleDeleteClose = () => {
+    setOpenDelete(false);
+  };
   useEffect(() => {
     const fetchInsights = async () => {
       const insightData = await getAllInsights();
@@ -69,6 +82,10 @@ export default function InsightsContainer({ darkMode }) {
         <div>
           <Route path="/insights">
             <Insights
+              openDelete={openDelete}
+              onDelete={onDelete}
+              handleDeleteClose={handleDeleteClose}
+              handleDeleteOpen={handleDeleteOpen}
               loaded={loaded}
               darkMode={darkMode}
               updated={updated}
