@@ -51,12 +51,12 @@ export default function AffirmationsContainer({
         handleDelete={handleAffirmationDelete}
       />
       <Switch>
-        {/* <Route path="/affirmations/:id/edit">
+        <Route path="/affirmations/:id/edit">
           <AffirmationEdit
             affirmations={affirmations}
             handleUpdate={handleAffirmationUpdate}
           />
-        </Route> */}
+        </Route>
       </Switch>
     </>
   );

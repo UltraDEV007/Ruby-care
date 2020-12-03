@@ -77,14 +77,12 @@ export default function Header({ title }) {
         <Toolbar>
           {location.pathname === "/" ? (
             <HomeIcon className={classes.menuButton} />
-          ) : location.pathname === "/insights" ||
-            location.pathname === "/insights/new" ||
-            location.pathname === "insights/:id/edit" ? (
+          ) : location.pathname === "/insights" ? (
             <ForumIcon className={classes.menuButton} />
           ) : location.pathname === "/settings" ? (
             <SettingsIcon className={classes.menuButton} />
           ) : (
-            <></>
+            <HomeIcon className={classes.menuButton} />
           )}
 
           <Typography variant="h6" className={classes.title}>

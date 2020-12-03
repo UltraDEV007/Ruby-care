@@ -8,6 +8,7 @@ import Home from "./screens/main/Home";
 import Settings from "./screens/main/Settings";
 import InsightsContainer from "./containers/InsightsContainer";
 import { DarkModeProvider } from "./components/Context/DarkModeContext";
+import NotFound from "./screens/Error/NotFound";
 
 function App() {
   return (
@@ -15,19 +16,12 @@ function App() {
       <Paper>
         <DarkModeProvider>
           <Switch>
-            <Route exact path="/login">
-              <Login />
-            </Route>
-            <Route path="/register" component={Register}></Route>
-            <Route path="/insights">
-              <InsightsContainer />
-            </Route>
-            <Route path="/settings">
-              <Settings />
-            </Route>
-            <Route path="/">
-              <Home />
-            </Route>
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+            <Route path="/insights" component={InsightsContainer} />
+            <Route path="/settings" component={Settings} />
+            <Route path="/" component={Home} />
+            <Route path="*" component={NotFound} />
           </Switch>
         </DarkModeProvider>
       </Paper>
