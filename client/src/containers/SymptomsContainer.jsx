@@ -2,7 +2,7 @@ import React from "react";
 import Symptoms from "../components/SymptomComponents/Symptoms.jsx";
 import { useState, useEffect, useContext } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
-// import SymptomEdit from "../screens/SymptomScreens/SymptomEdit";
+import SymptomEdit from "../screens/SymptomScreens/SymptomEdit";
 import {
   destroySymptom,
   getAllSymptoms,
@@ -59,11 +59,11 @@ export default function MoodsContainer() {
         handleCreate={handleCreate}
         handleDelete={handleDelete}
       />
-      {/* <Switch>
+      <Switch>
         <Route path="/symptoms/:id/edit">
           <SymptomEdit symptoms={symptoms} handleUpdate={handleUpdate} />
         </Route>
-      </Switch> */}
+      </Switch>
     </>
   );
 }

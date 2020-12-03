@@ -7,6 +7,7 @@ import { CurrentUserProvider } from "./components/Context/CurrentUserContext";
 import Home from "./screens/main/Home";
 import Settings from "./screens/main/Settings";
 import InsightsContainer from "./containers/InsightsContainer";
+import UsersContainer from "./containers/UsersContainer";
 import { DarkModeProvider } from "./components/Context/DarkModeContext";
 import NotFound from "./screens/Error/NotFound";
 
@@ -20,6 +21,7 @@ function App() {
             <Route path="/register" component={Register} />
             <Route path="/insights" component={InsightsContainer} />
             <Route path="/settings" component={Settings} />
+            <Route path="/users" component={UsersContainer} />
             <Route path="/" component={Home} />
             <Route path="*" component={NotFound} />
           </Switch>

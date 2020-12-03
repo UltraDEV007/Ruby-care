@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
+
 const Div = styled.div`
   padding: "20px";
   margin: auto 40px;
@@ -13,25 +14,26 @@ const Form = styled.form`
   padding: "20px";
 `;
 
-export default function AffirmationEdit({ handleUpdate, affirmations }) {
+export default function InsightUpdate({ handleUpdate, symptoms }) {
   const [formData, setFormData] = useState({
-    content: "",
+    name: "",
+    time: "",
   });
-  const { content } = formData;
+  const { name, time } = formData;
   const { id } = useParams();
 
   useEffect(() => {
     const prefillFormData = () => {
-      const oneAffirmation = affirmations.find((insight) => {
-        return insight.id === Number(id);
+      const oneSymptom = symptoms.find((symptom) => {
+        return symptom.id === Number(id);
       });
-      const { content } = oneAffirmation;
-      setFormData({ content });
+      const { name, time } = oneSymptom;
+      setFormData({ name, time });
     };
-    if (affirmations?.length) {
+    if (symptoms.length) {
       prefillFormData();
     }
-  }, [affirmations, id]);
+  }, [symptoms, id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -44,7 +46,7 @@ export default function AffirmationEdit({ handleUpdate, affirmations }) {
   return (
     <Div>
       <div className="title-container">
-        <Typography className="title">Edit Affirmation</Typography>
+        <Typography className="title">Edit Symptom</Typography>
       </div>
       <Form
         onSubmit={(e) => {
@@ -56,15 +58,23 @@ export default function AffirmationEdit({ handleUpdate, affirmations }) {
         <div className="input-container">
           <TextField
             required
-            label="content"
-            variant="filled"
+            label="symptom"
             className="string-input title"
             autoFocus
-            multiline
-            rows={4}
             type="text"
-            name="content"
-            value={content}
+            name="name"
+            value={name}
+            onChange={handleChange}
+          />
+        </div>
+        <br />
+        <div className="input-container">
+          <TextField
+            required
+            className="string-input description"
+            type="datetime-local"
+            name="time"
+            value={time}
             onChange={handleChange}
           />
         </div>

@@ -59,7 +59,7 @@ const DialogActions = withStyles((theme) => ({
 export default function SymptomCreate({ open, onSave, handleClose }) {
   const [formData, setFormData] = useState({
     name: "",
-    time: "2020-11-02T10:30",
+    time: "",
   });
 
   const handleChange = (e) => {
@@ -110,8 +110,7 @@ export default function SymptomCreate({ open, onSave, handleClose }) {
               id="datetime-local"
               label="When did this happen?"
               type="datetime-local"
-              variant="filled"
-              color="primary"
+              // variant="filled"
               style={{ width: "300px", margin: "10px" }}
               value={formData.time}
               onChange={handleChange}
