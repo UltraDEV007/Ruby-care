@@ -4,7 +4,7 @@
   width: 100%;
 }
 
-.moods {
+.symptoms {
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
@@ -34,7 +34,7 @@
   font-size: 10px;
 }
 
-.edit-moods {
+.edit-symptoms {
   height: 50px;
   margin-top: 10px;
   height: 89px;

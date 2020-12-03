@@ -33,7 +33,7 @@ export default function Symptoms({
         <Typography> Click the </Typography>&nbsp;
         <AddIcon className="plus-icon-symptoms" />
         &nbsp;
-        <Typography>button to track your symtpoms!</Typography>
+        <Typography>button to track your symptoms!</Typography>
       </div>
     ) : (
       symptoms.map((symptom) => (
@@ -69,7 +69,7 @@ export default function Symptoms({
             onClick={handleClickOpen}
             variant="outlined"
             color="primary"
-            className="add-mood"
+            className="add-symptom"
           >
             <AddIcon className="add-icon" />
           </Button>
