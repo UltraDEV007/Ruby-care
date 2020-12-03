@@ -78,8 +78,8 @@ export default function Header({ title }) {
           {location.pathname === "/" ? (
             <HomeIcon className={classes.menuButton} />
           ) : location.pathname === "/insights" ||
-            "/insights/new" ||
-            "insights/:id/edit" ? (
+            location.pathname === "/insights/new" ||
+            location.pathname === "insights/:id/edit" ? (
             <ForumIcon className={classes.menuButton} />
           ) : location.pathname === "/settings" ? (
             <SettingsIcon className={classes.menuButton} />
