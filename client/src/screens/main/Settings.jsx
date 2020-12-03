@@ -54,7 +54,13 @@ export default function Settings() {
   }));
 
   const classes = useStyles();
-  const [switchState, setSwitchState] = useState(false);
+  const [switchState, setSwitchState] = useState(() => {
+    let state = localStorage.getItem("switchState");
+    if (state !== null) {
+      return state === "true" ? true : false;
+    }
+    return false;
+  });
 
   const handleThemeChange = () => {
     setSwitchState(switchState === true ? false : true);

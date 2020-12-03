@@ -3,7 +3,6 @@ import api from "./apiConfig";
 export const getAllSymptoms = async () => {
   try {
     const resp = await api.get("/symptoms");
-    console.log("SYMPTOMS", resp?.data);
     return resp?.data;
   } catch (error) {
     throw error;

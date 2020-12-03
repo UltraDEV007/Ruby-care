@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
@@ -14,12 +15,16 @@ import { CurrentUserContext } from "../../components/Context/CurrentUserContext"
 import { indigo } from "@material-ui/core/colors";
 import { getAllAffirmations } from "../../services/affirmations";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import { checkValidity } from "../../utils/checkValidity";
+import NotFound from "../Error/NotFound";
 
 export default function Home() {
   const [darkMode] = useContext(DarkModeContext);
   const [currentUser] = useContext(CurrentUserContext);
   const [affirmations, setAffirmations] = useState([]);
   const [loadedAffirmation, setLoadedAffirmation] = useState(false);
+
+  let location = useLocation();
 
   useEffect(() => {
     const fetchAffirmations = async () => {
@@ -62,7 +67,7 @@ export default function Home() {
   }));
   const classes = useStyles();
 
-  return (
+  return checkValidity(location.pathname) ? (
     <Layout title="Home">
       <div className={classes.root}>
         {!loadedAffirmation ? (
@@ -132,5 +137,7 @@ export default function Home() {
         )}
       </div>
     </Layout>
+  ) : (
+    <NotFound />
   );
 }

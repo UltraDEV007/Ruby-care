@@ -1,11 +1,10 @@
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
-
+import { checkValidity } from "../../utils/checkValidity";
 function NotFound() {
   let location = useLocation();
-  const whiteList = ["/", "/insights", "/settings/", "/login", "/register"];
 
-  return whiteList.includes(location.pathname) ? (
+  return checkValidity(location.pathname) ? (
     <></>
   ) : (
     <>
