@@ -46,13 +46,14 @@ const Wrapper = styled.div`
       font-size: 1.5rem;
       margin: 0 auto;
     }
-  @media screen and (min-width: 1280px) {
-    .sentence {
-      font-size: 2rem;
-      margin: 0 auto;
-    }
-    .sentence-container {
-      margin-bottom: 40px;
+    @media screen and (min-width: 1280px) {
+      .sentence {
+        font-size: 2rem;
+        margin: 0 auto;
+      }
+      .sentence-container {
+        margin-bottom: 40px;
+      }
     }
   }
 `;

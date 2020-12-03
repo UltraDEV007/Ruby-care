@@ -26,13 +26,14 @@ const Div = styled.div`
     margin-bottom: -20px;
   }
 
-  @media screen and (min-width: 1000px){
+  @media screen and (min-width: 1000px) {
     .title {
-    font-size: 2rem;
-  }
+      font-size: 2rem;
+    }
     .warning {
       font-size: 1.5rem;
       margin-bottom: 20px;
+    }
   }
 `;
 const Form = styled.form`

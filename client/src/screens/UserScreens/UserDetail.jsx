@@ -18,12 +18,12 @@ const Wrapper = styled.div`
       display: flex;
       flex-direction: row;
       justify-content: center;
-      margin-top: 20px;   
+      margin-top: 20px;
     }
     .buttons2 {
       display: flex;
       flex-direction: row;
-        align-self: center;
+      align-self: center;
     }
   }
   .title-container {
@@ -40,11 +40,10 @@ const Wrapper = styled.div`
     min-width: 400px;
     min-height: 400px;
   }
-  .edit
-   {
-     margin-right: 10px;
+  .edit {
+    margin-right: 10px;
   }
-  hr{
+  hr {
     margin-top: 20px;
   }
 
@@ -52,9 +51,10 @@ const Wrapper = styled.div`
     .title {
       font-size: 1.5rem;
     }
-  @media screen and (min-width: 1280px) {
-    .title {
-      font-size: 2rem;
+    @media screen and (min-width: 1280px) {
+      .title {
+        font-size: 2rem;
+      }
     }
   }
 `;

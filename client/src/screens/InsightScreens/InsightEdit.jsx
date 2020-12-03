@@ -19,9 +19,10 @@ const Div = styled.div`
   .title {
     font-size: 1.2rem;
   }
-  @media screen and (min-width: 1000px){
+  @media screen and (min-width: 1000px) {
     .title {
-    font-size: 2rem;
+      font-size: 2rem;
+    }
   }
 `;
 const Form = styled.form`
