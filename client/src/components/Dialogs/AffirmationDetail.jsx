@@ -9,7 +9,6 @@ import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 import Moment from "react-moment";
 import "moment-timezone";
-import FavoriteIcon from "@material-ui/icons/Favorite";
 
 const styles = (theme) => ({
   root: {
@@ -81,13 +80,25 @@ export default function AffirmationDetail({
           </div>
         ) : (
           <div style={{ display: "flex", alignItems: "flex-end" }}>
-            <FavoriteIcon style={{ marginRight: "15px" }} />
+            <img
+              src="https://www.pngrepo.com/download/180681/love-letter-hearts.png"
+              style={{ marginRight: "15px", width: "40px" }}
+              alt="opened affirmation letter"
+            />
             Dear me...
           </div>
         )}
       </DialogTitle>
-      <DialogContent dividers style={{ minWidth: "300px" }}>
-        <p>{affirmation.content}</p>
+      <DialogContent
+        dividers
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          width: "300px",
+          overflowWrap: "break-word",
+        }}
+      >
+        <Typography>{affirmation.content}</Typography>
       </DialogContent>
       <DialogTitle>
         <Typography>
