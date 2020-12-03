@@ -1,0 +1,69 @@
+.content-container {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+}
+
+.affirmations {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  margin-left: 30px;
+}
+
+.affirmation-container {
+  margin: 10px 15px;
+  text-align: center;
+}
+
+.affirmation-card {
+  margin: 10px;
+  width: 200px;
+}
+
+.delete-button {
+  margin-left: 10px;
+  width: 20%;
+}
+
+.add-affirmation {
+  display: flex;
+  flex-direction: column;
+  height: 89px;
+  margin-top: 10px;
+  font-size: 10px;
+}
+
+.edit-affirmations {
+  height: 50px;
+  margin-top: 10px;
+  height: 89px;
+  margin-right: 10px;
+}
+
+.log-your-affirmation {
+  display: flex;
+  align-content: center;
+}
+
+.options-icon {
+  width: 50px;
+  height: 40px;
+}
+
+.add-icon {
+  margin: 0 auto;
+  height: 50px;
+  width: 50px;
+}
+
+.affirmation-buttons-container {
+  display: flex;
+  right: 0;
+  margin-left: 20px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+}
