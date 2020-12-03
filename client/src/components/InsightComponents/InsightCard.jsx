@@ -91,7 +91,7 @@ function InsightCard({
         <div className={classes.userContainer}>
           <AccountCircleIcon className={classes.userIcon} />
           <Typography className={classes.userName}>
-            {insight?.user?.name}
+            {insight?.user?.name ? insight?.user?.name : <>Anonymous</>}
           </Typography>
         </div>
         {!updated ? (

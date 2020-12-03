@@ -107,10 +107,10 @@ export default function SymptomCreate({ open, onSave, handleClose }) {
           <div className="input-container">
             <TextField
               name="time"
+              required
               id="datetime-local"
               label="When did this happen?"
               type="datetime-local"
-              // variant="filled"
               style={{ width: "300px", margin: "10px" }}
               value={formData.time}
               onChange={handleChange}
