@@ -6,14 +6,15 @@ import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 const Div = styled.div`
-  height: 100vh;
+  padding: "20px";
+  margin: auto 40px;
+  /* height: 50px;
   display: flex;
   flex-direction: column;
   .title-container {
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-    margin-top: 70px;
     text-align: center;
   }
   .title {
@@ -22,13 +23,14 @@ const Div = styled.div`
   @media screen and (min-width: 1000px){
     .title {
     font-size: 2rem;
-  }
+  } */
 `;
 const Form = styled.form`
-  display: flex;
+  padding: "20px";
+  /* display: flex;
   flex-direction: column;
   margin: 20px auto;
-
+  
   .input-container {
     margin: 10px;
   }
@@ -52,8 +54,8 @@ const Form = styled.form`
   }
   .cancel {
     margin-left: 20px;
-  }
-
+  } */
+  /* 
   @media screen and (min-width: 1000px) {
     #outlined-multiline-static {
       min-width: 500px;
@@ -68,30 +70,28 @@ const Form = styled.form`
     .input-container {
       margin: 20px;
     }
-  }
+  } */
 `;
 
-export default function InsightUpdate({ handleUpdate, insights }) {
+export default function AffirmationEdit({ handleUpdate, affirmations }) {
   const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    body: "",
+    content: "",
   });
-  const { title, description, body } = formData;
+  const { content } = formData;
   const { id } = useParams();
 
   useEffect(() => {
     const prefillFormData = () => {
-      const oneInsight = insights.find((insight) => {
+      const oneAffirmation = affirmations.find((insight) => {
         return insight.id === Number(id);
       });
-      const { title, description, body } = oneInsight;
-      setFormData({ title, description, body });
+      const { content } = oneAffirmation;
+      setFormData({ content });
     };
-    if (insights.length) {
+    if (affirmations?.length) {
       prefillFormData();
     }
-  }, [insights, id]);
+  }, [affirmations, id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -104,7 +104,7 @@ export default function InsightUpdate({ handleUpdate, insights }) {
   return (
     <Div>
       <div className="title-container">
-        <Typography className="title">Edit Insight</Typography>
+        <Typography className="title">Edit Affirmation</Typography>
       </div>
       <Form
         onSubmit={(e) => {
@@ -116,53 +116,27 @@ export default function InsightUpdate({ handleUpdate, insights }) {
         <div className="input-container">
           <TextField
             required
-            label="title"
+            label="content"
+            variant="filled"
             className="string-input title"
             autoFocus
-            type="text"
-            name="title"
-            value={title}
-            onChange={handleChange}
-          />
-        </div>
-        <br />
-        <div className="input-container">
-          <TextField
-            label="description"
-            required
-            autoFocus
-            className="string-input description"
-            type="text"
-            name="description"
-            value={description}
-            onChange={handleChange}
-          />
-        </div>
-        <br />
-        <div className="input-container">
-          <TextField
-            required
-            autoFocus
             multiline
-            rowsMax={10}
-            type="text"
-            name="body"
-            className="string-input content"
-            label="content"
-            value={body}
-            onChange={handleChange}
-            id="outlined-multiline-static"
             rows={4}
-            variant="filled"
+            type="text"
+            name="content"
+            value={content}
+            onChange={handleChange}
           />
         </div>
+        <br />
+
         <div className="buttons">
           <Button type="submit" variant="contained" color="primary">
             Submit
           </Button>
           <Button
             className="cancel"
-            to="/insights"
+            to="/"
             component={Link}
             variant="contained"
             color="secondary"

@@ -65,7 +65,7 @@ export default function Home() {
     <Layout title="Home">
       <div className={classes.root}>
         {!loadedAffirmation ? (
-          <LinearProgress style={{ margin: "50px auto", width: "30vw" }} />
+          <LinearProgress style={{ margin: "200px auto", width: "30vw" }} />
         ) : (
           <>
             <Accordion className={classes.accordion}>
