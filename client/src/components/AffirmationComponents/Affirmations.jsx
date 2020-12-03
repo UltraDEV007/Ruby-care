@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import SettingsSharpIcon from "@material-ui/icons/SettingsSharp";
-import AffirmationCard from "./AffirmationCard";
+import AffirmationLetter from "./AffirmationLetter";
 import AffirmationCreate from "../Dialogs/AffirmationCreate";
 import Typography from "@material-ui/core/Typography";
 
@@ -54,7 +54,7 @@ export default function Affirmation({
       </div>
     ) : (
       affirmations.map((affirmation) => (
-        <AffirmationCard
+        <AffirmationLetter
           updated={updated}
           onDelete={onDelete}
           affirmation={affirmation}

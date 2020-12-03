@@ -9,7 +9,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 import Moment from "react-moment";
 import "moment-timezone";
-import CreateIcon from "@material-ui/icons/Create";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 
 const styles = (theme) => ({
   root: {
@@ -71,19 +71,31 @@ export default function AffirmationDetail({
     >
       <DialogTitle id="customized-dialog-title" onClose={handleDetailClose}>
         {affirmation?.user?.name ? (
-          <> To: {affirmation?.user?.name}</>
+          <div style={{ display: "flex", alignItems: "flex-end" }}>
+            <img
+              src="https://www.pngrepo.com/download/180681/love-letter-hearts.png"
+              style={{ marginRight: "15px", width: "40px" }}
+              alt="opened affirmation letter"
+            />
+            Dear&nbsp;{affirmation?.user?.name}...
+          </div>
         ) : (
-          <>
-            <CreateIcon /> Dear me,
-          </>
+          <div style={{ display: "flex", alignItems: "flex-end" }}>
+            <FavoriteIcon style={{ marginRight: "15px" }} />
+            Dear me...
+          </div>
         )}
       </DialogTitle>
       <DialogContent dividers style={{ minWidth: "300px" }}>
-        <Moment format="MMMM-DD-yyyy hh:mm A">
-          <Typography>At, {affirmation?.created_at}</Typography>
-        </Moment>
         <p>{affirmation.content}</p>
       </DialogContent>
+      <DialogTitle>
+        <Typography>
+          <Moment format="dddd, MMMM yyyy hh:mm A">
+            {affirmation?.created_at}
+          </Moment>
+        </Typography>
+      </DialogTitle>
       <DialogActions>
         <Button variant="contained" color="primary" onClick={handleDetailClose}>
           Exit

@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
 
-  # found this on stack overflow : https://stackoverflow.com/questions/16342779/activerecord-hide-column-while-returning-object
+  # found this on stack overflow (for lines 9-11) : https://stackoverflow.com/questions/16342779/activerecord-hide-column-while-returning-object
 
   # show user details EXCEPT token and password/password_digest when looking for users in database,
   # yes the data is hashed, but it bothers me that it's even viewable.

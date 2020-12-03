@@ -2,7 +2,7 @@ import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import AffirmationDetail from "../Dialogs/AffirmationDetail";
 
-export default function AffirmationCard({
+export default function AffirmationLetter({
   affirmation,
   // updated,
   openOptions,
@@ -17,10 +17,13 @@ export default function AffirmationCard({
       <div className="affirmation-container">
         <div className="content">
           <img
+            style={{ cursor: "pointer" }}
+            onClick={handleDetailOpen}
             width="80px"
             height="80px"
-            src="https://www.pngrepo.com/download/180681/love-letter-hearts.png"
-            alt="affirmation letter"
+            // src="https://www.pngrepo.com/download/180681/love-letter-hearts.png"
+            src="https://www.pngrepo.com/download/180697/love-letter-hearts.png"
+            alt="closed affirmation letter"
           />
         </div>
         {/* <div className="time">

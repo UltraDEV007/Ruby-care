@@ -12,6 +12,7 @@ import Typography from "@material-ui/core/Typography";
 import Moment from "react-moment";
 import "moment-timezone";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+import CreateIcon from "@material-ui/icons/Create";
 
 const styles = (theme) => ({
   root: {
@@ -86,8 +87,8 @@ export default function MoodCreate({ open, onSave, handleClose }) {
       >
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           <div style={{ display: "flex", alignItems: "center" }}>
+            <CreateIcon style={{ marginRight: "10px" }} />
             Write something nice!
-            <FavoriteIcon style={{ marginLeft: "10px", color: "red" }} />
           </div>
         </DialogTitle>
         <DialogContent dividers>
