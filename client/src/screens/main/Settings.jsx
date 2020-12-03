@@ -25,7 +25,7 @@ const useStyles = makeStyles(() => ({
 
 export default function Settings() {
   const classes = useStyles();
-  const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
+  const [currentUser] = useContext(CurrentUserContext);
   const [darkMode, setDarkMode] = useContext(DarkModeContext);
 
   const [switchState, setSwitchState] = useState(false);

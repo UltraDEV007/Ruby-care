@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoodsContainer from "../../containers/MoodsContainer";
 import AffirmationsContainer from "../../containers/AffirmationsContainer";
+import SymptomsContainer from "../../containers/SymptomsContainer";
 import Layout from "../../layouts/Layout/Layout";
 import { DarkModeContext } from "../../components/Context/DarkModeContext";
 import { CurrentUserContext } from "../../components/Context/CurrentUserContext";
@@ -122,7 +123,9 @@ export default function Home() {
                 <Typography className={classes.heading}>Symptoms</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <div className="content-container"></div>
+                <div className="content-container">
+                  <SymptomsContainer />
+                </div>
               </AccordionDetails>
             </Accordion>
           </>

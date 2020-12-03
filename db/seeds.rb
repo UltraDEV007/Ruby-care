@@ -39,5 +39,7 @@ puts "#{Insight.count} insights created"
 # learned strptime from stack overflow : https://stackoverflow.com/questions/5474164/rails-seeding-database-data-and-date-formats
 @symptom1 = Symptom.create!(name: "Chills", time: DateTime.strptime("09/01/2009 17:00", "%m/%d/%Y %H:%M"),  user: @daniel)
 @symptom2 = Symptom.create!(name: "Fever", time: DateTime.strptime("09/01/2009 17:00", "%m/%d/%Y %H:%M"),  user: @admin)
+@symptom3 = Symptom.create!(name: "Chills", time: DateTime.strptime("09/01/2009 17:00", "%m/%d/%Y %H:%M"),  user: @daniel)
+@symptom4 = Symptom.create!(name: "Fever", time: DateTime.strptime("09/01/2009 17:00", "%m/%d/%Y %H:%M"),  user: @admin)
 
 puts "#{Symptom.count} symptoms created"

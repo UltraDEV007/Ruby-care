@@ -3,6 +3,8 @@ import api from "./apiConfig";
 export const getAllMoods = async () => {
   try {
     const resp = await api.get("/moods");
+    console.log("MOODS", resp?.data);
+
     return resp?.data;
   } catch (error) {
     throw error;

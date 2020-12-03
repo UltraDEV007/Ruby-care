@@ -130,7 +130,6 @@ export default function InsightUpdate({ handleUpdate, insights }) {
           <TextField
             label="description"
             required
-            autoFocus
             className="string-input description"
             type="text"
             name="description"
@@ -142,7 +141,6 @@ export default function InsightUpdate({ handleUpdate, insights }) {
         <div className="input-container">
           <TextField
             required
-            autoFocus
             multiline
             rowsMax={10}
             type="text"

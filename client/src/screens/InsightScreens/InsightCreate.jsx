@@ -131,7 +131,6 @@ export default function InsightCreate(props) {
             className="string-input description"
             label="description"
             required
-            autoFocus
             type="text"
             name="description"
             value={formData.description}
@@ -143,7 +142,6 @@ export default function InsightCreate(props) {
         <div className="input-container content">
           <TextField
             required
-            autoFocus
             multiline
             rowsMax={10}
             type="text"

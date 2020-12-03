@@ -1,8 +1,8 @@
 class SymptomsController < ApplicationController
-  before_action :authorize_request, only: [:index, :show, :create, :update, :destroy] 
-  before_action :set_user_symptom, only: [ :update, :destroy]
+  before_action :authorize_request, only: [:index, :show, :create, :update, :destroy]
+    before_action :set_user_symptom, only: [ :update, :destroy]
 
-  # GET /symptomss
+  # GET /symptoms
   def index
     @symptoms = @current_user.symptoms 
     render json: @symptoms
@@ -51,6 +51,6 @@ class SymptomsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def symptom_params
-      params.require(:symptom).permit(:name,:time, :user_id)
+      params.require(:symptom).permit(:name, :time, :user_id)
     end
 end
