@@ -1,9 +1,14 @@
 class UsersController < ApplicationController
+  before_action :authorize_request, only: [:update, :destroy]
 
   def index
     @users = User.all
 
-    render json: @users
+    render json: @users, include: :insights 
+  end
+
+  def show
+    render json: @user, include: :insights
   end
 
 

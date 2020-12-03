@@ -1,7 +1,7 @@
 class MoodsController < ApplicationController
   # before_action :set_mood, only: [:show] #not putting moods in show anmyore because I want it to ask for user's token (only user can see it)
   before_action :authorize_request, only: [:index, :show, :create, :update, :destroy] #ask for token #add :index if showing moods of current user, get rid of showing foods of all users
-  before_action :set_user_mood, only: [ :update, :destroy]
+  before_action :set_user_mood, only: [:update, :destroy]
 
   
   # GET /moods
