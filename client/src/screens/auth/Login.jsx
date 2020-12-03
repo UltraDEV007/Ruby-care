@@ -94,6 +94,20 @@ const useStyles = makeStyles({
     textDecoration: "none",
     color: "#fff",
   },
+  user: {
+    fontFamily: ["Montserrat", "sans-serif"].join(","),
+    fontSize: "10px",
+    textDecoration: "none",
+  },
+  userDark: {
+    fontFamily: ["Montserrat", "sans-serif"].join(","),
+    fontSize: "15px",
+    textDecoration: "none",
+    color: "#fff",
+    padding: "20px",
+    marginBottom: "20px",
+    marginLeft: "40px",
+  },
   registerLink: {
     textDecoration: "none",
     color: "#62B5D9",
@@ -160,9 +174,9 @@ export default function Login() {
   const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
   const [darkMode] = useContext(DarkModeContext);
 
-  if (currentUser) {
-    history.push("/");
-  }
+  // if (currentUser) {
+  //   history.push("/");
+  // }
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -208,7 +222,17 @@ export default function Login() {
             alt="logo"
           />
         </div>
-
+        {currentUser ? (
+          <Typography
+            className={darkMode === "light" ? classes.user : classes.userDark}
+          >
+            You're already logged in, is this you?
+            <br /> Name: {currentUser?.name} <br />
+            Email: {currentUser?.email}
+          </Typography>
+        ) : (
+          <></>
+        )}
         <form
           className={classes.form}
           onSubmit={(e) => {

@@ -82,6 +82,20 @@ const useStyles = makeStyles({
     fontFamily: ["Montserrat", "sans-serif"].join(","),
     textTransform: "capitalize",
   },
+  user: {
+    fontFamily: ["Montserrat", "sans-serif"].join(","),
+    fontSize: "10px",
+    textDecoration: "none",
+  },
+  userDark: {
+    fontFamily: ["Montserrat", "sans-serif"].join(","),
+    fontSize: "15px",
+    textDecoration: "none",
+    color: "#fff",
+    padding: "20px",
+    marginBottom: "20px",
+    marginLeft: "40px",
+  },
   darkLabel: {
     color: "#fff",
     marginLeft: "10px",
@@ -154,7 +168,7 @@ const useStyles = makeStyles({
 });
 
 export default function Register() {
-  const [, setCurrentUser] = useContext(CurrentUserContext);
+  const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
   const [showPassword, setShowPassword] = useState(false);
   const [darkMode] = useContext(DarkModeContext);
   const classes = useStyles();
@@ -202,6 +216,17 @@ export default function Register() {
           alt="logo"
         />
       </div>
+      {currentUser ? (
+        <Typography
+          className={darkMode === "light" ? classes.user : classes.userDark}
+        >
+          You already have an account, is this you?
+          <br /> Name: {currentUser?.name} <br />
+          Email: {currentUser?.email}
+        </Typography>
+      ) : (
+        <></>
+      )}
       <form
         className={classes.form}
         onSubmit={(e) => {

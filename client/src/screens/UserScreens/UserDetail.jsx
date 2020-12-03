@@ -75,7 +75,7 @@ export default function UserDetail({ getOneUser, handleDelete }) {
     <Wrapper>
       <div className="content-container">
         <div className="title-container">
-          <Typography className="title">{user.name}</Typography>
+          <Typography className="title">{user?.name}</Typography>
           <Moment format="MMMM-DD-yyyy">
             <small>{user?.created_at}</small>
           </Moment>
