@@ -58,6 +58,7 @@ export default function Affirmations({
           onDelete={onDelete}
           affirmation={affirmation}
           openOptions={openOptions}
+          handleDelete={handleDelete}
           openDetail={openDetail}
           handleDetailOpen={handleDetailOpen}
           handleDetailClose={handleDetailClose}
