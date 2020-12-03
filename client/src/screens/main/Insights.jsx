@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import Layout from "../../../layouts/Layout/Layout";
-import InsightCard from "../../../components/InsightComponents/InsightCard";
-import { DarkModeContext } from "../../../Context/DarkMode/DarkModeContext";
+import Layout from "../../layouts/Layout/Layout";
+import InsightCard from "../../components/InsightComponents/InsightCard";
+import { DarkModeContext } from "../../components/Context/DarkModeContext";
 import CircularProgress from "@material-ui/core/CircularProgress";
-
 import styled from "styled-components";
 import Typography from "@material-ui/core/Typography";
 import { yellow, blue } from "@material-ui/core/colors";
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;

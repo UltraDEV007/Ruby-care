@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
-import { CurrentUserContext } from "../../Context/CurrentUser/CurrentUserContext";
-import { DarkModeContext } from "../../Context/DarkMode/DarkModeContext";
+import { CurrentUserContext } from "../../components/Context/CurrentUserContext";
+import { DarkModeContext } from "../../components/Context/DarkModeContext";
 import { registerUser } from "../../services/auth";
 import { Link, useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/styles";

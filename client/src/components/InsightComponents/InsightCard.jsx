@@ -3,7 +3,7 @@ import Moment from "react-moment";
 import "moment-timezone";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
-import { CurrentUserContext } from "../../Context/CurrentUser/CurrentUserContext";
+import { CurrentUserContext } from "../Context/CurrentUserContext";
 import Card from "@material-ui/core/Card";
 import { makeStyles } from "@material-ui/styles";
 import { yellow, indigo } from "@material-ui/core/colors";

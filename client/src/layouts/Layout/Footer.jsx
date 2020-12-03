@@ -7,7 +7,7 @@ import ForumIcon from "@material-ui/icons/Forum";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import { indigo, blue } from "@material-ui/core/colors";
-import { DarkModeContext } from "../../Context/DarkMode/DarkModeContext";
+import { DarkModeContext } from "../../components/Context/DarkModeContext";
 
 function Footer() {
   const [darkMode] = useContext(DarkModeContext);

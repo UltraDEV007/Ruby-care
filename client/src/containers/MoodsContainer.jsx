@@ -4,7 +4,7 @@ import { useState, useEffect, useContext } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
 import MoodEdit from "../screens/MoodScreens/MoodEdit";
 import { destroyMood, getAllMoods, postMood, putMood } from "../services/moods";
-import { CurrentUserContext } from "../Context/CurrentUser/CurrentUserContext";
+import { CurrentUserContext } from "../components/Context/CurrentUserContext";
 
 export default function MoodsContainer() {
   const [currentUser] = useContext(CurrentUserContext);

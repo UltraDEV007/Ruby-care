@@ -5,13 +5,13 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import MoodsContainer from "../../../containers/MoodsContainer";
-import AffirmationsContainer from "../../../containers/AffirmationsContainer";
-import Layout from "../../../layouts/Layout/Layout";
-import { DarkModeContext } from "../../../Context/DarkMode/DarkModeContext";
-import { CurrentUserContext } from "../../../Context/CurrentUser/CurrentUserContext";
+import MoodsContainer from "../../containers/MoodsContainer";
+import AffirmationsContainer from "../../containers/AffirmationsContainer";
+import Layout from "../../layouts/Layout/Layout";
+import { DarkModeContext } from "../../components/Context/DarkModeContext";
+import { CurrentUserContext } from "../../components/Context/CurrentUserContext";
 import { indigo } from "@material-ui/core/colors";
-import { getAllAffirmations } from "../../../services/affirmations";
+import { getAllAffirmations } from "../../services/affirmations";
 import LinearProgress from "@material-ui/core/LinearProgress";
 
 export default function Home() {

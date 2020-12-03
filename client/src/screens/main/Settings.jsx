@@ -1,14 +1,14 @@
 import { makeStyles } from "@material-ui/core/styles";
-import Layout from "../../../layouts/Layout/Layout";
+import Layout from "../../layouts/Layout/Layout";
 import Switch from "@material-ui/core/Switch";
 import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import { useContext, useState } from "react";
-import { CurrentUserContext } from "../../../Context/CurrentUser/CurrentUserContext";
+import { CurrentUserContext } from "../../components/Context/CurrentUserContext";
+import { DarkModeContext } from "../../components/Context/DarkModeContext";
 import Moment from "react-moment";
 import "moment-timezone";
-import { DarkModeContext } from "../../../Context/DarkMode/DarkModeContext";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -43,7 +43,7 @@ export default function Settings() {
     }
   };
 
-  const userDate = currentUser?.created_at.toLocaleString();
+  const userDate = currentUser?.created_at?.toLocaleString();
   return (
     <Layout title="Settings">
       <div className={classes.userContainer}>

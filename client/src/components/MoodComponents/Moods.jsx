@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import SettingsSharpIcon from "@material-ui/icons/SettingsSharp";
 import MoodCard from "./MoodCard";
-import MoodCreate from "../Dialogs/MoodCreate";
+import MoodCreate from "../Dialogs/MoodDialogs/MoodCreate";
 import Typography from "@material-ui/core/Typography";
 
 export default function Moods({

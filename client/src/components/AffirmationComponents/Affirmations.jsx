@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import SettingsSharpIcon from "@material-ui/icons/SettingsSharp";
 import AffirmationLetter from "./AffirmationLetter";
-import AffirmationCreate from "../Dialogs/AffirmationCreate";
+import AffirmationCreate from "../Dialogs/AffirmationDialogs/AffirmationCreate";
 import Typography from "@material-ui/core/Typography";
 
 export default function Affirmation({

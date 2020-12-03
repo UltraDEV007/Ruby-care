@@ -1,6 +1,6 @@
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
-import AffirmationDetail from "../Dialogs/AffirmationDetail";
+import AffirmationDetail from "../Dialogs/AffirmationDialogs/AffirmationDetail";
 
 export default function AffirmationLetter({
   affirmation,

@@ -1,4 +1,3 @@
-import { makeStyles } from "@material-ui/styles";
 import { useState, useEffect } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
 import {
@@ -8,14 +7,12 @@ import {
   putInsight,
   getOneInsight,
 } from "../services/insights";
-import Insights from "../screens/main/Insights/Insights";
+import Insights from "../screens/main/Insights";
 import InsightCreate from "../screens/InsightScreens/InsightCreate";
 import InsightEdit from "../screens/InsightScreens/InsightEdit";
 import InsightDetail from "../screens/InsightScreens/InsightDetail";
-const useStyles = makeStyles({});
 
 export default function InsightsContainer({ darkMode }) {
-  const classes = useStyles();
   const [insights, setInsights] = useState([]);
   const [updated, setUpdated] = useState(false);
   const [loaded, setLoaded] = useState(false);
@@ -69,7 +66,7 @@ export default function InsightsContainer({ darkMode }) {
             handleDelete={handleDelete}
           />
         </Route>
-        <div className={classes.root}>
+        <div>
           <Route path="/insights">
             <Insights
               loaded={loaded}

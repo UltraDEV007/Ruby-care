@@ -2,7 +2,7 @@ import React from "react";
 import Affirmations from "../components/AffirmationComponents/Affirmations.jsx";
 import { useState } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
-// import AffirmationEdit from "../screens/AffirmationScreens/AffirmationEdit";
+import AffirmationEdit from "../screens/AffirmationScreens/AffirmationEdit";
 import {
   destroyAffirmation,
   postAffirmation,

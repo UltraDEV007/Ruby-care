@@ -8,7 +8,7 @@ import Card from "@material-ui/core/Card";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import "moment-timezone";
-import { DarkModeContext } from "../../Context/DarkMode/DarkModeContext";
+import { DarkModeContext } from "../Context/DarkModeContext";
 import { indigo } from "@material-ui/core/colors/";
 
 export default function MoodCard({ mood, updated, openOptions, handleDelete }) {
