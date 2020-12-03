@@ -5,10 +5,14 @@ import { CurrentUserContext } from "../../components/Context/CurrentUserContext"
 import styled from "styled-components";
 import Moment from "react-moment";
 import Typography from "@material-ui/core/Typography";
+import { DarkModeContext } from "../../components/Context/DarkModeContext";
+import { grey } from "@material-ui/core/colors";
 
 const Wrapper = styled.div`
   min-height: 100vh;
   max-height: 100%;
+  background: ${({ darkMode }) => (darkMode === "dark" ? grey[800] : "#fff")};
+
   .content-container {
     margin: 0 auto;
     display: flex;
@@ -30,6 +34,7 @@ const Wrapper = styled.div`
     align-self: center;
     padding: 20px;
     margin-top: 40px;
+    color: ${({ darkMode }) => (darkMode === "dark" ? grey[100] : "#000")};
   }
   .title {
     font-size: 1.3rem;
@@ -39,6 +44,7 @@ const Wrapper = styled.div`
     margin-top: 20px;
     min-width: 400px;
     min-height: 400px;
+    color: ${({ darkMode }) => (darkMode === "dark" ? grey[100] : "#000")};
   }
   .edit {
     margin-right: 10px;
@@ -60,6 +66,7 @@ const Wrapper = styled.div`
 `;
 export default function UserDetail({ getOneUser, handleDelete }) {
   const [user, setUser] = useState(null);
+  const [darkMode] = useContext(DarkModeContext);
   const [currentUser] = useContext(CurrentUserContext);
   const { id } = useParams();
 
@@ -72,10 +79,11 @@ export default function UserDetail({ getOneUser, handleDelete }) {
   }, [getOneUser, id]);
 
   return (
-    <Wrapper>
+    <Wrapper darkMode={darkMode}>
       <div className="content-container">
         <div className="title-container">
           <Typography className="title">{user?.name}</Typography>
+          Joined:&nbsp;
           <Moment format="MMMM-DD-yyyy">
             <small>{user?.created_at}</small>
           </Moment>

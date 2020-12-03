@@ -20,6 +20,7 @@ function InsightCard({
   onDelete,
   darkMode,
   updated,
+  users,
 }) {
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -82,6 +83,10 @@ function InsightCard({
   const [currentUser] = useContext(CurrentUserContext);
   const classes = useStyles();
 
+  const oneUser = users.find((user) => {
+    return user;
+  });
+
   return (
     <>
       <Card className={classes.root}>
@@ -89,10 +94,12 @@ function InsightCard({
           <Typography className={classes.title}>{insight?.title}</Typography>
         </Link>
         <div className={classes.userContainer}>
-          <AccountCircleIcon className={classes.userIcon} />
-          <Typography className={classes.userName}>
-            {insight?.user?.name ? insight?.user?.name : <>Anonymous</>}
-          </Typography>
+          <Link className={classes.link} to={`/users/${oneUser?.id}`}>
+            <AccountCircleIcon className={classes.userIcon} />
+            <Typography className={classes.userName}>
+              {insight?.user?.name ? insight?.user?.name : <>Anonymous</>}
+            </Typography>
+          </Link>
         </div>
         {!updated ? (
           <>

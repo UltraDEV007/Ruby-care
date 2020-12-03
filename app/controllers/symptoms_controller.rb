@@ -1,6 +1,6 @@
 class SymptomsController < ApplicationController
   before_action :authorize_request, only: [:index, :show, :create, :update, :destroy]
-    before_action :set_user_symptom, only: [ :update, :destroy]
+  before_action :set_user_symptom, only: [ :update, :destroy]
 
   # GET /symptoms
   def index

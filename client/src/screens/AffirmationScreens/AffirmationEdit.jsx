@@ -22,8 +22,8 @@ export default function AffirmationEdit({ handleUpdate, affirmations }) {
 
   useEffect(() => {
     const prefillFormData = () => {
-      const oneAffirmation = affirmations.find((insight) => {
-        return insight.id === Number(id);
+      const oneAffirmation = affirmations.find((affirmation) => {
+        return affirmation.id === Number(id);
       });
       const { content } = oneAffirmation;
       setFormData({ content });

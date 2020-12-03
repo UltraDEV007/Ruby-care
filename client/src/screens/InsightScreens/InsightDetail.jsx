@@ -5,10 +5,13 @@ import { CurrentUserContext } from "../../components/Context/CurrentUserContext"
 import styled from "styled-components";
 import Moment from "react-moment";
 import Typography from "@material-ui/core/Typography";
+import { DarkModeContext } from "../../components/Context/DarkModeContext";
+import { grey } from "@material-ui/core/colors";
 
 const Wrapper = styled.div`
   min-height: 100vh;
   max-height: 100%;
+  background: ${({ darkMode }) => (darkMode === "dark" ? grey[800] : "#fff")};
   .content-container {
     margin: 0 auto;
     display: flex;
@@ -30,6 +33,7 @@ const Wrapper = styled.div`
     align-self: center;
     padding: 20px;
     margin-top: 40px;
+    color: ${({ darkMode }) => (darkMode === "dark" ? grey[100] : "#000")};
   }
   .title {
     font-size: 1.3rem;
@@ -38,6 +42,7 @@ const Wrapper = styled.div`
     margin: 0 auto;
     margin-top: 20px;
     min-width: 400px;
+    color: ${({ darkMode }) => (darkMode === "dark" ? grey[100] : "#000")};
     min-height: 400px;
   }
   .edit {
@@ -61,6 +66,7 @@ const Wrapper = styled.div`
 export default function InsightDetail({ getOneInsight, handleDelete }) {
   const [insight, setInsight] = useState(null);
   const [currentUser] = useContext(CurrentUserContext);
+  const [darkMode] = useContext(DarkModeContext);
   const { id } = useParams();
 
   useEffect(() => {
@@ -72,11 +78,11 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
   }, [getOneInsight, id]);
 
   return (
-    <Wrapper>
+    <Wrapper darkMode={darkMode}>
       <div className="content-container">
         <div className="title-container">
           <Typography className="title">{insight?.title}</Typography>
-          <Moment format="MMMM-DD-yyyy">
+          <Moment format="dddd, MMMM-yyyy">
             <small>{insight?.created_at}</small>
           </Moment>
         </div>
