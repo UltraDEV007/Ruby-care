@@ -34,7 +34,7 @@ const useStyles = makeStyles({
     alignItems: "center",
     width: "100%",
     height: "100vh",
-    background: grey[900],
+    background: grey[800],
   },
   logoContainer: {
     display: "flex",
@@ -87,12 +87,14 @@ const useStyles = makeStyles({
     fontFamily: ["Montserrat", "sans-serif"].join(","),
     fontSize: "26px",
     textDecoration: "none",
+    textAlign: "center",
   },
   registerDark: {
     fontFamily: ["Montserrat", "sans-serif"].join(","),
     fontSize: "26px",
     textDecoration: "none",
     color: "#fff",
+    textAlign: "center",
   },
   user: {
     fontFamily: ["Montserrat", "sans-serif"].join(","),
