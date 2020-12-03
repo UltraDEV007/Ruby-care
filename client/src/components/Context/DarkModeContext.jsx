@@ -3,7 +3,6 @@ import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { yellow, red, blue } from "@material-ui/core/colors";
 
 const DarkModeContext = React.createContext([{}, () => {}]);
-
 function DarkModeProvider({ children }) {
   const [darkMode, setDarkMode] = useState("light");
   const palletType = darkMode === "dark" ? "dark" : "light";
@@ -30,6 +29,8 @@ function DarkModeProvider({ children }) {
     },
   });
 
+  // logic to maintaining darkMode in local storage from stack overflow
+  // https://stackoverflow.com/questions/63097218/darkmode-store-in-local-storage-react-with-material-ui
   useEffect(() => {
     const existingPreference = localStorage.getItem("darkMode");
     if (existingPreference) {

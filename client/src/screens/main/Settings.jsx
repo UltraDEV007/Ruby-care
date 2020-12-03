@@ -33,6 +33,9 @@ export default function Settings() {
         maxWidth: "41.5vw",
       },
     },
+    categories: {
+      textAlign: "center",
+    },
     card: {
       display: "flex",
       boxShadow:
@@ -52,11 +55,12 @@ export default function Settings() {
       justifyContent: "center",
       flexDirection: "column",
       margin: "0 auto",
-      width: "200px",
+      textAlign: "center",
+      padding: "20px",
     },
   }));
-
   const classes = useStyles();
+
   const [switchState, setSwitchState] = useState(() => {
     let state = localStorage.getItem("switchState");
     if (state !== null) {
@@ -82,15 +86,23 @@ export default function Settings() {
   return (
     <Layout title="Settings">
       <div className={classes.userContainer}>
-        <Typography className={classes.title}>{currentUser?.name}</Typography>
-        <Typography className={classes.title}>{currentUser?.email}</Typography>
+        <Typography className={classes.userText}>Your Account</Typography>
+
+        <Typography className={classes.userText}>
+          Name:&nbsp;{currentUser?.name}
+        </Typography>
+        <Typography className={classes.userText}>
+          Email:&nbsp;{currentUser?.email}
+        </Typography>
         <Typography>
           Joined&nbsp;
           <Moment format="MM/DD/yyyy">{userDate}</Moment>
         </Typography>
       </div>
+      <hr />
+      <br />
       <div className={classes.root}>
-        <Typography>Preferences</Typography>
+        <Typography className={classes.categories}>Preferences</Typography>
         <div className="card-actions">
           <Card className={classes.card}>
             <CardActions className={classes.actionsContainer}>

@@ -12,45 +12,46 @@ import ForumIcon from "@material-ui/icons/Forum";
 import SettingsIcon from "@material-ui/icons/Settings";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    marginBottom: "20px",
-    height: "100px",
-  },
-  appBar: {
-    marginBottom: "20px",
-  },
-  menuButton: {
-    marginRight: theme.spacing(1),
-  },
-  title: {
-    flexGrow: 0.5,
-  },
-  timeClass: {
-    flexGrow: 0.5,
-  },
-  userName: {
-    display: "flex",
-    alignItems: "center",
-    marginRight: "20px",
-  },
-  userIcon: {
-    marginRight: "10px",
-  },
-  logOut: {
-    marginLeft: "20px",
-    padding: "20px",
-    transition: "transform 250ms ease-in-out",
-    "&:hover": {
-      transition: "transform 250ms ease-in-out",
-      cursor: "pointer",
-      transform: "scale(1.5)",
-    },
-  },
-}));
-
 export default function Header({ title }) {
+  let location = useLocation();
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      flexGrow: 1,
+      marginBottom: "20px",
+      height: "100px",
+    },
+    appBar: {
+      marginBottom: "20px",
+    },
+    menuButton: {
+      marginRight: theme.spacing(1),
+    },
+    title: {
+      flexGrow: 0.5,
+    },
+    timeClass: {
+      flexGrow: location.pathname === "/settings" ? 5 : 0.5,
+      textAlign: location.pathname === "/settings" ? "center" : "default",
+    },
+    userName: {
+      display: "flex",
+      alignItems: "center",
+      marginRight: "20px",
+    },
+    userIcon: {
+      marginRight: "10px",
+    },
+    logOut: {
+      marginLeft: "20px",
+      padding: "20px",
+      transition: "transform 250ms ease-in-out",
+      "&:hover": {
+        transition: "transform 250ms ease-in-out",
+        cursor: "pointer",
+        transform: "scale(1.5)",
+      },
+    },
+  }));
   const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
   const [darkMode] = useContext(DarkModeContext);
 
@@ -68,8 +69,6 @@ export default function Header({ title }) {
     hour: "2-digit",
     minute: "2-digit",
   });
-
-  let location = useLocation();
 
   return (
     <div className={classes.root}>
