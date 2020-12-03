@@ -59,7 +59,6 @@ export default function InsightUpdate({ handleUpdate, symptoms }) {
           <TextField
             required
             label="symptom"
-            className="string-input title"
             autoFocus
             type="text"
             name="name"
@@ -71,7 +70,6 @@ export default function InsightUpdate({ handleUpdate, symptoms }) {
         <div className="input-container">
           <TextField
             required
-            className="string-input description"
             type="datetime-local"
             name="time"
             value={time}
