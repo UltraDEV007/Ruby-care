@@ -1,4 +1,5 @@
 # Care
+
 - [Overview](#Overview)
 - [MVP](#MVP)
   - [Goals](#Goals)
@@ -24,7 +25,6 @@
 **Care** is a therapy/self-care app where a user will be able to track his mood, create affirmations, and read/share educational insights with the community.
 A post mvp feature will allow the user to track his symptoms.
 
-
 <br>
 
 ## MVP
@@ -32,15 +32,14 @@ A post mvp feature will allow the user to track his symptoms.
 - _*Care* will feature full-crud (create-read-update-destroy) functionality for: moods, affirmations and insights, which will be managed by a user._
 - _Allow for user sign up, authentication, login, and verification._
 - _*Care* will feature mobile-first design, that follows some of the [material-design](https://en.wikipedia.org/wiki/Material_Design) principles._
-<br>
+  <br>
 
 ### Goals
 
 - _Restrict the app only for logged in users (unlogged in users will be redirected to register/login)._
 - _Insights page: user will be able to delete+edit his own insights, but not other users insights._
-- _Mobile-friendly design_ 
+- _Mobile-friendly design_
 - _*Care* will be user-friendly._
-
 
 <br>
 
@@ -49,8 +48,6 @@ A post mvp feature will allow the user to track his symptoms.
 - _thinking about a transition from mobile to desktop mode (Media query) that makes sense, since this is a heavily mobile focused app_
 
 ### Libraries and Dependencies
-
-
 
 |     Library      | Description                                |
 | :--------------: | :----------------------------------------- |
@@ -70,14 +67,16 @@ A post mvp feature will allow the user to track his symptoms.
 ### Client (Front End)
 
 ### Wireframes
+
 > for the rest of the wireframes please visit this [link:](https://www.figma.com/file/w81a4kRRTnBui5JkqWn5ZN/Care-Wireframes)
 
 ### Mobile Login
+
 ![mobile login](https://i.imgur.com/plRRI3d.png)
 
 > <div>Care logo made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
- <br>
- 
+>  <br>
+
 ### Mobile Home
 
 [Low-fi Code Sandbox](https://codesandbox.io/s/moods-test-87shf?file=/Home.jsx) <br>
@@ -92,7 +91,7 @@ A post mvp feature will allow the user to track his symptoms.
 
 <br>
 
-### Mobile More 
+### Mobile More
 
 ![mobile more](https://i.imgur.com/Faj6lY9.png)
 
@@ -108,7 +107,7 @@ A post mvp feature will allow the user to track his symptoms.
 
 #### Component Hierarchy
 
-``` structure
+```structure
 
 src
 |__ assets/
@@ -143,7 +142,7 @@ src
    |__ AffirmationsContainer.jsx
    |__ InsightsContainer.jsx
 |_ screens/
- |__Main/ 
+ |__Main/
    |__ Home.jsx
    |__ Community.jsx
    |__ More.jsx
@@ -163,8 +162,6 @@ src
 ```
 
 #### Component Breakdown
-
-
 
 |  Component   |    Type    | state | props | Description                                                      |
 | :----------: | :--------: | :---: | :---: | :--------------------------------------------------------------- |
@@ -222,13 +219,15 @@ src
 ![ERD Model](https://i.imgur.com/oSjIIuY.png)
 <br>
 
-***
+---
 
 ## Post-MVP
+
 - dark mode, the user will be able to switch between light mode and dark mode.
 - symptoms, the user will be able to add, edit and delete symtpoms.
 - password confirm on register: you will need to confirm your password to create your account.
 - likes, be able to like an insight.
+- whitelist, if a user enters a link that is not in a whitelist, bring him to a "404 Not found" page
 ***
 
 ## Code Showcase
