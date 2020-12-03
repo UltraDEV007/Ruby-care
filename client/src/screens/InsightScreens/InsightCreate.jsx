@@ -1,14 +1,17 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
+import { DarkModeContext } from "../../components/Context/DarkModeContext";
+import { grey, yellow } from "@material-ui/core/colors";
 
 const Div = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
+  background: ${({ darkMode }) => (darkMode === "dark" ? grey[800] : "#fff")};
   .title-container {
     display: flex;
     flex-direction: column;
@@ -18,6 +21,7 @@ const Div = styled.div`
   }
   .title {
     font-size: 1.2rem;
+    color: ${({ darkMode }) => (darkMode === "dark" ? yellow[700] : "#000")};
   }
   .warning {
     color: red;
@@ -83,6 +87,7 @@ const Form = styled.form`
 `;
 
 export default function InsightCreate(props) {
+  const [darkMode] = useContext(DarkModeContext);
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -98,7 +103,7 @@ export default function InsightCreate(props) {
   };
 
   return (
-    <Div>
+    <Div darkMode={darkMode}>
       <div className="title-container">
         <Typography className="title">
           Help the community by sharing an insight!
