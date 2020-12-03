@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import { DarkModeContext } from "../../components/Context/DarkModeContext";
-import { grey, yellow } from "@material-ui/core/colors";
+import { grey } from "@material-ui/core/colors";
 
 const Div = styled.div`
   height: 100vh;
@@ -21,7 +21,7 @@ const Div = styled.div`
   }
   .title {
     font-size: 1.2rem;
-    color: ${({ darkMode }) => (darkMode === "dark" ? yellow[700] : "#000")};
+    color: ${({ darkMode }) => (darkMode === "dark" ? grey[100] : "#000")};
   }
   .warning {
     color: red;

@@ -18,19 +18,19 @@ export default function Settings() {
     root: {
       margin: "0 auto",
       [theme.breakpoints.down("xs")]: {
-        maxWidth: "90vw",
+        maxWidth: "89vw",
       },
       [theme.breakpoints.up("sm")]: {
-        maxWidth: "90vw",
+        maxWidth: "72.5vw",
       },
       [theme.breakpoints.up("md")]: {
-        maxWidth: "900px",
+        maxWidth: "600px",
       },
       [theme.breakpoints.up("lg")]: {
-        maxWidth: "1000px",
+        maxWidth: "800",
       },
       [theme.breakpoints.up("xl")]: {
-        maxWidth: "60vw",
+        maxWidth: "41.5vw",
       },
     },
     card: {
@@ -42,6 +42,9 @@ export default function Settings() {
     },
     actionsContainer: {
       display: "flex",
+      width: "100%",
+      padding: "10px",
+      justifyContent: "space-between",
     },
     userContainer: {
       display: "flex",

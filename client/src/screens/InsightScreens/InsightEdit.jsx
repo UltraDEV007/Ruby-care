@@ -1,14 +1,19 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
+import { grey } from "@material-ui/core/colors";
+import { DarkModeContext } from "../../components/Context/DarkModeContext";
+
 const Div = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
+  background: ${({ darkMode }) => (darkMode === "light" ? "#fff" : grey[800])};
+
   .title-container {
     display: flex;
     flex-direction: column;
@@ -18,6 +23,7 @@ const Div = styled.div`
   }
   .title {
     font-size: 1.2rem;
+    color: ${({ darkMode }) => (darkMode === "dark" ? grey[100] : "#000")};
   }
   @media screen and (min-width: 1000px) {
     .title {
@@ -73,6 +79,7 @@ const Form = styled.form`
 `;
 
 export default function InsightUpdate({ handleUpdate, insights }) {
+  const [darkMode] = useContext(DarkModeContext);
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -103,7 +110,7 @@ export default function InsightUpdate({ handleUpdate, insights }) {
   };
 
   return (
-    <Div>
+    <Div darkMode={darkMode}>
       <div className="title-container">
         <Typography className="title">Edit Insight</Typography>
       </div>
