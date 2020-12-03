@@ -88,10 +88,10 @@ export default function Settings() {
       // dark mode is on by default
       // if you want light mode to be on by default change it to :
       // return state === "true" ? true : false;
-      return state === "true" ? true : false;
+      return state === "false" ? false : true;
     }
     // change this to return false if you want it to be light mode on default
-    return false;
+    return true;
   });
 
   const handleThemeChange = () => {

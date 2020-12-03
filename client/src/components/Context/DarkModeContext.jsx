@@ -40,9 +40,9 @@ function DarkModeProvider({ children }) {
     } else {
       // if you want darkMode to be off by default, do
       // setDarkMode("light")
-      setDarkMode("light");
+      setDarkMode("dark");
       // and then do localStorage.setItem("darkMode,"light")
-      localStorage.setItem("darkMode", "light");
+      localStorage.setItem("darkMode", "dark");
     }
   }, []);
 
