@@ -52,7 +52,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     max-height: 450px;
-    overflow-y: overlay;
+    overflow-y: scroll;
   }
   .check-insights {
     margin-bottom: 10px;

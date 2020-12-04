@@ -58,6 +58,7 @@ const Users = ({ allUsers, loaded }) => {
       </Link>
     ))
   );
+
   const [search, setSearch] = useState(false);
   const filteredUsers = allUsers.filter((user) =>
     user.name.toLowerCase().includes(`${search}`.toLowerCase())
@@ -87,8 +88,17 @@ const Users = ({ allUsers, loaded }) => {
       <Div darkMode={{ darkMode }}>
         <Search setSearch={setSearch} />
         <div className="users-container">
-          <p className="title">{checkUserLength(usersJSX, allUsers)}</p>
-          {search ? usersJSX : USERS}
+          {search ? (
+            <>
+              <p className="title">{checkUserLength(usersJSX)}</p>
+              {usersJSX}
+            </>
+          ) : (
+            <>
+              <p className="title">{checkUserLength(allUsers)}</p>
+              {USERS}
+            </>
+          )}
         </div>
       </Div>
     </Layout>
