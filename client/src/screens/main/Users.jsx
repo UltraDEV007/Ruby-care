@@ -13,7 +13,7 @@ const Div = styled.div`
   display: flex;
   justify-content: center;
   flex-flow: column wrap;
-  .title {
+  .users-title {
     font-size: 3rem;
     padding: 10px;
     margin-bottom: 5px;
@@ -37,14 +37,14 @@ const Div = styled.div`
   .users-container {
     text-align: center;
   }
-  @media screen and (min-width: 1000px) {
-    .title {
-      font-size: 4rem;
-    }
-    @media screen and (min-width: 1600px) {
-      .title {
-        font-size: 5rem;
-      }
+  .title-container {
+    text-align: center;
+    font-size: 2rem;
+  }
+
+  @media screen and (min-width: 1280px) {
+    .users-title {
+      font-size: 3.2rem;
     }
   }
 `;
@@ -86,16 +86,19 @@ const Users = ({ allUsers, loaded }) => {
   return (
     <Layout title="Community">
       <Div darkMode={{ darkMode }}>
+        <div className="title-container">
+          <p> search for a user!</p>
+        </div>
         <Search setSearch={setSearch} />
         <div className="users-container">
           {search ? (
             <>
-              <p className="title">{checkUserLength(usersJSX)}</p>
+              <p className="users-title">{checkUserLength(usersJSX)}</p>
               {usersJSX}
             </>
           ) : (
             <>
-              <p className="title">{checkUserLength(allUsers)}</p>
+              <p className="users-title">{checkUserLength(allUsers)}</p>
               {USERS}
             </>
           )}
