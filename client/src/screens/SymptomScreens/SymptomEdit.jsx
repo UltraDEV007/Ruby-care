@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 
@@ -31,13 +31,13 @@ export default function SymptomEdit({ handleUpdate, symptoms }) {
 
   useEffect(() => {
     const prefillFormData = () => {
-      const oneSymptom = symptoms.find((symptom) => {
-        return symptom.id === Number(id);
+      const oneSymptom = symptoms?.find((symptom) => {
+        return symptom?.id === Number(id);
       });
       const { name, time } = oneSymptom;
       setFormData({ name, time });
     };
-    if (symptoms.length) {
+    if (symptoms?.length) {
       prefillFormData();
     }
   }, [symptoms, id]);
@@ -50,6 +50,9 @@ export default function SymptomEdit({ handleUpdate, symptoms }) {
     }));
   };
 
+  if (symptoms === undefined) {
+    <Redirect to="/" />;
+  }
   return (
     <Div>
       <div className="title-container">

@@ -9,6 +9,24 @@ import { indigo } from "@material-ui/core/colors/";
 
 export default function SymptomCard({ food, openOptions, handleDelete }) {
   const [darkMode] = useContext(DarkModeContext);
+  const ratingJSX = () => {
+    if (food.rating === 1) {
+      return <>⭐</>;
+    }
+    if (food.rating === 2) {
+      return <>⭐⭐</>;
+    }
+    if (food.rating === 3) {
+      return <>⭐⭐⭐</>;
+    }
+    if (food.rating === 4) {
+      return <>⭐⭐⭐⭐</>;
+    }
+    if (food.rating === 5) {
+      return <>⭐⭐⭐⭐⭐</>;
+    }
+  };
+
   return (
     <Card
       style={
@@ -25,7 +43,7 @@ export default function SymptomCard({ food, openOptions, handleDelete }) {
             {food.time?.toLocaleString()}
           </Moment>
         </div>
-        <div className="rating">{food.rating}</div>
+        <div className="rating">{ratingJSX()}</div>
         <div
           className="buttons"
           style={openOptions ? { display: "flex" } : { display: "none" }}

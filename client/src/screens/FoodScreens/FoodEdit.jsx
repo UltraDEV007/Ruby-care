@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
-import { Link } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
-
+import Select from "@material-ui/core/Select";
+import FormHelperText from "@material-ui/core/FormHelperText";
 const Div = styled.div`
   margin: auto 40px;
 `;
@@ -19,28 +20,41 @@ const Form = styled.form`
   .cancel{
     margin-left: 20px;
   }
+  .rating-input-container{
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  }
 `;
 
-export default function FoodEdit({ handleUpdate, symptoms }) {
+export default function FoodEdit({ handleUpdate, foods }) {
+  const history = useHistory();
   const [formData, setFormData] = useState({
     name: "",
     time: "",
+    rating: "",
   });
-  const { name, time } = formData;
+  const { name, time, rating } = formData;
   const { id } = useParams();
 
   useEffect(() => {
     const prefillFormData = () => {
-      const oneSymptom = symptoms.find((symptom) => {
-        return symptom.id === Number(id);
+      const oneFood = foods?.find((food) => {
+        return food?.id === Number(id);
       });
-      const { name, time } = oneSymptom;
-      setFormData({ name, time });
+      // this gets rid of undefined error when searching a edit path of an item that is deleted/doesn't exist
+      if (oneFood?.name === undefined) {
+        history.push("/");
+      } else {
+        const { name, time, rating } = oneFood;
+        setFormData({ name, time, rating });
+      }
     };
-    if (symptoms.length) {
+    if (foods?.length) {
       prefillFormData();
     }
-  }, [symptoms, id]);
+  }, [foods, id, history]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -53,7 +67,7 @@ export default function FoodEdit({ handleUpdate, symptoms }) {
   return (
     <Div>
       <div className="title-container">
-        <Typography className="title">Edit Symptom</Typography>
+        <Typography className="title">Edit Food</Typography>
       </div>
       <Form
         onSubmit={(e) => {
@@ -65,23 +79,55 @@ export default function FoodEdit({ handleUpdate, symptoms }) {
         <div className="input-container">
           <TextField
             required
-            label="symptom"
             autoFocus
             type="text"
             name="name"
+            label="Food name"
+            style={{ width: "300px", margin: "10px" }}
             value={name}
             onChange={handleChange}
+            id="outlined-multiline-static"
+            variant="filled"
           />
         </div>
-        <br />
+
         <div className="input-container">
           <TextField
-            required
-            type="datetime-local"
             name="time"
+            required
+            id="datetime-local"
+            label="When did you eat this?"
+            type="datetime-local"
+            style={{ width: "300px", margin: "10px" }}
             value={time}
             onChange={handleChange}
+            InputLabelProps={{
+              shrink: true,
+            }}
           />
+        </div>
+
+        <div className="rating-input-container">
+          <FormHelperText>
+            on a scale of 1/5 did much did you enjoy it?
+          </FormHelperText>
+          <Select
+            native
+            required
+            label="rating"
+            value={rating}
+            onChange={handleChange}
+            inputProps={{
+              name: "rating",
+              id: "rating-native-simple",
+            }}
+          >
+            <option value={1}>⭐ </option>
+            <option value={2}>⭐ ⭐ </option>
+            <option value={3}>⭐ ⭐ ⭐ </option>
+            <option value={4}>⭐ ⭐ ⭐ ⭐ </option>
+            <option value={5}>⭐ ⭐ ⭐ ⭐ ⭐ </option>
+          </Select>
         </div>
         <br />
 

@@ -34,7 +34,7 @@ class FoodsController < ApplicationController
     end
   end
 
-  # DELETE /foodss/1
+  # DELETE /foods/1
   def destroy
     @food.destroy
   end
@@ -51,6 +51,6 @@ class FoodsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def food_params
-      params.require(:symptom).permit(:name, :time, :rating, :user_id)
+      params.require(:food).permit(:name, :time, :rating, :user_id)
     end
 end

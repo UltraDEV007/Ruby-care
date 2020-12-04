@@ -10,6 +10,9 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 import CreateIcon from "@material-ui/icons/Create";
+import Select from "@material-ui/core/Select";
+import "./FoodCreate.css";
+import FormHelperText from "@material-ui/core/FormHelperText";
 
 const styles = (theme) => ({
   root: {
@@ -56,10 +59,11 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
-export default function SymptomCreate({ open, onSave, handleClose }) {
+export default function FoodCreate({ open, onSave, handleClose }) {
   const [formData, setFormData] = useState({
     name: "",
     time: "",
+    rating: "",
   });
 
   const handleChange = (e) => {
@@ -85,7 +89,7 @@ export default function SymptomCreate({ open, onSave, handleClose }) {
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           <div style={{ display: "flex", alignItems: "center" }}>
             <CreateIcon style={{ marginRight: "10px" }} />
-            Log symptom
+            Log food
           </div>
         </DialogTitle>
         <DialogContent dividers>
@@ -95,7 +99,7 @@ export default function SymptomCreate({ open, onSave, handleClose }) {
               autoFocus
               type="text"
               name="name"
-              label="Enter symptom"
+              label="Food name"
               style={{ width: "300px", margin: "10px" }}
               value={formData.name}
               onChange={handleChange}
@@ -109,7 +113,7 @@ export default function SymptomCreate({ open, onSave, handleClose }) {
               name="time"
               required
               id="datetime-local"
-              label="When did this happen?"
+              label="When did you eat this?"
               type="datetime-local"
               style={{ width: "300px", margin: "10px" }}
               value={formData.time}
@@ -118,6 +122,29 @@ export default function SymptomCreate({ open, onSave, handleClose }) {
                 shrink: true,
               }}
             />
+          </div>
+
+          <div className="rating-input-container">
+            <FormHelperText>
+              on a scale of 1/5 did much did you enjoy it?
+            </FormHelperText>
+            <Select
+              native
+              required
+              label="rating"
+              value={formData.rating}
+              onChange={handleChange}
+              inputProps={{
+                name: "rating",
+                id: "rating-native-simple",
+              }}
+            >
+              <option value={1}>⭐ </option>
+              <option value={2}>⭐ ⭐ </option>
+              <option value={3}>⭐ ⭐ ⭐ </option>
+              <option value={4}>⭐ ⭐ ⭐ ⭐ </option>
+              <option value={5}>⭐ ⭐ ⭐ ⭐ ⭐ </option>
+            </Select>
           </div>
         </DialogContent>
         <DialogActions>

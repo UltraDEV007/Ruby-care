@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import SettingsSharpIcon from "@material-ui/icons/SettingsSharp";
 import FoodCard from "./FoodCard";
-import SymptomCreate from "../Dialogs/SymptomDialogs/SymptomCreate";
+import FoodCreate from "../Dialogs/FoodDialogs/FoodCreate";
 import Typography from "@material-ui/core/Typography";
 
 export default function Symptoms({
@@ -73,7 +73,7 @@ export default function Symptoms({
           >
             <AddIcon className="add-icon" />
           </Button>
-          <SymptomCreate
+          <FoodCreate
             open={openDialog}
             onSave={onSave}
             handleClose={handleClose}

@@ -76,7 +76,7 @@ export default function MoodEdit(props) {
         status: moodItem?.status,
       });
     };
-    if (props.moods.length) {
+    if (props.moods?.length) {
       prefillForm();
     }
   }, [props.moods, id]);
