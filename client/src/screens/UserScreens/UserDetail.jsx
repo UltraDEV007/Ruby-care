@@ -5,7 +5,7 @@ import styled from "styled-components";
 import Moment from "react-moment";
 import Typography from "@material-ui/core/Typography";
 import { DarkModeContext } from "../../components/Context/DarkModeContext";
-import { grey } from "@material-ui/core/colors";
+import { grey, yellow, blue } from "@material-ui/core/colors";
 import { checkInsights } from "../../utils/checkInsights";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
@@ -23,22 +23,22 @@ const Wrapper = styled.div`
       display: flex;
       flex-direction: row;
       justify-content: center;
-      margin-top: 20px;
-    }
-    .buttons2 {
-      display: flex;
-      flex-direction: row;
-      align-self: center;
+      margin-top: 30px;
     }
   }
   .title-container {
     align-self: center;
     padding: 20px;
-    margin-top: 40px;
+    margin-top: 20px;
     color: ${({ darkMode }) => (darkMode === "dark" ? grey[100] : "#000")};
   }
   .title {
     font-size: 1.3rem;
+  }
+  .user-icon {
+    margin-right: 10px;
+    margin-bottom: -2px;
+    font-size: 30px;
   }
   .body {
     margin: 0 auto;
@@ -47,13 +47,30 @@ const Wrapper = styled.div`
     min-height: 400px;
     color: ${({ darkMode }) => (darkMode === "dark" ? grey[100] : "#000")};
   }
+  .insights-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    max-height: 450px;
+    overflow-y: overlay;
+  }
+  .check-insights {
+    margin-bottom: 10px;
+  }
   .edit {
     margin-right: 10px;
   }
-  hr {
+  .top-hr {
     margin-top: 20px;
   }
 
+  a {
+    color: ${({ darkMode }) => (darkMode === "dark" ? yellow[700] : blue[600])};
+    text-decoration: none;
+    overflow-wrap: break-word;
+    font-size: 1.5rem;
+    font-family: "montserrat", sans-serif;
+  }
   @media screen and (min-width: 600px) {
     .title {
       font-size: 1.5rem;
@@ -89,32 +106,28 @@ export default function UserDetail({ getOneUser }) {
       </Link>
     ))
   );
-  // const checkInsights = () => {
-  //   if (user?.insights?.length === 0) {
-  //     return <h1>{user?.name}&nbsp;has no insights</h1>;
-  //   } else if (user?.insights.length === 1) {
-  //     return <h1>{user?.insights?.length}&nbsp;Insight:</h1>;
-  //   }
-  //   return <h1>{user?.insights?.length}&nbsp;Insights:</h1>;
-  // };
 
   return (
     <Wrapper darkMode={darkMode}>
       <div className="content-container">
         <div className="title-container">
-          <Typography className="title">{user?.name}</Typography>
+          <Typography className="title">
+            <AccountCircleIcon className="user-icon" />
+            {user?.name}
+          </Typography>
           Joined:&nbsp;
           <Moment format="MMMM-DD-yyyy">
             <small>{user?.created_at}</small>
           </Moment>
         </div>
-        <hr />
+        <hr className="top-hr" />
         <div className="body">
-          <div>{checkInsights(user)}</div>
+          <div className="check-insights">{checkInsights(user)}</div>
           <div className="insights-container">{INSIGHTS}</div>
         </div>
         <br />
-        <hr />
+        <br />
+        <hr className="bottom-hr" />
         <div className="buttons">
           <Button variant="contained" color="secondary" onClick={goBack}>
             Go Back

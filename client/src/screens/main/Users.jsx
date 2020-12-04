@@ -1,42 +1,60 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import Search from "../../components/Helpers/Search";
 import { CircularProgress } from "@material-ui/core";
 import Layout from "../../layouts/Layout/Layout";
 import styled from "styled-components";
 import { checkUserLength } from "../../utils/checkUserLength";
+import { yellow, blue } from "@material-ui/core/colors";
+import { DarkModeContext } from "../../components/Context/DarkModeContext";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 const Div = styled.div`
   display: flex;
   justify-content: center;
   flex-flow: column wrap;
   .title {
-    font-size: 1.2rem;
+    font-size: 3rem;
     padding: 10px;
+    margin-bottom: 5px;
+  }
+  .link {
+    color: ${({ darkMode }) => (darkMode !== "dark" ? yellow[700] : blue[600])};
+    text-decoration: none;
+    overflow-wrap: break-word;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-family: "montserrat", sans-serif;
+  }
+  .user-icon {
+    margin-top: 3px;
+    margin-right: 5px;
+    font-size: 36px;
   }
   .users-container {
     text-align: center;
   }
   @media screen and (min-width: 1000px) {
     .title {
-      font-size: 2rem;
+      font-size: 4rem;
     }
     @media screen and (min-width: 1600px) {
       .title {
-        font-size: 3rem;
+        font-size: 5rem;
       }
     }
   }
 `;
 
 const Users = ({ allUsers, loaded }) => {
+  const [darkMode] = useContext(DarkModeContext);
   const USERS = React.Children.toArray(
     allUsers.map((user) => (
-      <Link
-        style={{ color: "black", textDecoration: "none" }}
-        to={`/users/${user.id}`}
-      >
-        <h1>{user.name}</h1>
+      <Link darkMode={darkMode} to={`/users/${user.id}`} className="link">
+        <AccountCircleIcon className="user-icon" /> <h1>{user.name}</h1>
       </Link>
     ))
   );
@@ -47,10 +65,7 @@ const Users = ({ allUsers, loaded }) => {
 
   const usersJSX = React.Children.toArray(
     filteredUsers.map((user) => (
-      <Link
-        style={{ color: "black", textDecoration: "none" }}
-        to={`/users/${user.id}`}
-      >
+      <Link darkMode={darkMode} to={`/users/${user.id}`} className="link">
         <h1>{user.name}</h1>
       </Link>
     ))
@@ -69,7 +84,7 @@ const Users = ({ allUsers, loaded }) => {
   }
   return (
     <Layout title="Community">
-      <Div>
+      <Div darkMode={{ darkMode }}>
         <Search setSearch={setSearch} />
         <div className="users-container">
           <p className="title">{checkUserLength(usersJSX, allUsers)}</p>
