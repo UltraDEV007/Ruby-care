@@ -6,7 +6,7 @@ import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import { DarkModeContext } from "../../components/Context/DarkModeContext";
 import { grey } from "@material-ui/core/colors";
-import { Redirect } from "react-router-dom";
+import { Redirect, Switch } from "react-router-dom";
 
 const Div = styled.div`
   height: 100vh;
@@ -109,10 +109,6 @@ export default function InsightCreate(props) {
     const created = await props.handleCreate(formData);
     setCreated({ created });
   };
-
-  if (isCreated) {
-    return <Redirect to={"/insights"} />;
-  }
 
   return (
     <Div darkMode={darkMode}>

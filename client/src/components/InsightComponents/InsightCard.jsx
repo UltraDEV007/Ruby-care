@@ -80,6 +80,10 @@ function InsightCard({
     delete: {
       marginLeft: "20px",
     },
+    date: {
+      paddingTop: "5px",
+      paddingBottom: "10px",
+    },
   }));
   const [currentUser] = useContext(CurrentUserContext);
   const classes = useStyles();
@@ -98,25 +102,12 @@ function InsightCard({
             </Typography>
           </Link>
         </div>
-        {!updated ? (
-          <>
-            <Typography>
-              Created at:&nbsp;
-              <Moment format="MMM-DD-yyyy hh:mm A">
-                {insight?.created_at}
-              </Moment>
-            </Typography>
-          </>
-        ) : (
-          <>
-            <Typography>
-              Updated at:&nbsp;
-              <Moment format="MMM-DD-yyyy hh:mm A">
-                {insight?.updated_at}
-              </Moment>
-            </Typography>
-          </>
-        )}
+        <>
+          <Typography className={classes.date}>
+            Created at:&nbsp;
+            <Moment format="MMM-DD-yyyy hh:mm A">{insight?.created_at}</Moment>
+          </Typography>
+        </>
         <Typography>{insight?.description}</Typography>
         {insight?.user_id === currentUser?.id && (
           <>
