@@ -11,6 +11,7 @@ Affirmation.destroy_all
 Insight.destroy_all
 User.destroy_all
 Symptom.destroy_all
+Food.destroy_all
 
 require 'faker'
 
@@ -51,3 +52,8 @@ puts "#{Insight.count} insights created"
 @symptom4 = Symptom.create!(name: "Fever", time: DateTime.strptime("09/01/2009 17:00", "%m/%d/%Y %H:%M"),  user: @admin)
 
 puts "#{Symptom.count} symptoms created"
+
+@food1 = Food.create!(name: "Avocado", time: DateTime.strptime("09/01/2009 17:00", "%m/%d/%Y %H:%M"), rating: 5, user: @daniel)
+@food2 = Food.create!(name: "Avocado", time: DateTime.strptime("09/01/2009 17:00", "%m/%d/%Y %H:%M"), rating: 5, user: @admin)
+
+puts "#{Food.count} foods created"

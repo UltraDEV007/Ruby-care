@@ -25,7 +25,7 @@ class SymptomsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /symptomss/1
+  # PATCH/PUT /symptoms/1
   def update
     if @symptom.update(symptom_params)
       render json: @symptom
@@ -34,7 +34,7 @@ class SymptomsController < ApplicationController
     end
   end
 
-  # DELETE /symptomss/1
+  # DELETE /symptoms/1
   def destroy
     @symptom.destroy
   end
