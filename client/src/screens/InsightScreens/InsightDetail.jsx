@@ -7,6 +7,7 @@ import Moment from "react-moment";
 import Typography from "@material-ui/core/Typography";
 import { DarkModeContext } from "../../components/Context/DarkModeContext";
 import { grey } from "@material-ui/core/colors";
+import { goBack } from "../../utils/goBack";
 
 const Wrapper = styled.div`
   min-height: 100vh;
@@ -76,10 +77,6 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
     };
     getData();
   }, [getOneInsight, id]);
-
-  const goBack = () => {
-    window.history.back();
-  };
 
   return (
     <Wrapper darkMode={darkMode}>

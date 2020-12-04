@@ -8,6 +8,7 @@ import { DarkModeContext } from "../../components/Context/DarkModeContext";
 import { grey, yellow, blue } from "@material-ui/core/colors";
 import { checkInsights } from "../../utils/checkInsights";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import { goBack } from "../../utils/goBack";
 
 const Wrapper = styled.div`
   min-height: 100vh;
@@ -91,10 +92,6 @@ export default function UserDetail({ getOneUser }) {
   const [darkMode] = useContext(DarkModeContext);
   const { id } = useParams();
 
-  const goBack = () => {
-    window.history.back();
-  };
-
   useEffect(() => {
     const getData = async () => {
       const getUser = await getOneUser(id);
@@ -105,9 +102,7 @@ export default function UserDetail({ getOneUser }) {
 
   const INSIGHTS = React.Children.toArray(
     user?.insights?.map((insight) => (
-      <Link to={`/users/${user.id}/insights/${insight.id}`}>
-        {insight?.title}
-      </Link>
+      <Link to={`./../insights/${insight.id}`}>{insight?.title}</Link>
     ))
   );
 
