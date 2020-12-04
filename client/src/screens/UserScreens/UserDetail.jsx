@@ -48,11 +48,15 @@ const Wrapper = styled.div`
     color: ${({ darkMode }) => (darkMode === "dark" ? grey[100] : "#000")};
   }
   .insights-container {
-    padding: 20px;
     display: flex;
     flex-direction: column;
     max-height: 450px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
     overflow-y: scroll;
+  }
+  .insights-container::-webkit-scrollbar {
+    display: none;
   }
   .check-insights {
     margin-bottom: 10px;
