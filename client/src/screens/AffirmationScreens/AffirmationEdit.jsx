@@ -27,8 +27,7 @@ export default function AffirmationEdit({ handleUpdate, affirmations }) {
       const oneAffirmation = affirmations?.find((affirmation) => {
         return affirmation?.id === Number(id);
       });
-      // this gets rid of undefined error when searching a edit path by id of an affirmation that is deleted/doesn't exist
-      checkUndefined(oneAffirmation, setFormData);
+      checkUndefined(oneAffirmation, setFormData, { content });
     };
     if (affirmations?.length) {
       prefillFormData();
