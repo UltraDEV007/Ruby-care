@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import { DarkModeContext } from "../../components/Context/DarkModeContext";
 import { grey } from "@material-ui/core/colors";
 import { goBack } from "../../utils/goBack";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Wrapper = styled.div`
   min-height: 100vh;
@@ -68,15 +69,29 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
   const [insight, setInsight] = useState(null);
   const [currentUser] = useContext(CurrentUserContext);
   const [darkMode] = useContext(DarkModeContext);
+  const [loaded, setLoaded] = useState(false);
   const { id } = useParams();
 
   useEffect(() => {
     const getData = async () => {
       const getInsight = await getOneInsight(id);
       setInsight(getInsight);
+      setLoaded(true);
     };
     getData();
   }, [getOneInsight, id]);
+
+  if (!loaded) {
+    return (
+      <Wrapper darkMode={darkMode}>
+        <div className="content-container">
+          <CircularProgress
+            style={{ marginLeft: "50%", marginTop: "10%", width: "100px" }}
+          />
+        </div>
+      </Wrapper>
+    );
+  }
 
   return (
     <Wrapper darkMode={darkMode}>

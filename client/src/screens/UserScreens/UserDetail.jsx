@@ -9,6 +9,7 @@ import { grey, yellow, blue } from "@material-ui/core/colors";
 import { checkInsights } from "../../utils/checkInsights";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { goBack } from "../../utils/goBack";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Wrapper = styled.div`
   min-height: 100vh;
@@ -90,12 +91,14 @@ const Wrapper = styled.div`
 export default function UserDetail({ getOneUser }) {
   const [user, setUser] = useState(null);
   const [darkMode] = useContext(DarkModeContext);
+  const [loaded, setLoaded] = useState(false);
   const { id } = useParams();
 
   useEffect(() => {
     const getData = async () => {
       const getUser = await getOneUser(id);
       setUser(getUser);
+      setLoaded(true);
     };
     getData();
   }, [getOneUser, id]);
@@ -105,6 +108,18 @@ export default function UserDetail({ getOneUser }) {
       <Link to={`./../insights/${insight.id}`}>{insight?.title}</Link>
     ))
   );
+
+  if (!loaded) {
+    return (
+      <Wrapper darkMode={darkMode}>
+        <div className="content-container">
+          <CircularProgress
+            style={{ marginLeft: "50%", marginTop: "10%", width: "100px" }}
+          />
+        </div>
+      </Wrapper>
+    );
+  }
 
   return (
     <Wrapper darkMode={darkMode}>

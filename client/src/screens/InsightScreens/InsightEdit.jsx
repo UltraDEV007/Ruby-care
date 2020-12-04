@@ -2,11 +2,11 @@ import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
-import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import { grey } from "@material-ui/core/colors";
 import { DarkModeContext } from "../../components/Context/DarkModeContext";
+import { goBack } from "../../utils/goBack";
 
 const Div = styled.div`
   height: 100vh;
@@ -167,9 +167,8 @@ export default function InsightUpdate({ handleUpdate, insights }) {
             Submit
           </Button>
           <Button
+            onClick={goBack}
             className="cancel"
-            to="/insights"
-            component={Link}
             variant="contained"
             color="secondary"
           >
