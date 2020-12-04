@@ -38,7 +38,7 @@ export default function Home() {
 
   const useStyles = makeStyles((theme) => ({
     root: {
-      margin: "0 auto",
+      margin: "4% auto",
       [theme.breakpoints.down("xs")]: {
         maxWidth: "90vw",
       },
