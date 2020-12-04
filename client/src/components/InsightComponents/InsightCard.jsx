@@ -19,7 +19,6 @@ function InsightCard({
   openDelete,
   onDelete,
   darkMode,
-  updated,
 }) {
   const useStyles = makeStyles((theme) => ({
     root: {

@@ -8,6 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import { indigo, blue } from "@material-ui/core/colors";
 import { DarkModeContext } from "../../components/Context/DarkModeContext";
+import SupervisedUserCircleIcon from "@material-ui/icons/SupervisedUserCircle";
 
 function Footer() {
   const [darkMode] = useContext(DarkModeContext);
@@ -33,13 +34,16 @@ function Footer() {
   const routerMap = {
     0: "/",
     1: "/insights",
-    2: "/settings",
+    2: "/users",
+    3: "/settings",
   };
   const [value, setValue] = useState(() => {
     if (history.location.pathname === "/insights") {
       return 1;
-    } else if (history.location.pathname === "/settings") {
+    } else if (history.location.pathname === "/users") {
       return 2;
+    } else if (history.location.pathname === "/settings") {
+      return 3;
     } else {
       return 0;
     }
@@ -59,6 +63,10 @@ function Footer() {
         >
           <BottomNavigationAction label="Home" icon={<HomeIcon />} />
           <BottomNavigationAction label="Insights" icon={<ForumIcon />} />
+          <BottomNavigationAction
+            label="Community"
+            icon={<SupervisedUserCircleIcon />}
+          />
           <BottomNavigationAction label="Settings" icon={<SettingsIcon />} />
         </BottomNavigation>
       </div>

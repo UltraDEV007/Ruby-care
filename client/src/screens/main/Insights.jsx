@@ -7,6 +7,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import styled from "styled-components";
 import Typography from "@material-ui/core/Typography";
 import { yellow, blue } from "@material-ui/core/colors";
+import Search from "../../components/Helpers/Search";
 
 const Wrapper = styled.div`
   display: flex;
@@ -90,6 +91,29 @@ export default function Insights(props) {
     ))
   );
 
+  const [search, setSearch] = useState(INSIGHTS);
+  const filteredInsights = props.insights?.filter(
+    (insight) =>
+      insight?.title?.toLowerCase().includes(`${search}`.toLowerCase()) ||
+      insight?.user?.name?.toLowerCase().includes(`${search}`.toLowerCase())
+  );
+
+  const insightsJSX = React.Children.toArray(
+    filteredInsights.map((insight) => (
+      <InsightCard
+        onClick={() => setSearch(INSIGHTS)}
+        darkMode={darkMode}
+        updated={props.updated}
+        insights={props.insights}
+        insight={insight}
+        handleOpen={handleDeleteOpen}
+        handleClose={handleDeleteClose}
+        onDelete={onDelete}
+        openDelete={openDelete}
+        handleDelete={props.handleDelete}
+      />
+    ))
+  );
   return (
     <Layout title="Insights">
       <Wrapper darkMode={darkMode}>
@@ -103,7 +127,8 @@ export default function Insights(props) {
         </div>
         <br />
         <div className="insights-container">
-          {props.loaded ? INSIGHTS : <CircularProgress />}
+          <Search setSearch={setSearch} />
+          {props.loaded ? insightsJSX : <CircularProgress />}
         </div>
       </Wrapper>
     </Layout>

@@ -68,6 +68,10 @@ export default function UserDetail({ getOneUser }) {
   const [darkMode] = useContext(DarkModeContext);
   const { id } = useParams();
 
+  const goBack = () => {
+    window.history.back();
+  };
+
   useEffect(() => {
     const getData = async () => {
       const getUser = await getOneUser(id);
@@ -110,12 +114,7 @@ export default function UserDetail({ getOneUser }) {
         <br />
         <hr />
         <div className="buttons">
-          <Button
-            variant="contained"
-            color="secondary"
-            to="/users"
-            component={Link}
-          >
+          <Button variant="contained" color="secondary" onClick={goBack}>
             Go Back
           </Button>
         </div>

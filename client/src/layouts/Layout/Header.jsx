@@ -11,6 +11,7 @@ import { useHistory, Link, useLocation } from "react-router-dom";
 import ForumIcon from "@material-ui/icons/Forum";
 import SettingsIcon from "@material-ui/icons/Settings";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import SupervisedUserCircleIcon from "@material-ui/icons/SupervisedUserCircle";
 
 export default function Header({ title }) {
   let location = useLocation();
@@ -78,6 +79,8 @@ export default function Header({ title }) {
             <HomeIcon className={classes.menuButton} />
           ) : location.pathname === "/insights" ? (
             <ForumIcon className={classes.menuButton} />
+          ) : location.pathname === "/users" ? (
+            <SupervisedUserCircleIcon className={classes.menuButton} />
           ) : location.pathname === "/settings" ? (
             <SettingsIcon className={classes.menuButton} />
           ) : (
