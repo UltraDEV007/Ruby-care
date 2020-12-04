@@ -7,7 +7,7 @@ import FoodCard from "./FoodCard";
 import FoodCreate from "../Dialogs/FoodDialogs/FoodCreate";
 import Typography from "@material-ui/core/Typography";
 
-export default function Symptoms({
+export default function Foods({
   foods,
   updated,
   handleDelete,
@@ -29,9 +29,9 @@ export default function Symptoms({
 
   const FOODS = React.Children.toArray(
     foods.length === 0 ? (
-      <div className="log-your-symptom">
+      <div className="log-your-food">
         <Typography> Click the </Typography>&nbsp;
-        <AddIcon className="plus-icon-symptoms" />
+        <AddIcon className="plus-icon-foods" />
         &nbsp;
         <Typography>button to add a food to your diary!</Typography>
       </div>
@@ -54,11 +54,11 @@ export default function Symptoms({
 
   return (
     <>
-      <div className="symptoms">
+      <div className="foods">
         {loaded ? FOODS : <>Loading...</>}
-        <div className="symptom-buttons-container">
+        <div className="food-buttons-container">
           <Button
-            className="edit-symptoms"
+            className="edit-foods"
             variant="outlined"
             color="primary"
             onClick={handleOptionsClick}
@@ -69,7 +69,7 @@ export default function Symptoms({
             onClick={handleClickOpen}
             variant="outlined"
             color="primary"
-            className="add-symptom"
+            className="add-food"
           >
             <AddIcon className="add-icon" />
           </Button>

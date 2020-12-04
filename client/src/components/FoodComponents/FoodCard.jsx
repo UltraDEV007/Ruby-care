@@ -7,7 +7,7 @@ import "moment-timezone";
 import { DarkModeContext } from "../Context/DarkModeContext";
 import { indigo } from "@material-ui/core/colors/";
 
-export default function SymptomCard({ food, openOptions, handleDelete }) {
+export default function FoodCard({ food, openOptions, handleDelete }) {
   const [darkMode] = useContext(DarkModeContext);
   const ratingJSX = () => {
     if (food.rating === 1) {
@@ -34,9 +34,9 @@ export default function SymptomCard({ food, openOptions, handleDelete }) {
           ? { boxShadow: "default" }
           : { boxShadow: `0px 0px 4px 1.2px ${indigo[50]}` }
       }
-      className="symptom-card"
+      className="food-card"
     >
-      <div className="symptom-container">
+      <div className="food-container">
         {food.name}
         <div className="time">
           <Moment format="MMM/DD/yyyy hh:mm A">

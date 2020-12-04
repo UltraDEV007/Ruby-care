@@ -100,7 +100,7 @@ export default function FoodCreate({ open, onSave, handleClose }) {
               autoFocus
               type="text"
               name="name"
-              label="Food name"
+              label="Food/meal name"
               style={{ width: "300px", margin: "10px" }}
               value={formData.name}
               onChange={handleChange}
@@ -127,7 +127,7 @@ export default function FoodCreate({ open, onSave, handleClose }) {
 
           <div className="rating-input-container">
             <FormHelperText>
-              on a scale of 1/5 did much did you enjoy it?
+              On a scale of 1/5 did much did you enjoy it?
             </FormHelperText>
             <Select
               native
@@ -149,18 +149,24 @@ export default function FoodCreate({ open, onSave, handleClose }) {
           </div>
 
           <div className="input-container">
-            <TextField
+            <FormHelperText>What was the leading factor?</FormHelperText>
+            <Select
+              native
               required
-              autoFocus
-              type="text"
-              name="name"
               label="factor"
-              style={{ width: "300px", margin: "10px" }}
               value={formData.factor}
               onChange={handleChange}
-              id="outlined-multiline-static"
-              variant="filled"
-            />
+              inputProps={{
+                name: "factor",
+                id: "rating-native-simple",
+              }}
+            >
+              <option value={"sasa"}>⭐ </option>
+              <option value={2}>⭐ ⭐ </option>
+              <option value={3}>⭐ ⭐ ⭐ </option>
+              <option value={4}>⭐ ⭐ ⭐ ⭐ </option>
+              <option value={5}>⭐ ⭐ ⭐ ⭐ ⭐ </option>
+            </Select>
           </div>
         </DialogContent>
         <DialogActions>
