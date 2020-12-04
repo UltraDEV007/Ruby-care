@@ -31,15 +31,14 @@ export default function FoodCard({ food, openOptions, handleDelete }) {
 
   const foodNames = [/avocado/, /chicken/];
 
-  let foodName = food.name;
-
-  var panel = foodName.substr(0, foodName.indexOf("<")).trim();
+  let avocadoReg = /avocado/;
+  let chickenReg = /chicken/;
 
   const foodNameJSX = () => {
-    if (panel === "avocado") {
+    if (avocadoReg.test(food.name) === true) {
       return <>🥑 {food.name}</>;
     }
-    if (food.name === "chicken") {
+    if (chickenReg.test(food.name) === true) {
       return <>🍗 {food.name}</>;
     } else {
       return <>{food.name} </>;
