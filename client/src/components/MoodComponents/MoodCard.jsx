@@ -1,8 +1,4 @@
 import React, { useContext } from "react";
-import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
-import SentimentVeryDissatisfiedIcon from "@material-ui/icons/SentimentVeryDissatisfied";
-import SentimentSatisfiedIcon from "@material-ui/icons/SentimentSatisfied";
-import SentimentSatisfiedSharpIcon from "@material-ui/icons/SentimentSatisfiedSharp";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import { Link } from "react-router-dom";
@@ -10,9 +6,29 @@ import Moment from "react-moment";
 import "moment-timezone";
 import { DarkModeContext } from "../Context/DarkModeContext";
 import { indigo } from "@material-ui/core/colors/";
+import GreatEmoji from "./Emojis/GreatEmoji";
+import PoorEmoji from "./Emojis/PoorEmoji";
+import OkayEmoji from "./Emojis/OkayEmoji";
+import GoodEmoji from "./Emojis/GoodEmoji";
 
 export default function MoodCard({ mood, updated, openOptions, handleDelete }) {
   const [darkMode] = useContext(DarkModeContext);
+
+  const emojiJSX = (status) => {
+    if (status === "Great") {
+      return <GreatEmoji darkMode={darkMode} />;
+    }
+    if (status === "Poor") {
+      return <PoorEmoji darkMode={darkMode} />;
+    }
+    if (status === "Okay") {
+      return <OkayEmoji darkMode={darkMode} />;
+    }
+    if (status === "Good") {
+      return <GoodEmoji darkMode={darkMode} />;
+    }
+  };
+
   return (
     <Card
       style={
@@ -24,77 +40,7 @@ export default function MoodCard({ mood, updated, openOptions, handleDelete }) {
     >
       <div className="mood-container">
         <div className="status">
-          {mood.status === "Great" ? (
-            <InsertEmoticonIcon
-              style={
-                !darkMode
-                  ? {
-                      border: "1px solid black",
-                      background: "#00FF00",
-                      fontSize: "36px",
-                    }
-                  : {
-                      border: "1px solid black",
-                      color: "black",
-                      background: "#00FF00",
-                      fontSize: "36px",
-                    }
-              }
-            />
-          ) : mood.status === "Poor" ? (
-            <SentimentVeryDissatisfiedIcon
-              style={
-                !darkMode
-                  ? {
-                      border: "1px solid black",
-                      background: "red",
-                      fontSize: "36px",
-                    }
-                  : {
-                      border: "1px solid black",
-                      background: "red",
-                      fontSize: "36px",
-                      color: "black",
-                    }
-              }
-            />
-          ) : mood.status === "Okay" ? (
-            <SentimentSatisfiedIcon
-              style={
-                !darkMode
-                  ? {
-                      border: "1px solid black",
-                      background: "yellow",
-                      fontSize: "36px",
-                    }
-                  : {
-                      border: "1px solid black",
-                      background: "yellow",
-                      fontSize: "36px",
-                      color: "black",
-                    }
-              }
-            />
-          ) : mood.status === "Good" ? (
-            <SentimentSatisfiedSharpIcon
-              style={
-                !darkMode
-                  ? {
-                      border: "1px solid black",
-                      background: "#228B22",
-                      fontSize: "36px",
-                    }
-                  : {
-                      border: "1px solid black",
-                      background: "#228B22",
-                      fontSize: "36px",
-                      color: "black",
-                    }
-              }
-            />
-          ) : (
-            <></>
-          )}
+          {emojiJSX(mood.status)}
           <p>{mood.status}</p>
         </div>
         <div className="time">

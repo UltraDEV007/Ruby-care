@@ -149,24 +149,19 @@ export default function FoodCreate({ open, onSave, handleClose }) {
           </div>
 
           <div className="input-container">
-            <FormHelperText>What was the leading factor?</FormHelperText>
-            <Select
-              native
+            <TextField
+              name="factor"
               required
-              label="factor"
+              id="factor-input"
+              label="What were the leading factors?"
+              type="text"
+              style={{ width: "300px", margin: "10px" }}
               value={formData.factor}
               onChange={handleChange}
-              inputProps={{
-                name: "factor",
-                id: "rating-native-simple",
+              InputLabelProps={{
+                shrink: true,
               }}
-            >
-              <option value={"sasa"}>⭐ </option>
-              <option value={2}>⭐ ⭐ </option>
-              <option value={3}>⭐ ⭐ ⭐ </option>
-              <option value={4}>⭐ ⭐ ⭐ ⭐ </option>
-              <option value={5}>⭐ ⭐ ⭐ ⭐ ⭐ </option>
-            </Select>
+            />
           </div>
         </DialogContent>
         <DialogActions>

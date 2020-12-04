@@ -9,7 +9,8 @@ import { indigo } from "@material-ui/core/colors/";
 
 export default function FoodCard({ food, openOptions, handleDelete }) {
   const [darkMode] = useContext(DarkModeContext);
-  const ratingJSX = () => {
+
+  const foodRatingJSX = () => {
     if (food.rating === 1) {
       return <>⭐</>;
     }
@@ -26,6 +27,24 @@ export default function FoodCard({ food, openOptions, handleDelete }) {
       return <>⭐⭐⭐⭐⭐</>;
     }
   };
+  // https://stackoverflow.com/questions/5963182/how-to-remove-spaces-from-a-string-using-javascript
+
+  const foodNames = [/avocado/, /chicken/];
+
+  let foodName = food.name;
+
+  var panel = foodName.substr(0, foodName.indexOf("<")).trim();
+
+  const foodNameJSX = () => {
+    if (panel == /avocado/) {
+      return <>🥑 {food.name}</>;
+    }
+    if (food.name === "chicken") {
+      return <>🍗 {food.name}</>;
+    } else {
+      return <>{food.name} </>;
+    }
+  };
 
   return (
     <Card
@@ -37,13 +56,14 @@ export default function FoodCard({ food, openOptions, handleDelete }) {
       className="food-card"
     >
       <div className="food-container">
-        {food.name}
+        {foodNameJSX()}
         <div className="time">
           <Moment format="MMM/DD/yyyy hh:mm A">
             {food.time?.toLocaleString()}
           </Moment>
         </div>
-        <div className="rating">{ratingJSX()}</div>
+        <div className="rating">{foodRatingJSX()}</div>
+        <div className="factors">{food.factor}</div>
         <div
           className="buttons"
           style={openOptions ? { display: "flex" } : { display: "none" }}
