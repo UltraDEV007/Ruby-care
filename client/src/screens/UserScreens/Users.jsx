@@ -5,7 +5,7 @@ import { CircularProgress } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import Layout from "../../layouts/Layout/Layout";
 import styled from "styled-components";
-import Typography from "styled-components";
+import { checkUserLength } from "../../utils/checkUserLength";
 
 const Div = styled.div`
   display: flex;
@@ -59,26 +59,21 @@ const Users = ({ allUsers, loaded }) => {
 
   if (!loaded) {
     return (
-      <CircularProgress
-        style={{ marginLeft: "50%", marginTop: "10%", width: "50px" }}
-      />
+      <Layout title="Community">
+        <Div>
+          <CircularProgress
+            style={{ marginLeft: "50%", marginTop: "10%", width: "100px" }}
+          />
+        </Div>
+      </Layout>
     );
   }
-
-  const checkUserLength = () => {
-    if (usersJSX.length === 0) {
-      return <>No users found</>;
-    } else if (usersJSX.length === 1) {
-      return <>User:</>;
-    } else return <>Users</>;
-  };
-
   return (
     <Layout title="Community">
       <Div>
         <Search setSearch={setSearch} />
         <div className="users-container">
-          <p className="title">{checkUserLength()}</p>
+          <p className="title">{checkUserLength(usersJSX)}</p>
           {search ? usersJSX : USERS}
         </div>
       </Div>
