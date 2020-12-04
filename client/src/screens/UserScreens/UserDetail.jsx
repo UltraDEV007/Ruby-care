@@ -6,6 +6,8 @@ import Moment from "react-moment";
 import Typography from "@material-ui/core/Typography";
 import { DarkModeContext } from "../../components/Context/DarkModeContext";
 import { grey } from "@material-ui/core/colors";
+import { checkInsights } from "../../utils/checkInsights";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 const Wrapper = styled.div`
   min-height: 100vh;
@@ -87,14 +89,14 @@ export default function UserDetail({ getOneUser }) {
       </Link>
     ))
   );
-  const insightsJSX = () => {
-    if (user?.insights?.length === 0) {
-      return <h1>{user?.name}&nbsp;has no insights</h1>;
-    } else if (user?.insights.length === 1) {
-      return <h1>{user?.insights?.length}&nbsp;Insight:</h1>;
-    }
-    return <h1>{user?.insights?.length}&nbsp;Insights:</h1>;
-  };
+  // const checkInsights = () => {
+  //   if (user?.insights?.length === 0) {
+  //     return <h1>{user?.name}&nbsp;has no insights</h1>;
+  //   } else if (user?.insights.length === 1) {
+  //     return <h1>{user?.insights?.length}&nbsp;Insight:</h1>;
+  //   }
+  //   return <h1>{user?.insights?.length}&nbsp;Insights:</h1>;
+  // };
 
   return (
     <Wrapper darkMode={darkMode}>
@@ -108,7 +110,7 @@ export default function UserDetail({ getOneUser }) {
         </div>
         <hr />
         <div className="body">
-          <div>{insightsJSX()}</div>
+          <div>{checkInsights(user)}</div>
           <div className="insights-container">{INSIGHTS}</div>
         </div>
         <br />
