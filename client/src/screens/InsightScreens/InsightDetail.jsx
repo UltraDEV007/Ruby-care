@@ -18,7 +18,6 @@ const Wrapper = styled.div`
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    text-align: center;
     .buttons {
       display: flex;
       flex-direction: row;
@@ -36,6 +35,7 @@ const Wrapper = styled.div`
     padding: 20px;
     margin-top: 40px;
     color: ${({ darkMode }) => (darkMode === "dark" ? grey[100] : "#000")};
+    text-align: center;
   }
   .title {
     font-size: 1.3rem;
@@ -46,6 +46,9 @@ const Wrapper = styled.div`
     min-width: 400px;
     color: ${({ darkMode }) => (darkMode === "dark" ? grey[100] : "#000")};
     min-height: 400px;
+    padding: 20px 50px;
+    text-align: left;
+    font-size: 1rem;
   }
   .edit {
     margin-right: 10px;
@@ -58,9 +61,15 @@ const Wrapper = styled.div`
     .title {
       font-size: 1.5rem;
     }
+    .insight-body {
+      font-size: 1.2rem;
+    }
     @media screen and (min-width: 1280px) {
       .title {
         font-size: 2rem;
+      }
+      .insight-body {
+        font-size: 1.3rem;
       }
     }
   }
