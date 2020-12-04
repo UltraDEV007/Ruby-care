@@ -51,6 +51,6 @@ class FoodsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def food_params
-      params.require(:food).permit(:name, :time, :rating, :factor, :user_id)
+      params.require(:food).permit(:name, :time, :rating, :factors, :user_id)
     end
 end

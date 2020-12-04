@@ -35,8 +35,9 @@ export default function FoodEdit({ handleUpdate, foods }) {
     name: "",
     time: "",
     rating: "",
+    factors: "",
   });
-  const { name, time, rating } = formData;
+  const { name, time, rating, factors } = formData;
   const { id } = useParams();
 
   useEffect(() => {
@@ -47,8 +48,8 @@ export default function FoodEdit({ handleUpdate, foods }) {
       if (oneFood?.name === undefined) {
         history.push("/");
       } else {
-        const { name, time, rating } = oneFood;
-        setFormData({ name, time, rating });
+        const { name, time, rating, factors } = oneFood;
+        setFormData({ name, time, rating, factors });
       }
     };
     if (foods?.length) {
@@ -130,6 +131,22 @@ export default function FoodEdit({ handleUpdate, foods }) {
           </Select>
         </div>
         <br />
+
+        <div className="input-container">
+          <TextField
+            name="factors"
+            required
+            id="factor-input"
+            label="What were the leading factors?"
+            type="text"
+            style={{ width: "300px", margin: "10px" }}
+            value={factors}
+            onChange={handleChange}
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+        </div>
 
         <div className="buttons">
           <Button type="submit" variant="contained" color="primary">

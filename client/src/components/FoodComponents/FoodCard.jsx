@@ -36,7 +36,7 @@ export default function FoodCard({ food, openOptions, handleDelete }) {
   var panel = foodName.substr(0, foodName.indexOf("<")).trim();
 
   const foodNameJSX = () => {
-    if (panel == /avocado/) {
+    if (panel === "avocado") {
       return <>🥑 {food.name}</>;
     }
     if (food.name === "chicken") {
@@ -63,7 +63,7 @@ export default function FoodCard({ food, openOptions, handleDelete }) {
           </Moment>
         </div>
         <div className="rating">{foodRatingJSX()}</div>
-        <div className="factors">{food.factor}</div>
+        <div className="factors">{food.factors}</div>
         <div
           className="buttons"
           style={openOptions ? { display: "flex" } : { display: "none" }}

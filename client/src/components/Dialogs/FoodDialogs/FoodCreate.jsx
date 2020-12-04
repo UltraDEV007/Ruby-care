@@ -63,8 +63,8 @@ export default function FoodCreate({ open, onSave, handleClose }) {
   const [formData, setFormData] = useState({
     name: "",
     time: "",
-    rating: "",
-    factor: "",
+    rating: 1,
+    factors: "",
   });
 
   const handleChange = (e) => {
@@ -150,13 +150,13 @@ export default function FoodCreate({ open, onSave, handleClose }) {
 
           <div className="input-container">
             <TextField
-              name="factor"
+              name="factors"
               required
               id="factor-input"
               label="What were the leading factors?"
               type="text"
               style={{ width: "300px", margin: "10px" }}
-              value={formData.factor}
+              value={formData.factors}
               onChange={handleChange}
               InputLabelProps={{
                 shrink: true,

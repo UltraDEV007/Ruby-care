@@ -53,7 +53,7 @@ puts "#{Insight.count} insights created"
 
 puts "#{Symptom.count} symptoms created"
 
-@food1 = Food.create!(name: "Avocado", time: DateTime.strptime("09/01/2009 17:00", "%m/%d/%Y %H:%M"), rating: 5, user: @daniel)
-@food2 = Food.create!(name: "Avocado", time: DateTime.strptime("09/01/2009 17:00", "%m/%d/%Y %H:%M"), rating: 5, user: @admin)
+@food1 = Food.create!(name: "Avocado", time: DateTime.strptime("09/01/2009 17:00", "%m/%d/%Y %H:%M"), rating: 5, factors: 'tasted good', user: @daniel)
+@food2 = Food.create!(name: "Avocado", time: DateTime.strptime("09/01/2009 17:00", "%m/%d/%Y %H:%M"), rating: 5, factors: 'tasted good', user: @admin)
 
 puts "#{Food.count} foods created"
