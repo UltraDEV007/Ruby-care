@@ -10,24 +10,10 @@ import GreatEmoji from "./Emojis/GreatEmoji";
 import PoorEmoji from "./Emojis/PoorEmoji";
 import OkayEmoji from "./Emojis/OkayEmoji";
 import GoodEmoji from "./Emojis/GoodEmoji";
+import { emojiLogic } from "../../utils/emojiLogic";
 
 export default function MoodCard({ mood, updated, openOptions, handleDelete }) {
   const [darkMode] = useContext(DarkModeContext);
-
-  const emojiJSX = (status) => {
-    if (status === "Great") {
-      return <GreatEmoji darkMode={darkMode} />;
-    }
-    if (status === "Poor") {
-      return <PoorEmoji darkMode={darkMode} />;
-    }
-    if (status === "Okay") {
-      return <OkayEmoji darkMode={darkMode} />;
-    }
-    if (status === "Good") {
-      return <GoodEmoji darkMode={darkMode} />;
-    }
-  };
 
   return (
     <Card
@@ -40,7 +26,13 @@ export default function MoodCard({ mood, updated, openOptions, handleDelete }) {
     >
       <div className="mood-container">
         <div className="status">
-          {emojiJSX(mood.status)}
+          {emojiLogic(
+            mood.status,
+            <GreatEmoji darkMode={darkMode} />,
+            <PoorEmoji darkMode={darkMode} />,
+            <OkayEmoji darkMode={darkMode} />,
+            <GoodEmoji darkMode={darkMode} />
+          )}
           <p>{mood.status}</p>
         </div>
         <div className="time">
