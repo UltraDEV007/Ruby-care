@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import { getAllUsers, getOneUser } from "../services/users";
 import UserDetail from "../screens/UserScreens/UserDetail";
-import Users from "../screens/UserScreens/Users";
-export default function UsersContainer({ darkMode }) {
+import Users from "../screens/main/Users";
+
+export default function UsersContainer() {
   const [allUsers, setAllUsers] = useState([]);
   const [loaded, setLoaded] = useState(false);
 

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Search from "../../components/Helpers/Search";
 import { CircularProgress } from "@material-ui/core";
-import Card from "@material-ui/core/Card";
 import Layout from "../../layouts/Layout/Layout";
 import styled from "styled-components";
 import { checkUserLength } from "../../utils/checkUserLength";
@@ -73,7 +72,7 @@ const Users = ({ allUsers, loaded }) => {
       <Div>
         <Search setSearch={setSearch} />
         <div className="users-container">
-          <p className="title">{checkUserLength(usersJSX)}</p>
+          <p className="title">{checkUserLength(usersJSX, allUsers)}</p>
           {search ? usersJSX : USERS}
         </div>
       </Div>

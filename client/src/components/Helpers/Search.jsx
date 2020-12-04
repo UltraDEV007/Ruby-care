@@ -26,17 +26,24 @@ const Form = styled.div`
 function Search({ search, setSearch }) {
   let location = useLocation();
 
+  const checkPath = () => {
+    if (
+      location.pathname === "/insights" ||
+      location.pathname === "/insights/"
+    ) {
+      return "Search by insight title or user's name";
+    }
+    if (location.pathname === "/users" || location.pathname === "/users/")
+      return "Search by user's name";
+  };
+
   return (
     <Form>
       <input
         type="text"
         name="search"
         id="search"
-        placeholder={
-          location.pathname === "/insights/"
-            ? "Search by insight title or user's name"
-            : "Search by user's name"
-        }
+        placeholder={checkPath()}
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
