@@ -77,9 +77,9 @@ export default function Insights(props) {
   const INSIGHTS = React.Children.toArray(
     props.insights.map((insight) => (
       <InsightCard
-        users={props.users}
         darkMode={darkMode}
         updated={props.updated}
+        insights={props.insights}
         insight={insight}
         handleOpen={handleDeleteOpen}
         handleClose={handleDeleteClose}

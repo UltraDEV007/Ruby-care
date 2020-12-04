@@ -39,7 +39,7 @@ const Wrapper = styled.div`
   .title {
     font-size: 1.3rem;
   }
-  .insight-body {
+  .body {
     margin: 0 auto;
     margin-top: 20px;
     min-width: 400px;
@@ -78,6 +78,10 @@ export default function UserDetail({ getOneUser, handleDelete }) {
     getData();
   }, [getOneUser, id]);
 
+  const insightsJSX = React.Children.toArray(
+    user?.insights?.map((insight) => <Link to="">{insight?.title}</Link>)
+  );
+
   return (
     <Wrapper darkMode={darkMode}>
       <div className="content-container">
@@ -88,32 +92,10 @@ export default function UserDetail({ getOneUser, handleDelete }) {
             <small>{user?.created_at}</small>
           </Moment>
         </div>
-        {user?.id === currentUser?.id && (
-          <>
-            <div className="buttons2">
-              <Button
-                component={Link}
-                to={`/users/${user?.id}/edit`}
-                className="edit"
-                variant="contained"
-                color="primary"
-              >
-                Edit
-              </Button>
-              <Button
-                className="delete"
-                variant="contained"
-                color="secondary"
-                onClick={() => handleDelete(user.id)}
-              >
-                Delete
-              </Button>
-            </div>
-          </>
-        )}
         <hr />
-        <div className="insight-body">
-          <p>{user?.name}</p>
+        <div className="body">
+          Insights: {user?.insights?.length}
+          {insightsJSX}
         </div>
         <br />
         <hr />

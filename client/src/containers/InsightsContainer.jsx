@@ -7,7 +7,6 @@ import {
   putInsight,
   getOneInsight,
 } from "../services/insights";
-import { getAllUsers } from "../services/users";
 import Insights from "../screens/main/Insights";
 import InsightCreate from "../screens/InsightScreens/InsightCreate";
 import InsightEdit from "../screens/InsightScreens/InsightEdit";
@@ -15,21 +14,10 @@ import InsightDetail from "../screens/InsightScreens/InsightDetail";
 
 export default function InsightsContainer({ darkMode }) {
   const [insights, setInsights] = useState([]);
-  const [users, setUsers] = useState([]);
-
   const [updated, setUpdated] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [openDelete, setOpenDelete] = useState(false);
   const history = useHistory();
-
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const userData = await getAllUsers();
-      setUsers(userData);
-      setLoaded(true);
-    };
-    fetchUsers();
-  }, []);
 
   const onDelete = (id) => {
     handleDelete(id);
@@ -55,7 +43,6 @@ export default function InsightsContainer({ darkMode }) {
   const handleCreate = async (insightData) => {
     const newInsight = await postInsight(insightData);
     setInsights((prevState) => [...prevState, newInsight]);
-    history.push("/insights");
   };
 
   const handleUpdate = async (id, insightData) => {
@@ -94,7 +81,6 @@ export default function InsightsContainer({ darkMode }) {
         <div>
           <Route path="/insights">
             <Insights
-              users={users}
               openDelete={openDelete}
               onDelete={onDelete}
               handleDeleteClose={handleDeleteClose}

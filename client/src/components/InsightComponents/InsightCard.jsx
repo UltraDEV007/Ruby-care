@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import Moment from "react-moment";
 import "moment-timezone";
 import Typography from "@material-ui/core/Typography";
@@ -20,7 +20,6 @@ function InsightCard({
   onDelete,
   darkMode,
   updated,
-  users,
 }) {
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -85,8 +84,6 @@ function InsightCard({
   const [currentUser] = useContext(CurrentUserContext);
   const classes = useStyles();
 
-  const oneUser = users.find((user) => user);
-
   return (
     <>
       <Card className={classes.root}>
@@ -94,7 +91,7 @@ function InsightCard({
           <Typography className={classes.title}>{insight?.title}</Typography>
         </Link>
         <div className={classes.userContainer}>
-          <Link className={classes.link} to={`/users/${oneUser?.id}`}>
+          <Link className={classes.link} to={`/users/${insight?.user?.id}`}>
             <AccountCircleIcon className={classes.userIcon} />
             <Typography className={classes.userName}>
               {insight?.user?.name ? insight?.user?.name : <>Anonymous</>}
