@@ -11,7 +11,7 @@ import {
 } from "../services/symptoms";
 import { CurrentUserContext } from "../components/Context/CurrentUserContext";
 
-export default function MoodsContainer() {
+export default function SymptomsContainer() {
   const [currentUser] = useContext(CurrentUserContext);
   const [symptoms, setSymptoms] = useState([]);
   const [updated, setUpdated] = useState(false);

@@ -78,7 +78,7 @@ const Form = styled.form`
   }
 `;
 
-export default function InsightUpdate({ handleUpdate, insights }) {
+export default function InsightEdit({ handleUpdate, insights }) {
   const [darkMode] = useContext(DarkModeContext);
   const [formData, setFormData] = useState({
     title: "",

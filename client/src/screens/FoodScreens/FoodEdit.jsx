@@ -21,7 +21,7 @@ const Form = styled.form`
   }
 `;
 
-export default function SymptomEdit({ handleUpdate, symptoms }) {
+export default function FoodEdit({ handleUpdate, symptoms }) {
   const [formData, setFormData] = useState({
     name: "",
     time: "",
