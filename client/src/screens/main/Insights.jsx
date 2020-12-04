@@ -114,6 +114,7 @@ export default function Insights(props) {
       />
     ))
   );
+
   return (
     <Layout title="Insights">
       <Wrapper darkMode={darkMode}>
@@ -128,7 +129,8 @@ export default function Insights(props) {
         <br />
         <div className="insights-container">
           <Search setSearch={setSearch} />
-          {props.loaded ? insightsJSX : <CircularProgress />}
+          {!props.loaded ? <CircularProgress /> : <></>}
+          {search ? insightsJSX : INSIGHTS}
         </div>
       </Wrapper>
     </Layout>
