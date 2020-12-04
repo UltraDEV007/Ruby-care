@@ -53,6 +53,8 @@ function InsightCard({
     },
     link: {
       textDecoration: "none",
+      display: "flex",
+      alignItems: "center",
     },
     title: {
       color: darkMode === "dark" ? yellow[700] : "#000",
@@ -83,9 +85,7 @@ function InsightCard({
   const [currentUser] = useContext(CurrentUserContext);
   const classes = useStyles();
 
-  const oneUser = users.find((user) => {
-    return user;
-  });
+  const oneUser = users.find((user) => user);
 
   return (
     <>
