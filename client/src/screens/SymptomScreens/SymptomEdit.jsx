@@ -7,11 +7,18 @@ import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 
 const Div = styled.div`
-  padding: "20px";
   margin: auto 40px;
 `;
 const Form = styled.form`
-  padding: "20px";
+  display: flex;
+    flex-direction: column;
+}
+  .buttons {
+    margin-top: 20px;
+  }
+  .cancel{
+    margin-left: 20px;
+  }
 `;
 
 export default function InsightUpdate({ handleUpdate, symptoms }) {

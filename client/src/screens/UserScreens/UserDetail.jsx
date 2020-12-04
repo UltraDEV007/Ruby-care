@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import Button from "@material-ui/core/Button";
-import { CurrentUserContext } from "../../components/Context/CurrentUserContext";
 import styled from "styled-components";
 import Moment from "react-moment";
 import Typography from "@material-ui/core/Typography";
@@ -64,10 +63,9 @@ const Wrapper = styled.div`
     }
   }
 `;
-export default function UserDetail({ getOneUser, handleDelete }) {
+export default function UserDetail({ getOneUser }) {
   const [user, setUser] = useState(null);
   const [darkMode] = useContext(DarkModeContext);
-  const [currentUser] = useContext(CurrentUserContext);
   const { id } = useParams();
 
   useEffect(() => {
@@ -78,9 +76,21 @@ export default function UserDetail({ getOneUser, handleDelete }) {
     getData();
   }, [getOneUser, id]);
 
-  const insightsJSX = React.Children.toArray(
-    user?.insights?.map((insight) => <Link to="">{insight?.title}</Link>)
+  const INSIGHTS = React.Children.toArray(
+    user?.insights?.map((insight) => (
+      <Link to={`/users/${user.id}/insights/${insight.id}`}>
+        {insight?.title}
+      </Link>
+    ))
   );
+  const insightsJSX = () => {
+    if (user?.insights?.length === 0) {
+      return <h1>{user?.name}&nbsp;has no insights</h1>;
+    } else if (user?.insights.length === 1) {
+      return <h1>{user?.insights?.length}&nbsp;Insight:</h1>;
+    }
+    return <h1>{user?.insights?.length}&nbsp;Insights:</h1>;
+  };
 
   return (
     <Wrapper darkMode={darkMode}>
@@ -94,8 +104,8 @@ export default function UserDetail({ getOneUser, handleDelete }) {
         </div>
         <hr />
         <div className="body">
-          Insights: {user?.insights?.length}
-          {insightsJSX}
+          <div>{insightsJSX()}</div>
+          <div className="insights-container">{INSIGHTS}</div>
         </div>
         <br />
         <hr />
@@ -103,7 +113,7 @@ export default function UserDetail({ getOneUser, handleDelete }) {
           <Button
             variant="contained"
             color="secondary"
-            to="/insights"
+            to="/users"
             component={Link}
           >
             Go Back

@@ -27,6 +27,11 @@ export default function Moods({
     setOpenOptions(!openOptions);
   };
 
+  const onSave = (formData) => {
+    handleCreate(formData);
+    setOpenDialog(false);
+  };
+
   const MOODS = React.Children.toArray(
     moods.length === 0 ? (
       <div className="log-your-mood">
@@ -46,11 +51,6 @@ export default function Moods({
       ))
     )
   );
-
-  const onSave = (formData) => {
-    handleCreate(formData);
-    setOpenDialog(false);
-  };
 
   return (
     <>
