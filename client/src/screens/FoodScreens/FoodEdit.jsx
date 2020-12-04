@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import Select from "@material-ui/core/Select";
 import FormHelperText from "@material-ui/core/FormHelperText";
+
 const Div = styled.div`
   margin: auto 40px;
 `;
@@ -21,14 +22,15 @@ const Form = styled.form`
     margin-left: 20px;
   }
   .rating-input-container{
-    display: flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  }
+}
 `;
 
 export default function FoodEdit({ handleUpdate, foods }) {
+  const history = useHistory("/");
   const [formData, setFormData] = useState({
     name: "",
     time: "",
@@ -42,9 +44,8 @@ export default function FoodEdit({ handleUpdate, foods }) {
       const oneFood = foods?.find((food) => {
         return food?.id === Number(id);
       });
-      // this gets rid of undefined error when searching a edit path by id of a food that is deleted/doesn't exist
       if (oneFood?.name === undefined) {
-        window.history.back();
+        history.push("/");
       } else {
         const { name, time, rating } = oneFood;
         setFormData({ name, time, rating });
@@ -53,7 +54,7 @@ export default function FoodEdit({ handleUpdate, foods }) {
     if (foods?.length) {
       prefillFormData();
     }
-  }, [foods, id]);
+  }, [foods, id, history]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
