@@ -77,6 +77,10 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
     getData();
   }, [getOneInsight, id]);
 
+  const goBack = () => {
+    window.history.back();
+  };
+
   return (
     <Wrapper darkMode={darkMode}>
       <div className="content-container">
@@ -116,12 +120,7 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
         <br />
         <hr />
         <div className="buttons">
-          <Button
-            variant="contained"
-            color="secondary"
-            to="/insights"
-            component={Link}
-          >
+          <Button variant="contained" color="secondary" onClick={goBack}>
             Go Back
           </Button>
         </div>

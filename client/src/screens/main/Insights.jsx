@@ -91,7 +91,7 @@ export default function Insights(props) {
     ))
   );
 
-  const [search, setSearch] = useState(INSIGHTS);
+  const [search, setSearch] = useState(false);
   const filteredInsights = props.insights?.filter(
     (insight) =>
       insight?.title?.toLowerCase().includes(`${search}`.toLowerCase()) ||
