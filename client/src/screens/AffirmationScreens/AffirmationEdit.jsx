@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
+
 const Div = styled.div`
   padding: "20px";
   margin: auto 40px;
@@ -25,8 +26,13 @@ export default function AffirmationEdit({ handleUpdate, affirmations }) {
       const oneAffirmation = affirmations?.find((affirmation) => {
         return affirmation?.id === Number(id);
       });
-      const { content } = oneAffirmation;
-      setFormData({ content });
+      // this gets rid of undefined error when searching a edit path by id of an affirmation that is deleted/doesn't exist
+      if (oneAffirmation?.content === undefined) {
+        window.history.back();
+      } else {
+        const { content } = oneAffirmation;
+        setFormData({ content });
+      }
     };
     if (affirmations?.length) {
       prefillFormData();

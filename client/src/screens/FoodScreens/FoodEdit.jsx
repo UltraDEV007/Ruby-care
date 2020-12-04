@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import Select from "@material-ui/core/Select";
@@ -29,7 +29,6 @@ const Form = styled.form`
 `;
 
 export default function FoodEdit({ handleUpdate, foods }) {
-  const history = useHistory();
   const [formData, setFormData] = useState({
     name: "",
     time: "",
@@ -43,9 +42,9 @@ export default function FoodEdit({ handleUpdate, foods }) {
       const oneFood = foods?.find((food) => {
         return food?.id === Number(id);
       });
-      // this gets rid of undefined error when searching a edit path of an item that is deleted/doesn't exist
+      // this gets rid of undefined error when searching a edit path by id of a food that is deleted/doesn't exist
       if (oneFood?.name === undefined) {
-        history.push("/");
+        window.history.back();
       } else {
         const { name, time, rating } = oneFood;
         setFormData({ name, time, rating });
@@ -54,7 +53,7 @@ export default function FoodEdit({ handleUpdate, foods }) {
     if (foods?.length) {
       prefillFormData();
     }
-  }, [foods, id, history]);
+  }, [foods, id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
