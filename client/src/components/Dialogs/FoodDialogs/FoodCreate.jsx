@@ -64,6 +64,7 @@ export default function FoodCreate({ open, onSave, handleClose }) {
     name: "",
     time: "",
     rating: "",
+    factor: "",
   });
 
   const handleChange = (e) => {
@@ -145,6 +146,21 @@ export default function FoodCreate({ open, onSave, handleClose }) {
               <option value={4}>⭐ ⭐ ⭐ ⭐ </option>
               <option value={5}>⭐ ⭐ ⭐ ⭐ ⭐ </option>
             </Select>
+          </div>
+
+          <div className="input-container">
+            <TextField
+              required
+              autoFocus
+              type="text"
+              name="name"
+              label="factor"
+              style={{ width: "300px", margin: "10px" }}
+              value={formData.factor}
+              onChange={handleChange}
+              id="outlined-multiline-static"
+              variant="filled"
+            />
           </div>
         </DialogContent>
         <DialogActions>
