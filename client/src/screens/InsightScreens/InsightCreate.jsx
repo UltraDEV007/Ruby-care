@@ -6,6 +6,7 @@ import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import { DarkModeContext } from "../../components/Context/DarkModeContext";
 import { grey } from "@material-ui/core/colors";
+import HelpIcon from "@material-ui/icons/Help";
 
 const Div = styled.div`
   height: 100vh;
@@ -18,16 +19,29 @@ const Div = styled.div`
     margin: 0 auto;
     margin-top: 70px;
     text-align: center;
+    align-items: center;
   }
   .title {
     font-size: 1.2rem;
     color: ${({ darkMode }) => (darkMode === "dark" ? grey[100] : "#000")};
+    display: flex;
+    align-items: center;
   }
   .warning {
     color: red;
     font-size: 1rem;
-    margin-top: 30px;
     margin-bottom: -20px;
+  }
+
+  .about-container {
+    font-size: 1.2rem;
+    padding: 10px;
+    color: ${({ darkMode }) => (darkMode === "dark" ? grey[100] : "#000")};
+  }
+  .about-icon {
+    font-size: 40px;
+    margin-left: 10px;
+    cursor: pointer;
   }
 
   @media screen and (min-width: 1000px) {
@@ -43,7 +57,7 @@ const Div = styled.div`
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  margin: 20px auto;
+  margin: 0 auto;
 
   .input-container {
     margin: 10px;
@@ -88,6 +102,15 @@ const Form = styled.form`
 
 export default function InsightCreate(props) {
   const [darkMode] = useContext(DarkModeContext);
+  const [openAbout, setOpenAbout] = useState(false);
+
+  const handleOpen = () => {
+    setOpenAbout(!openAbout);
+  };
+  const handleClose = () => {
+    setOpenAbout(false);
+  };
+
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -112,17 +135,26 @@ export default function InsightCreate(props) {
       <div className="title-container">
         <Typography className="title">
           Help the community by sharing an insight!
+          <HelpIcon className="about-icon" onClick={handleOpen} />
         </Typography>
+        {openAbout && (
+          <div className="about-container">
+            <Typography>
+              an insight is information or a personal experience that is
+              educational, actionable, and/or reassuring to the community.
+            </Typography>
+          </div>
+        )}
         <Typography className="warning">
           Write something appropriate! everybody will see it.
         </Typography>
       </div>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} onClick={handleClose}>
         <br />
         <div className="input-container">
           <TextField
             required
-            className="string-input title"
+            className="string-input"
             label="title"
             autoFocus
             type="text"
