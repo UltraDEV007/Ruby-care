@@ -4,7 +4,7 @@ const goOn = (oneParam, contentParam, setParam) => {
 };
 
 export const checkUndefined = (oneParam, setParam, contentParam) => {
-  if (oneParam?.content === undefined) {
+  if (oneParam?.contentParam === undefined) {
     window.history.back();
   } else {
     goOn(oneParam, contentParam, setParam);
