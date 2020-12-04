@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
+import { checkUndefined } from "../../utils/checkUndefined";
 
 const Div = styled.div`
   padding: "20px";
@@ -27,17 +28,12 @@ export default function AffirmationEdit({ handleUpdate, affirmations }) {
         return affirmation?.id === Number(id);
       });
       // this gets rid of undefined error when searching a edit path by id of an affirmation that is deleted/doesn't exist
-      if (oneAffirmation?.content === undefined) {
-        window.history.back();
-      } else {
-        const { content } = oneAffirmation;
-        setFormData({ content });
-      }
+      checkUndefined(oneAffirmation, setFormData);
     };
     if (affirmations?.length) {
       prefillFormData();
     }
-  }, [affirmations, id]);
+  }, [affirmations, id, content]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

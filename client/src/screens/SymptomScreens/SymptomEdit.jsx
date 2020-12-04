@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 
@@ -50,9 +50,6 @@ export default function SymptomEdit({ handleUpdate, symptoms }) {
     }));
   };
 
-  if (symptoms === undefined) {
-    <Redirect to="/" />;
-  }
   return (
     <Div>
       <div className="title-container">
