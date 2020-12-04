@@ -89,7 +89,6 @@ const Form = styled.form`
 
 export default function InsightCreate(props) {
   const [darkMode] = useContext(DarkModeContext);
-  const [isCreated, setCreated] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -106,8 +105,7 @@ export default function InsightCreate(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const created = await props.handleCreate(formData);
-    setCreated({ created });
+    await props.handleCreate(formData);
   };
 
   return (
