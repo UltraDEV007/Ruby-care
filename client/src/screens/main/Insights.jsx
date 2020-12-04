@@ -35,13 +35,7 @@ const Wrapper = styled.div`
     color: ${({ darkMode }) =>
       darkMode === "light" ? blue[500] : yellow[700]};
   }
-  @media screen and (min-width: 1929px) {
-    .insights-container {
-      display: flex;
-      justify-content: center;
-      flex-flow: row wrap;
-    }
-  }
+
   @media screen and (min-width: 600px) {
     .sentence {
       font-size: 1.5rem;
