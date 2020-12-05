@@ -21,7 +21,7 @@ class InsightsController < ApplicationController
     @insight.user = @current_user
 
     if @insight.save
-      render json: @insight, status: :created, location: @insight
+      render json: @insight, include: :user, status: :created, location: @insight
     else
       render json: @insight.errors, status: :unprocessable_entity
     end

@@ -44,7 +44,6 @@ export default function InsightsContainer({ darkMode }) {
     const newInsight = await postInsight(insightData);
     setInsights((prevState) => [...prevState, newInsight]);
     history.push("/insights");
-    window.location.reload();
   };
 
   const handleUpdate = async (id, insightData) => {
