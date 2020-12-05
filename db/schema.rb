@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_04_224754) do
+ActiveRecord::Schema.define(version: 2020_12_05_133842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,15 @@ ActiveRecord::Schema.define(version: 2020_12_04_224754) do
     t.index ["user_id"], name: "index_insights_on_user_id"
   end
 
+  create_table "medications", force: :cascade do |t|
+    t.string "name"
+    t.datetime "time"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_medications_on_user_id"
+  end
+
   create_table "moods", force: :cascade do |t|
     t.string "status"
     t.bigint "user_id", null: false
@@ -72,6 +81,7 @@ ActiveRecord::Schema.define(version: 2020_12_04_224754) do
   add_foreign_key "affirmations", "users"
   add_foreign_key "foods", "users"
   add_foreign_key "insights", "users"
+  add_foreign_key "medications", "users"
   add_foreign_key "moods", "users"
   add_foreign_key "symptoms", "users"
 end

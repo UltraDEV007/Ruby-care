@@ -20,5 +20,6 @@ class User < ApplicationRecord
   has_many :affirmations, dependent: :destroy
   has_many :symptoms, dependent: :destroy
   has_many :foods, dependent: :destroy
+  has_many :medications, dependent: :destroy
 end
 

@@ -9,6 +9,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoodsContainer from "../../containers/MoodsContainer";
 import AffirmationsContainer from "../../containers/AffirmationsContainer";
 import SymptomsContainer from "../../containers/SymptomsContainer";
+import MedsContainer from "../../containers/MedsContainer";
 import FoodsContainer from "../../containers/FoodsContainer";
 import Layout from "../../layouts/Layout/Layout";
 import { DarkModeContext } from "../../components/Context/DarkModeContext";
@@ -148,6 +149,21 @@ export default function Home() {
               <AccordionDetails>
                 <div className="content-container">
                   <FoodsContainer />
+                </div>
+              </AccordionDetails>
+            </Accordion>
+
+            <Accordion className={classes.accordion}>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography className={classes.heading}>Medications</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <div className="content-container">
+                  <MedsContainer />
                 </div>
               </AccordionDetails>
             </Accordion>

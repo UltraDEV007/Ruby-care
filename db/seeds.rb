@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'faker'
 
 Mood.destroy_all
 Affirmation.destroy_all
@@ -12,8 +13,8 @@ Insight.destroy_all
 User.destroy_all
 Symptom.destroy_all
 Food.destroy_all
+Medication.destroy_all
 
-require 'faker'
 
 @admin = User.create!(name: 'admin', email: 'admin@email.com', password: '12345678')
 @daniel = User.create!(name: 'daniel', email: 'daniel@email.com', password: '12345678')
@@ -57,3 +58,8 @@ puts "#{Symptom.count} symptoms created"
 @food2 = Food.create!(name: "Avocado", time: DateTime.strptime("09/01/2009 17:00", "%m/%d/%Y %H:%M"), rating: 5, factors: 'tasted good', user: @admin)
 
 puts "#{Food.count} foods created"
+
+@medication1 = Medication.create!(name: "Humira", time: DateTime.strptime("09/01/2009 17:00", "%m/%d/%Y %H:%M"), user: @admin)
+@medication2 = Medication.create!(name: "Humira", time: DateTime.strptime("09/01/2009 17:00", "%m/%d/%Y %H:%M"), user: @daniel)
+
+puts "#{Medication.count} medications created"
