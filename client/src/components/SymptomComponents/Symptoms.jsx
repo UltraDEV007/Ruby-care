@@ -13,6 +13,8 @@ export default function Symptoms({
   handleDelete,
   handleCreate,
   loaded,
+  handleUpdate,
+  setSymptoms,
 }) {
   const [openOptions, setOpenOptions] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
@@ -38,6 +40,9 @@ export default function Symptoms({
     ) : (
       symptoms.map((symptom) => (
         <SymptomCard
+          symptoms={symptoms}
+          setSymptoms={setSymptoms}
+          handleUpdate={handleUpdate}
           updated={updated}
           symptom={symptom}
           openOptions={openOptions}

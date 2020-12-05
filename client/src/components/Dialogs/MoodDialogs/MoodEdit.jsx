@@ -12,6 +12,7 @@ import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
+import { Link } from "react-router-dom";
 
 const styles = (theme) => ({
   root: {
@@ -141,66 +142,67 @@ export default function MoodEdit(props) {
       aria-labelledby="customized-dialog-title"
       open={props.handleOpen}
     >
-      <div>
-        <form onSubmit={handleSubmit}>
-          <DialogTitle>
-            <Typography>Edit Mood</Typography>
-          </DialogTitle>
-          <DialogContent dividers>
-            <div>
-              <FormLabel>
-                Poor
-                <PoorRadio
-                  type="radio"
-                  name="Poor"
-                  checked={formData.status === "Poor"}
-                  onChange={handleChange}
-                />
-              </FormLabel>
-              <FormLabel>
-                Okay
-                <OkayRadio
-                  type="radio"
-                  name="Okay"
-                  checked={formData.status === "Okay"}
-                  onChange={handleChange}
-                />
-              </FormLabel>
+      <form onSubmit={handleSubmit}>
+        <DialogTitle>
+          <Typography>Edit Mood</Typography>
+        </DialogTitle>
+        <DialogContent dividers>
+          <div>
+            <FormLabel>
+              Poor
+              <PoorRadio
+                type="radio"
+                name="Poor"
+                checked={formData.status === "Poor"}
+                onChange={handleChange}
+              />
+            </FormLabel>
+            <FormLabel>
+              Okay
+              <OkayRadio
+                type="radio"
+                name="Okay"
+                checked={formData.status === "Okay"}
+                onChange={handleChange}
+              />
+            </FormLabel>
 
-              <FormLabel>
-                Good
-                <GoodRadio
-                  type="radio"
-                  name="Good"
-                  checked={formData.status === "Good"}
-                  onChange={handleChange}
-                />
-              </FormLabel>
-              <FormLabel>
-                Great
-                <GreatRadio
-                  type="radio"
-                  name="Great"
-                  checked={formData.status === "Great"}
-                  onChange={handleChange}
-                />
-              </FormLabel>
-            </div>
-          </DialogContent>
-          <DialogActions>
-            <Button type="submit" variant="contained" color="primary">
-              Save
-            </Button>
-            <Button
-              variant="contained"
-              color="secondary"
-              onClick={props.handleClose}
-            >
-              Cancel
-            </Button>
-          </DialogActions>
-        </form>
-      </div>
+            <FormLabel>
+              Good
+              <GoodRadio
+                type="radio"
+                name="Good"
+                checked={formData.status === "Good"}
+                onChange={handleChange}
+              />
+            </FormLabel>
+            <FormLabel>
+              Great
+              <GreatRadio
+                type="radio"
+                name="Great"
+                checked={formData.status === "Great"}
+                onChange={handleChange}
+              />
+            </FormLabel>
+          </div>
+        </DialogContent>
+
+        <DialogActions>
+          <Button type="submit" variant="contained" color="primary">
+            Save
+          </Button>
+          <Button
+            to="/"
+            component={Link}
+            variant="contained"
+            color="secondary"
+            onClick={props.handleClose}
+          >
+            Cancel
+          </Button>
+        </DialogActions>
+      </form>
     </Dialog>
   );
 }

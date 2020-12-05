@@ -12,7 +12,7 @@ import OkayEmoji from "./Emojis/OkayEmoji";
 import GoodEmoji from "./Emojis/GoodEmoji";
 import { emojiLogic } from "../../utils/emojiLogic";
 import MoodEdit from "../Dialogs/MoodDialogs/MoodEdit";
-import { CircularProgress } from "@material-ui/core";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 export default function MoodCard({
   mood,
@@ -84,7 +84,7 @@ export default function MoodCard({
             <Button
               component={Link}
               to={`/moods/${mood.id}/edit`}
-              onClick={() => setOpenEdit(true)}
+              onClick={handleOpen}
               variant="contained"
               color="primary"
               className="edit-button"

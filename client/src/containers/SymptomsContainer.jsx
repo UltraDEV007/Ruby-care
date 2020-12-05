@@ -1,8 +1,7 @@
 import React from "react";
 import Symptoms from "../components/SymptomComponents/Symptoms.jsx";
 import { useState, useEffect, useContext } from "react";
-import { Switch, Route, useHistory } from "react-router-dom";
-import SymptomEdit from "../screens/SymptomScreens/SymptomEdit";
+import { useHistory } from "react-router-dom";
 import {
   destroySymptom,
   getAllSymptoms,
@@ -55,15 +54,12 @@ export default function SymptomsContainer() {
       <Symptoms
         symptoms={symptoms}
         updated={updated}
+        setSymptoms={setSymptoms}
         loaded={loaded}
+        handleUpdate={handleUpdate}
         handleCreate={handleCreate}
         handleDelete={handleDelete}
       />
-      <Switch>
-        <Route path="/symptoms/:id/edit">
-          <SymptomEdit symptoms={symptoms} handleUpdate={handleUpdate} />
-        </Route>
-      </Switch>
     </>
   );
 }

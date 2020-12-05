@@ -21,7 +21,12 @@ const Form = styled.form`
   }
 `;
 
-export default function SymptomEdit({ handleUpdate, symptoms }) {
+export default function SymptomEdit({
+  onSave,
+  handleOpen,
+  handleClose,
+  symptoms,
+}) {
   const [formData, setFormData] = useState({
     name: "",
     time: "",
@@ -58,7 +63,7 @@ export default function SymptomEdit({ handleUpdate, symptoms }) {
       <Form
         onSubmit={(e) => {
           e.preventDefault();
-          handleUpdate(id, formData);
+          onSave(id, formData);
         }}
       >
         <br />
