@@ -10,6 +10,7 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 import CreateIcon from "@material-ui/icons/Create";
+import FormHelperText from "@material-ui/core/FormHelperText";
 
 const styles = (theme) => ({
   root: {
@@ -63,7 +64,14 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
   });
 
   const MEDS = React.Children.toArray(
-    RXGuideMeds.map((med) => <option>{med.fields.name}</option>)
+    RXGuideMeds.map((med) => (
+      <>
+        <option value="" selected disabled hidden>
+          Select a medication
+        </option>
+        <option>{med.fields.name}</option>
+      </>
+    ))
   );
 
   const handleChange = (e) => {
@@ -94,10 +102,17 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
         </DialogTitle>
         <DialogContent dividers>
           <div className="input-container">
+            {!formData.name ? (
+              <FormHelperText>Please select a medication</FormHelperText>
+            ) : (
+              <></>
+            )}
             <select
               className="select-css"
               name="name"
               type="text"
+              style={{ marginLeft: "10px" }}
+              defaultValue="select"
               value={formData.name}
               onChange={handleChange}
             >
@@ -110,7 +125,11 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
               name="time"
               required
               id="datetime-local"
-              label="When did this happen?"
+              label={
+                formData.name
+                  ? `When did you take ${formData.name}?`
+                  : `When did you take this medication?`
+              }
               type="datetime-local"
               style={{ width: "300px", margin: "10px" }}
               value={formData.time}

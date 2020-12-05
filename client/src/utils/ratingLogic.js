@@ -1,4 +1,4 @@
-//  we fill the array with  and iconParam is one individual icon
+//  we fill the array with icons and iconParam is one individual icon
 // console.log(Array(5).fill())
 // [undefined, undefined, undefined, undefined, undefined]
 

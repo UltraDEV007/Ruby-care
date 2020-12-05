@@ -234,9 +234,41 @@ src
 
 ---
 
-## Code Showcase
+### Code Showcase
 
 > Use this section to include a brief code snippet of functionality that you are proud of and a brief description.
+
+## ratingLogic.js
+
+> this file is responsible for rendering the amount of rating icons depending the value of the rating from 1-5, (for example: when you rate your food in the app)
+
+- We fill the array with icons and iconParam is one individual icon
+- for example: console.log(Array(5).fill())
+
+  > => [undefined, undefined, undefined, undefined, undefined]
+
+- We are calling the map function to loop, we are not bothered about whats actually inside the array.
+- for example: console.log(Array(5).fill().map(() => '⭐')) (in this case, the icon paramter is the star emoji.)
+  > => ['⭐', '⭐', '⭐', '⭐', '⭐']
+
+```
+export default function ratingLogic(ratingParam, iconParam) {
+  return Array(ratingParam)
+    .fill()
+    .map(() => (
+      <span role="img" aria-label="rating">
+        {iconParam}
+      </span>
+    ));
+}
+```
+
+- Then I import it into FoodCard.jsx(or any file I want to use it in the future) and use the paramaters like this:
+- The reason I decided to give the icon a paramter is because maybe one time I want to do a different icon that isn't a star for something else
+
+```
+ <div className="rating">{ratingLogic(food.rating, "⭐")}</div>
+```
 
 ## Code Issues & Resolutions
 
