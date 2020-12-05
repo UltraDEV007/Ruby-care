@@ -1,21 +1,24 @@
 import { useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { checkValidity } from "../../utils/checkValidity";
-import { goBack } from "../../utils/goBack";
 import Typography from "@material-ui/core/Typography";
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
 import { DarkModeContext } from "../../components/Context/DarkModeContext";
 import { yellow, grey, blue } from "@material-ui/core/colors";
+import { NavLink } from "react-router-dom";
+
 const ErrorWrapper = styled.div`
   min-height: 100vh;
   background: ${({ darkMode }) =>
     darkMode === "light" ? grey[250] : grey[800]};
-  di .button {
+
+  .button {
     padding: 10px;
     margin-top: 50px;
     width: 25vw;
   }
+
   a {
     text-decoration: none;
   }
@@ -87,7 +90,8 @@ function NotFound() {
             className="button"
             variant="contained"
             color="secondary"
-            onClick={goBack}
+            component={NavLink}
+            to="/"
           >
             Go Back
           </Button>

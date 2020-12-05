@@ -1,6 +1,8 @@
 import Button from "@material-ui/core/Button";
-import { Link } from "react-router-dom";
+import { Link, Switch } from "react-router-dom";
 import AffirmationDetail from "../Dialogs/AffirmationDialogs/AffirmationDetail";
+import { useState } from "react";
+import AffirmationEdit from "../Dialogs/AffirmationDialogs/AffirmationEdit";
 
 export default function AffirmationLetter({
   affirmation,
@@ -10,7 +12,23 @@ export default function AffirmationLetter({
   handleDetailClose,
   openDetail,
   onDelete,
+  handleUpdate,
+  affirmations,
+  setAffirmations,
 }) {
+  const [openEdit, setOpenEdit] = useState(false);
+  const [edited, setEdited] = useState(false);
+
+  const onSave = (formData, id) => {
+    handleUpdate(formData, id);
+    setEdited(true);
+    setTimeout(async () => {
+      setEdited(false);
+      setOpenEdit(false);
+    }, 800);
+    setAffirmations(affirmations);
+  };
+
   return (
     <>
       <div className="affirmation-container">
@@ -59,6 +77,20 @@ export default function AffirmationLetter({
         handleDelete={handleDelete}
         handleDetailClose={handleDetailClose}
       />
+
+      {openEdit && (
+        <Switch>
+          <Route path="/affirmations/:id/edit">
+            <AffirmationEdit
+              handleOpen={handleOpen}
+              affirmations={affirmations}
+              onSave={onSave}
+              handleUpdate={handleUpdate}
+              handleClose={handleClose}
+            />
+          </Route>
+        </Switch>
+      )}
     </>
   );
 }

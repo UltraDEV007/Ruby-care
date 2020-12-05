@@ -44,20 +44,14 @@ export default function AffirmationsContainer({
   return (
     <>
       <Affirmations
+        handleUpdate={handleAffirmationUpdate}
         affirmations={affirmations}
         updated={updatedAffirmation}
         loaded={loadedAffirmation}
         handleCreate={handleAffirmationCreate}
         handleDelete={handleAffirmationDelete}
+        setAffirmations={setAffirmations}
       />
-      <Switch>
-        <Route path="/affirmations/:id/edit">
-          <AffirmationEdit
-            affirmations={affirmations}
-            handleUpdate={handleAffirmationUpdate}
-          />
-        </Route>
-      </Switch>
     </>
   );
 }

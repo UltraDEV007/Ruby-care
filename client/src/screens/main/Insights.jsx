@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Layout from "../../layouts/Layout/Layout";
 import InsightCard from "../../components/InsightComponents/InsightCard";
 import { DarkModeContext } from "../../components/Context/DarkModeContext";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import LinearProgress from "@material-ui/core/LinearProgress";
 import styled from "styled-components";
 import Typography from "@material-ui/core/Typography";
 import { yellow, blue } from "@material-ui/core/colors";
@@ -111,7 +111,7 @@ export default function Insights(props) {
         <div className="insights-container">
           <Search setSearch={setSearch} />
           {!props.loaded ? (
-            <CircularProgress style={{ width: "20%", marginTop: "18%" }} />
+            <LinearProgress style={{ margin: "50px auto", width: "30vw" }} />
           ) : (
             <></>
           )}

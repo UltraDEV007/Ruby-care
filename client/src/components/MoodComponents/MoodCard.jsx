@@ -11,7 +11,7 @@ import PoorEmoji from "./Emojis/PoorEmoji";
 import OkayEmoji from "./Emojis/OkayEmoji";
 import GoodEmoji from "./Emojis/GoodEmoji";
 import { emojiLogic } from "../../utils/emojiLogic";
-import MoodEdit from "../../screens/MoodScreens/MoodEdit";
+import MoodEdit from "../Dialogs/MoodDialogs/MoodEdit";
 import { CircularProgress } from "@material-ui/core";
 
 export default function MoodCard({
@@ -24,24 +24,25 @@ export default function MoodCard({
   setMoods,
 }) {
   const [darkMode] = useContext(DarkModeContext);
-  const [edit, setEdit] = useState(false);
+  const [openEdit, setOpenEdit] = useState(false);
   const [edited, setEdited] = useState(false);
 
   const handleOpen = () => {
-    setEdit(true);
+    setOpenEdit(true);
   };
+
   const handleClose = () => {
-    setEdit(false);
+    setOpenEdit(false);
   };
 
   const onSave = (formData, id) => {
     handleUpdate(formData, id);
     setEdited(true);
     setTimeout(async () => {
-      setMoods(moods);
       setEdited(false);
-      setEdit(false);
-    }, 400);
+      setOpenEdit(false);
+    }, 800);
+    setMoods(moods);
   };
 
   return (
@@ -83,7 +84,7 @@ export default function MoodCard({
             <Button
               component={Link}
               to={`/moods/${mood.id}/edit`}
-              onClick={() => setEdit(true)}
+              onClick={() => setOpenEdit(true)}
               variant="contained"
               color="primary"
               className="edit-button"
@@ -106,7 +107,7 @@ export default function MoodCard({
         </div>
       </Card>
       <>
-        {edit && (
+        {openEdit && (
           <Switch>
             <Route path="/moods/:id/edit">
               <MoodEdit

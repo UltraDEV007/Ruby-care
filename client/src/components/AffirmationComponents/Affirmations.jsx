@@ -13,6 +13,8 @@ export default function Affirmations({
   handleDelete,
   handleCreate,
   loaded,
+  setAffirmations,
+  handleUpdate,
 }) {
   const [openOptions, setOpenOptions] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
@@ -56,12 +58,15 @@ export default function Affirmations({
         <AffirmationLetter
           updated={updated}
           onDelete={onDelete}
+          setAffirmations={setAffirmations}
+          handleUpdate={handleUpdate}
           affirmation={affirmation}
           openOptions={openOptions}
           handleDelete={handleDelete}
           openDetail={openDetail}
           handleDetailOpen={handleDetailOpen}
           handleDetailClose={handleDetailClose}
+          affirmations={affirmations}
         />
       ))
     )
