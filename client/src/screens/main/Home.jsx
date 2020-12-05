@@ -159,7 +159,7 @@ export default function Home() {
                 aria-controls="panel1a-content"
                 id="panel1a-header"
               >
-                <Typography className={classes.heading}>Medications</Typography>
+                <Typography className={classes.heading}>RXGuide</Typography>
               </AccordionSummary>
               <AccordionDetails>
                 <div className="content-container">
