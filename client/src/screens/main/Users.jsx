@@ -15,7 +15,7 @@ const Div = styled.div`
   justify-content: center;
   flex-flow: column wrap;
   .users-title {
-    font-size: 2.5rem;
+    font-size: 2.3rem;
     padding: 10px;
     margin-bottom: 5px;
   }
@@ -27,7 +27,7 @@ const Div = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     padding: 8px;
     font-family: "montserrat", sans-serif;
   }
