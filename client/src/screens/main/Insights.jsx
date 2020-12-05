@@ -70,33 +70,18 @@ export default function Insights(props) {
     setOpenDelete(false);
   };
 
-  const INSIGHTS = React.Children.toArray(
-    props.insights.map((insight) => (
-      <InsightCard
-        darkMode={darkMode}
-        updated={props.updated}
-        insights={props.insights}
-        insight={insight}
-        handleOpen={handleDeleteOpen}
-        handleClose={handleDeleteClose}
-        onDelete={onDelete}
-        openDelete={openDelete}
-        handleDelete={props.handleDelete}
-      />
-    ))
-  );
+  const [search, setSearch] = useState("");
 
-  const [search, setSearch] = useState(false);
-  const filteredInsights = props.insights?.filter(
-    (insight) =>
-      insight?.title?.toLowerCase().includes(`${search}`.toLowerCase()) ||
-      insight?.user?.name?.toLowerCase().includes(`${search}`.toLowerCase())
-  );
+  const getInsights = () =>
+    props.insights?.filter(
+      (insight) =>
+        insight?.title?.toLowerCase().includes(`${search}`.toLowerCase()) ||
+        insight?.user?.name?.toLowerCase().includes(`${search}`.toLowerCase())
+    );
 
-  const insightsJSX = React.Children.toArray(
-    filteredInsights.map((insight) => (
+  const queriedInsights = React.Children.toArray(
+    getInsights().map((insight) => (
       <InsightCard
-        onClick={() => setSearch(INSIGHTS)}
         darkMode={darkMode}
         updated={props.updated}
         insights={props.insights}
@@ -130,7 +115,7 @@ export default function Insights(props) {
           ) : (
             <></>
           )}
-          {search ? insightsJSX : INSIGHTS}
+          {queriedInsights}
         </div>
       </Wrapper>
     </Layout>

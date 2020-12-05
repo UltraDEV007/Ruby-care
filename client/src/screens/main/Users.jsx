@@ -56,23 +56,16 @@ const Div = styled.div`
 
 const Users = ({ allUsers, loaded }) => {
   const [darkMode] = useContext(DarkModeContext);
-  const USERS = React.Children.toArray(
-    allUsers.map((user) => (
+  const [search, setSearch] = useState("");
+  const getUsers = () =>
+    allUsers.filter((user) =>
+      user.name.toLowerCase().includes(`${search}`.toLowerCase())
+    );
+
+  const queriedUsers = React.Children.toArray(
+    getUsers().map((user) => (
       <Link darkMode={darkMode} to={`/users/${user.id}`} className="link">
         <AccountCircleIcon className="user-icon" /> <h1>{user.name}</h1>
-      </Link>
-    ))
-  );
-
-  const [search, setSearch] = useState(false);
-  const filteredUsers = allUsers.filter((user) =>
-    user.name.toLowerCase().includes(`${search}`.toLowerCase())
-  );
-
-  const usersJSX = React.Children.toArray(
-    filteredUsers.map((user) => (
-      <Link darkMode={darkMode} to={`/users/${user.id}`} className="link">
-        <h1>{user.name}</h1>
       </Link>
     ))
   );
@@ -86,23 +79,16 @@ const Users = ({ allUsers, loaded }) => {
         </div>
         <Search setSearch={setSearch} />
         <div className="users-container">
-          {search ? (
-            <>
-              <p className="users-title">{checkUserLength(usersJSX, loaded)}</p>
-              {usersJSX}
-            </>
-          ) : (
-            <>
-              <p className="users-title">{checkUserLength(allUsers, loaded)}</p>
-              {!loaded ? (
-                <LinearProgress
-                  style={{ margin: "50px auto", width: "30vw" }}
-                />
-              ) : (
-                USERS
-              )}
-            </>
-          )}
+          <>
+            <p className="users-title">
+              {checkUserLength(queriedUsers, loaded)}
+            </p>
+            {!loaded ? (
+              <LinearProgress style={{ margin: "50px auto", width: "30vw" }} />
+            ) : (
+              queriedUsers
+            )}
+          </>
         </div>
       </Div>
     </Layout>
