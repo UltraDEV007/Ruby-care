@@ -28,10 +28,10 @@ export default function MoodCard({ mood, updated, openOptions, handleDelete }) {
         <div className="status">
           {emojiLogic(
             mood.status,
-            <GreatEmoji darkMode={darkMode} />,
             <PoorEmoji darkMode={darkMode} />,
             <OkayEmoji darkMode={darkMode} />,
-            <GoodEmoji darkMode={darkMode} />
+            <GoodEmoji darkMode={darkMode} />,
+            <GreatEmoji darkMode={darkMode} />
           )}
           <p>{mood.status}</p>
         </div>

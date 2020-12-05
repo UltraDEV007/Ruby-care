@@ -1,13 +1,10 @@
 export const emojiLogic = (
   status,
-  greatEmoji,
   poorEmoji,
   okayEmoji,
-  goodEmoji
+  goodEmoji,
+  greatEmoji
 ) => {
-  if (status === "Great") {
-    return greatEmoji;
-  }
   if (status === "Poor") {
     return poorEmoji;
   }
@@ -16,5 +13,8 @@ export const emojiLogic = (
   }
   if (status === "Good") {
     return goodEmoji;
+  }
+  if (status === "Great") {
+    return greatEmoji;
   }
 };
