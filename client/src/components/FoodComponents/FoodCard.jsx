@@ -7,23 +7,11 @@ import "moment-timezone";
 import { DarkModeContext } from "../Context/DarkModeContext";
 import { indigo } from "@material-ui/core/colors/";
 import RestaurantIcon from "@material-ui/icons/Restaurant";
-import { toTitleCase } from "../../utils/toTitleCase";
+import ratingLogic from "../../utils/ratingLogic";
 
 export default function FoodCard({ food, openOptions, handleDelete }) {
   const [darkMode] = useContext(DarkModeContext);
 
-  //  we fill the array with stars and "r" is one individual star
-  // console.log(Array(5).fill('⭐')) =>[⭐, ⭐, ⭐, ⭐, ⭐]
-
-  const ratingJSX = Array(food.rating)
-    .fill()
-    .map(() => (
-      <span role="img" aria-label="star">
-        ⭐
-      </span>
-    ));
-
-  // https://stackoverflow.com/questions/5963182/how-to-remove-spaces-from-a-string-using-javascript
   const foodRegex = /(avocado)i|chicken|hamburger|burger|^cheese$|pizza|/i;
   //  "|" in regexp means "or" (||)
   // const meal = food.name;
@@ -75,7 +63,7 @@ export default function FoodCard({ food, openOptions, handleDelete }) {
             {food.time?.toLocaleString()}
           </Moment>
         </div>
-        <div className="rating">{ratingJSX}</div>
+        <div className="rating">{ratingLogic(food.rating, "⭐")}</div>
         <div className="factors">{food.factors}</div>
         <div
           className="buttons"
