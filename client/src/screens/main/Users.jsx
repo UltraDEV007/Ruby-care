@@ -15,7 +15,7 @@ const Div = styled.div`
   justify-content: center;
   flex-flow: column wrap;
   .users-title {
-    font-size: 3rem;
+    font-size: 2.5rem;
     padding: 10px;
     margin-bottom: 5px;
   }
@@ -27,7 +27,8 @@ const Div = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    font-size: 1.3rem;
+    font-size: 0.8rem;
+    padding: 8px;
     font-family: "montserrat", sans-serif;
   }
   .user-icon {
@@ -46,6 +47,9 @@ const Div = styled.div`
   @media screen and (min-width: 1280px) {
     .users-title {
       font-size: 3.2rem;
+    }
+    .link {
+      font-size: 1rem;
     }
   }
 `;
