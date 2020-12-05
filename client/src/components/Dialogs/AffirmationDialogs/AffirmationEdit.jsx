@@ -128,7 +128,7 @@ export default function AffirmationEdit({
 
           <DialogActions>
             <Button type="submit" variant="contained" color="primary">
-              Submit
+              Save
             </Button>
             <Button
               to="/"

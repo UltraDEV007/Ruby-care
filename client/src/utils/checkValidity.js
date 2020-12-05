@@ -7,6 +7,7 @@ const whiteList = [
   /^\/symptoms/,
   /^\/affirmations/,
   /^\/foods/,
+  /^\/medications/,
   /^\/users/,
   /^\/$/,
 ];

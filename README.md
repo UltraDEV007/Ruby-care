@@ -266,6 +266,8 @@ export default function ratingLogic(ratingParam, iconParam) {
 - Then I import it into FoodCard.jsx(or any file I want to use it in the future) and use the paramaters like this:
 - The reason I decided to give the icon a paramter is because maybe one time I want to do a different icon that isn't a star for something else
 
+> This is how I export it and put it in the JSX
+
 ```
  <div className="rating">{ratingLogic(food.rating, "⭐")}</div>
 ```
