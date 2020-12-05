@@ -12,10 +12,7 @@ import ratingLogic from "../../utils/ratingLogic";
 export default function FoodCard({ food, openOptions, handleDelete }) {
   const [darkMode] = useContext(DarkModeContext);
 
-  const foodRegex = /(avocado)i|chicken|hamburger|burger|^cheese$|pizza|/i;
-  //  "|" in regexp means "or" (||)
-  // const meal = food.name;
-
+  const foodRegex = /avocado|chicken|hamburger|burger|(^cheese$)|pizza|cheeseburger|steak|meat|milk/;
   const foodMap = {
     avocado: "🥑",
     chicken: "🍗",
@@ -23,17 +20,19 @@ export default function FoodCard({ food, openOptions, handleDelete }) {
     cheeseburger: "🍔",
     cheese: "🧀",
     pizza: "🍕",
+    steak: "🥩",
+    meat: "🍖",
+    milk: "🥛",
   };
 
   const foodNameJSX = () => {
-    const result = food.name.match(foodRegex);
-    console.log("regex", result);
+    const result = food.name.toLowerCase().trim().match(foodRegex);
     if (result) {
       return (
         <>
-          {foodMap[result[0]]}{" "}
+          {foodMap[result[0]]}
           <span role="img" aria-label={food.name}>
-            &nbsp;{food.name}{" "}
+            &nbsp;{food.name}
           </span>
         </>
       );
