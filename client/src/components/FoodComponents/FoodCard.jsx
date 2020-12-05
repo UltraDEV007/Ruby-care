@@ -12,61 +12,48 @@ import { toTitleCase } from "../../utils/toTitleCase";
 export default function FoodCard({ food, openOptions, handleDelete }) {
   const [darkMode] = useContext(DarkModeContext);
 
-  const foodRatingJSX = () => {
-    if (food.rating === 1) {
-      return <>⭐</>;
-    }
-    if (food.rating === 2) {
-      return <>⭐⭐</>;
-    }
-    if (food.rating === 3) {
-      return <>⭐⭐⭐</>;
-    }
-    if (food.rating === 4) {
-      return <>⭐⭐⭐⭐</>;
-    }
-    if (food.rating === 5) {
-      return <>⭐⭐⭐⭐⭐</>;
-    }
-  };
+  //  we fill the array with stars and "r" is one individual star
+  // console.log(Array(5).fill('⭐')) =>[⭐, ⭐, ⭐, ⭐, ⭐]
+
+  const ratingJSX = Array(food.rating)
+    .fill()
+    .map(() => (
+      <span role="img" aria-label="star">
+        ⭐
+      </span>
+    ));
+
   // https://stackoverflow.com/questions/5963182/how-to-remove-spaces-from-a-string-using-javascript
-
-  let avocadoReg = /Avocado/;
-  let chickenReg = /Chicken/;
-  let hamburgerReg = /Hamburger/;
-  let cheeseburgerReg = /burger/;
-  let cheeseReg = /^Cheese$/;
-
-  const meal = food.name;
+  const foodRegex = /(avocado)i|chicken|hamburger|burger|^cheese$|pizza|/i;
+  //  "|" in regexp means "or" (||)
+  // const meal = food.name;
 
   const foodMap = {
     avocado: "🥑",
     chicken: "🍗",
     hamburger: "🍔",
-    cheeseburrger: "🍔",
+    cheeseburger: "🍔",
     cheese: "🧀",
+    pizza: "🍕",
   };
 
   const foodNameJSX = () => {
-    if (avocadoReg.test(food.name)) {
-      return <>🥑 &nbsp;{meal}</>;
-    }
-    if (chickenReg.test(food.name)) {
-      return <>🍗 &nbsp;{meal}</>;
-    }
-    if (hamburgerReg.test(food.name)) {
-      return <>🍔&nbsp;{meal}</>;
-    }
-    if (cheeseburgerReg.test(food.name)) {
-      return <>🍔&nbsp;{meal}</>;
-    }
-    if (cheeseReg.test(food.name)) {
-      return <>🧀&nbsp;{meal}</>;
+    const result = food.name.match(foodRegex);
+    console.log("regex", result);
+    if (result) {
+      return (
+        <>
+          {foodMap[result[0]]}{" "}
+          <span role="img" aria-label={food.name}>
+            &nbsp;{food.name}{" "}
+          </span>
+        </>
+      );
     } else {
       return (
         <>
           <RestaurantIcon />
-          &nbsp;{meal}
+          &nbsp;{food.name}
         </>
       );
     }
@@ -88,7 +75,7 @@ export default function FoodCard({ food, openOptions, handleDelete }) {
             {food.time?.toLocaleString()}
           </Moment>
         </div>
-        <div className="rating">{foodRatingJSX()}</div>
+        <div className="rating">{ratingJSX}</div>
         <div className="factors">{food.factors}</div>
         <div
           className="buttons"

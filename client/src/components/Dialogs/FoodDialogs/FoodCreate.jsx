@@ -13,7 +13,6 @@ import CreateIcon from "@material-ui/icons/Create";
 import Select from "@material-ui/core/Select";
 import "./FoodCreate.css";
 import FormHelperText from "@material-ui/core/FormHelperText";
-import { toTitleCase } from "../../../utils/toTitleCase";
 
 const styles = (theme) => ({
   root: {
@@ -103,7 +102,7 @@ export default function FoodCreate({ open, onSave, handleClose }) {
               name="name"
               label="Food/meal name"
               style={{ width: "300px", margin: "10px" }}
-              value={toTitleCase(formData.name)}
+              value={formData.name}
               onChange={handleChange}
               id="outlined-multiline-static"
               variant="filled"
