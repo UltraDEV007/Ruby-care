@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import Search from "../../components/Helpers/Search";
-import { CircularProgress } from "@material-ui/core";
+import LinearProgress from "@material-ui/core/LinearProgress";
 import Layout from "../../layouts/Layout/Layout";
 import styled from "styled-components";
 import { checkUserLength } from "../../utils/checkUserLength";
@@ -72,17 +72,6 @@ const Users = ({ allUsers, loaded }) => {
     ))
   );
 
-  if (!loaded) {
-    return (
-      <Layout title="Community">
-        <Div>
-          <CircularProgress
-            style={{ marginLeft: "50%", marginTop: "10%", width: "100px" }}
-          />
-        </Div>
-      </Layout>
-    );
-  }
   return (
     <Layout title="Community">
       <Div darkMode={{ darkMode }}>
@@ -93,13 +82,19 @@ const Users = ({ allUsers, loaded }) => {
         <div className="users-container">
           {search ? (
             <>
-              <p className="users-title">{checkUserLength(usersJSX)}</p>
+              <p className="users-title">{checkUserLength(usersJSX, loaded)}</p>
               {usersJSX}
             </>
           ) : (
             <>
-              <p className="users-title">{checkUserLength(allUsers)}</p>
-              {USERS}
+              <p className="users-title">{checkUserLength(allUsers, loaded)}</p>
+              {!loaded ? (
+                <LinearProgress
+                  style={{ margin: "50px auto", width: "30vw" }}
+                />
+              ) : (
+                USERS
+              )}
             </>
           )}
         </div>

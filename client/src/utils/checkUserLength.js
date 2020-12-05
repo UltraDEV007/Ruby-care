@@ -1,4 +1,8 @@
-export const checkUserLength = (params) => {
+export const checkUserLength = (params, loadingParam) => {
+  if (!loadingParam) {
+    return <>Loading...</>;
+  }
+
   if (params.length === 0) {
     return <>No users found</>;
   } else if (params.length === 1) {

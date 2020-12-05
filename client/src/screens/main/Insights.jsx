@@ -123,7 +123,11 @@ export default function Insights(props) {
         <br />
         <div className="insights-container">
           <Search setSearch={setSearch} />
-          {!props.loaded ? <CircularProgress /> : <></>}
+          {!props.loaded ? (
+            <CircularProgress style={{ width: "20%", marginTop: "18%" }} />
+          ) : (
+            <></>
+          )}
           {search ? insightsJSX : INSIGHTS}
         </div>
       </Wrapper>

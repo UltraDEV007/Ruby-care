@@ -9,14 +9,19 @@ const Form = styled.div`
   justify-content: center;
   align-items: center;
   input {
-    width: 50vw;
+    width: 68vw;
     font-size: 18px;
     letter-spacing: 0.1px;
-    padding: 12px 20px 12px 40px;
+    padding: 12px;
     border: 1px solid pink;
     margin: 40px;
     text-align: center;
     box-shadow: 5px 5px peachpuff;
+  }
+  @media screen and (min-width: 1200px) {
+    input {
+      width: 50vw;
+    }
   }
   input:focus {
     outline: none;
@@ -31,7 +36,7 @@ function Search({ search, setSearch }) {
       location.pathname === "/insights" ||
       location.pathname === "/insights/"
     ) {
-      return "Search by insight title or user's name";
+      return "Search by insight title or user";
     }
     if (location.pathname === "/users" || location.pathname === "/users/")
       return "Search by user's name";
