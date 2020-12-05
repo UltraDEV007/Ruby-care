@@ -6,6 +6,7 @@ import Moment from "react-moment";
 import "moment-timezone";
 import { DarkModeContext } from "../Context/DarkModeContext";
 import { indigo } from "@material-ui/core/colors/";
+import RestaurantIcon from "@material-ui/icons/Restaurant";
 
 export default function FoodCard({ food, openOptions, handleDelete }) {
   const [darkMode] = useContext(DarkModeContext);
@@ -29,19 +30,22 @@ export default function FoodCard({ food, openOptions, handleDelete }) {
   };
   // https://stackoverflow.com/questions/5963182/how-to-remove-spaces-from-a-string-using-javascript
 
-  const foodNames = [/avocado/, /chicken/];
-
   let avocadoReg = /avocado/;
   let chickenReg = /chicken/;
 
   const foodNameJSX = () => {
     if (avocadoReg.test(food.name) === true) {
-      return <>🥑 {food.name}</>;
+      return <>🥑 &nbsp;{food.name}</>;
     }
     if (chickenReg.test(food.name) === true) {
-      return <>🍗 {food.name}</>;
+      return <>🍗 &nbsp;{food.name}</>;
     } else {
-      return <>{food.name} </>;
+      return (
+        <>
+          <RestaurantIcon />
+          &nbsp;{food.name}
+        </>
+      );
     }
   };
 
