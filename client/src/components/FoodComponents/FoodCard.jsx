@@ -7,6 +7,7 @@ import "moment-timezone";
 import { DarkModeContext } from "../Context/DarkModeContext";
 import { indigo } from "@material-ui/core/colors/";
 import RestaurantIcon from "@material-ui/icons/Restaurant";
+import { toTitleCase } from "../../utils/toTitleCase";
 
 export default function FoodCard({ food, openOptions, handleDelete }) {
   const [darkMode] = useContext(DarkModeContext);
@@ -30,33 +31,34 @@ export default function FoodCard({ food, openOptions, handleDelete }) {
   };
   // https://stackoverflow.com/questions/5963182/how-to-remove-spaces-from-a-string-using-javascript
 
-  let avocadoReg = /avocado/;
-  let chickenReg = /chicken/;
-  let hamburgerReg = /hamburger/;
-  let cheeseburgerReg = /cheeseburger/;
-  let macAndCheeseReg = /mac and cheese/;
-  let avocadoChickenReg = /avocado chicken/;
+  let avocadoReg = /Avocado/;
+  let chickenReg = /Chicken/;
+  let hamburgerReg = /Hamburger/;
+  let cheeseburgerReg = /burger/;
+  let cheeseReg = /^Cheese$/;
+
+  const meal = food.name;
 
   const foodNameJSX = () => {
     if (avocadoReg.test(food.name)) {
-      return <>🥑 &nbsp;{food.name}</>;
+      return <>🥑 &nbsp;{meal}</>;
     }
     if (chickenReg.test(food.name)) {
-      return <>🍗 &nbsp;{food.name}</>;
+      return <>🍗 &nbsp;{meal}</>;
     }
     if (hamburgerReg.test(food.name)) {
-      return <>🍔&nbsp;{food.name}</>;
+      return <>🍔&nbsp;{meal}</>;
     }
     if (cheeseburgerReg.test(food.name)) {
-      return <>🍔&nbsp;{food.name}</>;
+      return <>🍔&nbsp;{meal}</>;
     }
-    if (avocadoChickenReg.test(food.name)) {
-      return <>🥑&nbsp;🍗 &nbsp;{food.name}</>;
+    if (cheeseReg.test(food.name)) {
+      return <>🧀&nbsp;{meal}</>;
     } else {
       return (
         <>
           <RestaurantIcon />
-          &nbsp;{food.name}
+          &nbsp;{meal}
         </>
       );
     }
