@@ -3,23 +3,59 @@ import { useParams } from "react-router-dom";
 import Radio from "@material-ui/core/Radio";
 import FormLabel from "@material-ui/core/FormLabel";
 import { red, green, yellow } from "@material-ui/core/colors";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import { Link } from "react-router-dom";
+import Dialog from "@material-ui/core/Dialog";
+import MuiDialogActions from "@material-ui/core/DialogActions";
+import MuiDialogContent from "@material-ui/core/DialogContent";
+import MuiDialogTitle from "@material-ui/core/DialogTitle";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
+import Typography from "@material-ui/core/Typography";
 
-const useStyles = makeStyles({
+const styles = (theme) => ({
   root: {
-    padding: "20px",
+    margin: 0,
+    padding: theme.spacing(2),
   },
-  form: {
-    display: "flex",
-    flexDirection: "column",
-  },
-  inputs: {
-    display: "flex",
-    flexDirection: "row",
+  closeButton: {
+    position: "absolute",
+    right: theme.spacing(1),
+    top: theme.spacing(1),
+    color: theme.palette.grey[500],
   },
 });
+
+const DialogTitle = withStyles(styles)((props) => {
+  const { children, classes, onClose, ...other } = props;
+  return (
+    <MuiDialogTitle disableTypography className={classes.root} {...other}>
+      <Typography variant="h6">{children}</Typography>
+      {onClose ? (
+        <IconButton
+          aria-label="close"
+          className={classes.closeButton}
+          onClick={onClose}
+        >
+          <CloseIcon />
+        </IconButton>
+      ) : null}
+    </MuiDialogTitle>
+  );
+});
+
+const DialogContent = withStyles((theme) => ({
+  root: {
+    padding: theme.spacing(2),
+  },
+}))(MuiDialogContent);
+
+const DialogActions = withStyles((theme) => ({
+  root: {
+    margin: 0,
+    padding: theme.spacing(1),
+  },
+}))(MuiDialogActions);
 
 const PoorRadio = withStyles({
   root: {
@@ -62,8 +98,6 @@ const OkayRadio = withStyles({
 })((props) => <Radio color="default" {...props} />);
 
 export default function MoodEdit(props) {
-  const classes = useStyles();
-
   const [formData, setFormData] = useState({
     status: "",
   });
@@ -91,7 +125,7 @@ export default function MoodEdit(props) {
       );
     } else {
       e.preventDefault();
-      props.handleUpdate(id, formData);
+      props.onSave(id, formData);
     }
   };
   const handleChange = (e) => {
@@ -102,61 +136,71 @@ export default function MoodEdit(props) {
   };
 
   return (
-    <div className={classes.root}>
-      <form className={classes.form} onSubmit={handleSubmit}>
-        <h3>Edit Mood</h3>
-        <div className={classes.inputs}>
-          <FormLabel>
-            Poor
-            <PoorRadio
-              type="radio"
-              name="Poor"
-              checked={formData.status === "Poor"}
-              onChange={handleChange}
-            />
-          </FormLabel>
-          <FormLabel>
-            Okay
-            <OkayRadio
-              type="radio"
-              name="Okay"
-              checked={formData.status === "Okay"}
-              onChange={handleChange}
-            />
-          </FormLabel>
+    <Dialog
+      onClose={props.handleClose}
+      aria-labelledby="customized-dialog-title"
+      open={props.handleOpen}
+    >
+      <div>
+        <form onSubmit={handleSubmit}>
+          <DialogTitle>
+            <Typography>Edit Mood</Typography>
+          </DialogTitle>
+          <DialogContent dividers>
+            <div>
+              <FormLabel>
+                Poor
+                <PoorRadio
+                  type="radio"
+                  name="Poor"
+                  checked={formData.status === "Poor"}
+                  onChange={handleChange}
+                />
+              </FormLabel>
+              <FormLabel>
+                Okay
+                <OkayRadio
+                  type="radio"
+                  name="Okay"
+                  checked={formData.status === "Okay"}
+                  onChange={handleChange}
+                />
+              </FormLabel>
 
-          <FormLabel>
-            Good
-            <GoodRadio
-              type="radio"
-              name="Good"
-              checked={formData.status === "Good"}
-              onChange={handleChange}
-            />
-          </FormLabel>
-          <FormLabel>
-            Great
-            <GreatRadio
-              type="radio"
-              name="Great"
-              checked={formData.status === "Great"}
-              onChange={handleChange}
-            />
-          </FormLabel>
-        </div>
-        <Button type="submit" variant="contained" color="primary">
-          Submit
-        </Button>
-        <Button
-          to="/"
-          component={Link}
-          type="submit"
-          variant="contained"
-          color="secondary"
-        >
-          Go Back
-        </Button>
-      </form>
-    </div>
+              <FormLabel>
+                Good
+                <GoodRadio
+                  type="radio"
+                  name="Good"
+                  checked={formData.status === "Good"}
+                  onChange={handleChange}
+                />
+              </FormLabel>
+              <FormLabel>
+                Great
+                <GreatRadio
+                  type="radio"
+                  name="Great"
+                  checked={formData.status === "Great"}
+                  onChange={handleChange}
+                />
+              </FormLabel>
+            </div>
+          </DialogContent>
+          <DialogActions>
+            <Button type="submit" variant="contained" color="primary">
+              Save
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={props.handleClose}
+            >
+              Cancel
+            </Button>
+          </DialogActions>
+        </form>
+      </div>
+    </Dialog>
   );
 }

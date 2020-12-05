@@ -4,19 +4,19 @@
   width: 100%;
 }
 
-.moods {
+.meds {
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
   margin-left: 30px;
 }
 
-.mood-container {
+.med-container {
   margin: 10px;
   text-align: center;
 }
 
-.mood-card {
+.med-card {
   margin: 10px;
   width: 200px;
 }
@@ -26,7 +26,7 @@
   width: 20%;
 }
 
-.add-mood {
+.add-med {
   display: flex;
   flex-direction: column;
   height: 89px;
@@ -34,14 +34,14 @@
   font-size: 10px;
 }
 
-.edit-moods {
+.edit-meds {
   height: 50px;
   margin-top: 10px;
   height: 89px;
   margin-right: 10px;
 }
 
-.log-your-mood {
+.log-your-med {
   display: flex;
   align-content: center;
 }
@@ -57,7 +57,7 @@
   width: 50px;
 }
 
-.mood-buttons-container {
+.med-buttons-container {
   display: flex;
   right: 0;
   margin-left: 20px;

@@ -12,7 +12,7 @@ import ratingLogic from "../../utils/ratingLogic";
 export default function FoodCard({ food, openOptions, handleDelete }) {
   const [darkMode] = useContext(DarkModeContext);
 
-  const foodRegex = /avocado|chicken|hamburger|burger|(^cheese$)|pizza|cheeseburger|steak|meat|milk/;
+  const foodRegex = /avocado|chicken|hamburger|burger|(^cheese$)|pizza|cheeseburger|steak|meat|milk|bacon/;
   const foodMap = {
     avocado: "🥑",
     chicken: "🍗",
@@ -23,6 +23,7 @@ export default function FoodCard({ food, openOptions, handleDelete }) {
     steak: "🥩",
     meat: "🍖",
     milk: "🥛",
+    bacon: "🥓",
   };
 
   const foodNameJSX = () => {

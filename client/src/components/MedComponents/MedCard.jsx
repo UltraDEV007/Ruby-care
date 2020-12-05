@@ -16,9 +16,9 @@ export default function MedCard({ med, openOptions, handleDelete }) {
           ? { boxShadow: "default" }
           : { boxShadow: `0px 0px 4px 1.2px ${indigo[50]}` }
       }
-      className="symptom-card"
+      className="med-card"
     >
-      <div className="symptom-container">
+      <div className="med-container">
         {med.name}
         <div className="time">
           <Moment format="MMM/DD/yyyy hh:mm A">

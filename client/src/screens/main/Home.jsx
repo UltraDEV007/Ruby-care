@@ -20,6 +20,7 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 import { checkValidity } from "../../utils/checkValidity";
 import NotFound from "../Error/NotFound";
 import ScrollToTopOnMount from "../../components/Helpers/ScrollToTopOnMount";
+import RXGuideLogo from "../../components/MedComponents/RXGuideLogo";
 
 export default function Home() {
   const [darkMode] = useContext(DarkModeContext);
@@ -159,7 +160,7 @@ export default function Home() {
                 aria-controls="panel1a-content"
                 id="panel1a-header"
               >
-                <Typography className={classes.heading}>RXGuide</Typography>
+                <RXGuideLogo />
               </AccordionSummary>
               <AccordionDetails>
                 <div className="content-container">

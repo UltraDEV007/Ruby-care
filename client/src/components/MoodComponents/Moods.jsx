@@ -13,6 +13,8 @@ export default function Moods({
   handleDelete,
   handleCreate,
   loaded,
+  handleUpdate,
+  setMoods,
 }) {
   const [openOptions, setOpenOptions] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
@@ -43,8 +45,11 @@ export default function Moods({
     ) : (
       moods.map((mood) => (
         <MoodCard
+          setMoods={setMoods}
+          handleUpdate={handleUpdate}
           updated={updated}
           mood={mood}
+          moods={moods}
           openOptions={openOptions}
           handleDelete={handleDelete}
         />

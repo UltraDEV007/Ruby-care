@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Moods.css";
+import "./Meds.css";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import SettingsSharpIcon from "@material-ui/icons/SettingsSharp";
@@ -35,9 +35,9 @@ export default function Meds({
 
   const MEDS = React.Children.toArray(
     meds.length === 0 ? (
-      <div className="log-your-mood">
+      <div className="log-your-med">
         <Typography> Click the </Typography>&nbsp;
-        <AddIcon className="plus-icon-moods" />
+        <AddIcon className="plus-icon-meds" />
         &nbsp;
         <Typography>button to add a medication!</Typography>
       </div>
@@ -55,11 +55,11 @@ export default function Meds({
 
   return (
     <>
-      <div className="moods">
+      <div className="meds">
         {loaded ? MEDS : <>Loading...</>}
-        <div className="mood-buttons-container">
+        <div className="med-buttons-container">
           <Button
-            className="edit-moods"
+            className="edit-meds"
             variant="outlined"
             color="primary"
             onClick={handleOptionsClick}
@@ -70,7 +70,7 @@ export default function Meds({
             onClick={handleClickOpen}
             variant="outlined"
             color="primary"
-            className="add-mood"
+            className="add-med"
           >
             <AddIcon className="add-icon" />
           </Button>

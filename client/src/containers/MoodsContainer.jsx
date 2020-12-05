@@ -1,8 +1,7 @@
 import React from "react";
 import Moods from "../components/MoodComponents/Moods.jsx";
 import { useState, useEffect, useContext } from "react";
-import { Switch, Route, useHistory } from "react-router-dom";
-import MoodEdit from "../screens/MoodScreens/MoodEdit";
+import { useHistory } from "react-router-dom";
 import { destroyMood, getAllMoods, postMood, putMood } from "../services/moods";
 import { CurrentUserContext } from "../components/Context/CurrentUserContext";
 
@@ -47,16 +46,13 @@ export default function MoodsContainer() {
     <>
       <Moods
         moods={moods}
+        setMoods={setMoods}
         updated={updated}
         loaded={loaded}
         handleCreate={handleCreate}
         handleDelete={handleDelete}
+        handleUpdate={handleUpdate}
       />
-      <Switch>
-        <Route path="/moods/:id/edit">
-          <MoodEdit moods={moods} handleUpdate={handleUpdate} />
-        </Route>
-      </Switch>
     </>
   );
 }

@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
-import { Link } from "react-router-dom";
+import { Link, Route, Switch } from "react-router-dom";
 import Moment from "react-moment";
 import "moment-timezone";
 import { DarkModeContext } from "../Context/DarkModeContext";
@@ -11,64 +11,115 @@ import PoorEmoji from "./Emojis/PoorEmoji";
 import OkayEmoji from "./Emojis/OkayEmoji";
 import GoodEmoji from "./Emojis/GoodEmoji";
 import { emojiLogic } from "../../utils/emojiLogic";
+import MoodEdit from "../../screens/MoodScreens/MoodEdit";
+import { CircularProgress } from "@material-ui/core";
 
-export default function MoodCard({ mood, updated, openOptions, handleDelete }) {
+export default function MoodCard({
+  mood,
+  updated,
+  openOptions,
+  handleDelete,
+  handleUpdate,
+  moods,
+  setMoods,
+}) {
   const [darkMode] = useContext(DarkModeContext);
+  const [edit, setEdit] = useState(false);
+  const [edited, setEdited] = useState(false);
+
+  const handleOpen = () => {
+    setEdit(true);
+  };
+  const handleClose = () => {
+    setEdit(false);
+  };
+
+  const onSave = (formData, id) => {
+    handleUpdate(formData, id);
+    setEdited(true);
+    setTimeout(async () => {
+      setMoods(moods);
+      setEdited(false);
+      setEdit(false);
+    }, 400);
+  };
 
   return (
-    <Card
-      style={
-        darkMode === "light"
-          ? { boxShadow: "default" }
-          : { boxShadow: `0px 0px 4px 1.2px ${indigo[50]}` }
-      }
-      className="mood-card"
-    >
-      <div className="mood-container">
-        <div className="status">
-          {emojiLogic(
-            mood.status,
-            <PoorEmoji darkMode={darkMode} />,
-            <OkayEmoji darkMode={darkMode} />,
-            <GoodEmoji darkMode={darkMode} />,
-            <GreatEmoji darkMode={darkMode} />
-          )}
-          <p>{mood.status}</p>
-        </div>
-        <div className="time">
-          {!updated ? (
-            <Moment format="MMM/DD/yyyy hh:mm A">{mood.created_at}</Moment>
-          ) : (
-            <Moment format="MMM/DD/yyyy hh:mm A">{mood.updated_at}</Moment>
-          )}
-        </div>
-        <div
-          className="buttons"
-          style={openOptions ? { display: "flex" } : { display: "none" }}
-        >
-          <Button
-            component={Link}
-            to={`/moods/${mood.id}/edit`}
-            variant="contained"
-            color="primary"
-            className="edit-button"
+    <>
+      <Card
+        style={
+          darkMode === "light"
+            ? { boxShadow: "default" }
+            : { boxShadow: `0px 0px 4px 1.2px ${indigo[50]}` }
+        }
+        className="mood-card"
+      >
+        <div className="mood-container">
+          <div className="status">
+            {!edited ? (
+              emojiLogic(
+                mood.status,
+                <PoorEmoji darkMode={darkMode} />,
+                <OkayEmoji darkMode={darkMode} />,
+                <GoodEmoji darkMode={darkMode} />,
+                <GreatEmoji darkMode={darkMode} />
+              )
+            ) : (
+              <CircularProgress />
+            )}
+            <p>{mood.status}</p>
+          </div>
+          <div className="time">
+            {!updated ? (
+              <Moment format="MMM/DD/yyyy hh:mm A">{mood.created_at}</Moment>
+            ) : (
+              <Moment format="MMM/DD/yyyy hh:mm A">{mood.updated_at}</Moment>
+            )}
+          </div>
+          <div
+            className="buttons"
+            style={openOptions ? { display: "flex" } : { display: "none" }}
           >
-            <span role="img" aria-label="edit">
-              🔧
-            </span>
-          </Button>
-          <Button
-            variant="contained"
-            color="secondary"
-            className="delete-button"
-            onClick={() => handleDelete(mood.id)}
-          >
-            <span role="img" aria-label="delete">
-              🗑️
-            </span>
-          </Button>
+            <Button
+              component={Link}
+              to={`/moods/${mood.id}/edit`}
+              onClick={() => setEdit(true)}
+              variant="contained"
+              color="primary"
+              className="edit-button"
+            >
+              <span role="img" aria-label="edit">
+                🔧
+              </span>
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              className="delete-button"
+              onClick={() => handleDelete(mood.id)}
+            >
+              <span role="img" aria-label="delete">
+                🗑️
+              </span>
+            </Button>
+          </div>
         </div>
-      </div>
-    </Card>
+      </Card>
+      <>
+        {edit && (
+          <Switch>
+            <Route path="/moods/:id/edit">
+              <MoodEdit
+                handleOpen={handleOpen}
+                moods={moods}
+                onSave={onSave}
+                handleUpdate={handleUpdate}
+                handleClose={handleClose}
+              />
+            </Route>
+          </Switch>
+        )}
+      </>
+    </>
   );
 }
