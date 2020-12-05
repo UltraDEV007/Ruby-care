@@ -8,6 +8,8 @@ import { DarkModeContext } from "../Context/DarkModeContext";
 import { indigo } from "@material-ui/core/colors/";
 import RestaurantIcon from "@material-ui/icons/Restaurant";
 import ratingLogic from "../../utils/ratingLogic";
+// import foodregex from utils
+// import foodmap from utils
 
 export default function FoodCard({ food, openOptions, handleDelete }) {
   const [darkMode] = useContext(DarkModeContext);

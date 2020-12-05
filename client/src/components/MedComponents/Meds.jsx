@@ -13,6 +13,7 @@ export default function Meds({
   handleDelete,
   handleCreate,
   loaded,
+  RXGuideMeds,
 }) {
   const [openOptions, setOpenOptions] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
@@ -74,6 +75,7 @@ export default function Meds({
             <AddIcon className="add-icon" />
           </Button>
           <MedCreate
+            RXGuideMeds={RXGuideMeds}
             open={openDialog}
             onSave={onSave}
             handleClose={handleClose}

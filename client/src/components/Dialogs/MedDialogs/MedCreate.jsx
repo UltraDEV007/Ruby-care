@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -56,11 +56,15 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
-export default function MedCreate({ open, onSave, handleClose }) {
+export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
   const [formData, setFormData] = useState({
     name: "",
     time: "",
   });
+
+  const MEDS = React.Children.toArray(
+    RXGuideMeds.map((med) => <option>{med.fields.name}</option>)
+  );
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -90,18 +94,15 @@ export default function MedCreate({ open, onSave, handleClose }) {
         </DialogTitle>
         <DialogContent dividers>
           <div className="input-container">
-            <TextField
-              required
-              autoFocus
-              type="text"
+            <select
+              className="select-css"
               name="name"
-              label="Enter med"
-              style={{ width: "300px", margin: "10px" }}
+              type="text"
               value={formData.name}
               onChange={handleChange}
-              id="outlined-multiline-static"
-              variant="filled"
-            />
+            >
+              {MEDS}
+            </select>
           </div>
 
           <div className="input-container">

@@ -62,10 +62,11 @@ export default function MedsContainer() {
   return (
     <>
       <Meds
+        RXGuideMeds={RXGuideMeds}
         meds={meds}
         updated={updated}
         loaded={loaded}
-        handleCreate={handleDelete}
+        handleCreate={handleCreate}
         handleDelete={handleDelete}
       />
       <Switch>
