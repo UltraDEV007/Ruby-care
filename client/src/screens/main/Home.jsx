@@ -18,6 +18,7 @@ import { getAllAffirmations } from "../../services/affirmations";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import { checkValidity } from "../../utils/checkValidity";
 import NotFound from "../Error/NotFound";
+import ScrollToTopOnMount from "../../components/Helpers/ScrollToTopOnMount";
 
 export default function Home() {
   const [darkMode] = useContext(DarkModeContext);
@@ -71,6 +72,7 @@ export default function Home() {
   return checkValidity(location.pathname) ? (
     <Layout title="Home">
       <div className={classes.root}>
+        <ScrollToTopOnMount />
         {!loadedAffirmation ? (
           <LinearProgress style={{ margin: "200px auto", width: "30vw" }} />
         ) : (

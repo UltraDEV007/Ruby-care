@@ -10,6 +10,7 @@ import { CurrentUserContext } from "../../components/Context/CurrentUserContext"
 import { DarkModeContext } from "../../components/Context/DarkModeContext";
 import Moment from "react-moment";
 import "moment-timezone";
+import ScrollToTopOnMount from "../../components/Helpers/ScrollToTopOnMount";
 
 export default function Settings() {
   const [currentUser] = useContext(CurrentUserContext);
@@ -106,6 +107,7 @@ export default function Settings() {
   const userDate = currentUser?.created_at?.toLocaleString();
   return (
     <Layout title="Settings">
+      <ScrollToTopOnMount />
       <div className={classes.userContainer}>
         <Typography className={classes.accountTitle}>Your Account</Typography>
         <Typography className={classes.userText}>

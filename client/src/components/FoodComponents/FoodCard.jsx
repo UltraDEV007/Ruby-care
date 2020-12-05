@@ -32,13 +32,26 @@ export default function FoodCard({ food, openOptions, handleDelete }) {
 
   let avocadoReg = /avocado/;
   let chickenReg = /chicken/;
+  let hamburgerReg = /hamburger/;
+  let cheeseburgerReg = /cheeseburger/;
+  let macAndCheeseReg = /mac and cheese/;
+  let avocadoChickenReg = /avocado chicken/;
 
   const foodNameJSX = () => {
-    if (avocadoReg.test(food.name) === true) {
+    if (avocadoReg.test(food.name)) {
       return <>🥑 &nbsp;{food.name}</>;
     }
-    if (chickenReg.test(food.name) === true) {
+    if (chickenReg.test(food.name)) {
       return <>🍗 &nbsp;{food.name}</>;
+    }
+    if (hamburgerReg.test(food.name)) {
+      return <>🍔&nbsp;{food.name}</>;
+    }
+    if (cheeseburgerReg.test(food.name)) {
+      return <>🍔&nbsp;{food.name}</>;
+    }
+    if (avocadoChickenReg.test(food.name)) {
+      return <>🥑&nbsp;🍗 &nbsp;{food.name}</>;
     } else {
       return (
         <>

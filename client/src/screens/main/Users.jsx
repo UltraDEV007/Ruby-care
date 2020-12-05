@@ -8,6 +8,7 @@ import { checkUserLength } from "../../utils/checkUserLength";
 import { yellow, blue } from "@material-ui/core/colors";
 import { DarkModeContext } from "../../components/Context/DarkModeContext";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import ScrollToTopOnMount from "../../components/Helpers/ScrollToTopOnMount";
 
 const Div = styled.div`
   display: flex;
@@ -75,8 +76,9 @@ const Users = ({ allUsers, loaded }) => {
   return (
     <Layout title="Community">
       <Div darkMode={{ darkMode }}>
+        <ScrollToTopOnMount />
         <div className="title-container">
-          <p> search for a user!</p>
+          <p> Search for a user!</p>
         </div>
         <Search setSearch={setSearch} />
         <div className="users-container">

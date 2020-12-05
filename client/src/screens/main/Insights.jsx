@@ -8,6 +8,7 @@ import styled from "styled-components";
 import Typography from "@material-ui/core/Typography";
 import { yellow, blue } from "@material-ui/core/colors";
 import Search from "../../components/Helpers/Search";
+import ScrollToTopOnMount from "../../components/Helpers/ScrollToTopOnMount";
 
 const Wrapper = styled.div`
   display: flex;
@@ -112,6 +113,7 @@ export default function Insights(props) {
   return (
     <Layout title="Insights">
       <Wrapper darkMode={darkMode}>
+        <ScrollToTopOnMount />
         <div className="sentence-container">
           <Typography className="sentence">
             Anything on your mind? &nbsp;
