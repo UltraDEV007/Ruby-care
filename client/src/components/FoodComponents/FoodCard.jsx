@@ -39,6 +39,14 @@ export default function FoodCard({ food, openOptions, handleDelete }) {
 
   const meal = food.name;
 
+  const foodMap = {
+    avocado: "🥑",
+    chicken: "🍗",
+    hamburger: "🍔",
+    cheeseburrger: "🍔",
+    cheese: "🧀",
+  };
+
   const foodNameJSX = () => {
     if (avocadoReg.test(food.name)) {
       return <>🥑 &nbsp;{meal}</>;
