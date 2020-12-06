@@ -57,6 +57,7 @@ const Div = styled.div`
 const Users = ({ allUsers, loaded }) => {
   const [darkMode] = useContext(DarkModeContext);
   const [search, setSearch] = useState("");
+
   const getUsers = () =>
     allUsers.filter((user) =>
       user.name.toLowerCase().includes(`${search}`.toLowerCase())

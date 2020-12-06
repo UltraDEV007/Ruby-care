@@ -1,34 +1,23 @@
 import React from "react";
-import styled from "styled-components";
 import { useLocation } from "react-router-dom";
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 
-const Form = styled.div`
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  input {
-    width: 68vw;
-    font-size: 18px;
-    letter-spacing: 0.1px;
-    padding: 12px;
-    border: 1px solid pink;
-    margin: 40px;
-    text-align: center;
-    box-shadow: 5px 5px peachpuff;
-  }
-  @media screen and (min-width: 1200px) {
-    input {
-      width: 50vw;
-    }
-  }
-  input:focus {
-    outline: none;
-  }
-`;
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: '25ch',
+  },
+}));
+
 
 function Search({ search, setSearch }) {
+  const classes = useStyles();
   let location = useLocation();
 
   const checkPath = () => {
@@ -43,16 +32,26 @@ function Search({ search, setSearch }) {
   };
 
   return (
-    <Form>
-      <input
-        type="text"
-        name="search"
-        id="search"
-        placeholder={checkPath()}
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
-    </Form>
+  <div className={classes.root}>      
+          <TextField
+          type="text"
+          name="search"
+          id="search"
+          placeholder={checkPath()}
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          />
+          id="standard-full-width"
+          label="Label"
+          style={{ margin: 8 }}
+          placeholder="Placeholder"
+          helperText="Full width!"
+            fullWidth
+          margin="normal"
+          InputLabelProps={{
+            shrink: true,
+          }}
+   <div>
   );
 }
 
