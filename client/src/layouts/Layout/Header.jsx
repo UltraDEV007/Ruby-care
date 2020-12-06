@@ -95,7 +95,16 @@ export default function Header({ title }) {
           </Typography>
           {currentUser ? (
             <>
-              <Typography className={classes.userName}>
+              <Typography
+                component={Link}
+                style={
+                  darkMode === "light"
+                    ? { textDecoration: "none", color: "#fff" }
+                    : { textDecoration: "none", color: "#000" }
+                }
+                to={`/users/${currentUser?.id}`}
+                className={classes.userName}
+              >
                 <AccountCircleIcon className={classes.userIcon} />
                 {currentUser?.name}
               </Typography>
