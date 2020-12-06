@@ -99,6 +99,16 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
     ))
   );
 
+  // const DESCRIPTIONS = React.Children.toArray(
+  //   RXGuideMeds.map((med) => (
+  //     <>
+  //       <option value="" selected disabled hidden>
+  //         Select a description
+  //       </option>
+  //       <option>{med.fields.description}</option>
+  //     </>
+  //   ))
+  // );
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -121,7 +131,7 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
       >
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           <div style={{ display: "flex", alignItems: "center" }}>
-            <CreateIcon style={{ marginRight: "10px" }} />
+            <CreateIcon style={{ margin: "10px" }} />
             Log medication
           </div>
         </DialogTitle>
@@ -132,16 +142,16 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
               className="select-css"
               name="name"
               type="text"
-              style={{ marginLeft: "10px" }}
               defaultValue="select"
               value={formData.name}
               onChange={handleChange}
+              style={{ margin: "10px" }}
             >
               {MEDS}
             </select>
           </div>
 
-          <div className="input-container">
+          <div className="input-container" style={{ marginLeft: "10px" }}>
             {!formData.name ? (
               <FormHelperText>What class is your medication?</FormHelperText>
             ) : (
@@ -152,7 +162,6 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
               name="medication_class"
               type="text"
               required
-              style={{ marginLeft: "10px" }}
               defaultValue="select"
               value={formData.medication_class}
               onChange={handleChange}
@@ -161,6 +170,29 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
               <option value=" ">I don't know</option>
             </select>
           </div>
+          <div className="input-container">
+            <TextField
+              className="select-css"
+              name="description"
+              type="text"
+              required
+              label={
+                !formData.name ? (
+                  <FormHelperText>
+                    Why did you take your medicaiton?
+                  </FormHelperText>
+                ) : (
+                  <FormHelperText>
+                    Why did you take {formData.name}?
+                  </FormHelperText>
+                )
+              }
+              style={{ display: "flex", width: "300px", margin: "10px" }}
+              value={formData.description}
+              onChange={handleChange}
+            />
+          </div>
+
           {/* <div className="input-container">
             <select
               className="select-css"

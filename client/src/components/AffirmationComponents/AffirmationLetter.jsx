@@ -96,7 +96,6 @@ export default function AffirmationLetter({
               affirmation={affirmation}
               openDetail={openDetail}
               onDelete={onDelete}
-              handleDetailOpen={handleDetailOpen}
               handleDetailClose={handleDetailClose}
             />
           )}

@@ -38,6 +38,14 @@ export default function MedCard({
     setOpenEdit(true);
   };
 
+  const handleDetailClose = () => {
+    setOpenDetail(false);
+  };
+
+  const handleDetailOpen = () => {
+    setOpenDetail(true);
+  };
+
   const handleClose = () => {
     setOpenEdit(false);
   };
@@ -51,17 +59,19 @@ export default function MedCard({
     <>
       {!edited ? (
         <Card
-          onClick={() => setOpenDetail(true)}
+          onClick={handleDetailOpen}
           style={
             darkMode === "light"
-              ? { boxShadow: "default" }
-              : { boxShadow: `0px 0px 4px 1.2px ${indigo[50]}` }
+              ? { boxShadow: "default", cursor: "pointer" }
+              : {
+                  boxShadow: `0px 0px 4px 1.2px ${indigo[50]} `,
+                  cursor: "pointer",
+                }
           }
           className="med-card"
         >
           <div className="med-container">
             {med.name}
-            {med.medication_class}
             <div className="time">
               <Moment format="MMM/DD/yyyy hh:mm A">
                 {med.time?.toLocaleString()}
@@ -100,8 +110,7 @@ export default function MedCard({
               med={med}
               openDetail={openDetail}
               onDelete={onDelete}
-              setOpenDetail={setOpenDetail}
-              handleDelete={handleDelete}
+              handleDetailClose={handleDetailClose}
             />
           )}
         </Card>

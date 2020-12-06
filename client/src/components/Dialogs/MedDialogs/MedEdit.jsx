@@ -68,6 +68,7 @@ export default function MedEdit({
     name: "",
     medication_class: "",
     time: "",
+    description: "",
   });
   const { name, time } = formData;
   const { id } = useParams();
@@ -77,8 +78,8 @@ export default function MedEdit({
       const oneMed = meds?.find((med) => {
         return med?.id === Number(id);
       });
-      const { name, time } = oneMed;
-      setFormData({ name, time });
+      const { name, medication_class, description, time } = oneMed;
+      setFormData({ name, medication_class, time, description });
     };
     if (meds?.length) {
       prefillFormData();

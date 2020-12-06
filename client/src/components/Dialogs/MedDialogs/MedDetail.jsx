@@ -58,20 +58,22 @@ const DialogActions = withStyles((theme) => ({
 export default function MedDetail({
   med,
   openDetail,
-  setOpenDetail,
+  handleDetailClose,
   onDelete,
 }) {
   return (
     <Dialog
-      onClose={() => setOpenDetail(false)}
+      onClose={handleDetailClose}
       aria-labelledby="customized-dialog-title"
       open={openDetail}
     >
-      <DialogTitle
-        id="customized-dialog-title"
-        onClose={() => setOpenDetail(false)}
-      >
-        {med.name}
+      <DialogTitle id="customized-dialog-title" onClose={handleDetailClose}>
+        <Typography>
+          {med.name} | {med.medication_class}
+        </Typography>
+      </DialogTitle>
+      <DialogTitle>
+        <Typography>I took {med.name} because...</Typography>
       </DialogTitle>
       <DialogContent
         dividers
@@ -82,20 +84,16 @@ export default function MedDetail({
           overflowWrap: "break-word",
         }}
       >
-        <Typography>{med.medication_class}</Typography>
-        <Typography>{med.time}</Typography>
+        <Typography>{med.description}</Typography>
       </DialogContent>
       <DialogTitle>
         <Typography>
-          <Moment format="dddd, MMMM yyyy hh:mm A">{med?.created_at}</Moment>
+          Taken at:&nbsp;
+          <Moment format="dddd, MMMM yyyy hh:mm A">{med?.time}</Moment>
         </Typography>
       </DialogTitle>
       <DialogActions>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => setOpenDetail(false)}
-        >
+        <Button variant="contained" color="primary" onClick={handleDetailClose}>
           Exit
         </Button>
         <Button
