@@ -68,7 +68,15 @@ export default function MedDetail({
       open={openDetail}
     >
       <DialogTitle id="customized-dialog-title" onClose={handleDetailClose}>
-        <Typography style={{ display: "flex", alignItems: "center" }}>
+        <Typography
+          style={{
+            display: "flex",
+            alignItems: "center",
+            fontSize: "1.3rem",
+            fontFamily: "Montserrat, sans-serif",
+            padding: "5px",
+          }}
+        >
           <img
             src={med.image}
             style={{ height: "30px", width: "50px" }}
@@ -78,7 +86,7 @@ export default function MedDetail({
           <>{med.name}</>
         </Typography>
         <Typography style={{ textAlign: "left", marginLeft: "10px" }}>
-          Class: {med.medication_class}
+          {med.medication_class}
         </Typography>
       </DialogTitle>
       <DialogContent
