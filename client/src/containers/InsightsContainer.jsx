@@ -42,7 +42,17 @@ export default function InsightsContainer({ darkMode }) {
 
   const handleCreate = async (insightData) => {
     const newInsight = await postInsight(insightData);
-    setInsights((prevState) => [...prevState, newInsight]);
+    // the new insight need to come first and then to say ...prevState
+    // thats how it's going to render the new insight first from top to bottom. with the help of the backend
+
+    //   def index
+    //   @insights = Insight.all
+
+    //   # this should order the newly created insights from top to bottom
+    //   render json: @insights.order('created_at DESC'), include: :user
+    // end
+
+    setInsights((prevState) => [newInsight, ...prevState]);
     history.push("/insights");
   };
 

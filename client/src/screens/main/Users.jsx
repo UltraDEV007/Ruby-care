@@ -19,8 +19,8 @@ const Div = styled.div`
     padding: 10px;
     margin-bottom: 5px;
   }
-  .link {
-    color: ${({ darkMode }) => (darkMode !== "dark" ? yellow[700] : blue[600])};
+  a {
+    color: ${({ darkMode }) => (darkMode === "dark" ? yellow[700] : blue[600])};
     text-decoration: none;
     overflow-wrap: break-word;
     display: flex;

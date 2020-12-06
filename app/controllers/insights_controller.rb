@@ -7,7 +7,8 @@ class InsightsController < ApplicationController
   def index
     @insights = Insight.all
 
-    render json: @insights, include: :user
+    # this should order the newly created insights from top to bottom
+    render json: @insights.order('created_at DESC'), include: :user
   end
 
   # GET /insights/1

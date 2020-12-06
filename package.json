@@ -1,3 +1,5 @@
 {
-  "dependencies": {}
+  "dependencies": {
+    "react-search-field": "^1.1.0"
+  }
 }
