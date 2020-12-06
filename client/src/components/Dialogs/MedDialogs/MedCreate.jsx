@@ -60,6 +60,7 @@ const DialogActions = withStyles((theme) => ({
 export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
   const [formData, setFormData] = useState({
     name: "",
+    medication_class: "",
     time: "",
   });
 
@@ -86,6 +87,17 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
   //     </>
   //   ))
   // );
+
+  const CLASSES = React.Children.toArray(
+    RXGuideMeds.map((med) => (
+      <>
+        <option value="" selected disabled hidden>
+          Select a class
+        </option>
+        <option>{med.fields.class}</option>
+      </>
+    ))
+  );
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -115,11 +127,7 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
         </DialogTitle>
         <DialogContent dividers>
           <div className="input-container">
-            {!formData.name ? (
-              <FormHelperText>Please select a medication</FormHelperText>
-            ) : (
-              <></>
-            )}
+            <FormHelperText>Please select a medication</FormHelperText>
             <select
               className="select-css"
               name="name"
@@ -133,6 +141,26 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
             </select>
           </div>
 
+          <div className="input-container">
+            {!formData.name ? (
+              <FormHelperText>What class is your medication?</FormHelperText>
+            ) : (
+              <FormHelperText>What class is {formData.name}?</FormHelperText>
+            )}
+            <select
+              className="select-css"
+              name="medication_class"
+              type="text"
+              required
+              style={{ marginLeft: "10px" }}
+              defaultValue="select"
+              value={formData.medication_class}
+              onChange={handleChange}
+            >
+              {CLASSES}
+              <option value=" ">I don't know</option>
+            </select>
+          </div>
           {/* <div className="input-container">
             <select
               className="select-css"
@@ -142,6 +170,7 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
               {IMAGES}
             </select>
           </div> */}
+
           <div className="input-container">
             <TextField
               name="time"

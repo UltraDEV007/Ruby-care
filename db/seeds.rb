@@ -16,10 +16,10 @@ Food.destroy_all
 Medication.destroy_all
 
 
-@admin = User.create!(name: 'admin', email: 'admin@email.com', password: '12345678')
-@daniel = User.create!(name: 'daniel', email: 'daniel@email.com', password: '12345678')
-@no_insights = User.create!(name: "I Don't Write Insights", email: 'nope@email.com', password: '12345678')
-@bob = User.create!(name: "bob", email: 'bob@email.com', password: '12345678')
+@admin = User.create!(name: 'admin', email: 'admin@email.com', password: '12345678', gender: "Male")
+@daniel = User.create!(name: 'daniel', email: 'daniel@email.com', password: '12345678', gender: "Male")
+@no_insights = User.create!(name: "I Don't Write Insights", email: 'nope@email.com', password: '12345678', gender: "Female")
+@bob = User.create!(name: "bob", email: 'bob@email.com', password: '12345678', gender: "Other")
 
 puts "#{User.count} users created"
 
@@ -59,7 +59,7 @@ puts "#{Symptom.count} symptoms created"
 
 puts "#{Food.count} foods created"
 
-@medication1 = Medication.create!(name: "Humira", time: DateTime.strptime("09/01/2009 17:00", "%m/%d/%Y %H:%M"), user: @admin)
-@medication2 = Medication.create!(name: "Humira", time: DateTime.strptime("09/01/2009 17:00", "%m/%d/%Y %H:%M"), user: @daniel)
+@medication1 = Medication.create!(name: "Humira", medication_class: "Immunosuppresant" , time: DateTime.strptime("09/01/2009 17:00", "%m/%d/%Y %H:%M"), user: @admin)
+@medication2 = Medication.create!(name: "Humira", medication_class: "Immunosuppresant", time: DateTime.strptime("09/01/2009 17:00", "%m/%d/%Y %H:%M"), user: @daniel)
 
 puts "#{Medication.count} medications created"

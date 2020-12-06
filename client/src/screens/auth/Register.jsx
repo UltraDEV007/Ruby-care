@@ -17,6 +17,9 @@ import IconButton from "@material-ui/core/IconButton";
 import EmailIcon from "@material-ui/icons/Email";
 import LockIcon from "@material-ui/icons/Lock";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import Select from "@material-ui/core/Select";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import { toTitleCase } from "../../utils/toTitleCase";
 
 const useStyles = makeStyles({
   root: {
@@ -194,6 +197,7 @@ export default function Register() {
     name: "",
     email: "",
     password: "",
+    gender: "",
   });
 
   const handleChange = (e) => {
@@ -357,6 +361,33 @@ export default function Register() {
                 </InputAdornment>
               }
             />
+          </FormControl>
+
+          <FormHelperText>What's your gender?</FormHelperText>
+          <FormControl>
+            <Select
+              native
+              required
+              label="gender"
+              value={toTitleCase(formData.gender)}
+              onChange={handleChange}
+              inputProps={{
+                name: "gender",
+                id: "gender-native-simple",
+              }}
+            >
+              <option value="" selected disabled hidden>
+                Select a gender
+              </option>
+              <option value={"Male"}>Male</option>
+              <option value={"Female"}>Female</option>
+              <option value={"Transgender"}>Transgender</option>
+              <option value={"Non-Binray"}>Non-Binary </option>
+              <option value={"Gender-fluid"}>Gender Fluid</option>
+              <option value={"Gender-neutral"}>Gender Neutral</option>
+              <option value={"Two-Spirit"}>Two-Spirit</option>
+              <option value={"Other"}>Other</option>
+            </Select>
           </FormControl>
         </div>
         <br />

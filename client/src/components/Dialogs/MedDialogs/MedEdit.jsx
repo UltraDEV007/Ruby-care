@@ -66,6 +66,7 @@ export default function MedEdit({
 }) {
   const [formData, setFormData] = useState({
     name: "",
+    medication_class: "",
     time: "",
   });
   const { name, time } = formData;
@@ -91,6 +92,17 @@ export default function MedEdit({
           Select a medication
         </option>
         <option>{med.fields.name}</option>
+      </>
+    ))
+  );
+
+  const CLASSES = React.Children.toArray(
+    RXGuideMeds.map((med) => (
+      <>
+        <option value="" selected disabled hidden>
+          Select a class
+        </option>
+        <option>{med.fields.class}</option>
       </>
     ))
   );
@@ -121,11 +133,7 @@ export default function MedEdit({
       >
         <DialogContent dividers>
           <div className="input-container">
-            {name ? (
-              <FormHelperText>Please select a medication</FormHelperText>
-            ) : (
-              <></>
-            )}
+            <FormHelperText>Please select a medication</FormHelperText>
             <select
               className="select-css"
               name="name"
@@ -138,7 +146,26 @@ export default function MedEdit({
               {MEDS}
             </select>
           </div>
-
+          <div className="input-container">
+            {!name ? (
+              <FormHelperText>What class is your medication?</FormHelperText>
+            ) : (
+              <FormHelperText>What class is {name}?</FormHelperText>
+            )}
+            <select
+              className="select-css"
+              name="medication_class"
+              type="text"
+              required
+              style={{ marginLeft: "10px" }}
+              defaultValue="select"
+              value={formData.medication_class}
+              onChange={handleChange}
+            >
+              {CLASSES}
+              <option value=" ">I don't know</option>
+            </select>
+          </div>
           <div className="input-container">
             <TextField
               name="time"

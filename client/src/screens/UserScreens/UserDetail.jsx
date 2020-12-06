@@ -10,6 +10,7 @@ import { checkInsights } from "../../utils/checkInsights";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { goBack } from "../../utils/goBack";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { toTitleCase } from "../../utils/toTitleCase";
 
 const Wrapper = styled.div`
   min-height: 100vh;
@@ -36,6 +37,9 @@ const Wrapper = styled.div`
   }
   .title {
     font-size: 1.3rem;
+  }
+  .gender {
+    font-size: 0.8rem;
   }
   .user-icon {
     margin-right: 10px;
@@ -81,9 +85,15 @@ const Wrapper = styled.div`
     .title {
       font-size: 1.5rem;
     }
+    .gender {
+      font-size: 1.2rem;
+    }
     @media screen and (min-width: 1280px) {
       .title {
         font-size: 2rem;
+        .gender {
+          font-size: 1.5rem;
+        }
       }
     }
   }
@@ -128,6 +138,9 @@ export default function UserDetail({ getOneUser }) {
           <Typography className="title">
             <AccountCircleIcon className="user-icon" />
             {user?.name}
+          </Typography>
+          <Typography className="gender">
+            Gender: {toTitleCase(user.gender)}
           </Typography>
           Joined:&nbsp;
           <Moment format="MMMM-DD-yyyy">

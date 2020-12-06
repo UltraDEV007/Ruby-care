@@ -8,6 +8,7 @@ import { DarkModeContext } from "../Context/DarkModeContext";
 import { indigo } from "@material-ui/core/colors/";
 import MedEdit from "../Dialogs/MedDialogs/MedEdit";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import MedDetail from "../Dialogs/MedDialogs/MedDetail";
 
 export default function MedCard({
   meds,
@@ -21,6 +22,7 @@ export default function MedCard({
   const [darkMode] = useContext(DarkModeContext);
   const [edited, setEdited] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
+  const [openDetail, setOpenDetail] = useState(false);
 
   const onSave = (formData, id) => {
     handleUpdate(formData, id);
@@ -40,10 +42,16 @@ export default function MedCard({
     setOpenEdit(false);
   };
 
+  const onDelete = (id) => {
+    handleDelete(id);
+    setOpenDetail(false);
+  };
+
   return (
     <>
       {!edited ? (
         <Card
+          onClick={() => setOpenDetail(true)}
           style={
             darkMode === "light"
               ? { boxShadow: "default" }
@@ -53,6 +61,7 @@ export default function MedCard({
         >
           <div className="med-container">
             {med.name}
+            {med.medication_class}
             <div className="time">
               <Moment format="MMM/DD/yyyy hh:mm A">
                 {med.time?.toLocaleString()}
@@ -86,6 +95,15 @@ export default function MedCard({
               </Button>
             </div>
           </div>
+          {openDetail && (
+            <MedDetail
+              med={med}
+              openDetail={openDetail}
+              onDelete={onDelete}
+              setOpenDetail={setOpenDetail}
+              handleDelete={handleDelete}
+            />
+          )}
         </Card>
       ) : (
         <div className="med-container">
