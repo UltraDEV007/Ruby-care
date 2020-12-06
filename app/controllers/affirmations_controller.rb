@@ -21,7 +21,7 @@ class AffirmationsController < ApplicationController
     @affirmation.user = @current_user
 
     if @affirmation.save
-      render json: @affirmation, status: :created, location: @affirmation
+      render json: @affirmation, include: :user, status: :created, location: @affirmation
     else
       render json: @affirmation.errors, status: :unprocessable_entity
     end
