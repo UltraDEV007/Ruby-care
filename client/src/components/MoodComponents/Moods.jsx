@@ -70,6 +70,7 @@ export default function Moods({
           >
             <SettingsSharpIcon className="options-icon" />
           </Button>
+          &#8195;
           <Button
             onClick={handleClickOpen}
             variant="outlined"
