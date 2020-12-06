@@ -3,7 +3,7 @@ export default function ratingLogic(ratingParam, iconParam) {
     .fill()
     .map(() => (
       <span role="img" aria-label="rating">
-        {iconParam}
+        {iconParam}&#8199;
       </span>
     ));
 }

@@ -10,6 +10,7 @@ import RestaurantIcon from "@material-ui/icons/Restaurant";
 import ratingLogic from "../../utils/ratingLogic";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import FoodEdit from "../Dialogs/FoodDialogs/FoodEdit";
+import FoodDetail from "../Dialogs/FoodDialogs/FoodDetail";
 
 export default function FoodCard({
   foods,
@@ -22,6 +23,7 @@ export default function FoodCard({
   const [darkMode] = useContext(DarkModeContext);
   const [edited, setEdited] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
+  const [openDetail, setOpenDetail] = useState(false);
 
   const onSave = (formData, id) => {
     handleUpdate(formData, id);
@@ -79,14 +81,16 @@ export default function FoodCard({
         className="food-card"
       >
         <div className="food-container">
-          {!edited ? foodNameJSX() : <CircularProgress />}
-          <div className="time">
-            <Moment format="MMM/DD/yyyy hh:mm A">
-              {food.time?.toLocaleString()}
-            </Moment>
+          <div className="hover-container" onClick={() => setOpenDetail(true)}>
+            {!edited ? foodNameJSX() : <CircularProgress />}
+            <div className="time">
+              <Moment format="MMM/DD/yyyy hh:mm A">
+                {food?.time?.toLocaleString()}
+              </Moment>
+            </div>
+            <div className="rating">{ratingLogic(food.rating, "⭐")}</div>
+            <div className="factors">{food.factors}</div>
           </div>
-          <div className="rating">{ratingLogic(food.rating, "⭐")}</div>
-          <div className="factors">{food.factors}</div>
           <div
             className="buttons"
             style={openOptions ? { display: "flex" } : { display: "none" }}
@@ -127,6 +131,14 @@ export default function FoodCard({
             />
           </Route>
         </Switch>
+      )}
+      {openDetail && (
+        <FoodDetail
+          food={food}
+          openDetail={openDetail}
+          handleDelete={handleDelete}
+          setOpenDetail={setOpenDetail}
+        />
       )}
     </>
   );

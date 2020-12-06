@@ -16,6 +16,9 @@
   text-align: center;
 }
 
+.hover-container {
+  cursor: pointer;
+}
 .food-card {
   margin: 10px;
   width: 200px;

@@ -127,14 +127,9 @@ export default function FoodCreate({ open, onSave, handleClose }) {
 
           {formData.name && (
             <div className="rating-input-container">
-              {formData.name !== 5 ? (
-                <FormHelperText>
-                  on a scale of 1 to 5 did much did you enjoy {formData.name}
-                </FormHelperText>
-              ) : (
-                <FormHelperText>
-                  We are very glad you enjoyed {formData.name}
-                </FormHelperText>
+              <FormHelperText>
+                on a scale of 1 to 5 did much did you enjoy {formData.name}
+              </FormHelperText>
               )}
               <Select
                 native

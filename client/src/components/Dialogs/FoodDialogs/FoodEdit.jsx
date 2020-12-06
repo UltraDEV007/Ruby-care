@@ -183,17 +183,9 @@ export default function FoodEdit({ setOpenEdit, onSave, handleUpdate, foods }) {
 
             {name && (
               <div className="rating-input-container">
-                {rating === 1 ? (
-                  <FormHelperText>we are sorry </FormHelperText>
-                ) : rating === 5 ? (
-                  <FormHelperText>
-                    We are very glad you enjoyed {name}
-                  </FormHelperText>
-                ) : (
-                  <FormHelperText>
-                    on a scale of 1 to 5 did much did you enjoy {name}
-                  </FormHelperText>
-                )}
+                <FormHelperText>
+                  on a scale of 1 to 5 did much did you enjoy {name}
+                </FormHelperText>
                 <Select
                   native
                   required

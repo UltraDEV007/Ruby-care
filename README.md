@@ -249,7 +249,10 @@ src
 
 - We are calling the map function to loop, we are not bothered about whats actually inside the array.
 - for example: console.log(Array(5).fill().map(() => '⭐')) (in this case, the icon paramter is the star emoji.)
+
   > => ['⭐', '⭐', '⭐', '⭐', '⭐']
+
+- "&#8199;" just means space each one of the stars by a figure space, think &nbsp;, but a bit more to the margins of my liking, nbsp's spaces just didn't look right.
 
 ```
 export default function ratingLogic(ratingParam, iconParam) {
@@ -257,7 +260,7 @@ export default function ratingLogic(ratingParam, iconParam) {
     .fill()
     .map(() => (
       <span role="img" aria-label="rating">
-        {iconParam}
+        {iconParam}&#8199;
       </span>
     ));
 }
@@ -274,10 +277,11 @@ export default function ratingLogic(ratingParam, iconParam) {
 
 ## FAQ
 
-> Why did you decide to have dark mode on by default, don't most apps have dark mode off by default?
+> What is RXGuide?
 
-- Reason 1: I did a survey asking about 30 people if they'd prefer dark mode on or off by default, dark mode had a lead of about 80%.
-- Reason 2: Most people just turn darkmode on the moment they turn on any app, that includes me, I do that all the time, light mode just makes my eyes hurt, not only that but I also use a blue-light filter.
+- [RXGuide](https://rxguide.netlify.app/about) is my second ever project,
+  it's a front-end react-app that uses an airtable back end to do full crud,
+  I use my airtable API from RXGuide on this project to Create, read, update, and delete a medication and associate it to a user.
 
 ## Code Issues & Resolutions
 

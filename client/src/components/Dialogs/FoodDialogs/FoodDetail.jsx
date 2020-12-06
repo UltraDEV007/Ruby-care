@@ -9,6 +9,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 import Moment from "react-moment";
 import "moment-timezone";
+import ratingLogic from "../../../utils/ratingLogic";
 
 const styles = (theme) => ({
   root: {
@@ -55,38 +56,23 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
-export default function AffirmationDetail({
-  affirmation,
+export default function FoodDetail({
+  food,
   openDetail,
-  handleDetailClose,
   onDelete,
+  setOpenDetail,
 }) {
   return (
     <Dialog
-      onClose={handleDetailClose}
+      onClose={() => setOpenDetail(false)}
       aria-labelledby="customized-dialog-title"
       open={openDetail}
     >
-      <DialogTitle id="customized-dialog-title" onClose={handleDetailClose}>
-        {affirmation?.user?.name ? (
-          <div style={{ display: "flex", alignItems: "flex-end" }}>
-            <img
-              src="https://www.pngrepo.com/download/180681/love-letter-hearts.png"
-              style={{ marginRight: "15px", width: "40px" }}
-              alt="opened affirmation letter"
-            />
-            Dear&nbsp;{affirmation?.user?.name}...
-          </div>
-        ) : (
-          <div style={{ display: "flex", alignItems: "flex-end" }}>
-            <img
-              src="https://www.pngrepo.com/download/180681/love-letter-hearts.png"
-              style={{ marginRight: "15px", width: "40px" }}
-              alt="opened affirmation letter"
-            />
-            Dear me...
-          </div>
-        )}
+      <DialogTitle
+        id="customized-dialog-title"
+        onClose={() => setOpenDetail(false)}
+      >
+        {food.name}
       </DialogTitle>
       <DialogContent
         dividers
@@ -97,24 +83,31 @@ export default function AffirmationDetail({
           overflowWrap: "break-word",
         }}
       >
-        <Typography>{affirmation.content}</Typography>
+        <Typography dividers>
+          Rating:&nbsp;{ratingLogic(food.rating, "⭐")}
+        </Typography>
+        <Typography>{food.factors}</Typography>
       </DialogContent>
       <DialogTitle>
         <Typography>
-          <Moment format="dddd, MMMM yyyy hh:mm A">
-            {affirmation?.created_at}
+          <Moment format="MMM/DD/yyyy hh:mm A">
+            {food?.time?.toLocaleString()}
           </Moment>
         </Typography>
       </DialogTitle>
       <DialogActions>
-        <Button variant="contained" color="primary" onClick={handleDetailClose}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => setOpenDetail(false)}
+        >
           Exit
         </Button>
         <Button
           variant="contained"
           color="secondary"
           className="delete-button"
-          onClick={() => onDelete(affirmation.id)}
+          onClick={() => onDelete(food.id)}
         >
           Delete
         </Button>
