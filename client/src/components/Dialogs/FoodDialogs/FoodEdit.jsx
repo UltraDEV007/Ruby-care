@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
 import Button from "@material-ui/core/Button";
 import { Link, useHistory, useParams } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
@@ -13,6 +12,7 @@ import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import { withStyles } from "@material-ui/core/styles";
+// import ratingLogic from "../../../utils/ratingLogic";
 
 const styles = (theme) => ({
   root: {
@@ -58,27 +58,6 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
-const Div = styled.div`
-  margin: auto 40px;
-`;
-const Form = styled.form`
-  display: flex;
-    flex-direction: column;
-}
-  .buttons {
-    margin-top: 20px;
-  }
-  .cancel{
-    margin-left: 20px;
-  }
-  .rating-input-container{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-`;
-
 export default function FoodEdit({ setOpenEdit, onSave, handleUpdate, foods }) {
   const history = useHistory("/");
   const [formData, setFormData] = useState({
@@ -115,24 +94,60 @@ export default function FoodEdit({ setOpenEdit, onSave, handleUpdate, foods }) {
     }));
   };
 
+  // const ratingJSX = (value) => {
+  //   if (value === 1) {
+  //     <>we are very sorry you didn't enjoy name</>;
+  //   }
+  //   if (value === 2) {
+  //     <>
+  //       {ratingLogic(rating, "⭐")} for {name}!
+  //     </>;
+  //   }
+  //   if (value === 3) {
+  //     <>
+  //       {ratingLogic(rating, "⭐")} for {name}!
+  //     </>;
+  //   }
+  //   if (value === 4) {
+  //     <>
+  //       {ratingLogic(rating, "⭐")} for {name}!
+  //     </>;
+  //   }
+  //   if (value === 5) {
+  //     <>
+  //       Whoa{ratingLogic(rating, "⭐")}! ? We are very glad you enjoyed {name}
+  //     </>;
+  //   } else {
+  //     <>on a scale of 1 to 5 did much did you enjoy {name}</>;
+  //   }
+  // };
+
+  // {rating !== 5 ? (
+  //   <FormHelperText>
+  //     on a scale of 1 to 5 did much did you enjoy {name}
+  //   </FormHelperText>
+  // ) : (
+  //   <FormHelperText>
+  //     We are very glad you enjoyed {name}
+  //   </FormHelperText>
+  // )}
   return (
     <>
-      <Div>
-        <Dialog
-          onClose={() => setOpenEdit(false)}
-          aria-labelledby="customized-dialog-title"
-          open={() => setOpenEdit(true)}
+      <Dialog
+        onClose={() => setOpenEdit(false)}
+        aria-labelledby="customized-dialog-title"
+        open={() => setOpenEdit(true)}
+      >
+        <DialogTitle>
+          <Typography className="title">Edit Food</Typography>
+        </DialogTitle>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            onSave(id, formData);
+          }}
         >
-          <DialogTitle>
-            <Typography className="title">Edit Food</Typography>
-          </DialogTitle>
-          <Form
-            onSubmit={(e) => {
-              e.preventDefault();
-              onSave(id, formData);
-            }}
-          >
-            <br />
+          <DialogContent dividers>
             <div className="input-container">
               <TextField
                 required
@@ -153,7 +168,9 @@ export default function FoodEdit({ setOpenEdit, onSave, handleUpdate, foods }) {
                 name="time"
                 required
                 id="datetime-local"
-                label="When did you eat this?"
+                label={
+                  name ? `When did you eat ${name}?` : `When did you eat this?`
+                }
                 type="datetime-local"
                 style={{ width: "300px", margin: "10px" }}
                 value={time}
@@ -164,29 +181,38 @@ export default function FoodEdit({ setOpenEdit, onSave, handleUpdate, foods }) {
               />
             </div>
 
-            <div className="rating-input-container">
-              <FormHelperText>
-                on a scale of 1/5 did much did you enjoy it?
-              </FormHelperText>
-              <Select
-                native
-                required
-                label="rating"
-                value={rating}
-                onChange={handleChange}
-                inputProps={{
-                  name: "rating",
-                  id: "rating-native-simple",
-                }}
-              >
-                <option value={1}>⭐ </option>
-                <option value={2}>⭐ ⭐ </option>
-                <option value={3}>⭐ ⭐ ⭐ </option>
-                <option value={4}>⭐ ⭐ ⭐ ⭐ </option>
-                <option value={5}>⭐ ⭐ ⭐ ⭐ ⭐ </option>
-              </Select>
-            </div>
-            <br />
+            {name && (
+              <div className="rating-input-container">
+                {rating === 1 ? (
+                  <FormHelperText>we are sorry </FormHelperText>
+                ) : rating === 5 ? (
+                  <FormHelperText>
+                    We are very glad you enjoyed {name}
+                  </FormHelperText>
+                ) : (
+                  <FormHelperText>
+                    on a scale of 1 to 5 did much did you enjoy {name}
+                  </FormHelperText>
+                )}
+                <Select
+                  native
+                  required
+                  label="rating"
+                  value={rating}
+                  onChange={handleChange}
+                  inputProps={{
+                    name: "rating",
+                    id: "rating-native-simple",
+                  }}
+                >
+                  <option value={1}>⭐ </option>
+                  <option value={2}>⭐ ⭐ </option>
+                  <option value={3}>⭐ ⭐ ⭐ </option>
+                  <option value={4}>⭐ ⭐ ⭐ ⭐ </option>
+                  <option value={5}>⭐ ⭐ ⭐ ⭐ ⭐ </option>
+                </Select>
+              </div>
+            )}
 
             <div className="input-container">
               <TextField
@@ -204,12 +230,11 @@ export default function FoodEdit({ setOpenEdit, onSave, handleUpdate, foods }) {
               />
             </div>
 
-            <div className="buttons">
+            <DialogActions>
               <Button type="submit" variant="contained" color="primary">
-                Submit
+                Save
               </Button>
               <Button
-                className="cancel"
                 to="/"
                 component={Link}
                 variant="contained"
@@ -217,10 +242,10 @@ export default function FoodEdit({ setOpenEdit, onSave, handleUpdate, foods }) {
               >
                 Cancel
               </Button>
-            </div>
-          </Form>
-        </Dialog>
-      </Div>
+            </DialogActions>
+          </DialogContent>
+        </form>
+      </Dialog>
     </>
   );
 }

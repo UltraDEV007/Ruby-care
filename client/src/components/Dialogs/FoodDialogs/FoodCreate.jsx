@@ -125,28 +125,36 @@ export default function FoodCreate({ open, onSave, handleClose }) {
             />
           </div>
 
-          <div className="rating-input-container">
-            <FormHelperText>
-              On a scale of 1/5 did much did you enjoy it?
-            </FormHelperText>
-            <Select
-              native
-              required
-              label="rating"
-              value={formData.rating}
-              onChange={handleChange}
-              inputProps={{
-                name: "rating",
-                id: "rating-native-simple",
-              }}
-            >
-              <option value={1}>⭐ </option>
-              <option value={2}>⭐ ⭐ </option>
-              <option value={3}>⭐ ⭐ ⭐ </option>
-              <option value={4}>⭐ ⭐ ⭐ ⭐ </option>
-              <option value={5}>⭐ ⭐ ⭐ ⭐ ⭐ </option>
-            </Select>
-          </div>
+          {formData.name && (
+            <div className="rating-input-container">
+              {formData.name !== 5 ? (
+                <FormHelperText>
+                  on a scale of 1 to 5 did much did you enjoy {formData.name}
+                </FormHelperText>
+              ) : (
+                <FormHelperText>
+                  We are very glad you enjoyed {formData.name}
+                </FormHelperText>
+              )}
+              <Select
+                native
+                required
+                label="rating"
+                value={formData.rating}
+                onChange={handleChange}
+                inputProps={{
+                  name: "rating",
+                  id: "rating-native-simple",
+                }}
+              >
+                <option value={1}>⭐ </option>
+                <option value={2}>⭐ ⭐ </option>
+                <option value={3}>⭐ ⭐ ⭐ </option>
+                <option value={4}>⭐ ⭐ ⭐ ⭐ </option>
+                <option value={5}>⭐ ⭐ ⭐ ⭐ ⭐ </option>
+              </Select>
+            </div>
+          )}
 
           <div className="input-container">
             <TextField
