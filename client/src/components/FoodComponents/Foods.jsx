@@ -13,6 +13,8 @@ export default function Foods({
   handleDelete,
   handleCreate,
   loaded,
+  setFoods,
+  handleUpdate,
 }) {
   const [openOptions, setOpenOptions] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
@@ -38,8 +40,11 @@ export default function Foods({
     ) : (
       foods.map((food) => (
         <FoodCard
+          foods={foods}
+          setFoods={setFoods}
           updated={updated}
           food={food}
+          handleUpdate={handleUpdate}
           openOptions={openOptions}
           handleDelete={handleDelete}
         />

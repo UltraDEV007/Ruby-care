@@ -1,8 +1,7 @@
 import React from "react";
 import Foods from "../components/FoodComponents/Foods.jsx";
 import { useState, useEffect, useContext } from "react";
-import { Switch, Route, useHistory } from "react-router-dom";
-import FoodEdit from "../screens/FoodScreens/FoodEdit";
+import { useHistory } from "react-router-dom";
 import { destroyFood, getAllFoods, postFood, putFood } from "../services/foods";
 import { CurrentUserContext } from "../components/Context/CurrentUserContext";
 
@@ -44,19 +43,14 @@ export default function FoodsContainer() {
   };
 
   return (
-    <>
-      <Foods
-        foods={foods}
-        updated={updated}
-        loaded={loaded}
-        handleCreate={handleCreate}
-        handleDelete={handleDelete}
-      />
-      <Switch>
-        <Route path="/foods/:id/edit">
-          <FoodEdit foods={foods} handleUpdate={handleUpdate} />
-        </Route>
-      </Switch>
-    </>
+    <Foods
+      foods={foods}
+      setFoods={setFoods}
+      handleUpdate={handleUpdate}
+      updated={updated}
+      loaded={loaded}
+      handleCreate={handleCreate}
+      handleDelete={handleDelete}
+    />
   );
 }

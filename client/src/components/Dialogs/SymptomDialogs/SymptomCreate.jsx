@@ -109,7 +109,11 @@ export default function SymptomCreate({ open, onSave, handleClose }) {
               name="time"
               required
               id="datetime-local"
-              label="When did this happen?"
+              label={
+                !formData.name
+                  ? `When did this happen?`
+                  : `When did ${formData.name} happen?`
+              }
               type="datetime-local"
               style={{ width: "300px", margin: "10px" }}
               value={formData.time}

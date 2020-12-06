@@ -11,6 +11,7 @@ import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import { withStyles } from "@material-ui/core/styles";
+import FormHelperText from "@material-ui/core/FormHelperText";
 
 const styles = (theme) => ({
   root: {
@@ -110,7 +111,7 @@ export default function SymptomEdit({
           <div className="input-container">
             <TextField
               required
-              label="symptom"
+              label="Symptom"
               autoFocus
               type="text"
               name="name"
@@ -120,6 +121,11 @@ export default function SymptomEdit({
           </div>
           <br />
           <div className="input-container">
+            {!name ? (
+              <FormHelperText>When did this happen?</FormHelperText>
+            ) : (
+              <FormHelperText>When did {name} happen?</FormHelperText>
+            )}
             <TextField
               required
               type="datetime-local"
