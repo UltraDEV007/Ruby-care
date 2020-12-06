@@ -1,15 +1,13 @@
 import React from "react";
 import Affirmations from "../components/AffirmationComponents/Affirmations.jsx";
 import { useState } from "react";
-import { Switch, Route, useHistory } from "react-router-dom";
-import AffirmationEdit from "../screens/AffirmationScreens/AffirmationEdit";
+import { useHistory } from "react-router-dom";
 import {
   destroyAffirmation,
   postAffirmation,
   putAffirmation,
 } from "../services/affirmations";
 
-// affirmations have been passed as a prop from Home.jsx to this component so home.jsx can render affirmations.length for accordion title.
 export default function AffirmationsContainer({
   affirmations,
   setAffirmations,
