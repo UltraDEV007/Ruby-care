@@ -62,8 +62,8 @@ export default function Insights(props) {
     setOpenDelete(false);
   };
 
-  const handleDeleteOpen = () => {
-    setOpenDelete(true);
+  const handleDeleteOpen = (id) => {
+    setOpenDelete(id);
   };
 
   const handleDeleteClose = () => {

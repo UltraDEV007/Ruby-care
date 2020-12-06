@@ -120,7 +120,7 @@ function InsightCard({
                 className={classes.delete}
                 variant="contained"
                 color="secondary"
-                onClick={handleOpen}
+                onClick={() => handleOpen(insight.id)}
               >
                 Delete
               </Button>
@@ -130,7 +130,7 @@ function InsightCard({
       </Card>
       <DeleteInsight
         insight={insight}
-        openDelete={openDelete}
+        openDelete={openDelete === insight.id}
         onDelete={onDelete}
         handleOpen={handleOpen}
         handleDelete={handleDelete}
