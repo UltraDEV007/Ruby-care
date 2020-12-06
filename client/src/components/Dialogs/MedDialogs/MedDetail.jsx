@@ -61,6 +61,8 @@ export default function MedDetail({
   handleDetailClose,
   onDelete,
 }) {
+  let currentTime = new Date();
+
   return (
     <Dialog
       onClose={handleDetailClose}
@@ -106,7 +108,10 @@ export default function MedDetail({
       <DialogTitle>
         <Typography>
           Taken at:&nbsp;
-          <Moment format="dddd, MMMM yyyy hh:mm A">{med?.time}</Moment>
+          <Moment format="dddd, MMMM DD yyyy hh:mm A">{med?.time}</Moment>
+          <br />
+          In exactly{" "}
+          <Moment fromNow={currentTime.toLocaleString()}>{med?.time}</Moment>
         </Typography>
       </DialogTitle>
       <DialogActions>

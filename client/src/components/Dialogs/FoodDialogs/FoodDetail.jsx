@@ -10,6 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import Moment from "react-moment";
 import "moment-timezone";
 import ratingLogic from "../../../utils/ratingLogic";
+import { foodNameJSX } from "../../../utils/foodUtils";
 
 const styles = (theme) => ({
   root: {
@@ -72,7 +73,7 @@ export default function FoodDetail({
         id="customized-dialog-title"
         onClose={() => setOpenDetail(false)}
       >
-        {food.name}
+        {foodNameJSX(food)}
       </DialogTitle>
       <DialogContent
         dividers

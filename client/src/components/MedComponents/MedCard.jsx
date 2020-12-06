@@ -70,7 +70,12 @@ export default function MedCard({
         className="med-card"
       >
         <div className="med-container">
-          <Typography onClick={handleDetailOpen}>{med.name}</Typography>
+          <Typography
+            style={{ fontFamily: "Montserrat", fontSize: "1.1rem" }}
+            onClick={handleDetailOpen}
+          >
+            {med.name}
+          </Typography>
           {!edited ? (
             <div style={{ padding: "20px" }}>
               <img

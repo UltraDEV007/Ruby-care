@@ -6,11 +6,11 @@ import Moment from "react-moment";
 import "moment-timezone";
 import { DarkModeContext } from "../Context/DarkModeContext";
 import { indigo } from "@material-ui/core/colors/";
-import RestaurantIcon from "@material-ui/icons/Restaurant";
 import ratingLogic from "../../utils/ratingLogic";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import FoodEdit from "../Dialogs/FoodDialogs/FoodEdit";
 import FoodDetail from "../Dialogs/FoodDialogs/FoodDetail";
+import { foodNameJSX } from "../../utils/foodUtils";
 
 export default function FoodCard({
   foods,
@@ -35,42 +35,6 @@ export default function FoodCard({
     setFoods(foods);
   };
 
-  const foodRegex = /avocado|chicken|hamburger|burger|(^cheese$)|pizza|cheeseburger|steak|meat|milk|bacon|rice/;
-  const foodMap = {
-    avocado: "🥑",
-    chicken: "🍗",
-    hamburger: "🍔",
-    cheeseburger: "🍔",
-    cheese: "🧀",
-    pizza: "🍕",
-    steak: "🥩",
-    meat: "🍖",
-    milk: "🥛",
-    bacon: "🥓",
-    rice: "🍚",
-  };
-
-  const foodNameJSX = () => {
-    const result = food.name.toLowerCase().trim().match(foodRegex);
-    if (result) {
-      return (
-        <>
-          {foodMap[result[0]]}
-          <span role="img" aria-label={food.name}>
-            &#8199;{food.name}
-          </span>
-        </>
-      );
-    } else {
-      return (
-        <>
-          <RestaurantIcon />
-          &nbsp;{food.name}
-        </>
-      );
-    }
-  };
-
   return (
     <>
       <Card
@@ -83,7 +47,7 @@ export default function FoodCard({
       >
         <div className="food-container">
           <div className="hover-container" onClick={() => setOpenDetail(true)}>
-            {!edited ? foodNameJSX() : <CircularProgress />}
+            {!edited ? foodNameJSX(food) : <CircularProgress />}
             <div className="time">
               <Moment format="MMM/DD/yyyy hh:mm A">
                 {food?.time?.toLocaleString()}
