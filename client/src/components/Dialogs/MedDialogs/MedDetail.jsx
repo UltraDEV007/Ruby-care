@@ -68,7 +68,13 @@ export default function MedDetail({
       open={openDetail}
     >
       <DialogTitle id="customized-dialog-title" onClose={handleDetailClose}>
-        <Typography>
+        <Typography style={{ display: "flex", alignItems: "center" }}>
+          <img
+            src={med.image}
+            style={{ height: "30px", width: "50px" }}
+            alt={med.name}
+          />
+          &nbsp;
           {med.name} | {med.medication_class}
         </Typography>
       </DialogTitle>
