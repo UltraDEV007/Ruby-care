@@ -94,7 +94,7 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
     return (
       <Wrapper darkMode={darkMode}>
         <div className="content-container">
-          <LinearProgress style={{ margin: "40% auto", width: "50vw" }} />
+          <LinearProgress style={{ margin: "20% auto", width: "50vw" }} />
         </div>
       </Wrapper>
     );

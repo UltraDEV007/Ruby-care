@@ -20,8 +20,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
 /* sources: https://stackoverflow.com/questions/42966641/how-to-transform-black-into-any-given-color-using-only-css-filters */
+/* https://codepen.io/sosuke/pen/Pjoqqp */
 ::-webkit-calendar-picker-indicator {
-  filter: invert(50%) sepia() saturate(10000%) hue-rotate(0deg);
+  filter: invert(81%) sepia(15%) saturate(613%) hue-rotate(339deg)
+    brightness(106%) contrast(101%);
 }

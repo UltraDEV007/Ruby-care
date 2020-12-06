@@ -5,7 +5,6 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 import Layout from "../../layouts/Layout/Layout";
 import styled from "styled-components";
 import { checkUserLength } from "../../utils/checkUserLength";
-import { yellow, blue } from "@material-ui/core/colors";
 import { DarkModeContext } from "../../components/Context/DarkModeContext";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ScrollToTopOnMount from "../../components/Helpers/ScrollToTopOnMount";
@@ -19,8 +18,8 @@ const Div = styled.div`
     padding: 10px;
     margin-bottom: 5px;
   }
-  a {
-    color: ${({ darkMode }) => (darkMode === "dark" ? yellow[700] : blue[600])};
+  .link {
+    color: ${({ darkMode }) => (darkMode === "dark" ? "inherit " : "inherit")};
     text-decoration: none;
     overflow-wrap: break-word;
     display: flex;

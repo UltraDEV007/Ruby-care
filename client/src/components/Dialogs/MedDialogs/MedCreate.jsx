@@ -77,30 +77,6 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
     ))
   );
 
-  const CLASSES = React.Children.toArray(
-    RXGuideMeds.map((med) => (
-      <>
-        <option value="" selected disabled hidden>
-          Select a class
-        </option>
-        <option>{med.fields.class}</option>
-      </>
-    ))
-  );
-
-  const IMAGES = React.Children.toArray(
-    RXGuideMeds.map((med) => (
-      <>
-        <option value="" selected disabled hidden>
-          Select an image
-        </option>
-        <option style={{ backgroundImage: `url(${med.fields.image})` }}>
-          {med.fields.image}
-        </option>
-      </>
-    ))
-  );
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -109,18 +85,40 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
     }));
   };
 
+  const handleSelectedMed = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // looping through all the meds in rxguidesmeds and trying to find the one that matches
+    // the selected one which is formData.name
+    const medicine = RXGuideMeds.find(
+      (med) => med.fields.name === formData.name
+    );
+
+    const selectedMedData = {
+      ...formData,
+      // spread fields from the formData
+      // update image and medication_class fields from the found medicine
+      // created a new object
+      image: medicine?.fields.image,
+      medication_class: medicine?.fields.class,
+    };
+    onSave(selectedMedData);
+  };
+
   return (
     <Dialog
       onClose={handleClose}
       aria-labelledby="customized-dialog-title"
       open={open}
     >
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          onSave(formData);
-        }}
-      >
+      <form onSubmit={handleSubmit}>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           <div style={{ display: "flex", alignItems: "center" }}>
             <CreateIcon style={{ margin: "10px" }} />
@@ -136,32 +134,13 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
               type="text"
               defaultValue="select"
               value={formData.name}
-              onChange={handleChange}
+              onChange={handleSelectedMed}
               style={{ margin: "10px" }}
             >
               {MEDS}
             </select>
           </div>
 
-          <div className="input-container" style={{ marginLeft: "10px" }}>
-            {!formData.name ? (
-              <FormHelperText>What class is your medication?</FormHelperText>
-            ) : (
-              <FormHelperText>What class is {formData.name}?</FormHelperText>
-            )}
-            <select
-              className="select-css"
-              name="medication_class"
-              type="text"
-              required
-              defaultValue="select"
-              value={formData.medication_class}
-              onChange={handleChange}
-            >
-              {CLASSES}
-              <option value=" ">I don't know</option>
-            </select>
-          </div>
           <div className="input-container">
             <TextField
               className="select-css"
@@ -183,33 +162,6 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
               value={formData.description}
               onChange={handleChange}
             />
-          </div>
-
-          <div className="input-container" style={{ marginLeft: "10px" }}>
-            {!formData.name ? (
-              <FormHelperText>
-                What does your medication look like?
-              </FormHelperText>
-            ) : (
-              <FormHelperText>
-                What does {formData.name} look like?
-              </FormHelperText>
-            )}
-            <select
-              className="select-css"
-              type="text"
-              name="image"
-              style={{
-                display: "flex",
-                width: "300px",
-                marginTop: "10px",
-                marginBottom: "10px",
-              }}
-              value={formData.image}
-              onChange={handleChange}
-            >
-              {IMAGES}
-            </select>
           </div>
 
           <div className="input-container">

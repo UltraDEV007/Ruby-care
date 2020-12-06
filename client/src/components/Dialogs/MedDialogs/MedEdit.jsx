@@ -98,36 +98,34 @@ export default function MedEdit({
     ))
   );
 
-  const CLASSES = React.Children.toArray(
-    RXGuideMeds.map((med) => (
-      <>
-        <option value="" selected disabled hidden>
-          Select a class
-        </option>
-        <option>{med.fields.class}</option>
-      </>
-    ))
-  );
-
-  const IMAGES = React.Children.toArray(
-    RXGuideMeds.map((med) => (
-      <>
-        <option value="" selected disabled hidden>
-          Select an image
-        </option>
-        <option style={{ backgroundImage: `url(${med.fields.image})` }}>
-          {med.fields.image}
-        </option>
-      </>
-    ))
-  );
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
     }));
+  };
+
+  const handleSelectedMed = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const medicine = RXGuideMeds.find(
+      (med) => med.fields.name === formData.name
+    );
+
+    const selectedMedData = {
+      ...formData,
+      image: medicine?.fields.image,
+      medication_class: medicine?.fields.class,
+    };
+    onSave(id, selectedMedData);
   };
 
   return (
@@ -137,15 +135,10 @@ export default function MedEdit({
       open={handleOpen}
     >
       <DialogTitle>
-        <Typography className="title">Edit Symptom</Typography>
+        <Typography className="title">Edit Medication</Typography>
       </DialogTitle>
 
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          onSave(id, formData);
-        }}
-      >
+      <form onSubmit={handleSubmit}>
         <DialogContent dividers>
           <div className="input-container">
             <FormHelperText>Please select a medication</FormHelperText>
@@ -156,31 +149,12 @@ export default function MedEdit({
               style={{ marginLeft: "10px" }}
               defaultValue="select"
               value={name}
-              onChange={handleChange}
+              onChange={handleSelectedMed}
             >
               {MEDS}
             </select>
           </div>
-          <div className="input-container">
-            {!name ? (
-              <FormHelperText>What class is your medication?</FormHelperText>
-            ) : (
-              <FormHelperText>What class is {name}?</FormHelperText>
-            )}
-            <select
-              className="select-css"
-              name="medication_class"
-              type="text"
-              required
-              style={{ marginLeft: "10px" }}
-              defaultValue="select"
-              value={formData.medication_class}
-              onChange={handleChange}
-            >
-              {CLASSES}
-              <option value=" ">I don't know</option>
-            </select>
-          </div>
+
           <div className="input-container">
             <TextField
               className="select-css"
@@ -202,33 +176,6 @@ export default function MedEdit({
               value={formData.description}
               onChange={handleChange}
             />
-          </div>
-
-          <div className="input-container" style={{ marginLeft: "10px" }}>
-            {!formData.name ? (
-              <FormHelperText>
-                What does your medication look like?
-              </FormHelperText>
-            ) : (
-              <FormHelperText>
-                What does {formData.name} look like?
-              </FormHelperText>
-            )}
-            <select
-              className="select-css"
-              type="text"
-              name="image"
-              style={{
-                display: "flex",
-                width: "300px",
-                marginTop: "10px",
-                marginBottom: "10px",
-              }}
-              value={formData.image}
-              onChange={handleChange}
-            >
-              {IMAGES}
-            </select>
           </div>
 
           <div className="input-container">

@@ -75,15 +75,11 @@ export default function MedDetail({
             alt={med.name}
           />
           &nbsp;
-          {med.medication_class !== " " ? (
-            <>{med.name | med.medication_class}</>
-          ) : (
-            <>{med.name}</>
-          )}
+          <>{med.name}</>
         </Typography>
-      </DialogTitle>
-      <DialogTitle>
-        <Typography>I took {med.name} because...</Typography>
+        <Typography style={{ textAlign: "left", marginLeft: "10px" }}>
+          Class: {med.medication_class}
+        </Typography>
       </DialogTitle>
       <DialogContent
         dividers
@@ -94,7 +90,10 @@ export default function MedDetail({
           overflowWrap: "break-word",
         }}
       >
-        <Typography>{med.description}</Typography>
+        <Typography>I took {med.name} because...</Typography>
+        <Typography style={{ marginTop: "2px" }}>
+          <small>{med.description}</small>
+        </Typography>
       </DialogContent>
       <DialogTitle>
         <Typography>

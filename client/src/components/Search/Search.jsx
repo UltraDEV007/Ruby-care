@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
@@ -7,6 +7,8 @@ import SearchIcon from "@material-ui/icons/Search";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import ClearIcon from "@material-ui/icons/Clear";
+import { DarkModeContext } from "../Context/DarkModeContext";
+import { blue, yellow } from "@material-ui/core/colors";
 
 const useStyles = makeStyles({
   underline: {
@@ -25,23 +27,28 @@ const Form = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  &::placeholder {
+    color: ${({ darkMode }) => (darkMode === "dark" ? "#fff" : `inherit`)};
+  }
   .icon {
     position: absolute;
-    right: 50px;
+    right: 20px;
   }
-
   input {
     width: 68vw;
     font-size: 18px;
     letter-spacing: 0.1px;
     padding: 12px;
-    border: 1px solid pink;
-    margin: 40px;
-    text-align: center;
+    border: ${({ darkMode }) =>
+      darkMode === "dark"
+        ? `1px solid ${yellow[700]}`
+        : `1px solid ${blue[500]}`};
+    text-align: left;
     box-shadow: 5px 5px peachpuff;
+    box-shadow: ${({ darkMode }) =>
+      darkMode === "dark" ? `5px 5px${yellow[700]}` : `5px 5px ${blue[500]}`};
   }
-
+  /* "5px 5px peachpuff;" */
   @media screen and (min-width: 1200px) {
     input {
       width: 50vw;
@@ -53,6 +60,7 @@ const Form = styled.div`
 `;
 
 function Search({ search, setSearch }) {
+  const [darkMode] = useContext(DarkModeContext);
   let location = useLocation();
   const classes = useStyles();
   const [searchEnabled, setSearchEnabled] = useState(false);
@@ -90,7 +98,7 @@ function Search({ search, setSearch }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form darkMode={darkMode} onEnter={onSearch} onSubmit={handleSubmit}>
       <TextField
         type="text"
         name="search"
@@ -98,6 +106,15 @@ function Search({ search, setSearch }) {
         placeholder={checkPath()}
         value={search}
         disableUnderline
+        InputLabelProps={{
+          style: {
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            width: "100%",
+            color: "green",
+          },
+        }}
         onChange={handleSearch}
         InputProps={{
           classes,

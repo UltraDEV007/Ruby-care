@@ -17,6 +17,13 @@ function DarkModeProvider({ children }) {
       text: {
         primary: themeTextColor,
       },
+      input: {
+        "&::placeholder": {
+          primary: themeTextColor,
+        },
+        primary: themeTextColor,
+      },
+
       typography: {
         fontFamily: ["Roboto", "sans-serif"].join(","),
       },
