@@ -9,16 +9,13 @@ export default function AffirmationLetter({
   affirmation,
   openOptions,
   handleDelete,
-  handleDetailOpen,
-  handleDetailClose,
-  openDetail,
-  onDelete,
   handleUpdate,
   affirmations,
   setAffirmations,
 }) {
   const [openEdit, setOpenEdit] = useState(false);
   const [edited, setEdited] = useState(false);
+  const [openDetail, setOpenDetail] = useState(false);
 
   const onSave = (formData, id) => {
     handleUpdate(formData, id);
@@ -36,6 +33,19 @@ export default function AffirmationLetter({
 
   const handleClose = () => {
     setOpenEdit(false);
+  };
+
+  const onDelete = (id) => {
+    handleDelete(id);
+    setOpenDetail(false);
+  };
+
+  const handleDetailOpen = () => {
+    setOpenDetail(true);
+  };
+
+  const handleDetailClose = () => {
+    setOpenDetail(false);
   };
 
   return (
@@ -81,14 +91,16 @@ export default function AffirmationLetter({
               </Button>
             </div>
           </div>
-          <AffirmationDetail
-            affirmation={affirmation}
-            openDetail={openDetail}
-            onDelete={onDelete}
-            handleDetailOpen={handleDetailOpen}
-            handleDelete={handleDelete}
-            handleDetailClose={handleDetailClose}
-          />
+          {openDetail && (
+            <AffirmationDetail
+              affirmation={affirmation}
+              openDetail={openDetail}
+              onDelete={onDelete}
+              handleDetailOpen={handleDetailOpen}
+              handleDelete={handleDelete}
+              handleDetailClose={handleDetailClose}
+            />
+          )}
         </>
       ) : (
         <div className="affirmation-container">

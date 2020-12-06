@@ -1,19 +1,19 @@
 class MedicationsController < ApplicationController
   before_action :authorize_request, only: [:index, :show, :create, :update, :destroy]
-  before_action :set_user_symptom, only: [ :update, :destroy]
+  before_action :set_user_medication, only: [ :update, :destroy]
 
-  # GET /symptoms
+  # GET /medications
   def index
     @medications = @current_user.medications 
     render json: @medications
   end
 
-  # GET /symptoms/1
+  # GET /medications/1
   def show
     render json: @medication, include: :user
   end
 
-  # POST /symptoms
+  # POST /medications
   def create
     @medication = Medication.new(medication_params)
     @medication.user = @current_user
@@ -25,7 +25,7 @@ class MedicationsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /symptoms/1
+  # PATCH/PUT /medications/1
   def update
     if @medication.update(medication_params)
       render json: @medication
@@ -34,7 +34,7 @@ class MedicationsController < ApplicationController
     end
   end
 
-  # DELETE /symptoms/1
+  # DELETE /medications/1
   def destroy
     @medication.destroy
   end

@@ -18,7 +18,6 @@ export default function Affirmations({
 }) {
   const [openOptions, setOpenOptions] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
-  const [openDetail, setOpenDetail] = useState(false);
 
   const handleClickOpen = () => {
     setOpenDialog(true);
@@ -30,19 +29,9 @@ export default function Affirmations({
     handleCreate(formData);
     setOpenDialog(false);
   };
-  const onDelete = (id) => {
-    handleDelete(id);
-    setOpenDetail(false);
-  };
+
   const handleOptionsClick = () => {
     setOpenOptions(!openOptions);
-  };
-  const handleDetailOpen = () => {
-    setOpenDetail(true);
-  };
-
-  const handleDetailClose = () => {
-    setOpenDetail(false);
   };
 
   const AFFIRMATIONS = React.Children.toArray(
@@ -57,15 +46,11 @@ export default function Affirmations({
       affirmations.map((affirmation) => (
         <AffirmationLetter
           updated={updated}
-          onDelete={onDelete}
           setAffirmations={setAffirmations}
           handleUpdate={handleUpdate}
           affirmation={affirmation}
           openOptions={openOptions}
           handleDelete={handleDelete}
-          openDetail={openDetail}
-          handleDetailOpen={handleDetailOpen}
-          handleDetailClose={handleDetailClose}
           affirmations={affirmations}
         />
       ))
