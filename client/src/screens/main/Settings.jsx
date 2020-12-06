@@ -11,6 +11,7 @@ import { DarkModeContext } from "../../components/Context/DarkModeContext";
 import Moment from "react-moment";
 import "moment-timezone";
 import ScrollToTopOnMount from "../../components/Helpers/ScrollToTopOnMount";
+import Brightness4Icon from "@material-ui/icons/Brightness4";
 
 export default function Settings() {
   const [currentUser] = useContext(CurrentUserContext);
@@ -80,19 +81,25 @@ export default function Settings() {
       textAlign: "center",
       padding: "20px",
     },
+    darkModeContainer: {
+      display: "flex",
+      alignItems: "center",
+    },
   }));
   const classes = useStyles();
 
   const [switchState, setSwitchState] = useState(() => {
     let state = localStorage.getItem("switchState");
+
     if (state !== null) {
-      return state === "false" ? false : true;
+      return state === "true" ? true : false;
     }
-    return true;
+    return false;
   });
 
   const handleThemeChange = () => {
     setSwitchState(switchState === true ? false : true);
+
     if (darkMode === "light") {
       setDarkMode("dark");
       localStorage.setItem("darkMode", "dark");
@@ -128,7 +135,10 @@ export default function Settings() {
         <div className="card-actions">
           <Card className={classes.card}>
             <CardActions className={classes.actionsContainer}>
-              <Typography className={classes.typography}>Dark mode</Typography>
+              <Typography className={classes.darkModeContainer}>
+                <Brightness4Icon className={classes.darkModeIcon} />
+                &nbsp;Dark mode
+              </Typography>
               <Switch
                 className={classes.darkModeSwitch}
                 checked={switchState}

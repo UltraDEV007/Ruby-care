@@ -38,8 +38,8 @@ function DarkModeProvider({ children }) {
         ? setDarkMode("light")
         : setDarkMode("dark");
     } else {
-      setDarkMode("dark");
-      localStorage.setItem("darkMode", "dark");
+      setDarkMode("light");
+      localStorage.setItem("darkMode", "light");
     }
   }, []);
 
