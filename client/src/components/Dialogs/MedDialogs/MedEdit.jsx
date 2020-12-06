@@ -109,6 +109,19 @@ export default function MedEdit({
     ))
   );
 
+  const IMAGES = React.Children.toArray(
+    RXGuideMeds.map((med) => (
+      <>
+        <option value="" selected disabled hidden>
+          Select an image
+        </option>
+        <option style={{ backgroundImage: `url(${med.fields.image})` }}>
+          {med.fields.image}
+        </option>
+      </>
+    ))
+  );
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -167,29 +180,57 @@ export default function MedEdit({
               {CLASSES}
               <option value=" ">I don't know</option>
             </select>
-            <div className="input-container">
-              <TextField
-                className="select-css"
-                name="description"
-                type="text"
-                required
-                label={
-                  !formData.name ? (
-                    <FormHelperText>
-                      Why did you take your medicaiton?
-                    </FormHelperText>
-                  ) : (
-                    <FormHelperText>
-                      Why did you take {formData.name}?
-                    </FormHelperText>
-                  )
-                }
-                style={{ display: "flex", width: "300px", margin: "10px" }}
-                value={formData.description}
-                onChange={handleChange}
-              />
-            </div>
           </div>
+          <div className="input-container">
+            <TextField
+              className="select-css"
+              name="description"
+              type="text"
+              required
+              label={
+                !formData.name ? (
+                  <FormHelperText>
+                    Why did you take your medicaiton?
+                  </FormHelperText>
+                ) : (
+                  <FormHelperText>
+                    Why did you take {formData.name}?
+                  </FormHelperText>
+                )
+              }
+              style={{ display: "flex", width: "300px", margin: "10px" }}
+              value={formData.description}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="input-container" style={{ marginLeft: "10px" }}>
+            {!formData.name ? (
+              <FormHelperText>
+                What does your medication look like?
+              </FormHelperText>
+            ) : (
+              <FormHelperText>
+                What does {formData.name} look like?
+              </FormHelperText>
+            )}
+            <select
+              className="select-css"
+              type="text"
+              name="image"
+              style={{
+                display: "flex",
+                width: "300px",
+                marginTop: "10px",
+                marginBottom: "10px",
+              }}
+              value={formData.image}
+              onChange={handleChange}
+            >
+              {IMAGES}
+            </select>
+          </div>
+
           <div className="input-container">
             <TextField
               name="time"

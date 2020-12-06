@@ -77,19 +77,6 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
     ))
   );
 
-  // const IMAGES = React.Children.toArray(
-  //   RXGuideMeds.map((med) => (
-  //     <>
-  //       <option value="" selected disabled hidden>
-  //         Select a image
-  //       </option>
-  //       <option style={{ backgroundImage: `url(${med.fields.image})` }}>
-  //         <img src={med.fields.image} alt={med.fields.name} />
-  //       </option>
-  //     </>
-  //   ))
-  // );
-
   const CLASSES = React.Children.toArray(
     RXGuideMeds.map((med) => (
       <>
@@ -101,16 +88,19 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
     ))
   );
 
-  // const DESCRIPTIONS = React.Children.toArray(
-  //   RXGuideMeds.map((med) => (
-  //     <>
-  //       <option value="" selected disabled hidden>
-  //         Select a description
-  //       </option>
-  //       <option>{med.fields.description}</option>
-  //     </>
-  //   ))
-  // );
+  const IMAGES = React.Children.toArray(
+    RXGuideMeds.map((med) => (
+      <>
+        <option value="" selected disabled hidden>
+          Select an image
+        </option>
+        <option style={{ backgroundImage: `url(${med.fields.image})` }}>
+          {med.fields.image}
+        </option>
+      </>
+    ))
+  );
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -195,15 +185,32 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
             />
           </div>
 
-          {/* <div className="input-container">
+          <div className="input-container" style={{ marginLeft: "10px" }}>
+            {!formData.name ? (
+              <FormHelperText>
+                What does your medication look like?
+              </FormHelperText>
+            ) : (
+              <FormHelperText>
+                What does {formData.name} look like?
+              </FormHelperText>
+            )}
             <select
               className="select-css"
               type="text"
-              style={{ marginLeft: "10px" }}
+              name="image"
+              style={{
+                display: "flex",
+                width: "300px",
+                marginTop: "10px",
+                marginBottom: "10px",
+              }}
+              value={formData.image}
+              onChange={handleChange}
             >
               {IMAGES}
             </select>
-          </div> */}
+          </div>
 
           <div className="input-container">
             <TextField

@@ -75,7 +75,11 @@ export default function MedDetail({
             alt={med.name}
           />
           &nbsp;
-          {med.name} | {med.medication_class}
+          {med.medication_class !== " " ? (
+            <>{med.name | med.medication_class}</>
+          ) : (
+            <>{med.name}</>
+          )}
         </Typography>
       </DialogTitle>
       <DialogTitle>
