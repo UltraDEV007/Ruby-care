@@ -74,18 +74,19 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
     ))
   );
 
-  const IMAGE = React.Children.toArray(
-    RXGuideMeds.map((med) => (
-      <>
-        <option value="" selected disabled hidden>
-          Select a image
-        </option>
-        <option style={{ backgroundImage: `url(${med.fields.image})` }}>
-          <img src={med.fields.image} alt={med.fields.name} />
-        </option>
-      </>
-    ))
-  );
+  // const IMAGES = React.Children.toArray(
+  //   RXGuideMeds.map((med) => (
+  //     <>
+  //       <option value="" selected disabled hidden>
+  //         Select a image
+  //       </option>
+  //       <option style={{ backgroundImage: `url(${med.fields.image})` }}>
+  //         <img src={med.fields.image} alt={med.fields.name} />
+  //       </option>
+  //     </>
+  //   ))
+  // );
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -132,15 +133,15 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
             </select>
           </div>
 
-          <div className="input-container">
+          {/* <div className="input-container">
             <select
               className="select-css"
               type="text"
               style={{ marginLeft: "10px" }}
             >
-              {IMAGE}
+              {IMAGES}
             </select>
-          </div>
+          </div> */}
           <div className="input-container">
             <TextField
               name="time"

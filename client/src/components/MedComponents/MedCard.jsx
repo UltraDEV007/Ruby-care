@@ -64,7 +64,8 @@ export default function MedCard({
             >
               <Button
                 component={Link}
-                to={`/medications/${med.name}/edit`}
+                onClick={handleOpen}
+                to={`/medications/${med.id}/edit`}
                 variant="contained"
                 color="primary"
                 className="edit-button"
@@ -94,12 +95,15 @@ export default function MedCard({
 
       {openEdit && (
         <Switch>
-          <Route path="/medications/:name/edit">
+          <Route path="/medications/:id/edit">
             <MedEdit
               meds={meds}
               onSave={onSave}
+              RXGuideMeds={RXGuideMeds}
+              handleOpen={handleOpen}
               handleUpdate={handleUpdate}
               setOpenEdit={setOpenEdit}
+              handleClose={handleClose}
             />
           </Route>
         </Switch>
