@@ -61,7 +61,7 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
   const [formData, setFormData] = useState({
     name: "",
     medication_class: "",
-    description: "",
+    reason: "",
     image: "",
     time: "",
   });
@@ -144,7 +144,7 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
           <div className="input-container">
             <TextField
               className="select-css"
-              name="description"
+              name="reason"
               type="text"
               required
               label={
@@ -159,7 +159,7 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
                 )
               }
               style={{ display: "flex", width: "300px", margin: "10px" }}
-              value={formData.description}
+              value={formData.reason}
               onChange={handleChange}
             />
           </div>

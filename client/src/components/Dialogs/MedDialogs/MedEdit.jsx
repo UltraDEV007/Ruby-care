@@ -67,7 +67,7 @@ export default function MedEdit({
   const [formData, setFormData] = useState({
     name: "",
     medication_class: "",
-    description: "",
+    reason: "",
     image: "",
     time: "",
   });
@@ -79,8 +79,8 @@ export default function MedEdit({
       const oneMed = meds?.find((med) => {
         return med?.id === Number(id);
       });
-      const { name, medication_class, image, description, time } = oneMed;
-      setFormData({ name, medication_class, image, time, description });
+      const { name, medication_class, image, reason, time } = oneMed;
+      setFormData({ name, medication_class, image, time, reason });
     };
     if (meds?.length) {
       prefillFormData();
@@ -119,7 +119,6 @@ export default function MedEdit({
     const medicine = RXGuideMeds.find(
       (med) => med.fields.name === formData.name
     );
-
     const selectedMedData = {
       ...formData,
       image: medicine?.fields.image,
@@ -158,7 +157,7 @@ export default function MedEdit({
           <div className="input-container">
             <TextField
               className="select-css"
-              name="description"
+              name="reason"
               type="text"
               required
               label={
@@ -173,7 +172,7 @@ export default function MedEdit({
                 )
               }
               style={{ display: "flex", width: "300px", margin: "10px" }}
-              value={formData.description}
+              value={formData.reason}
               onChange={handleChange}
             />
           </div>

@@ -92,7 +92,7 @@ export default function MedDetail({
       >
         <Typography>I took {med.name} because...</Typography>
         <Typography style={{ marginTop: "2px" }}>
-          <small>{med.description}</small>
+          <small>{med.reason}</small>
         </Typography>
       </DialogContent>
       <DialogTitle>

@@ -51,6 +51,6 @@ class MedicationsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def medication_params
-      params.require(:medication).permit(:name, :medication_class, :description, :image, :time, :user_id)
+      params.require(:medication).permit(:name, :medication_class, :reason, :image, :time, :user_id)
     end
 end
