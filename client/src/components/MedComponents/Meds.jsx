@@ -9,11 +9,13 @@ import Typography from "@material-ui/core/Typography";
 
 export default function Meds({
   meds,
+  setMeds,
   updated,
   handleDelete,
   handleCreate,
   loaded,
   RXGuideMeds,
+  handleUpdate,
 }) {
   const [openOptions, setOpenOptions] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
@@ -44,8 +46,12 @@ export default function Meds({
     ) : (
       meds.map((med) => (
         <MedCard
+          RXGuideMeds={RXGuideMeds}
+          meds={meds}
+          setMeds={setMeds}
           updated={updated}
           med={med}
+          handleUpdate={handleUpdate}
           openOptions={openOptions}
           handleDelete={handleDelete}
         />

@@ -64,19 +64,13 @@ export default function MedsContainer() {
       <Meds
         RXGuideMeds={RXGuideMeds}
         meds={meds}
+        setMeds={setMeds}
         updated={updated}
         loaded={loaded}
         handleCreate={handleCreate}
         handleDelete={handleDelete}
+        handleUpdate={handleUpdate}
       />
-      <Switch>
-        <Route path="/medications/:id/edit">
-          {/* <MedEdit
-            meds={meds}
-            handleUpdate={handleUpdate}
-          /> */}
-        </Route>
-      </Switch>
     </>
   );
 }

@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import TextField from "@material-ui/core/TextField";
-import { withStyles } from "@material-ui/core/styles";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
+import TextField from "@material-ui/core/TextField";
+import Typography from "@material-ui/core/Typography";
 import Dialog from "@material-ui/core/Dialog";
-import MuiDialogTitle from "@material-ui/core/DialogTitle";
-import MuiDialogContent from "@material-ui/core/DialogContent";
 import MuiDialogActions from "@material-ui/core/DialogActions";
+import MuiDialogContent from "@material-ui/core/DialogContent";
+import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
-import Typography from "@material-ui/core/Typography";
-import CreateIcon from "@material-ui/icons/Create";
+import { withStyles } from "@material-ui/core/styles";
 import FormHelperText from "@material-ui/core/FormHelperText";
-import { Link } from "react-router-dom";
 
 const styles = (theme) => ({
   root: {
@@ -26,7 +26,6 @@ const styles = (theme) => ({
   },
 });
 
-// code for dialog referenced from Material-ui's docs
 const DialogTitle = withStyles(styles)((props) => {
   const { children, classes, onClose, ...other } = props;
   return (
@@ -58,11 +57,32 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
-export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
+export default function MedEdit({
+  RXGuideMeds,
+  onSave,
+  handleOpen,
+  handleClose,
+  meds,
+}) {
   const [formData, setFormData] = useState({
     name: "",
     time: "",
   });
+  const { name, time } = formData;
+  const { id } = useParams();
+
+  useEffect(() => {
+    const prefillFormData = () => {
+      const oneMed = meds?.find((med) => {
+        return med?.id === Number(id);
+      });
+      const { name, time } = oneMed;
+      setFormData({ name, time });
+    };
+    if (meds?.length) {
+      prefillFormData();
+    }
+  }, [meds, id]);
 
   const MEDS = React.Children.toArray(
     RXGuideMeds.map((med) => (
@@ -87,23 +107,21 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
     <Dialog
       onClose={handleClose}
       aria-labelledby="customized-dialog-title"
-      open={open}
+      open={handleOpen}
     >
+      <DialogTitle>
+        <Typography className="title">Edit Symptom</Typography>
+      </DialogTitle>
+
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          onSave(formData);
+          onSave(id, formData);
         }}
       >
-        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <CreateIcon style={{ marginRight: "10px" }} />
-            Log Med
-          </div>
-        </DialogTitle>
         <DialogContent dividers>
           <div className="input-container">
-            {!formData.name ? (
+            {name ? (
               <FormHelperText>Please select a medication</FormHelperText>
             ) : (
               <></>
@@ -114,7 +132,7 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
               type="text"
               style={{ marginLeft: "10px" }}
               defaultValue="select"
-              value={formData.name}
+              value={name}
               onChange={handleChange}
             >
               {MEDS}
@@ -127,21 +145,22 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
               required
               id="datetime-local"
               label={
-                formData.name
+                name
                   ? `When did you take ${formData.name}?`
                   : `When did you take this medication?`
               }
               type="datetime-local"
               style={{ width: "300px", margin: "10px" }}
-              value={formData.time}
+              value={time}
               onChange={handleChange}
               InputLabelProps={{
                 shrink: true,
               }}
             />
           </div>
+
           <DialogActions>
-            <Button type="submit" variant="contained" color="primary">
+            <Button to="/" type="submit" variant="contained" color="primary">
               Save
             </Button>
             <Button
