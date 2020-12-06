@@ -61,6 +61,8 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
   const [formData, setFormData] = useState({
     name: "",
     medication_class: "",
+    description: "",
+    image: "",
     time: "",
   });
 

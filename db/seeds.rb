@@ -59,7 +59,7 @@ puts "#{Symptom.count} symptoms created"
 
 puts "#{Food.count} foods created"
 
-@medication1 = Medication.create!(name: "Humira", medication_class: "Immunosuppresant", description: "Immunosuppresant for Crohn's & Arthirits", time: DateTime.strptime("09/01/2009 17:00", "%m/%d/%Y %H:%M"), user: @admin)
-@medication2 = Medication.create!(name: "Humira", medication_class: "Immunosuppresant", description: "Immunosuppresant for Crohn's & Arthirits", time: DateTime.strptime("09/01/2009 17:00", "%m/%d/%Y %H:%M"), user: @daniel)
+@medication1 = Medication.create!(name: "Humira", medication_class: "Immunosuppresant", description: "Immunosuppresant for Crohn's & Arthirits", image: "https://www.humira.com/content/humira/en-us/psoriasis/humira-dosing-psoriasis/_jcr_content/leftpar/columnlayout_c0ed/col-2-1/image_f9b3/large.img.png", time: DateTime.strptime("09/01/2009 17:00", "%m/%d/%Y %H:%M"), user: @admin)
+@medication2 = Medication.create!(name: "Humira", medication_class: "Immunosuppresant", description: "Immunosuppresant for Crohn's & Arthirits", image: "https://www.humira.com/content/humira/en-us/psoriasis/humira-dosing-psoriasis/_jcr_content/leftpar/columnlayout_c0ed/col-2-1/image_f9b3/large.img.png", time: DateTime.strptime("09/01/2009 17:00", "%m/%d/%Y %H:%M"), user: @daniel)
 
 puts "#{Medication.count} medications created"

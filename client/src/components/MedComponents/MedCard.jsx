@@ -9,6 +9,7 @@ import { indigo } from "@material-ui/core/colors/";
 import MedEdit from "../Dialogs/MedDialogs/MedEdit";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import MedDetail from "../Dialogs/MedDialogs/MedDetail";
+import Typography from "@material-ui/core/Typography";
 
 export default function MedCard({
   meds,
@@ -57,68 +58,80 @@ export default function MedCard({
 
   return (
     <>
-      {!edited ? (
-        <Card
-          onClick={handleDetailOpen}
-          style={
-            darkMode === "light"
-              ? { boxShadow: "default", cursor: "pointer" }
-              : {
-                  boxShadow: `0px 0px 4px 1.2px ${indigo[50]} `,
-                  cursor: "pointer",
-                }
-          }
-          className="med-card"
-        >
-          <div className="med-container">
-            {med.name}
-            <div className="time">
-              <Moment format="MMM/DD/yyyy hh:mm A">
-                {med.time?.toLocaleString()}
-              </Moment>
-            </div>
-            <div
-              className="buttons"
-              style={openOptions ? { display: "flex" } : { display: "none" }}
-            >
-              <Button
-                component={Link}
-                onClick={handleOpen}
-                to={`/medications/${med.id}/edit`}
-                variant="contained"
-                color="primary"
-                className="edit-button"
-              >
-                <span role="img" aria-label="edit">
-                  🔧
-                </span>
-              </Button>
-              <Button
-                variant="contained"
-                color="secondary"
-                className="delete-button"
-                onClick={() => handleDelete(med.id)}
-              >
-                <span role="img" aria-label="delete">
-                  🗑️
-                </span>
-              </Button>
-            </div>
-          </div>
-          {openDetail && (
-            <MedDetail
-              med={med}
-              openDetail={openDetail}
-              onDelete={onDelete}
-              handleDetailClose={handleDetailClose}
-            />
-          )}
-        </Card>
-      ) : (
+      <Card
+        style={
+          darkMode === "light"
+            ? { boxShadow: "default", cursor: "pointer" }
+            : {
+                boxShadow: `0px 0px 4px 1.2px ${indigo[50]} `,
+                cursor: "pointer",
+              }
+        }
+        className="med-card"
+      >
         <div className="med-container">
-          <CircularProgress style={{ height: "80px", width: "80px" }} />
+          <Typography onClick={handleDetailOpen}>{med.name}</Typography>
+          {!edited ? (
+            <div style={{ padding: "20px" }}>
+              <img
+                onClick={handleDetailOpen}
+                src={med.image}
+                style={{
+                  width: "100px",
+                  height: "50px",
+                  maxWidth: "100px",
+                  maxHeight: "50px",
+                }}
+                alt={med.name}
+              />
+            </div>
+          ) : (
+            <div className="med-container">
+              <CircularProgress style={{ height: "80px", width: "80px" }} />
+            </div>
+          )}
+          <div onClick={handleDetailOpen} className="time">
+            <Moment format="MMM/DD/yyyy hh:mm A">
+              {med.time?.toLocaleString()}
+            </Moment>
+          </div>
+          <div
+            className="buttons"
+            style={openOptions ? { display: "flex" } : { display: "none" }}
+          >
+            <Button
+              component={Link}
+              onClick={handleOpen}
+              to={`/medications/${med.id}/edit`}
+              variant="contained"
+              color="primary"
+              className="edit-button"
+            >
+              <span role="img" aria-label="edit">
+                🔧
+              </span>
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              className="delete-button"
+              onClick={() => handleDelete(med.id)}
+            >
+              <span role="img" aria-label="delete">
+                🗑️
+              </span>
+            </Button>
+          </div>
         </div>
-      )}
+        {openDetail && (
+          <MedDetail
+            med={med}
+            openDetail={openDetail}
+            onDelete={onDelete}
+            handleDetailClose={handleDetailClose}
+          />
+        )}
+      </Card>
 
       {openEdit && (
         <Switch>

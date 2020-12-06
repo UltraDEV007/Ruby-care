@@ -67,8 +67,9 @@ export default function MedEdit({
   const [formData, setFormData] = useState({
     name: "",
     medication_class: "",
-    time: "",
     description: "",
+    image: "",
+    time: "",
   });
   const { name, time } = formData;
   const { id } = useParams();
@@ -78,8 +79,8 @@ export default function MedEdit({
       const oneMed = meds?.find((med) => {
         return med?.id === Number(id);
       });
-      const { name, medication_class, description, time } = oneMed;
-      setFormData({ name, medication_class, time, description });
+      const { name, medication_class, image, description, time } = oneMed;
+      setFormData({ name, medication_class, image, time, description });
     };
     if (meds?.length) {
       prefillFormData();
@@ -166,6 +167,28 @@ export default function MedEdit({
               {CLASSES}
               <option value=" ">I don't know</option>
             </select>
+            <div className="input-container">
+              <TextField
+                className="select-css"
+                name="description"
+                type="text"
+                required
+                label={
+                  !formData.name ? (
+                    <FormHelperText>
+                      Why did you take your medicaiton?
+                    </FormHelperText>
+                  ) : (
+                    <FormHelperText>
+                      Why did you take {formData.name}?
+                    </FormHelperText>
+                  )
+                }
+                style={{ display: "flex", width: "300px", margin: "10px" }}
+                value={formData.description}
+                onChange={handleChange}
+              />
+            </div>
           </div>
           <div className="input-container">
             <TextField

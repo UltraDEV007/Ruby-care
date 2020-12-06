@@ -18,7 +18,14 @@ const Text = styled.img`
 
 const RXGuideLogo = () => (
   <Div>
-    <Logo src="https://i.imgur.com/NEXATrp.png" alt="RXGuide Logo" />
+    <a
+      target="_blank"
+      href="https://rxguide.netlify.app/about"
+      rel="noreferrer"
+      alt="RXGuide website"
+    >
+      <Logo src="https://i.imgur.com/NEXATrp.png" alt="RXGuide Logo" />
+    </a>
     <Text src="https://i.imgur.com/ykY2aQ8.png" alt="RXGuide Logo" />
   </Div>
 );
