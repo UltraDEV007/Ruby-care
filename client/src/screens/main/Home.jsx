@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Redirect } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
@@ -71,6 +71,9 @@ export default function Home() {
   }));
   const classes = useStyles();
 
+  if (!currentUser) {
+    <Redirect to={"/login"} />;
+  }
   return checkValidity(location.pathname) ? (
     <Layout title="Home">
       <div className={classes.root}>

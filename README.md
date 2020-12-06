@@ -272,6 +272,13 @@ export default function ratingLogic(ratingParam, iconParam) {
  <div className="rating">{ratingLogic(food.rating, "⭐")}</div>
 ```
 
+## FAQ
+
+> Why did you decide to have dark mode on by default, don't most apps have dark mode off by default?
+
+- Reason 1: I did a survey asking about 30 people if they'd prefer dark mode on or off by default, dark mode had a lead of about 80%.
+- Reason 2: Most people just turn darkmode on the moment they turn on any app, that includes me, I do that all the time, light mode just makes my eyes hurt, not only that but I also use a blue-light filter.
+
 ## Code Issues & Resolutions
 
 > Use this section to list of all major issues encountered and their resolution.

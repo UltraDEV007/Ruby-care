@@ -11,7 +11,6 @@ import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 import CreateIcon from "@material-ui/icons/Create";
 import FormHelperText from "@material-ui/core/FormHelperText";
-import { Link } from "react-router-dom";
 
 const styles = (theme) => ({
   root: {
@@ -75,6 +74,18 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
     ))
   );
 
+  const IMAGE = React.Children.toArray(
+    RXGuideMeds.map((med) => (
+      <>
+        <option value="" selected disabled hidden>
+          Select a image
+        </option>
+        <option style={{ backgroundImage: `url(${med.fields.image})` }}>
+          <img src={med.fields.image} alt={med.fields.name} />
+        </option>
+      </>
+    ))
+  );
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -98,7 +109,7 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           <div style={{ display: "flex", alignItems: "center" }}>
             <CreateIcon style={{ marginRight: "10px" }} />
-            Log Med
+            Log medication
           </div>
         </DialogTitle>
         <DialogContent dividers>
@@ -122,6 +133,15 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
           </div>
 
           <div className="input-container">
+            <select
+              className="select-css"
+              type="text"
+              style={{ marginLeft: "10px" }}
+            >
+              {IMAGE}
+            </select>
+          </div>
+          <div className="input-container">
             <TextField
               name="time"
               required
@@ -144,12 +164,7 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
             <Button type="submit" variant="contained" color="primary">
               Save
             </Button>
-            <Button
-              to="/"
-              component={Link}
-              variant="contained"
-              color="secondary"
-            >
+            <Button variant="contained" color="secondary" onClick={handleClose}>
               Cancel
             </Button>
           </DialogActions>
