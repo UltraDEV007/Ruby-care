@@ -95,17 +95,12 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // looping through all the meds in rxguidesmeds and trying to find the one that matches
-    // the selected one which is formData.name
     const medicine = RXGuideMeds.find(
       (med) => med.fields.name === formData.name
     );
 
     const selectedMedData = {
       ...formData,
-      // spread fields from the formData
-      // update image and medication_class fields from the found medicine
-      // created a new object
       image: medicine?.fields.image,
       medication_class: medicine?.fields.class,
     };

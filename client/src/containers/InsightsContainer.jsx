@@ -44,7 +44,7 @@ export default function InsightsContainer({ darkMode }) {
     const newInsight = await postInsight(insightData);
     // the new insight needs to come first and then to say ...prevState
     // thats how it's going to render the new insight first from top to bottom. with the help of the backend
-    setInsights((prevState) => [...prevState, newInsight]);
+    setInsights((prevState) => [newInsight, ...prevState]);
     history.push("/insights");
   };
 
