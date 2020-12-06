@@ -25,6 +25,12 @@ const Form = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  .icon {
+    position: absolute;
+    right: 50px;
+  }
+
   input {
     width: 68vw;
     font-size: 18px;
@@ -96,7 +102,7 @@ function Search({ search, setSearch }) {
         InputProps={{
           classes,
           endAdornment: (
-            <InputAdornment>
+            <InputAdornment className="icon">
               <IconButton>
                 {searchEnabled ? (
                   <ClearIcon onClick={onClearSearch} />
