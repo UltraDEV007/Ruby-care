@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import Search from "../../components/Helpers/Search";
+import Search from "../../components/Search/Search";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Layout from "../../layouts/Layout/Layout";
 import styled from "styled-components";

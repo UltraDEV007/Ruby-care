@@ -1,7 +1,6 @@
 import Meds from "../components/MedComponents/Meds.jsx";
 import { useState, useEffect } from "react";
-import { Switch, Route, useHistory } from "react-router-dom";
-// import MedEdit from "../screens/MedScreens/MedEdit";
+import { useHistory } from "react-router-dom";
 import {
   destroyMed,
   postMed,
@@ -15,7 +14,6 @@ export default function MedsContainer() {
   const [meds, setMeds] = useState([]);
   const [RXGuideMeds, setRXGuideMeds] = useState([]);
   const [loaded, setLoaded] = useState(false);
-  // const [fetchRXGMeds, setFetchRXGMeds] = useState(false);
 
   const history = useHistory();
 

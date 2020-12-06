@@ -7,7 +7,7 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 import styled from "styled-components";
 import Typography from "@material-ui/core/Typography";
 import { yellow, blue } from "@material-ui/core/colors";
-import Search from "../../components/Helpers/Search";
+import Search from "../../components/Search/Search";
 import ScrollToTopOnMount from "../../components/Helpers/ScrollToTopOnMount";
 
 const Wrapper = styled.div`
