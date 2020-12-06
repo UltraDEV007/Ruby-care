@@ -1,6 +1,6 @@
 import RestaurantIcon from "@material-ui/icons/Restaurant";
 
-export const foodRegex = /avocado|chicken|hamburger|burger|(^cheese$)|pizza|cheeseburger|steak|meat|milk|bacon|rice/;
+export const foodRegex = /avocado|chicken|hamburger|burger|(^cheese$)|pizza|cheeseburger|steak|meat|milk|bacon|rice|pork/;
 
 export const foodMap = {
   avocado: "🥑",
@@ -14,6 +14,7 @@ export const foodMap = {
   milk: "🥛",
   bacon: "🥓",
   rice: "🍚",
+  pork: "🐖",
 };
 
 export const foodNameJSX = (food) => {

@@ -150,11 +150,11 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
               label={
                 !formData.name ? (
                   <FormHelperText>
-                    Why did you take your medicaiton?
+                    Why do you take your medicaiton?
                   </FormHelperText>
                 ) : (
                   <FormHelperText>
-                    Why did you take {formData.name}?
+                    Why do you take {formData.name}?
                   </FormHelperText>
                 )
               }
@@ -171,8 +171,8 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
               id="datetime-local"
               label={
                 formData.name
-                  ? `When did you take ${formData.name}?`
-                  : `When did you take this medication?`
+                  ? `When do you take ${formData.name}?`
+                  : `When do you take this medication?`
               }
               type="datetime-local"
               style={{ width: "300px", margin: "10px" }}

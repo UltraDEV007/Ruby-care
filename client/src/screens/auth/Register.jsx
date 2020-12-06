@@ -264,6 +264,7 @@ export default function Register() {
                   : classes.inputFieldDark
               }
               type="text"
+              inputProps={{ maxLength: 20 }}
               name="name"
               value={formData.name}
               onChange={handleChange}

@@ -125,6 +125,7 @@ export default function InsightEdit({ handleUpdate, insights }) {
           <TextField
             required
             label="title"
+            inputProps={{ maxLength: 32 }}
             className="string-input title"
             autoFocus
             type="text"

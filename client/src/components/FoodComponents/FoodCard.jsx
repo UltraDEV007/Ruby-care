@@ -54,7 +54,6 @@ export default function FoodCard({
               </Moment>
             </div>
             <div className="rating">{ratingLogic(food.rating, "⭐")}</div>
-            <div className="factors">{food.factors}</div>
           </div>
           <div
             className="buttons"

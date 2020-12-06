@@ -115,6 +115,7 @@ export default function SymptomEdit({
               autoFocus
               type="text"
               name="name"
+              inputProps={{ maxLength: 32 }}
               value={name}
               onChange={handleChange}
             />

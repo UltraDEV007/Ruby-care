@@ -98,6 +98,7 @@ export default function FoodCreate({ open, onSave, handleClose }) {
             <TextField
               required
               autoFocus
+              inputProps={{ maxLength: 20 }}
               type="text"
               name="name"
               label="Food/meal name"
@@ -131,9 +132,9 @@ export default function FoodCreate({ open, onSave, handleClose }) {
 
           {formData.name && (
             <div className="rating-input-container">
-              <FormHelperText style={{}}>
+              <FormHelperText>
                 On a scale of 1 to 5,
-                <br /> how much did you enjoy
+                <br /> how much did you enjoy&nbsp;
                 {formData.name}
               </FormHelperText>
               <Select
@@ -161,6 +162,7 @@ export default function FoodCreate({ open, onSave, handleClose }) {
               name="factors"
               required
               id="factor-input"
+              inputProps={{ maxLength: 131 }}
               label="What were the leading factors?"
               type="text"
               style={{ width: "300px", margin: "10px" }}

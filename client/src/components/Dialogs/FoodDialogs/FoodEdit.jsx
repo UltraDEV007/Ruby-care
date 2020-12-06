@@ -94,43 +94,6 @@ export default function FoodEdit({ setOpenEdit, onSave, handleUpdate, foods }) {
     }));
   };
 
-  // const ratingJSX = (value) => {
-  //   if (value === 1) {
-  //     <>we are very sorry you didn't enjoy name</>;
-  //   }
-  //   if (value === 2) {
-  //     <>
-  //       {ratingLogic(rating, "⭐")} for {name}!
-  //     </>;
-  //   }
-  //   if (value === 3) {
-  //     <>
-  //       {ratingLogic(rating, "⭐")} for {name}!
-  //     </>;
-  //   }
-  //   if (value === 4) {
-  //     <>
-  //       {ratingLogic(rating, "⭐")} for {name}!
-  //     </>;
-  //   }
-  //   if (value === 5) {
-  //     <>
-  //       Whoa{ratingLogic(rating, "⭐")}! ? We are very glad you enjoyed {name}
-  //     </>;
-  //   } else {
-  //     <>on a scale of 1 to 5 did much did you enjoy {name}</>;
-  //   }
-  // };
-
-  // {rating !== 5 ? (
-  //   <FormHelperText>
-  //     on a scale of 1 to 5 did much did you enjoy {name}
-  //   </FormHelperText>
-  // ) : (
-  //   <FormHelperText>
-  //     We are very glad you enjoyed {name}
-  //   </FormHelperText>
-  // )}
   return (
     <>
       <Dialog
@@ -152,6 +115,7 @@ export default function FoodEdit({ setOpenEdit, onSave, handleUpdate, foods }) {
               <TextField
                 required
                 autoFocus
+                inputProps={{ maxLength: 15 }}
                 type="text"
                 name="name"
                 label="Food name"
@@ -184,7 +148,9 @@ export default function FoodEdit({ setOpenEdit, onSave, handleUpdate, foods }) {
             {name && (
               <div className="rating-input-container">
                 <FormHelperText>
-                  on a scale of 1 to 5 did much did you enjoy {name}
+                  On a scale of 1 to 5,
+                  <br /> how much did you enjoy&nbsp;
+                  {formData.name}
                 </FormHelperText>
                 <Select
                   native
@@ -208,6 +174,7 @@ export default function FoodEdit({ setOpenEdit, onSave, handleUpdate, foods }) {
 
             <div className="input-container">
               <TextField
+                inputProps={{ maxLength: 131 }}
                 name="factors"
                 required
                 id="factor-input"

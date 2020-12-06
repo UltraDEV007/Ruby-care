@@ -106,18 +106,8 @@ function Search({ search, setSearch }) {
         placeholder={checkPath()}
         value={search}
         disableUnderline
-        InputLabelProps={{
-          style: {
-            textOverflow: "ellipsis",
-            whiteSpace: "nowrap",
-            overflow: "hidden",
-            width: "100%",
-            color: "green",
-          },
-        }}
         onChange={handleSearch}
         InputProps={{
-          classes,
           endAdornment: (
             <InputAdornment className="icon">
               <IconButton>

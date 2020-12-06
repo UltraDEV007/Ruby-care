@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_06_180118) do
+ActiveRecord::Schema.define(version: 2020_12_06_204919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2020_12_06_180118) do
   end
 
   create_table "foods", force: :cascade do |t|
-    t.string "name"
+    t.string "name", limit: 20
     t.datetime "time"
     t.integer "rating"
     t.bigint "user_id", null: false
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2020_12_06_180118) do
   end
 
   create_table "insights", force: :cascade do |t|
-    t.string "title"
+    t.string "title", limit: 32
     t.string "description"
     t.text "body"
     t.bigint "user_id", null: false
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 2020_12_06_180118) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
+    t.string "name", limit: 30
     t.string "email"
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false

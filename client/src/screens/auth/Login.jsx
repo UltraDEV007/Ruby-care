@@ -176,10 +176,6 @@ export default function Login() {
   const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
   const [darkMode] = useContext(DarkModeContext);
 
-  // if (currentUser) {
-  //   history.push("/");
-  // }
-
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => {

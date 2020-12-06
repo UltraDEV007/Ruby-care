@@ -157,6 +157,7 @@ export default function InsightCreate(props) {
             className="string-input"
             label="title"
             autoFocus
+            inputProps={{ maxLength: 33 }}
             type="text"
             name="title"
             value={formData.title}

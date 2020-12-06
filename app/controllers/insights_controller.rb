@@ -5,10 +5,11 @@ class InsightsController < ApplicationController
 
   # GET /insights
   def index
-    @insights = Insight.all
+    # https://stackoverflow.com/questions/20650403/adding-created-at-desc-functionality-in-rails/20651086
+    @insights = Insight.newest_first
 
     # this should order the newly created insights from top to bottom
-    render json: @insights.order('created_at DESC'), include: :user
+    render json: @insights, include: :user
   end
 
   # GET /insights/1

@@ -95,6 +95,7 @@ export default function SymptomCreate({ open, onSave, handleClose }) {
               autoFocus
               type="text"
               name="name"
+              inputProps={{ maxLength: 32 }}
               label="Enter symptom"
               style={{ width: "300px", margin: "10px" }}
               value={formData.name}

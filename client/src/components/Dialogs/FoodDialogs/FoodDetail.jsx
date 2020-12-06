@@ -84,9 +84,17 @@ export default function FoodDetail({
           overflowWrap: "break-word",
         }}
       >
-        <Typography dividers>
-          Rating:&nbsp;{ratingLogic(food.rating, "⭐")}
-        </Typography>
+        <Typography> Rating:&nbsp;{ratingLogic(food.rating, "⭐")}</Typography>
+      </DialogContent>
+      <DialogContent
+        dividers
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          width: "300px",
+          overflowWrap: "break-word",
+        }}
+      >
         <Typography>{food.factors}</Typography>
       </DialogContent>
       <DialogTitle>

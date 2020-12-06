@@ -106,17 +106,22 @@ export default function MedDetail({
         </Typography>
       </DialogContent>
       <DialogTitle>
-        <Typography>
-          Taken at:&nbsp;
-          <Moment format="dddd, MMMM DD yyyy hh:mm A">{med?.time}</Moment>
-          <br />
-          In exactly{" "}
-          <Moment fromNow={currentTime.toLocaleString()}>{med?.time}</Moment>
-        </Typography>
+        {currentTime.toLocaleString() !== med?.time.toLocaleString() ? (
+          <Typography>
+            You have to take {med?.name}&nbsp;
+            <Moment toNow={med?.time}>{currentTime.toLocaleString()}</Moment>
+          </Typography>
+        ) : (
+          <Typography>Did you take {med?.name}?</Typography>
+        )}
       </DialogTitle>
       <DialogActions>
         <Button variant="contained" color="primary" onClick={handleDetailClose}>
-          Exit
+          {currentTime.toLocaleString() === med?.time ? (
+            <>not yet</>
+          ) : (
+            <>Exit</>
+          )}
         </Button>
         <Button
           variant="contained"
@@ -124,7 +129,7 @@ export default function MedDetail({
           className="delete-button"
           onClick={() => onDelete(med.id)}
         >
-          Delete
+          {currentTime.toLocaleString() === med?.time ? <>Yes</> : <>Delete</>}
         </Button>
       </DialogActions>
     </Dialog>
