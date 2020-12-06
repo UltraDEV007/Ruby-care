@@ -9,7 +9,7 @@ import { grey, yellow, blue } from "@material-ui/core/colors";
 import { checkInsights } from "../../utils/checkInsights";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { goBack } from "../../utils/goBack";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import LinearProgress from "@material-ui/core/LinearProgress";
 import { toTitleCase } from "../../utils/toTitleCase";
 
 const Wrapper = styled.div`
@@ -123,9 +123,7 @@ export default function UserDetail({ getOneUser }) {
     return (
       <Wrapper darkMode={darkMode}>
         <div className="content-container">
-          <CircularProgress
-            style={{ marginLeft: "50%", marginTop: "10%", width: "100px" }}
-          />
+          <LinearProgress style={{ margin: "40% auto", width: "50vw" }} />
         </div>
       </Wrapper>
     );
