@@ -35,7 +35,7 @@ export default function FoodCard({
     setFoods(foods);
   };
 
-  const foodRegex = /avocado|chicken|hamburger|burger|(^cheese$)|pizza|cheeseburger|steak|meat|milk|bacon/;
+  const foodRegex = /avocado|chicken|hamburger|burger|(^cheese$)|pizza|cheeseburger|steak|meat|milk|bacon|rice/;
   const foodMap = {
     avocado: "🥑",
     chicken: "🍗",
@@ -47,6 +47,7 @@ export default function FoodCard({
     meat: "🍖",
     milk: "🥛",
     bacon: "🥓",
+    rice: "🍚",
   };
 
   const foodNameJSX = () => {
@@ -56,7 +57,7 @@ export default function FoodCard({
         <>
           {foodMap[result[0]]}
           <span role="img" aria-label={food.name}>
-            &nbsp;{food.name}
+            &#8199;{food.name}
           </span>
         </>
       );
@@ -107,6 +108,7 @@ export default function FoodCard({
                 🔧
               </span>
             </Button>
+            &#8199;
             <Button
               variant="contained"
               color="secondary"

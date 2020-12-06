@@ -114,7 +114,11 @@ export default function FoodCreate({ open, onSave, handleClose }) {
               name="time"
               required
               id="datetime-local"
-              label="When did you eat this?"
+              label={
+                !formData.name
+                  ? "When did you eat this?"
+                  : `When did you eat ${formData.name}?`
+              }
               type="datetime-local"
               style={{ width: "300px", margin: "10px" }}
               value={formData.time}
@@ -127,10 +131,11 @@ export default function FoodCreate({ open, onSave, handleClose }) {
 
           {formData.name && (
             <div className="rating-input-container">
-              <FormHelperText>
-                on a scale of 1 to 5 did much did you enjoy {formData.name}
+              <FormHelperText style={{}}>
+                On a scale of 1 to 5,
+                <br /> how much did you enjoy
+                {formData.name}
               </FormHelperText>
-              )}
               <Select
                 native
                 required
@@ -142,7 +147,7 @@ export default function FoodCreate({ open, onSave, handleClose }) {
                   id: "rating-native-simple",
                 }}
               >
-                <option value={1}>⭐ </option>
+                <option value={1}>⭐</option>
                 <option value={2}>⭐ ⭐ </option>
                 <option value={3}>⭐ ⭐ ⭐ </option>
                 <option value={4}>⭐ ⭐ ⭐ ⭐ </option>

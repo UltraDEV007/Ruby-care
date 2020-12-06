@@ -79,6 +79,7 @@ export default function AffirmationLetter({
                   🔧
                 </span>
               </Button>
+              &#8199;
               <Button
                 variant="contained"
                 color="secondary"
