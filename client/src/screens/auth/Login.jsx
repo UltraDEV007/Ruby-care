@@ -220,7 +220,8 @@ export default function Login() {
             alt="logo"
           />
         </div>
-        {currentUser?.birthday && (
+
+        {currentUser && (
           <Typography
             className={darkMode === "light" ? classes.user : classes.userDark}
           >
@@ -232,9 +233,10 @@ export default function Login() {
             <br />
             Age: {getAge(currentUser?.birthday)}
             <br />
-            Gender: {currentUser.gender}
+            Gender: {currentUser?.gender}
           </Typography>
         )}
+
         <form
           className={classes.form}
           onSubmit={(e) => {
