@@ -65,10 +65,10 @@ function Search({ search, setSearch }) {
       location.pathname === "/insights" ||
       location.pathname === "/insights/"
     ) {
-      return "Search by insight title or user";
+      return "Search by insight or user";
     }
     if (location.pathname === "/users" || location.pathname === "/users/")
-      return "Search by user's name";
+      return "Search by user";
   };
 
   const handleSearch = (e) => {

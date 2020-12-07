@@ -117,18 +117,10 @@ export default function MoodEdit(props) {
   }, [props.moods, id]);
 
   const handleSubmit = (e) => {
-    if (e.target === formData.status) {
-      e.preventDefault();
-      return alert(
-        `But you already felt ${formData.status} at ${(
-          <> {formData.created_at}</>
-        )} `
-      );
-    } else {
-      e.preventDefault();
-      props.onSave(id, formData);
-    }
+    e.preventDefault();
+    props.onSave(id, formData);
   };
+
   const handleChange = (e) => {
     const { name } = e.target;
     setFormData({
