@@ -101,7 +101,7 @@ export default function MedDetail({
           overflowWrap: "break-word",
         }}
       >
-        <Typography>I took {med.name} because...</Typography>
+        <Typography>I take {med.name} because...</Typography>
         <Typography style={{ marginTop: "2px" }}>
           <small>{med.reason}</small>
         </Typography>
