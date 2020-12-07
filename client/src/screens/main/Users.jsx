@@ -13,11 +13,13 @@ const Div = styled.div`
   display: flex;
   justify-content: center;
   flex-flow: column wrap;
+
   .users-title {
     font-size: 2.3rem;
     padding: 10px;
     margin-bottom: 5px;
   }
+
   .link {
     color: ${({ darkMode }) => (darkMode === "dark" ? "inherit " : "inherit")};
     text-decoration: none;
@@ -29,15 +31,27 @@ const Div = styled.div`
     font-size: 0.7rem;
     padding: 8px;
     font-family: "montserrat", sans-serif;
+    transition: transform 300ms ease-in-out;
   }
+
+  .link:hover {
+    transition: transform 300ms ease-in-out;
+    text-decoration: underline;
+    cursor: pointer;
+    transform: translateY(-1.06px);
+  }
+
   .user-icon {
     margin-top: 3px;
     margin-right: 5px;
     font-size: 36px;
   }
+
   .users-container {
     text-align: center;
+    height: auto;
   }
+
   .title-container {
     text-align: center;
     font-size: 2rem;

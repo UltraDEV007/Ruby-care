@@ -53,6 +53,12 @@ const Wrapper = styled.div`
   }
   .user-name {
     font-size: 1.3rem;
+    transition: transform 250ms ease-in-out;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
   }
   .user-icon {
     margin-right: 10px;
@@ -64,6 +70,9 @@ const Wrapper = styled.div`
     text-decoration-color: ${({ darkMode }) =>
       darkMode === "dark" ? yellow[700] : "#000"};
     cursor: pointer;
+    transition: transform 250ms ease-in-out;
+    cursor: pointer;
+    transform: scale(1.09);
   }
   .link {
     text-decoration: none;
@@ -124,13 +133,13 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
     <Wrapper darkMode={darkMode}>
       <div className="content-container">
         <div className="title-container">
+          <Typography className="title">&nbsp;{insight?.title}</Typography>
           <Link className="link" to={`/users/${insight?.user?.id}`}>
             <Typography className="user-name">
               <AccountCircleIcon className="user-icon" />
-              {insight.user?.name}
+              &nbsp;{insight.user?.name}
             </Typography>
           </Link>
-          <Typography className="title">{insight?.title}</Typography>
           <Typography>
             Created At:&nbsp;
             <Moment format="dddd, MMMM Do yyyy">

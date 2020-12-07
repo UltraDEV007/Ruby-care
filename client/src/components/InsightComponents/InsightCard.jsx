@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { CurrentUserContext } from "../Context/CurrentUserContext";
 import Card from "@material-ui/core/Card";
 import { makeStyles } from "@material-ui/styles";
-import { yellow, indigo } from "@material-ui/core/colors";
+import { yellow, indigo, blue } from "@material-ui/core/colors";
 import Button from "@material-ui/core/Button";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import DeleteInsight from "../Modals/DeleteInsight";
@@ -53,9 +53,18 @@ function InsightCard({
       textDecoration: "none",
       display: "flex",
       alignItems: "center",
+      transition: "transform 250ms ease-in-out",
+      "&:hover": {
+        textDecoration: "underline",
+        textDecorationColor: darkMode === "dark" ? yellow[700] : blue[600],
+        transition: "transform 250ms ease-in-out",
+        cursor: "pointer",
+        transform: "scale(1.02)",
+      },
     },
+
     title: {
-      color: darkMode === "dark" ? yellow[700] : "#000",
+      color: darkMode === "dark" ? yellow[700] : blue[600],
       fontWeight: "bold",
       fontSize: "24px",
     },
@@ -63,14 +72,20 @@ function InsightCard({
       display: "flex",
       padding: "10px 0 3px 0",
       alignItems: "center",
+      transition: "transform 250ms ease-in-out",
+      "&:hover": {
+        transition: "transform 250ms ease-in-out",
+        cursor: "pointer",
+        transform: "scale(1.005)",
+      },
     },
     userName: {
-      color: darkMode === "dark" ? yellow[700] : "#424242",
+      color: darkMode === "dark" ? yellow[700] : blue[600],
       fontWeight: "bold",
       fontSize: "19px",
     },
     userIcon: {
-      color: darkMode === "dark" ? yellow[700] : "#424242",
+      color: darkMode === "dark" ? yellow[700] : blue[600],
       marginRight: "8px",
     },
     buttons: {

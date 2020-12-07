@@ -81,6 +81,17 @@ const Wrapper = styled.div`
     font-size: 1.5rem;
     font-family: "montserrat", sans-serif;
   }
+  a:hover {
+    text-decoration: underline;
+  }
+  .insights-link {
+    transition: transform 300ms ease-in-out;
+  }
+  .insights-link:hover {
+    transition: transform 300ms ease-in-out;
+    cursor: pointer;
+    transform: translateY(-1.06px);
+  }
   @media screen and (min-width: 600px) {
     .title {
       font-size: 1.5rem;
@@ -115,7 +126,9 @@ export default function UserDetail({ getOneUser }) {
 
   const INSIGHTS = React.Children.toArray(
     user?.insights?.map((insight) => (
-      <Link to={`./../insights/${insight.id}`}>{insight?.title}</Link>
+      <Link className="insights-link" to={`./../insights/${insight.id}`}>
+        {insight?.title}
+      </Link>
     ))
   );
 

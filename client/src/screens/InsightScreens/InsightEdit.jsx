@@ -109,23 +109,23 @@ export default function InsightEdit({ handleUpdate, insights }) {
     }));
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await handleUpdate(id, formData);
+  };
+
   return (
     <Div darkMode={darkMode}>
       <div className="title-container">
         <Typography className="title">Edit Insight</Typography>
       </div>
-      <Form
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleUpdate(id, formData);
-        }}
-      >
+      <Form onSubmit={handleSubmit}>
         <br />
         <div className="input-container">
           <TextField
             required
             label="title"
-            inputProps={{ maxLength: 32 }}
+            inputProps={{ maxLength: 50 }}
             className="string-input title"
             autoFocus
             type="text"
