@@ -65,6 +65,11 @@ const Wrapper = styled.div`
       darkMode === "dark" ? yellow[700] : "#000"};
     cursor: pointer;
   }
+  .link {
+    text-decoration: none;
+    color: ${({ darkMode }) => (darkMode === "dark" ? "#fff" : "#000")};
+    cursor: pointer;
+  }
   .edit {
     margin-right: 10px;
   }
@@ -119,10 +124,12 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
     <Wrapper darkMode={darkMode}>
       <div className="content-container">
         <div className="title-container">
-          <Typography className="user-name">
-            <AccountCircleIcon className="user-icon" />
-            {insight.user?.name}
-          </Typography>
+          <Link className="link" to={`/users/${insight?.user?.id}`}>
+            <Typography className="user-name">
+              <AccountCircleIcon className="user-icon" />
+              {insight.user?.name}
+            </Typography>
+          </Link>
           <Typography className="title">{insight?.title}</Typography>
           <Typography>
             Created At:&nbsp;
