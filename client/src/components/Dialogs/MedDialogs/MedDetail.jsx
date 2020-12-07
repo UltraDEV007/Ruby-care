@@ -9,7 +9,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 import Moment from "react-moment";
 import "moment-timezone";
-import { datesEqual } from "../../../utils/datesEqual";
+import { compareDateWithCurrentTime } from "../../../utils/compareDateWithCurrentTime";
 
 const styles = (theme) => ({
   root: {
@@ -107,10 +107,10 @@ export default function MedDetail({
         </Typography>
       </DialogContent>
       <DialogTitle>
-        {currentTime.toLocaleString() !== med?.time.toLocaleString() ? (
+        {compareDateWithCurrentTime(med?.time) < 0 ? (
           <Typography>
             You have to take {med?.name}&nbsp;
-            <Moment toNow={med?.time}>{currentTime.toLocaleString()}</Moment>
+            <Moment from={currentTime?.toISOString()}>{med?.time}</Moment>
           </Typography>
         ) : (
           <Typography>Did you take {med?.name}?</Typography>
@@ -118,8 +118,8 @@ export default function MedDetail({
       </DialogTitle>
       <DialogActions>
         <Button variant="contained" color="primary" onClick={handleDetailClose}>
-          {datesEqual(currentTime.toISOString(), med?.time) ? (
-            <>not yet</>
+          {compareDateWithCurrentTime(med?.time) === -1 ? (
+            <>Not yet</>
           ) : (
             <>Exit</>
           )}
@@ -130,11 +130,7 @@ export default function MedDetail({
           className="delete-button"
           onClick={() => onDelete(med.id)}
         >
-          {datesEqual(currentTime.toISOString(), med?.time) ? (
-            <>Yes</>
-          ) : (
-            <>Delete</>
-          )}
+          {compareDateWithCurrentTime(med?.time) ? <>Yes</> : <>Delete</>}
         </Button>
       </DialogActions>
     </Dialog>

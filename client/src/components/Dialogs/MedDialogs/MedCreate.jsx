@@ -80,7 +80,6 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
 
   const handleChange = (e) => {
     let { name, value } = e.target;
-    console.log("date is :", value);
     if (name === "time" && value) {
       let date = new Date(value);
       value = date.toISOString();
@@ -172,7 +171,6 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
               }
               type="datetime-local"
               style={{ width: "300px", margin: "10px" }}
-              value={formData.time}
               onChange={handleChange}
               InputLabelProps={{
                 shrink: true,
