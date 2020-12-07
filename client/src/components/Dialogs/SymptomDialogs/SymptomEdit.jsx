@@ -84,7 +84,11 @@ export default function SymptomEdit({
   }, [symptoms, id]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    let { name, value } = e.target;
+    if (name === "time" && value) {
+      let date = new Date(value);
+      value = date.toISOString();
+    }
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
@@ -131,7 +135,6 @@ export default function SymptomEdit({
               required
               type="datetime-local"
               name="time"
-              value={time}
               onChange={handleChange}
             />
           </div>

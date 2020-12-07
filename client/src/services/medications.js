@@ -11,7 +11,6 @@ export const getRXGuideMeds = async () => {
       },
     });
     const meds = response.data.records;
-    console.log(meds);
     return meds;
   } catch (error) {
     throw error;
