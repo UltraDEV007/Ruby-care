@@ -31,17 +31,17 @@ A post mvp feature will allow the user to track his symptoms.
 
 ## MVP
 
-- _*Care* will feature full-crud (create-read-update-destroy) functionality for: moods, affirmations and insights, which will be managed by a user._
+- _*Care* will feature full-crud (create-read-update-destroy) functionality for: moods, affirmations and insights, which will be managed by a user._ ✔️
 - _Allow for user sign up, authentication, login, and verification._
-- _*Care* will feature mobile-first design, that follows some of the [material-design](https://en.wikipedia.org/wiki/Material_Design) principles._
+- _*Care* will feature mobile-first design, that follows some of the [material-design](https://en.wikipedia.org/wiki/Material_Design) principles._ ✔️
   <br>
 
 ### Goals
 
-- _Restrict the app only for logged in users (unlogged in users will be redirected to register/login)._
-- _Insights page: user will be able to delete+edit his own insights, but not other users insights._
-- _Mobile-friendly design_
-- _*Care* will be user-friendly._
+- _Restrict the app only for logged in users (unlogged in users will be redirected to register/login)._ ✔️
+- _Insights page: user will be able to delete+edit his own insights, but not other users insights._ ✔️
+- _Mobile-friendly design_ ✔️
+- _*Care* will be user-friendly._ ✔️
 
 <br>
 
@@ -256,7 +256,7 @@ src
 - foods, the user will be able to get, add, ddit, and delete foods. ✔️
 - medicine, Fetch Medications from my [2nd project's 3rd Party air-table API](https://rxguide.netlify.app/about) and handle full crud on my BE AND FE. ✔️
 - password confirm on register: you will need to confirm your password to create your account.
-- likes, be able to like an insight.
+- likes, be able to like an insight. 
 - whitelist, if a user enters a link that is not in a whitelist, bring him to a "404 Not found" page ✔️
 ---
 
