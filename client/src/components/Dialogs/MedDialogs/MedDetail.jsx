@@ -118,7 +118,7 @@ export default function MedDetail({
       </DialogTitle>
       <DialogActions>
         <Button variant="contained" color="primary" onClick={handleDetailClose}>
-          {compareDateWithCurrentTime(med?.time) === -1 ? (
+          {compareDateWithCurrentTime(med?.time) === 1 ? (
             <>Not yet</>
           ) : (
             <>Exit</>
@@ -130,7 +130,7 @@ export default function MedDetail({
           className="delete-button"
           onClick={() => onDelete(med.id)}
         >
-          {compareDateWithCurrentTime(med?.time) ? <>Yes</> : <>Delete</>}
+          {compareDateWithCurrentTime(med?.time) === 1 ? <>Yes</> : <>Delete</>}
         </Button>
       </DialogActions>
     </Dialog>
