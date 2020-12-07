@@ -38,11 +38,11 @@ puts "#{Affirmation.count} affirmations created"
 
 # learned how to use Faker this way from Amber Moore
 @insight1 = Insight.create!(title: "Hello", description: "I dont know this is a description", body: Faker::Lorem.sentence(word_count: 350), user: @daniel)
-@insight2 = Insight.create!(title: "Hello", description: "I dont know this is a description", body: Faker::Lorem.sentence(word_count: 250), user: @admin)
-@insight3 = Insight.create!(title: "Hello", description: "I dont know this is a description", body: Faker::Lorem.sentence(word_count: 300), user: @admin)
-@insight4 = Insight.create!(title: Faker::Book.title, description: Faker::Lorem.sentence(word_count: 20), body: Faker::Lorem.sentence(word_count: 128), user: @admin)
-@insight5 = Insight.create!(title: Faker::Book.title, description: Faker::Lorem.sentence(word_count: 20), body: Faker::Lorem.sentence(word_count: 200), user: @daniel)
-@insight6 = Insight.create!(title: Faker::Book.title, description: Faker::Lorem.sentence(word_count: 20), body: Faker::Lorem.sentence(word_count: 200), user: @bob)
+@insight2 = Insight.create!(title: "Hello", description: "Saying hi again", body: Faker::Lorem.sentence(word_count: 100), user: @admin)
+@insight3 = Insight.create!(title: "Bye", description: "Goodbye", body: Faker::Lorem.sentence(word_count: 100), user: @admin)
+@insight4 = Insight.create!(title: Faker::Book.title, description: Faker::Lorem.sentence(word_count: 10), body: Faker::Lorem.sentence(word_count: 128), user: @admin)
+@insight5 = Insight.create!(title: Faker::Book.title, description: Faker::Lorem.sentence(word_count: 10), body: Faker::Lorem.sentence(word_count: 320), user: @daniel)
+@insight6 = Insight.create!(title: Faker::Book.title, description: Faker::Lorem.sentence(word_count: 10), body: Faker::Lorem.sentence(word_count: 320), user: @bob)
 
 puts "#{Insight.count} insights created"
 
