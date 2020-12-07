@@ -254,7 +254,7 @@ src
 
   > => ['⭐', '⭐', '⭐', '⭐', '⭐']
 
-- "&#8199;" just means space each one of the stars by a figure space, think &nbsp;, but a bit more to the margins of my liking, nbsp's spaces just didn't look right.
+- "#8199;" just means space each one of the stars by a figure space, think nbsp, but a bit more to the margins of my liking, nbsp's spaces just didn't look right.
 
 ```
 export default function ratingLogic(ratingParam, iconParam) {
