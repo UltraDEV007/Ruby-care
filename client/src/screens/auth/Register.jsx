@@ -20,12 +20,14 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import NativeSelect from "@material-ui/core/NativeSelect";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import { toTitleCase } from "../../utils/toTitleCase";
+import TextField from "@material-ui/core/TextField";
+import { getAge } from "../../utils/getAge";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
     flexDirection: "column",
-    flexFlow: "wrap",
+    flexFlow: "nowrap",
     alignItems: "center",
     width: "100%",
     height: "100vh",
@@ -33,7 +35,7 @@ const useStyles = makeStyles({
   rootDark: {
     display: "flex",
     flexDirection: "column",
-    flexFlow: "wrap",
+    flexFlow: "nowrap",
     alignItems: "center",
     width: "100%",
     height: "100vh",
@@ -170,7 +172,7 @@ const useStyles = makeStyles({
   passwordLabel: {
     color: "#000",
   },
-});
+}));
 
 export default function Register() {
   const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
@@ -228,8 +230,14 @@ export default function Register() {
           className={darkMode === "light" ? classes.user : classes.userDark}
         >
           You already have an account, is this you?
-          <br /> Name: {currentUser?.name} <br />
+          <br />
+          Name: {currentUser?.name}
+          <br />
           Email: {currentUser?.email}
+          <br />
+          Age: {getAge(currentUser?.birthday)}
+          <br />
+          Gender: {currentUser.gender}
         </Typography>
       ) : (
         <></>
@@ -365,6 +373,8 @@ export default function Register() {
             />
           </FormControl>
         </div>
+        <br />
+
         <div
           className={
             darkMode === "light"
@@ -372,29 +382,21 @@ export default function Register() {
               : classes.inputContainerDark
           }
         >
-          <EmailIcon />
-          <FormControl>
-            <InputLabel
-              className={
-                darkMode === "light" ? classes.label : classes.darkLabel
-              }
-              htmlFor="email"
-            >
-              Age
-            </InputLabel>
-            <Input
-              id="datetime-local"
-              type="datetime-local"
-              className={
-                darkMode === "light"
-                  ? classes.inputField
-                  : classes.inputFieldDark
-              }
-              name="birthday"
-              value={formData.birthday}
-              onChange={handleChange}
-            />
-          </FormControl>
+          <TextField
+            id="date"
+            required
+            label="Date of Birth"
+            type="date"
+            className={
+              darkMode === "light" ? classes.inputField : classes.inputFieldDark
+            }
+            name="birthday"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            value={formData.birthday}
+            onChange={handleChange}
+          />
         </div>
         <br />
         <div
@@ -427,8 +429,6 @@ export default function Register() {
               <option value={"Female"}>Female</option>
               <option value={"Transgender"}>Transgender</option>
               <option value={"Non-binray"}>Non-Binary </option>
-              <option value={"Gender-fluid"}>Gender Fluid</option>
-              <option value={"Gender-neutral"}>Gender Neutral</option>
               <option value={"Other"}>Other</option>
             </NativeSelect>
           </FormControl>

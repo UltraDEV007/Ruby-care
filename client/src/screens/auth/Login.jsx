@@ -16,12 +16,12 @@ import IconButton from "@material-ui/core/IconButton";
 import EmailIcon from "@material-ui/icons/Email";
 import LockIcon from "@material-ui/icons/Lock";
 import { yellow, grey } from "@material-ui/core/colors";
-
+import { getAge } from "../../utils/getAge";
 const useStyles = makeStyles({
   root: {
     display: "flex",
     flexDirection: "column",
-    flexFlow: "wrap",
+    flexFlow: "nowrap",
     alignItems: "center",
     width: "100%",
     height: "100vh",
@@ -30,7 +30,7 @@ const useStyles = makeStyles({
   rootDark: {
     display: "flex",
     flexDirection: "column",
-    flexFlow: "wrap",
+    flexFlow: "nowrap",
     alignItems: "center",
     width: "100%",
     height: "100vh",
@@ -225,8 +225,14 @@ export default function Login() {
             className={darkMode === "light" ? classes.user : classes.userDark}
           >
             You're already logged in, is this you?
-            <br /> Name: {currentUser?.name} <br />
+            <br />
+            Name: {currentUser?.name}
+            <br />
             Email: {currentUser?.email}
+            <br />
+            Age: {getAge(currentUser?.birthday)}
+            <br />
+            Gender: {currentUser.gender}
           </Typography>
         ) : (
           <></>

@@ -145,6 +145,7 @@ export default function MedEdit({
             <NativeSelect
               className="select-css"
               name="name"
+              required
               type="text"
               style={{ marginLeft: "10px" }}
               defaultValue="select"

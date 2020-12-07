@@ -127,6 +127,7 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
             <NativeSelect
               className="select-css"
               name="name"
+              required
               type="text"
               defaultValue="select"
               value={formData.name}
