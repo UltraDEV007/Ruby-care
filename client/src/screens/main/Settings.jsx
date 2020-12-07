@@ -122,7 +122,7 @@ export default function Settings() {
         </Typography>
         <Typography className="age">
           <strong>Age:</strong>&nbsp;
-          {getAge(currentUser?.birthday)}
+          {getAge(currentUser?.birthday)}&nbsp;years old
         </Typography>
         <Typography className={classes.userText}>
           <strong>Gender:</strong>&nbsp;{currentUser?.gender}
