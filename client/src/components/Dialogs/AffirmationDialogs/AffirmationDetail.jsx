@@ -101,7 +101,7 @@ export default function AffirmationDetail({
       </DialogContent>
       <DialogTitle>
         <Typography>
-          <Moment format="dddd, MMMM yyyy hh:mm A">
+          <Moment format="dddd, MMMM Do yyyy: hh:mm A">
             {affirmation?.created_at}
           </Moment>
         </Typography>

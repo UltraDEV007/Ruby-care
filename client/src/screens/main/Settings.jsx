@@ -121,11 +121,14 @@ export default function Settings() {
           <strong>Name:</strong>&nbsp;{currentUser?.name}
         </Typography>
         <Typography className={classes.userText}>
+          <strong>Gender:</strong>&nbsp;{currentUser?.gender}
+        </Typography>
+        <Typography className={classes.userText}>
           <strong>Email:</strong>&nbsp;{currentUser?.email}
         </Typography>
         <Typography>
           <strong>Joined:</strong>&nbsp;
-          <Moment format="MM/DD/yyyy">{userDate}</Moment>
+          <Moment format="dddd, MMMM Do yyyy">{userDate}</Moment>
         </Typography>
       </div>
       <hr />

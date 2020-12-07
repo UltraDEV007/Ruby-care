@@ -92,7 +92,7 @@ export default function MoodCreate({ open, onSave, handleClose }) {
         </DialogTitle>
         <DialogContent dividers>
           <Typography>
-            Today, <Moment format="MMMM-DD-yyyy hh:mm A">{time}</Moment>
+            Today, <Moment format="dddd MMMM Do yyyy: hh:mm A">{time}</Moment>
           </Typography>
 
           <div className="input-container">
@@ -104,7 +104,7 @@ export default function MoodCreate({ open, onSave, handleClose }) {
               type="text"
               name="content"
               label="Enter affirmation"
-              style={{ width: "300px" }}
+              style={{ width: "330px" }}
               value={formData.content}
               onChange={handleChange}
               id="outlined-multiline-static"

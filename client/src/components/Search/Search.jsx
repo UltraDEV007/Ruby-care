@@ -5,21 +5,9 @@ import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
 import TextField from "@material-ui/core/TextField";
-import { makeStyles } from "@material-ui/core/styles";
 import ClearIcon from "@material-ui/icons/Clear";
 import { DarkModeContext } from "../Context/DarkModeContext";
 import { blue, yellow } from "@material-ui/core/colors";
-
-const useStyles = makeStyles({
-  underline: {
-    "&&&:before": {
-      borderBottom: "none",
-    },
-    "&&:after": {
-      borderBottom: "none",
-    },
-  },
-});
 
 const Form = styled.div`
   padding: 20px;
@@ -48,7 +36,6 @@ const Form = styled.div`
     box-shadow: ${({ darkMode }) =>
       darkMode === "dark" ? `5px 5px${yellow[700]}` : `5px 5px ${blue[500]}`};
   }
-  /* "5px 5px peachpuff;" */
   @media screen and (min-width: 1200px) {
     input {
       width: 50vw;
@@ -62,7 +49,6 @@ const Form = styled.div`
 function Search({ search, setSearch }) {
   const [darkMode] = useContext(DarkModeContext);
   let location = useLocation();
-  const classes = useStyles();
   const [searchEnabled, setSearchEnabled] = useState(false);
 
   const checkPath = () => {

@@ -141,7 +141,7 @@ export default function UserDetail({ getOneUser }) {
             Gender: {toTitleCase(user.gender)}
           </Typography>
           Joined:&nbsp;
-          <Moment format="MMMM-DD-yyyy">
+          <Moment format="dddd, MMMM Do yyyy">
             <small>{user?.created_at}</small>
           </Moment>
         </div>

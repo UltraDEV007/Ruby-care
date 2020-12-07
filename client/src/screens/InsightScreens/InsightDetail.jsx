@@ -6,9 +6,10 @@ import styled from "styled-components";
 import Moment from "react-moment";
 import Typography from "@material-ui/core/Typography";
 import { DarkModeContext } from "../../components/Context/DarkModeContext";
-import { grey } from "@material-ui/core/colors";
+import { grey, yellow } from "@material-ui/core/colors";
 import { goBack } from "../../utils/goBack";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 const Wrapper = styled.div`
   min-height: 100vh;
@@ -38,7 +39,7 @@ const Wrapper = styled.div`
     text-align: center;
   }
   .title {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
   .insight-body {
     margin: 0 auto;
@@ -49,6 +50,20 @@ const Wrapper = styled.div`
     padding: 20px 50px;
     text-align: left;
     font-size: 1rem;
+  }
+  .user-name {
+    font-size: 1.3rem;
+  }
+  .user-icon {
+    margin-right: 10px;
+    margin-bottom: -2px;
+    font-size: 30px;
+  }
+  .user-name:hover {
+    text-decoration: underline;
+    text-decoration-color: ${({ darkMode }) =>
+      darkMode === "dark" ? yellow[700] : "#000"};
+    cursor: pointer;
   }
   .edit {
     margin-right: 10px;
@@ -104,10 +119,17 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
     <Wrapper darkMode={darkMode}>
       <div className="content-container">
         <div className="title-container">
+          <Typography className="user-name">
+            <AccountCircleIcon className="user-icon" />
+            {insight.user?.name}
+          </Typography>
           <Typography className="title">{insight?.title}</Typography>
-          <Moment format="dddd, MMMM-yyyy">
-            <small>{insight?.created_at}</small>
-          </Moment>
+          <Typography>
+            Created At:&nbsp;
+            <Moment format="dddd, MMMM Do yyyy">
+              <small>{insight?.created_at}</small>
+            </Moment>
+          </Typography>
         </div>
         {insight?.user_id === currentUser?.id && (
           <>

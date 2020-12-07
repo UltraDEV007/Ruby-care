@@ -99,7 +99,7 @@ export default function FoodDetail({
       </DialogContent>
       <DialogTitle>
         <Typography>
-          <Moment format="MMM/DD/yyyy hh:mm A">
+          <Moment format="dddd, MMMM Do yyyy: hh:mm A">
             {food?.time?.toLocaleString()}
           </Moment>
         </Typography>

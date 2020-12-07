@@ -129,7 +129,7 @@ export default function MoodCreate({ open, onSave, handleClose }) {
         </DialogTitle>
         <DialogContent dividers>
           <Typography>
-            Today, <Moment format="MMMM-DD-yyyy hh:mm A">{time}</Moment>
+            Today, <Moment format="dddd, MMMM Do yyyy: hh:mm A">{time}</Moment>
           </Typography>
           <FormLabel>
             Poor

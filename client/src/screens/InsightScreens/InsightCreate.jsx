@@ -107,9 +107,6 @@ export default function InsightCreate(props) {
   const handleOpen = () => {
     setOpenAbout(!openAbout);
   };
-  const handleClose = () => {
-    setOpenAbout(false);
-  };
 
   const [formData, setFormData] = useState({
     title: "",
@@ -149,7 +146,7 @@ export default function InsightCreate(props) {
           Write something appropriate! everybody will see it.
         </Typography>
       </div>
-      <Form onSubmit={handleSubmit} onClick={handleClose}>
+      <Form onSubmit={handleSubmit}>
         <br />
         <div className="input-container">
           <TextField

@@ -363,8 +363,19 @@ export default function Register() {
               }
             />
           </FormControl>
-
-          <FormHelperText>What's your gender?</FormHelperText>
+        </div>
+        <br />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <FormHelperText style={{ marginLeft: "-20px" }}>
+            What's your gender?
+          </FormHelperText>
           <FormControl>
             <Select
               native
