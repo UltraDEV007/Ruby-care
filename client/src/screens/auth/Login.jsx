@@ -220,21 +220,21 @@ export default function Login() {
             alt="logo"
           />
         </div>
-        {currentUser?.birthday && (
-          <Typography
-            className={darkMode === "light" ? classes.user : classes.userDark}
-          >
-            You're already logged in, is this you?
-            <br />
-            Name: {currentUser?.name}
-            <br />
-            Email: {currentUser?.email}
-            <br />
-            Age: {getAge(currentUser?.birthday)}
-            <br />
-            Gender: {currentUser.gender}
-          </Typography>
-        )}
+
+        <Typography
+          className={darkMode === "light" ? classes.user : classes.userDark}
+        >
+          You're already logged in, is this you?
+          <br />
+          Name: {currentUser?.name}
+          <br />
+          Email: {currentUser?.email}
+          <br />
+          Age: {getAge(currentUser?.birthday)}
+          <br />
+          Gender: {currentUser?.gender}
+        </Typography>
+
         <form
           className={classes.form}
           onSubmit={(e) => {

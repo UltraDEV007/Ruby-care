@@ -225,21 +225,19 @@ export default function Register() {
           alt="logo"
         />
       </div>
-      {currentUser?.birthday && (
-        <Typography
-          className={darkMode === "light" ? classes.user : classes.userDark}
-        >
-          You already have an account, is this you?
-          <br />
-          Name: {currentUser?.name}
-          <br />
-          Email: {currentUser?.email}
-          <br />
-          Age: {getAge(currentUser?.birthday)}
-          <br />
-          Gender: {currentUser.gender}
-        </Typography>
-      )}
+      <Typography
+        className={darkMode === "light" ? classes.user : classes.userDark}
+      >
+        You already have an account, is this you?
+        <br />
+        Name: {currentUser?.name}
+        <br />
+        Email: {currentUser?.email}
+        <br />
+        Age: {getAge(currentUser?.birthday)}
+        <br />
+        Gender: {currentUser?.gender}
+      </Typography>
       <form
         className={classes.form}
         onSubmit={(e) => {
