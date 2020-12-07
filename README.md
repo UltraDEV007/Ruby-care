@@ -1,5 +1,7 @@
 # Care
 
+[Live Website](https://care-app.netlify.app)
+
 - [Overview](#Overview)
 - [MVP](#MVP)
   - [Goals](#Goals)
@@ -219,7 +221,7 @@ src
 
 [ERD Model Link](https://drive.google.com/file/d/16G7t1UU_fHARCdY8dVpV2eJWvtP0pbsW/view?usp=sharing)
 
-![ERD Model](https://i.imgur.com/oSjIIuY.png)
+![ERD Model](blob:https://imgur.com/2b635445-18d9-40c8-94a9-04c5c0eb80d6)
 <br>
 
 ---
@@ -252,7 +254,7 @@ src
 
   > => ['⭐', '⭐', '⭐', '⭐', '⭐']
 
-- "&#8199;" just means space each one of the stars by a figure space, think &nbsp;, but a bit more to the margins of my liking, nbsp's spaces just didn't look right.
+- "#8199;" just means space each one of the stars by a figure space, think nbsp, but a bit more to the margins of my liking, nbsp's spaces just didn't look right.
 
 ```
 export default function ratingLogic(ratingParam, iconParam) {
