@@ -151,7 +151,9 @@ export default function UserDetail({ getOneUser }) {
             <AccountCircleIcon className="user-icon" />
             {user?.name}
           </Typography>
-          <Typography className="age">Age: {getAge(user?.birthday)}</Typography>
+          <Typography className="age">
+            Age: {getAge(user?.birthday)}&nsbp; years old
+          </Typography>
           <Typography className="gender">
             Gender: {toTitleCase(user.gender)}
           </Typography>
