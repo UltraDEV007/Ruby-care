@@ -1,3 +1,4 @@
+// sources: https://stackoverflow.com/questions/60408958/how-to-calculate-age-of-users-when-they-are-entered-their-date-of-birth-in-react
 export const getAge = (dateString) => {
   var today = new Date();
   var birthDate = new Date(dateString);

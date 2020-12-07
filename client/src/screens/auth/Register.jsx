@@ -197,6 +197,7 @@ export default function Register() {
     name: "",
     email: "",
     password: "",
+    birthday: "",
     gender: "",
   });
 
@@ -361,6 +362,37 @@ export default function Register() {
                   </IconButton>
                 </InputAdornment>
               }
+            />
+          </FormControl>
+        </div>
+        <div
+          className={
+            darkMode === "light"
+              ? classes.inputContainer
+              : classes.inputContainerDark
+          }
+        >
+          <EmailIcon />
+          <FormControl>
+            <InputLabel
+              className={
+                darkMode === "light" ? classes.label : classes.darkLabel
+              }
+              htmlFor="email"
+            >
+              Age
+            </InputLabel>
+            <Input
+              id="datetime-local"
+              type="datetime-local"
+              className={
+                darkMode === "light"
+                  ? classes.inputField
+                  : classes.inputFieldDark
+              }
+              name="birthday"
+              value={formData.birthday}
+              onChange={handleChange}
             />
           </FormControl>
         </div>

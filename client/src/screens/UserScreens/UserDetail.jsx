@@ -151,7 +151,7 @@ export default function UserDetail({ getOneUser }) {
             <AccountCircleIcon className="user-icon" />
             {user?.name}
           </Typography>
-          <Typography className="gender">
+          <Typography className="age">
             Age: {getAge(user?.birthday.toLocaleString())}
           </Typography>
           <Typography className="gender">

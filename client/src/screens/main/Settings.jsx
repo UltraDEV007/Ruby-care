@@ -12,7 +12,7 @@ import Moment from "react-moment";
 import "moment-timezone";
 import ScrollToTopOnMount from "../../components/Helpers/ScrollToTopOnMount";
 import Brightness4Icon from "@material-ui/icons/Brightness4";
-
+import { getAge } from "../../utils/getAge";
 export default function Settings() {
   const [currentUser] = useContext(CurrentUserContext);
   const [darkMode, setDarkMode] = useContext(DarkModeContext);
@@ -119,6 +119,10 @@ export default function Settings() {
         <Typography className={classes.accountTitle}>Your Account</Typography>
         <Typography className={classes.userText}>
           <strong>Name:</strong>&nbsp;{currentUser?.name}
+        </Typography>
+        <Typography className="age">
+          <strong>Age:</strong>&nbsp;
+          {getAge(currentUser?.birthday.toLocaleString())}
         </Typography>
         <Typography className={classes.userText}>
           <strong>Gender:</strong>&nbsp;{currentUser?.gender}
