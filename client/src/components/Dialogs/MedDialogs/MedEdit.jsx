@@ -161,15 +161,9 @@ export default function MedEdit({
               type="text"
               required
               label={
-                !formData.name ? (
-                  <FormHelperText>
-                    Why do you take your medicaiton?
-                  </FormHelperText>
-                ) : (
-                  <FormHelperText>
-                    Why do you take {formData.name}?
-                  </FormHelperText>
-                )
+                !formData.name
+                  ? `Why do you take your medicaiton?`
+                  : `Why do you take ${formData.name}?`
               }
               style={{ display: "flex", width: "300px", margin: "10px" }}
               value={formData.reason}
