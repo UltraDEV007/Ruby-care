@@ -65,7 +65,7 @@ export default function FoodEdit({ setOpenEdit, onSave, handleUpdate, foods }) {
     rating: "",
     factors: "",
   });
-  const { name, time, rating, factors } = formData;
+  const { name, rating, factors } = formData;
   const { id } = useParams();
 
   useEffect(() => {
