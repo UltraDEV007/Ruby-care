@@ -1,6 +1,6 @@
 # Care
 
-[Live Website](https://github.com/DannyMichaels/care)
+[Live Website](https://care-app.netlify.app)
 
 - [Overview](#Overview)
 - [MVP](#MVP)
