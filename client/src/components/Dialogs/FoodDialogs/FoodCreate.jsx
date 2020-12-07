@@ -135,7 +135,7 @@ export default function FoodCreate({ open, onSave, handleClose }) {
               <FormHelperText>
                 On a scale of 1 to 5,
                 <br /> how much did you enjoy&nbsp;
-                {formData.name}
+                {formData.name}?
               </FormHelperText>
               <Select
                 native

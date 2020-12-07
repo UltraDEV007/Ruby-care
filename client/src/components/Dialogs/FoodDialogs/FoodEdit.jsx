@@ -12,7 +12,6 @@ import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import { withStyles } from "@material-ui/core/styles";
-// import ratingLogic from "../../../utils/ratingLogic";
 
 const styles = (theme) => ({
   root: {
@@ -150,7 +149,7 @@ export default function FoodEdit({ setOpenEdit, onSave, handleUpdate, foods }) {
                 <FormHelperText>
                   On a scale of 1 to 5,
                   <br /> how much did you enjoy&nbsp;
-                  {formData.name}
+                  {formData.name}?
                 </FormHelperText>
                 <Select
                   native
