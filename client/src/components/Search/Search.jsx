@@ -18,9 +18,18 @@ const Form = styled.div`
   &::placeholder {
     color: ${({ darkMode }) => (darkMode === "dark" ? "#fff" : `inherit`)};
   }
+  .vl {
+    border-left: ${({ darkMode }) =>
+      darkMode === "dark"
+        ? `1px solid ${yellow[700]}`
+        : `1px solid ${blue[500]}`};
+    height: 40px;
+    margin-right: 10px;
+  }
+
   .icon {
     position: absolute;
-    right: 20px;
+    right: 10px;
   }
   input {
     width: 68vw;
@@ -93,9 +102,11 @@ function Search({ search, setSearch }) {
         value={search}
         disableUnderline
         onChange={handleSearch}
+        inputProps={{ maxLength: 70 }}
         InputProps={{
           endAdornment: (
             <InputAdornment className="icon">
+              <div class="vl"></div>
               <IconButton>
                 {searchEnabled ? (
                   <ClearIcon onClick={onClearSearch} />
