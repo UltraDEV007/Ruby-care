@@ -12,6 +12,7 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import { withStyles } from "@material-ui/core/styles";
 import FormHelperText from "@material-ui/core/FormHelperText";
+import NativeSelect from "@material-ui/core/NativeSelect";
 
 const styles = (theme) => ({
   root: {
@@ -141,7 +142,7 @@ export default function MedEdit({
         <DialogContent dividers>
           <div className="input-container">
             <FormHelperText>Please select a medication</FormHelperText>
-            <select
+            <NativeSelect
               className="select-css"
               name="name"
               type="text"
@@ -151,7 +152,7 @@ export default function MedEdit({
               onChange={handleSelectedMed}
             >
               {MEDS}
-            </select>
+            </NativeSelect>
           </div>
 
           <div className="input-container">

@@ -3,7 +3,6 @@ import Button from "@material-ui/core/Button";
 import { Link, useHistory, useParams } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
-import Select from "@material-ui/core/Select";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import Dialog from "@material-ui/core/Dialog";
 import MuiDialogActions from "@material-ui/core/DialogActions";
@@ -12,6 +11,7 @@ import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import { withStyles } from "@material-ui/core/styles";
+import NativeSelect from "@material-ui/core/NativeSelect";
 
 const styles = (theme) => ({
   root: {
@@ -151,7 +151,7 @@ export default function FoodEdit({ setOpenEdit, onSave, handleUpdate, foods }) {
                   <br /> how much did you enjoy&nbsp;
                   {formData.name}?
                 </FormHelperText>
-                <Select
+                <NativeSelect
                   native
                   required
                   label="rating"
@@ -167,7 +167,7 @@ export default function FoodEdit({ setOpenEdit, onSave, handleUpdate, foods }) {
                   <option value={3}>⭐ ⭐ ⭐ </option>
                   <option value={4}>⭐ ⭐ ⭐ ⭐ </option>
                   <option value={5}>⭐ ⭐ ⭐ ⭐ ⭐ </option>
-                </Select>
+                </NativeSelect>
               </div>
             )}
 

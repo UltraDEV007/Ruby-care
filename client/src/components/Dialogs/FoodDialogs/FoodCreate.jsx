@@ -10,9 +10,9 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 import CreateIcon from "@material-ui/icons/Create";
-import Select from "@material-ui/core/Select";
 import "./FoodCreate.css";
 import FormHelperText from "@material-ui/core/FormHelperText";
+import NativeSelect from "@material-ui/core/NativeSelect";
 
 const styles = (theme) => ({
   root: {
@@ -137,7 +137,7 @@ export default function FoodCreate({ open, onSave, handleClose }) {
                 <br /> how much did you enjoy&nbsp;
                 {formData.name}?
               </FormHelperText>
-              <Select
+              <NativeSelect
                 native
                 required
                 label="rating"
@@ -153,7 +153,7 @@ export default function FoodCreate({ open, onSave, handleClose }) {
                 <option value={3}>⭐ ⭐ ⭐ </option>
                 <option value={4}>⭐ ⭐ ⭐ ⭐ </option>
                 <option value={5}>⭐ ⭐ ⭐ ⭐ ⭐ </option>
-              </Select>
+              </NativeSelect>
             </div>
           )}
 

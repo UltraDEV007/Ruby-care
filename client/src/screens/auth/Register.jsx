@@ -17,7 +17,7 @@ import IconButton from "@material-ui/core/IconButton";
 import EmailIcon from "@material-ui/icons/Email";
 import LockIcon from "@material-ui/icons/Lock";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import Select from "@material-ui/core/Select";
+import NativeSelect from "@material-ui/core/NativeSelect";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import { toTitleCase } from "../../utils/toTitleCase";
 
@@ -409,7 +409,7 @@ export default function Register() {
             What's your gender?
           </FormHelperText>
           <FormControl>
-            <Select
+            <NativeSelect
               native
               required
               label="gender"
@@ -430,7 +430,7 @@ export default function Register() {
               <option value={"Gender-fluid"}>Gender Fluid</option>
               <option value={"Gender-neutral"}>Gender Neutral</option>
               <option value={"Other"}>Other</option>
-            </Select>
+            </NativeSelect>
           </FormControl>
         </div>
         <br />

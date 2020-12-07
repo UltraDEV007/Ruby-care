@@ -11,6 +11,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 import CreateIcon from "@material-ui/icons/Create";
 import FormHelperText from "@material-ui/core/FormHelperText";
+import NativeSelect from "@material-ui/core/NativeSelect";
 
 const styles = (theme) => ({
   root: {
@@ -123,7 +124,7 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
         <DialogContent dividers>
           <div className="input-container">
             <FormHelperText>Please select a medication</FormHelperText>
-            <select
+            <NativeSelect
               className="select-css"
               name="name"
               type="text"
@@ -133,7 +134,7 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
               style={{ margin: "10px" }}
             >
               {MEDS}
-            </select>
+            </NativeSelect>
           </div>
 
           <div className="input-container">
