@@ -101,7 +101,11 @@ export default function MedDetail({
           overflowWrap: "break-word",
         }}
       >
-        <Typography>I take {med.name} because...</Typography>
+        {compareDateWithCurrentTime(med?.time) < 0 ? (
+          <Typography>I take {med.name} because...</Typography>
+        ) : (
+          <Typography>I am supposed to take {med.name} because...</Typography>
+        )}
         <Typography style={{ marginTop: "2px" }}>
           <small>{med.reason}</small>
         </Typography>
