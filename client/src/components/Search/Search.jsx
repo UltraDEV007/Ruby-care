@@ -82,18 +82,18 @@ function Search({ search, setSearch }) {
     handleSearch(e);
   };
 
-  const onSearch = () => {
-    setSearchEnabled(true);
-    setSearch(document.getElementById("search").value);
-  };
-
-  const onClearSearch = () => {
-    setSearch("");
-    setSearchEnabled(false);
+  const toggleSearch = () => {
+    if (searchEnabled) {
+      setSearch("");
+      setSearchEnabled(false);
+    } else {
+      setSearchEnabled(true);
+      setSearch(document.getElementById("search").value);
+    }
   };
 
   return (
-    <Form darkMode={darkMode} onEnter={onSearch} onSubmit={handleSubmit}>
+    <Form darkMode={darkMode} onSubmit={handleSubmit}>
       <TextField
         type="text"
         name="search"
@@ -105,14 +105,10 @@ function Search({ search, setSearch }) {
         inputProps={{ maxLength: 70 }}
         InputProps={{
           endAdornment: (
-            <InputAdornment className="icon">
+            <InputAdornment onClick={toggleSearch} className="icon">
               <div class="vl"></div>
               <IconButton>
-                {searchEnabled ? (
-                  <ClearIcon onClick={onClearSearch} />
-                ) : (
-                  <SearchIcon onClick={onSearch} />
-                )}
+                {searchEnabled ? <ClearIcon /> : <SearchIcon />}
               </IconButton>
             </InputAdornment>
           ),
