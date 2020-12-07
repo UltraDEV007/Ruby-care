@@ -9,6 +9,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 import Moment from "react-moment";
 import "moment-timezone";
+import { datesEqual } from "../../../utils/datesEqual";
 
 const styles = (theme) => ({
   root: {
@@ -117,7 +118,7 @@ export default function MedDetail({
       </DialogTitle>
       <DialogActions>
         <Button variant="contained" color="primary" onClick={handleDetailClose}>
-          {currentTime.toLocaleString() === med?.time ? (
+          {datesEqual(currentTime.toISOString(), med?.time) ? (
             <>not yet</>
           ) : (
             <>Exit</>
@@ -129,7 +130,11 @@ export default function MedDetail({
           className="delete-button"
           onClick={() => onDelete(med.id)}
         >
-          {currentTime.toLocaleString() === med?.time ? <>Yes</> : <>Delete</>}
+          {datesEqual(currentTime.toISOString(), med?.time) ? (
+            <>Yes</>
+          ) : (
+            <>Delete</>
+          )}
         </Button>
       </DialogActions>
     </Dialog>

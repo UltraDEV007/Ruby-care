@@ -79,7 +79,12 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
   );
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    let { name, value } = e.target;
+    console.log("date is :", value);
+    if (name === "time" && value) {
+      let date = new Date(value);
+      value = date.toISOString();
+    }
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,

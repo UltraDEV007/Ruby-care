@@ -96,9 +96,7 @@ export default function MedCard({
             </div>
           )}
           <div onClick={handleDetailOpen} className="time">
-            <Moment format="MMM/DD/yyyy hh:mm A">
-              {med.time?.toLocaleString()}
-            </Moment>
+            <Moment format="MMM/DD/yyyy hh:mm A">{med?.time}</Moment>
           </div>
           <div
             className="buttons"
