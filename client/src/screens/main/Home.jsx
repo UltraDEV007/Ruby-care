@@ -21,7 +21,7 @@ import { checkValidity } from "../../utils/checkValidity";
 import NotFound from "../Error/NotFound";
 import ScrollToTopOnMount from "../../components/Helpers/ScrollToTopOnMount";
 import RXGuideLogo from "../../components/MedComponents/RXGuideLogo";
-
+import { grey } from "@material-ui/core/colors";
 export default function Home() {
   const [darkMode] = useContext(DarkModeContext);
   const [currentUser] = useContext(CurrentUserContext);
@@ -68,108 +68,113 @@ export default function Home() {
       marginTop: "20px",
       marginBottom: "30px",
     },
+    loadingWrapper: {
+      minHeight: "100vh",
+      maxHeight: "100%",
+      background: darkMode === "dark" ? grey[800] : "#fff",
+    },
   }));
   const classes = useStyles();
+
+  if (!loadedAffirmation) {
+    return (
+      <div className={classes.loadingWrapper} darkMode={darkMode}>
+        <div className="content-container">
+          <LinearProgress style={{ margin: "20% auto", width: "50vw" }} />
+        </div>
+      </div>
+    );
+  }
 
   return checkValidity(location.pathname) ? (
     <Layout title="Home">
       <div className={classes.root}>
         <ScrollToTopOnMount />
-        {!loadedAffirmation ? (
-          <LinearProgress style={{ margin: "200px auto", width: "30vw" }} />
-        ) : (
-          <>
-            <Accordion className={classes.accordion}>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-              >
-                <Typography className={classes.heading}>Mood</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <div className="content-container">
-                  <MoodsContainer />
-                </div>
-              </AccordionDetails>
-            </Accordion>
-
-            <Accordion className={classes.accordion}>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-              >
-                <Typography className={classes.heading}>
-                  {affirmations?.length === 0 ? (
-                    <></>
-                  ) : (
-                    <> {affirmations?.length} </>
-                  )}
-                  {affirmations?.length === 1 ? (
-                    <> Affirmation</>
-                  ) : (
-                    <> Affirmations</>
-                  )}
-                </Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <div className="content-container">
-                  <AffirmationsContainer
-                    affirmations={affirmations}
-                    loadedAffirmation={loadedAffirmation}
-                    setAffirmations={setAffirmations}
-                  />
-                </div>
-              </AccordionDetails>
-            </Accordion>
-
-            <Accordion className={classes.accordion}>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-              >
-                <Typography className={classes.heading}>Symptoms</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <div className="content-container">
-                  <SymptomsContainer />
-                </div>
-              </AccordionDetails>
-            </Accordion>
-
-            <Accordion className={classes.accordion}>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-              >
-                <Typography className={classes.heading}>Food diary</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <div className="content-container">
-                  <FoodsContainer />
-                </div>
-              </AccordionDetails>
-            </Accordion>
-
-            <Accordion className={classes.accordion}>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-              >
-                <RXGuideLogo />
-              </AccordionSummary>
-              <AccordionDetails>
-                <div className="content-container">
-                  <MedsContainer />
-                </div>
-              </AccordionDetails>
-            </Accordion>
-          </>
-        )}
+        <Accordion className={classes.accordion}>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography className={classes.heading}>Mood</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <div className="content-container">
+              <MoodsContainer />
+            </div>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion className={classes.accordion}>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography className={classes.heading}>
+              {affirmations?.length === 0 ? (
+                <></>
+              ) : (
+                <> {affirmations?.length} </>
+              )}
+              {affirmations?.length === 1 ? (
+                <> Affirmation</>
+              ) : (
+                <> Affirmations</>
+              )}
+            </Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <div className="content-container">
+              <AffirmationsContainer
+                affirmations={affirmations}
+                loadedAffirmation={loadedAffirmation}
+                setAffirmations={setAffirmations}
+              />
+            </div>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion className={classes.accordion}>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography className={classes.heading}>Symptoms</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <div className="content-container">
+              <SymptomsContainer />
+            </div>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion className={classes.accordion}>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography className={classes.heading}>Food diary</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <div className="content-container">
+              <FoodsContainer />
+            </div>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion className={classes.accordion}>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <RXGuideLogo />
+          </AccordionSummary>
+          <AccordionDetails>
+            <div className="content-container">
+              <MedsContainer />
+            </div>
+          </AccordionDetails>
+        </Accordion>
       </div>
     </Layout>
   ) : (

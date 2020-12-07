@@ -152,7 +152,7 @@ export default function UserDetail({ getOneUser }) {
             {user?.name}
           </Typography>
           <Typography className="age">
-            Age: {getAge(user?.birthday)}&nsbp; years old
+            Age: {getAge(user?.birthday)} years old
           </Typography>
           <Typography className="gender">
             Gender: {toTitleCase(user.gender)}
