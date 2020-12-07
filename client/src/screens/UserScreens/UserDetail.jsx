@@ -146,22 +146,24 @@ export default function UserDetail({ getOneUser }) {
   return (
     <Wrapper darkMode={darkMode}>
       <div className="content-container">
-        <div className="title-container">
-          <Typography className="title">
-            <AccountCircleIcon className="user-icon" />
-            {user?.name}
-          </Typography>
-          <Typography className="age">
-            Age: {getAge(user?.birthday.toLocaleString())}
-          </Typography>
-          <Typography className="gender">
-            Gender: {toTitleCase(user?.gender)}
-          </Typography>
-          Joined:&nbsp;
-          <Moment format="dddd, MMMM Do yyyy">
-            <small>{user?.created_at}</small>
-          </Moment>
-        </div>
+        {user?.birthday && (
+          <div className="title-container">
+            <Typography className="title">
+              <AccountCircleIcon className="user-icon" />
+              {user?.name}
+            </Typography>
+            <Typography className="age">
+              Age: {getAge(user?.birthday)}
+            </Typography>
+            <Typography className="gender">
+              Gender: {toTitleCase(user.gender)}
+            </Typography>
+            Joined:&nbsp;
+            <Moment format="dddd, MMMM Do yyyy">
+              <small>{user?.created_at}</small>
+            </Moment>
+          </div>
+        )}
         <hr className="top-hr" />
         <div className="body">
           <div className="check-insights">{checkInsights(user)}</div>

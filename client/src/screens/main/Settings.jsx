@@ -115,26 +115,28 @@ export default function Settings() {
   return (
     <Layout title="Settings">
       <ScrollToTopOnMount />
-      <div className={classes.userContainer}>
-        <Typography className={classes.accountTitle}>Your Account</Typography>
-        <Typography className={classes.userText}>
-          <strong>Name:</strong>&nbsp;{currentUser?.name}
-        </Typography>
-        <Typography className="age">
-          <strong>Age:</strong>&nbsp;
-          {getAge(currentUser?.birthday.toLocaleString())}
-        </Typography>
-        <Typography className={classes.userText}>
-          <strong>Gender:</strong>&nbsp;{currentUser?.gender}
-        </Typography>
-        <Typography className={classes.userText}>
-          <strong>Email:</strong>&nbsp;{currentUser?.email}
-        </Typography>
-        <Typography>
-          <strong>Joined:</strong>&nbsp;
-          <Moment format="dddd, MMMM Do yyyy">{userDate}</Moment>
-        </Typography>
-      </div>
+      {currentUser?.birthday && (
+        <div className={classes.userContainer}>
+          <Typography className={classes.accountTitle}>Your Account</Typography>
+          <Typography className={classes.userText}>
+            <strong>Name:</strong>&nbsp;{currentUser?.name}
+          </Typography>
+          <Typography className="age">
+            <strong>Age:</strong>&nbsp;
+            {getAge(currentUser?.birthday)}
+          </Typography>
+          <Typography className={classes.userText}>
+            <strong>Gender:</strong>&nbsp;{currentUser?.gender}
+          </Typography>
+          <Typography className={classes.userText}>
+            <strong>Email:</strong>&nbsp;{currentUser?.email}
+          </Typography>
+          <Typography>
+            <strong>Joined:</strong>&nbsp;
+            <Moment format="dddd, MMMM Do yyyy">{userDate}</Moment>
+          </Typography>
+        </div>
+      )}
       <hr />
       <br />
       <div className={classes.root}>

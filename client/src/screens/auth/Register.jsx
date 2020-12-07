@@ -225,7 +225,7 @@ export default function Register() {
           alt="logo"
         />
       </div>
-      {currentUser ? (
+      {currentUser?.birthday && (
         <Typography
           className={darkMode === "light" ? classes.user : classes.userDark}
         >
@@ -239,8 +239,6 @@ export default function Register() {
           <br />
           Gender: {currentUser.gender}
         </Typography>
-      ) : (
-        <></>
       )}
       <form
         className={classes.form}
