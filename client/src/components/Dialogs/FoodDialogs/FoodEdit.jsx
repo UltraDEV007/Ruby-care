@@ -86,7 +86,11 @@ export default function FoodEdit({ setOpenEdit, onSave, handleUpdate, foods }) {
   }, [foods, id, history]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    let { name, value } = e.target;
+    if (name === "time" && value) {
+      let date = new Date(value);
+      value = date.toISOString();
+    }
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
@@ -136,7 +140,6 @@ export default function FoodEdit({ setOpenEdit, onSave, handleUpdate, foods }) {
                 }
                 type="datetime-local"
                 style={{ width: "300px", margin: "10px" }}
-                value={time}
                 onChange={handleChange}
                 InputLabelProps={{
                   shrink: true,

@@ -68,7 +68,11 @@ export default function FoodCreate({ open, onSave, handleClose }) {
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    let { name, value } = e.target;
+    if (name === "time" && value) {
+      let date = new Date(value);
+      value = date.toISOString();
+    }
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
@@ -122,7 +126,6 @@ export default function FoodCreate({ open, onSave, handleClose }) {
               }
               type="datetime-local"
               style={{ width: "300px", margin: "10px" }}
-              value={formData.time}
               onChange={handleChange}
               InputLabelProps={{
                 shrink: true,
