@@ -11,6 +11,7 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { goBack } from "../../utils/goBack";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import { toTitleCase } from "../../utils/toTitleCase";
+import { getAge } from "../../utils/getAge";
 
 const Wrapper = styled.div`
   min-height: 100vh;
@@ -151,7 +152,10 @@ export default function UserDetail({ getOneUser }) {
             {user?.name}
           </Typography>
           <Typography className="gender">
-            Gender: {toTitleCase(user.gender)}
+            Age: {getAge(user?.birthday.toLocaleString())}
+          </Typography>
+          <Typography className="gender">
+            Gender: {toTitleCase(user?.gender)}
           </Typography>
           Joined:&nbsp;
           <Moment format="dddd, MMMM Do yyyy">
