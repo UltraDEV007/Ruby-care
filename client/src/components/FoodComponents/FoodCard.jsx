@@ -35,6 +35,11 @@ export default function FoodCard({
     setFoods(foods);
   };
 
+  const onDelete = (id) => {
+    handleDelete(id);
+    setOpenDetail(false);
+  };
+
   return (
     <>
       <Card
@@ -101,7 +106,7 @@ export default function FoodCard({
         <FoodDetail
           food={food}
           openDetail={openDetail}
-          handleDelete={handleDelete}
+          onDelete={onDelete}
           setOpenDetail={setOpenDetail}
         />
       )}
