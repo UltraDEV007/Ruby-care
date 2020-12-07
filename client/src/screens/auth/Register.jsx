@@ -383,10 +383,9 @@ export default function Register() {
               <option value={"Male"}>Male</option>
               <option value={"Female"}>Female</option>
               <option value={"Transgender"}>Transgender</option>
-              <option value={"Non-Binray"}>Non-Binary </option>
+              <option value={"Non-binray"}>Non-Binary </option>
               <option value={"Gender-fluid"}>Gender Fluid</option>
               <option value={"Gender-neutral"}>Gender Neutral</option>
-              <option value={"Two-Spirit"}>Two-Spirit</option>
               <option value={"Other"}>Other</option>
             </Select>
           </FormControl>
