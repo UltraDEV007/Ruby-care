@@ -100,7 +100,7 @@ A post mvp feature will allow the user to track his symptoms.
 <br>
 
 ### Component Tree
-
+> ![Component Tree Image](https://imgur.com/a/3mCge1G)
 > [Component Tree Link (Whimsical)](https://whimsical.com/care-JWXTaZdt8XN5jBPYfiuagm)
 
 <br>
