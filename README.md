@@ -186,30 +186,42 @@ src
 |         Home          | functional |   n   |   n   | _The Home screen will include all the logged moods and affirmations_                                                                                    |
 |       Community       | functional |   n   |   n   | _The Community screen will include all insights made by users and the option to edit or delete an insight_                                              |
 |         More          | functional |   y   |   y   | _The More page will comtain current user info such as name email and password (will be editable as postmvp feature, and will have a dark mode switcher_ |
-|        Footer         | functional |   y   |   n   | _The footer will contain the links to the pages_                                                                                                        |
-|        Header         | functional |   y   |   y   | _The header will contain the logged in user name, page name, and current time_                                                                          |
+|        Footer         | functional |   y   |   n   | _The footer will contain the links to the pages_                                                                                                        |      DarkModeContext     |     functional       |   y   |  y    | _DarkModeContext will contain the logic for changing the theme state from light mode to dark mode and saving it to local storage, then wrapping app.jsx with DarkModeProvider_ |
+|        Header         | functional |   y   |   y   | _The header will contain the logged in user name, page name, and current time_                                                                          |        MedCreate      |  functional | y   |   y    | _MedCreate.jsx will fetch all the data from my [2nd project](https://rxguide.netlify.app/)'s API to fetch all medications and then save the medication |
+|        MedEdit        | functional | y    |  y     | _MedEdit.jsx will get the medicine by id and allow us to edit it_ |
+|  MedDetail            | functional | y    |  y     | _MedDetail will conditionally text render based on wether or not the selected time has passed or not, if it has passed, ask the user if he took his medication, if he says yes, delete the medicine, else, just have exit or delete buttons |
+
 
 #### Time Estimates
 
 | Task                                                    | Priority | Estimated Time | Time Invested | Actual Time |
 | ------------------------------------------------------- | :------: | :------------: | :-----------: | :---------: |
-| Create Insight, Affirmations, Moods, CRUD Actions in BE |    H     |     4 hrs      |    30 min     |     TBD     |
-| Create Symptoms BE CRUD                                 |    L     |      1hr       |     20min     |     TBD     |
-| Create Authentication in BE                             |    H     |      2hrs      |     10min     |     TBD     |
-| Create Layout                                           |    M     |      3hrs      |     30min     |     TBD     |
-| Create FE Authentication                                |    H     |      3hrs      |      1hr      |     TBD     |
-| Create Insight FE-CRUD                                  |    H     |      3hrs      |     2hrs      |     TBD     |
-| Create Mood FE-CRUD                                     |    H     |      3hrs      |     4hrs      |     TBD     |
-| Create Affirmation FE-CRUD                              |    M     |      3hrs      |     2hrs      |     TBD     |
-| Create Symptom FE-CRUD                                  |    L     |      2hrs      |     2hrs      |             |
-| Create Home Page                                        |    H     |      2hrs      |     30min     |     TBD     |
-| Create Register Page                                    |    H     |      2hrs      |     30min     |     TBD     |
-| Styling                                                 |    M     |     10 hrs     |     7hrs      |     TBD     |
-| Create Sign-in Page                                     |    H     |      2hrs      |    2.5hrs     |     TBD     |
-| Create Insights Page                                    |    H     |      2hr       |     30min     |     TBD     |
-| Create Settings Page                                    |    L     |      1hr       |     2hrs      |     TBD     |
-| Create, refactor and debug Dark Mode                    |    L     |      1hr       |     3hrs      |     TBD     |
-| TOTAL                                                   |          |     44hrs      |     26hrs     |     TBD     |
+| Create Insight, Affirmations, Moods, CRUD Actions in BE |    H     |     4 hrs      |    30min     |     30min     |
+| Create Symptoms BE CRUD                                 |    L     |      1hr       |     20min     |     20min     |
+| Create Authentication in BE                             |    H     |      2hrs      |     10min     |     10min     |
+| Create Layout                                           |    M     |      3hrs      |     30min     |     30min     |
+| Create FE Authentication                                |    H     |      3hrs      |      1hr      |     1hr     |
+| Create Insight FE-CRUD                                  |    H     |      3hrs      |     2hrs      |     2hrs     |
+| Create Mood FE-CRUD                                     |    H     |      3hrs      |     4hrs      |     4hrs     |
+| Create Affirmation FE-CRUD                              |    M     |      3hrs      |     2hrs      |     2hrs     |
+| Create Symptom FE-CRUD                                  |    L     |      2hrs      |     2hrs      |      2hrs       |
+| Create Home Page                                        |    H     |      2hrs      |     30min     |     30min     |
+| Create Register Page                                    |    H     |      2hrs      |     30min     |     30min     |
+| Styling                                                 |    M     |     15 hrs     |     15hrs      |     15hrs     |
+| Create Sign-in Page                                     |    H     |      2hrs      |    2.5hrs     |     2.5hrs     |
+| Create Insights Page                                    |    H     |      2hr       |     30min     |     30min     |
+| Create Settings Page                                    |    L     |      1hr       |     2hrs      |     2hrs     |
+| Create, refactor and debug Dark Mode                    |    L     |      1hr       |     6hrs      |     6hrs     |
+| Create Food BE-CRUD | L | 1hr | 1hr | 1hr |
+| Create Food FE-CRUD | L | 2hr | 2hrs | 64hrs |
+| Create FoodRegex | L | 4hrs | 4hrs | 6hrs |
+| Fetch Medications from a [3rd Party API](https://rxguide.netlify.app/about) and handle full crud on my BE AND FE | L | 7hrs | 7hrs | 7hrs |
+| ETC (styling, error handling, perfecting | L | 6hrs | 6hrs | 6hrs |
+| TOTAL                                                   |          |     44hrs      |     64.5     |     64.5     |
+
+
+
+
 
 > _Why is this necessary? Time frames are key to the development cycle. You have limited time to code your app, and your estimates can then be used to evaluate possibilities of your MVP and post-MVP based on time needed. It's best you assume an additional hour for each component, as well as a few hours added to the total time, to play it safe._
 
@@ -228,12 +240,13 @@ src
 
 ## Post-MVP
 
-- dark mode, the user will be able to switch between light mode and dark mode.
-- symptoms, the user will be able to add, edit and delete symtpoms.
+- dark mode, the user will be able to switch between light mode and dark mode. ✔️
+- symptoms, the user will be able to get, add, edit and delete symtpoms. ✔️
+- foods, the user will be able to get, add, ddit, and delete foods. ✔️
+- medicine, Fetch Medications from my [2nd project's 3rd Party air-table API](https://rxguide.netlify.app/about) and handle full crud on my BE AND FE. ✔️
 - password confirm on register: you will need to confirm your password to create your account.
 - likes, be able to like an insight.
-- whitelist, if a user enters a link that is not in a whitelist, bring him to a "404 Not found" page
-
+- whitelist, if a user enters a link that is not in a whitelist, bring him to a "404 Not found" page ✔️
 ---
 
 ### Code Showcase
