@@ -31,7 +31,7 @@ A post mvp feature will allow the user to track his symptoms.
 
 ## MVP
 
-- _*Care* will feature full-crud (create-read-update-destroy) functionality for: moods, affirmations and insights, which will be managed by a user._ ✔️
+- _*Care* will feature full-crud functionality for: moods, affirmations and insights, which will be managed by a user._ ✔️
 - _Allow for user sign up, authentication, login, and verification._ ✔️
 - _*Care* will feature mobile-first design, that follows some of the [material-design](https://en.wikipedia.org/wiki/Material_Design) principles._ ✔️
   <br>
