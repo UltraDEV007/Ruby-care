@@ -221,7 +221,7 @@ src
 
 [ERD Model Link](https://drive.google.com/file/d/16G7t1UU_fHARCdY8dVpV2eJWvtP0pbsW/view?usp=sharing)
 
-![ERD Model](https://i.imgur.com/oSjIIuY.png)
+![ERD Model](blob:https://imgur.com/2b635445-18d9-40c8-94a9-04c5c0eb80d6)
 <br>
 
 ---
