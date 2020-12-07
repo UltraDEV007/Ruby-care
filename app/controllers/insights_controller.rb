@@ -32,7 +32,7 @@ class InsightsController < ApplicationController
   # PATCH/PUT /insights/1
   def update
     if @insight.update(insight_params)
-      render json: @insight
+      render json: @insight, include: :user
     else
       render json: @insight.errors, status: :unprocessable_entity
     end
