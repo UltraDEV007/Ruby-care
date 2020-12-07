@@ -117,14 +117,17 @@ src
       |__ graphics
       |__ images
       |__ mockups
-|__ CurrentUser/
-  |__ CurrentUserContext.jsx
-|__ components/
+
+|__ components
+     |__Context
+      |__ CurrentUserContext.jsx
+      |__ DarkModeContext.jsx
    |__MoodComponents
       |__ Moods.jsx
       |__ MoodCard.jsx
    |__ AffirmationComponents/
        |__ Affirmations.jsx
+       |__ AffirmationLetter.jsx
    |__ InsightComponents/
        |__ Insights.jsx
        |__ InsightCard.jsx
@@ -150,17 +153,27 @@ src
    |__ More.jsx
    |__ Login.jsx
    |__ Register.jsx
- |__ AffirmationScreens/
+ |__ Error/
+  |__ NotFound.jsx
+ |__ AffirmationDialogs/
    |__ AffirmationDetail.jsx
    |__ AffirmationEdit.jsx
    |__ AffirmationCreate.jsx
-|__ MoodScreens/
+|__ MoodDialogs/
    |__ MoodEdit.jsx
    |__ MoodCreate.jsx
 |__ InsightScreens/
    |__ InsightEdit.jsx
    |__ InsightCreate.jsx
    |__ InsightDetail.jsx
+|__ Modals/
+  |__ DeleteInsight.jsx 
+|__ utils/
+ |__ checkValidity.js
+ |__ goBack.js
+ |__ foodUtils.js
+ |__ emojiLogic.js
+ |__ ratingLogic.js
 ```
 
 #### Component Breakdown
@@ -301,3 +314,7 @@ export default function ratingLogic(ratingParam, iconParam) {
 ## Code Issues & Resolutions
 
 > Use this section to list of all major issues encountered and their resolution.
+
+>Can't find user id of undefined when refreshing
+- resolution: the useEffect sometimes happens before the api request, which means user is not defined because the api request didn't happen yet, which means we don't have a user, to fix this, put the currentUser (logged-In-User) in the dependency array of the fetchData useEffects that are associated with a user.
+
