@@ -262,11 +262,72 @@ src
 - whitelist, if a user enters a link that is not in a whitelist, bring him to a "404 Not found" page ✔️
 ---
 
-### Code Showcase
+# Code Showcase
 
 > Use this section to include a brief code snippet of functionality that you are proud of and a brief description.
 
-## ratingLogic.js
+## foodUtils.js
+
+> This file is responsible for getting the correct icon for the food based on the typing when you create/edit your food, it uses regex and allows case insensitivity, and all symbols and spaces
+
+```
+import RestaurantIcon from "@material-ui/icons/Restaurant";
+
+ const foodRegex = /avocado|chicken|hamburger|burger|(^cheese$)|pizza|cheeseburger|steak|meat|milk|bacon|rice|pork|soup|taco|apple|pasta|spaghetti|falafel/;
+
+ const foodMap = {
+  avocado: "🥑",
+  chicken: "🍗",
+  hamburger: "🍔",
+  cheeseburger: "🍔",
+  cheese: "🧀",
+  pizza: "🍕",
+  steak: "🥩",
+  meat: "🍖",
+  milk: "🥛",
+  bacon: "🥓",
+  rice: "🍚",
+  pork: "🐖",
+  soup: "🍲",
+  taco: "🌮",
+  apple: "🍎",
+  pasta: "🍝",
+  spaghetti: "🍝",
+  falafel: "🧆",
+};
+
+export const foodNameJSX = (food) => {
+  const result = food.name.toLowerCase().trim().match(foodRegex);
+  if (result) {
+    return (
+      <>
+  <span role="img" aria-label={food.name}>
+          {foodMap[result[0]]}
+        </span>
+        &#8199;{food.name}
+      </>
+    );
+  } else {
+    return (
+      <>
+        <RestaurantIcon />
+        &nbsp;{food.name}
+      </>
+    );
+  }
+};
+
+```
+
+It takes the result that the user entered, forces it to lowerCase, trims the empty spaces, and uses match on the foodRegex
+
+if we have a result, meaning if the input that the user has entered matches one of the names on the foodRegex,
+we return the first result of the foodMap, which is the icon, we surround it with a span tag and a role of "img" for accessability, 
+then we use #8199; to add a space, simillar to nbsp but a little bigger of space, and attach it next to the food name,
+if the user's input DOESN"T match one of the names in the foodRegex, it will return an icon with a fork and a knife instead, which is material UI's <RestaurantIcon />, a user still deserves an icon for his food even if it doesnt match :), I'm planning on adding foods every day, so this foodMap and regex list will get bigger and will have more icons to match user's input over time.
+
+
+### ratingLogic.js
 
 > this file is responsible for rendering the amount of rating icons depending the value of the rating from 1-5, (for example: when you rate your food in the app)
 
