@@ -314,6 +314,10 @@ export default function ratingLogic(ratingParam, iconParam) {
 > Making a "utility belt/self tracking" app was my dream ever since I started programming, I personally have IBD, so I want to track my mood, symptoms, medicine, etc all the time. This app allows me to do that and also share posts with the community at the same time.
 Before Care I used an app called "Gali Health" to track my symptoms, however Gali didn't allow me to track food, and also it was specific to IBD, whereas this app allows you to track all kinds of symptoms and share all kinds of posts.
 
+- Whats the next step?
+
+> The next step would be to make a React Native version of this app, because this app's design is heavily "mobile" friendly, allowing the app to be downloadable on the app store would make sense, so that's the next step for sure.
+
 ## Code Issues & Resolutions
 
 > Use this section to list of all major issues encountered and their resolution.
