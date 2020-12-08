@@ -303,11 +303,16 @@ export default function ratingLogic(ratingParam, iconParam) {
 
 ## FAQ
 
-> What is RXGuide?
+- What is RXGuide?
 
-- [RXGuide](https://rxguide.netlify.app/about) is my second ever project,
+> [RXGuide](https://rxguide.netlify.app/about) is my second ever project,
   it's a front-end react-app that uses an airtable back end to do full crud,
   I use my airtable API from RXGuide on this project to Create, read, update, and delete a medication and associate it to a user.
+
+- What inspired you?
+
+> Making a "utility belt/self tracking" app was my dream ever since I started programming, I personally have IBD, so I want to track my mood, symptoms, medicine, etc all the time. This app allows me to do that and also share posts with the community at the same time.
+Before Care I used an app called "Gali Health" to track my symptoms, however Gali didn't allow me to track food, and also it was specific to IBD, whereas this app allows you to track all kinds of symptoms and share all kinds of posts.
 
 ## Code Issues & Resolutions
 
