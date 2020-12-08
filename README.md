@@ -322,8 +322,7 @@ Before Care I used an app called "Gali Health" to track my symptoms, however Gal
 
 ## Code Issues & Resolutions
 
-> Use this section to list of all major issues encountered and their resolution.
+- Can't find user id of undefined when refreshing
 
->Can't find user id of undefined when refreshing
-- resolution: the useEffect sometimes happens before the api request, which means user is not defined because the api request didn't happen yet, which means we don't have a user, to fix this, put the currentUser (logged-In-User) in the dependency array of the fetchData useEffects that are associated with a user.
+> resolution: the useEffect sometimes happens before the api request, which means user is not defined because the api request didn't happen yet, which means we don't have a user, to fix this, put the currentUser (logged-In-User) in the dependency array of the fetchData useEffects that are associated with a user.
 
