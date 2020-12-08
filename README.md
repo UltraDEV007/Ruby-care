@@ -270,12 +270,14 @@ src
 
 > This file is responsible for getting the correct icon for the food based on the typing when you create/edit your food, it uses regex and allows case insensitivity, and all symbols and spaces
 
+> The reason I call it food utils is because as you see, I'm exporting each thing, so I might want to import only one thing in that page for future use, that's why I call it foodUtils.
+
 ```
 import RestaurantIcon from "@material-ui/icons/Restaurant";
 
- const foodRegex = /avocado|chicken|hamburger|burger|(^cheese$)|pizza|cheeseburger|steak|meat|milk|bacon|rice|pork|soup|taco|apple|pasta|spaghetti|falafel/;
+export const foodRegex = /avocado|chicken|hamburger|burger(^cheese$)|pizza|cheeseburger|steak|meat|milk|bacon|rice|pork|soup|taco|apple|pasta|spaghetti|falafel/;
 
- const foodMap = {
+export const foodMap = {
   avocado: "🥑",
   chicken: "🍗",
   hamburger: "🍔",
