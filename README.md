@@ -24,8 +24,10 @@
 
 ## Overview
 
-**Care** is a therapy/self-care app where a user will be able to track his mood, create affirmations, and read/share educational insights with the community.
-A post mvp feature will allow the user to track his symptoms.
+**Care**
+
+Care is a Full-Stack React & Rails crud app with authentication where the user can track his mood, symptoms, log food, track medications, and share insights with the community.
+So far there are 9 tables all with full crud and associations
 
 <br>
 
