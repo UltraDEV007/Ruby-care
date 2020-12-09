@@ -82,7 +82,6 @@ export default function UserEdit({
     gender: "",
   });
   const { name, birthday, gender, email, password } = formData;
-  const { id } = useParams();
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => {
@@ -128,6 +127,7 @@ export default function UserEdit({
         onSubmit={(e) => {
           e.preventDefault();
           onSave(currentUser.id, formData);
+          window.location.reload();
         }}
       >
         <DialogContent dividers>
@@ -154,7 +154,7 @@ export default function UserEdit({
                   id="email"
                   type="text"
                   name="email"
-                  value={email?.toLowerCase()}
+                  value={email}
                   onChange={handleChange}
                 />
               </FormControl>

@@ -38,11 +38,11 @@ export default function Header({ title }) {
       display: "flex",
       alignItems: "center",
       marginRight: "20px",
-      transition: "transform 250ms ease-in-out",
+      transition: "transform 350ms ease-in-out",
       "&:hover": {
-        transition: "transform 250ms ease-in-out",
+        transition: "transform 300ms ease-in-out",
         cursor: "pointer",
-        transform: "scale(1.3)",
+        transform: "scale(1.2)",
       },
     },
     userIcon: {
@@ -51,11 +51,11 @@ export default function Header({ title }) {
     logOut: {
       marginLeft: "20px",
       padding: "20px",
-      transition: "transform 300ms ease-in-out",
+      transition: "transform 350ms ease-out",
       "&:hover": {
-        transition: "transform 300ms ease-in-out",
+        transition: "transform 300ms ease-in",
         cursor: "pointer",
-        transform: "scale(1.3)",
+        transform: "scale(1.2)",
       },
     },
   }));

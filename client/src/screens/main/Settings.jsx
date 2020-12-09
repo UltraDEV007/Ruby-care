@@ -1,12 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import Layout from "../../layouts/Layout/Layout";
 import Switch from "@material-ui/core/Switch";
-import {
-  Route,
-  Link,
-  useHistory,
-  Switch as RouterSwitch,
-} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
@@ -132,6 +127,13 @@ export default function Settings() {
       display: "flex",
       alignItems: "center",
     },
+    manage: {
+      display: "flex",
+      justifyContent: "center",
+      margin: "0 auto",
+      marginBottom: "20px",
+      marginTop: "10px",
+    },
   }));
   const classes = useStyles();
 
@@ -183,6 +185,15 @@ export default function Settings() {
           <Moment format="dddd, MMMM Do yyyy">{userDate}</Moment>
         </Typography>
       </div>
+
+      <Button
+        className={classes.manage}
+        onClick={handleOpen}
+        variant="contained"
+        color="primary"
+      >
+        Edit Account
+      </Button>
       <hr />
       <br />
       <div className={classes.root}>
@@ -203,22 +214,6 @@ export default function Settings() {
           </Card>
         </div>
       </div>
-
-      <Button
-        // component={Link}
-        onClick={handleOpen}
-        // to={`/users/${currentUser?.id}/edit`}
-        variant="contained"
-        color="primary"
-        className="edit-button"
-      >
-        <span role="img" aria-label="edit">
-          🔧
-        </span>
-      </Button>
-
-      {/* <RouterSwitch> */}
-      {/* <Route path="/user/:id/edit"> */}
       {openEdit && (
         <UserEdit
           allUsers={allUsers}
@@ -229,8 +224,6 @@ export default function Settings() {
           handleClose={handleClose}
         />
       )}
-      {/* </Route>
-        </RouterSwitch> */}
     </Layout>
   );
 }
