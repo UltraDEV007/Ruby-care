@@ -389,3 +389,6 @@ Before Care I used an app called "Gali Health" to track my symptoms, however Gal
 
 > resolution: the useEffect happens before the api get request, which means the logged in user is not verified because the api request didn't happen yet, to fix this, put the currentUser (logged-In-User) in the dependency array of the fetchData useEffect that is responsible for fetching the data that is associated with the logged-in-user.
 
+## Changelog
+
+- Dec 9th, 2020 : added the option to edit a user, registration and login email no longer forced to lower case as it is handeled differently, added more logic to taking the meds, so when the user takes the medicine it doesn't delete it, it just tells him he took and and then he can make the decision if he wanted to delete it.
