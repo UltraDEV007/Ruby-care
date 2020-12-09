@@ -391,4 +391,4 @@ Before Care I used an app called "Gali Health" to track my symptoms, however Gal
 
 ## Changelog
 
-- Dec 9th, 2020 : added the option to edit a signed-in on the settings page(you can't edit other people's users, only yours), registration and login email no longer forced to lower case as it is handeled differently, added more logic to taking the meds, so when the user takes the medicine it doesn't delete it, it just tells him he took and and then he can make the decision if he wanted to delete it.
+- Dec 9th, 2020 : added the option to edit an authorized user on the settings page(you can't edit other people's users, only yours), registration and login email no longer forced to lower case as it is handeled differently, added more logic to taking the meds, so when the user takes the medicine it doesn't delete it, it just tells him he took and and then he can make the decision if he wanted to delete it.
