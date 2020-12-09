@@ -109,43 +109,28 @@ export default function MedCard({
               <CircularProgress style={{ height: "80px", width: "80px" }} />
             </div>
           )}
-          {
-            !taken && compareDateWithCurrentTime(med.time) < 0 ? (
-              <div onClick={handleDetailOpen} className="time">
-                <Typography>
-                  You have to take {med?.name} at <br />
-                  <Moment format="MMM/DD/yyyy hh:mm A">{med?.time}</Moment>
-                </Typography>
-              </div>
-            ) : !taken && compareDateWithCurrentTime(med.time) === 1 ? (
-              <div onClick={handleDetailOpen} className="time">
-                <Typography>
-                  You were supposed to take {med?.name} at <br />
-                  <Moment format="MMM/DD/yyyy hh:mm A">{med?.time}</Moment>
-                </Typography>
-              </div>
-            ) : (
-              <div onClick={handleDetailOpen} className="time">
-                <Typography>
-                  {currentUser.name} took {med?.name} at <br />
-                  <Moment format="MMM/DD/yyyy hh:mm A">{med?.time}</Moment>
-                </Typography>
-              </div>
-            )
-
-            // !openOptions && (
-            //   <Button
-            //     variant="contained"
-            //     color="secondary"
-            //     className="delete-button"
-            //     onClick={() => handleDelete(med.id)}
-            //   >
-            //     <span role="img" aria-label="delete">
-            //       🗑️
-            //     </span>
-            //   </Button>
-            // )
-          }
+          {!taken && compareDateWithCurrentTime(med.time) < 0 ? (
+            <div onClick={handleDetailOpen} className="time">
+              <Typography>
+                You have to take {med?.name} at <br />
+                <Moment format="MMM/DD/yyyy hh:mm A">{med?.time}</Moment>
+              </Typography>
+            </div>
+          ) : !taken && compareDateWithCurrentTime(med.time) === 1 ? (
+            <div onClick={handleDetailOpen} className="time">
+              <Typography>
+                You were supposed to take {med?.name} at <br />
+                <Moment format="MMM/DD/yyyy hh:mm A">{med?.time}</Moment>
+              </Typography>
+            </div>
+          ) : (
+            <div onClick={handleDetailOpen} className="time">
+              <Typography>
+                {currentUser.name} took {med?.name} at <br />
+                <Moment format="MMM/DD/yyyy hh:mm A">{med?.time}</Moment>
+              </Typography>
+            </div>
+          )}
           <div
             className="buttons"
             style={openOptions ? { display: "flex" } : { display: "none" }}
