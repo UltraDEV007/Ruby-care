@@ -385,7 +385,7 @@ Before Care I used an app called "Gali Health" to track my symptoms, however Gal
 
 ## Code Issues & Resolutions
 
-- Can't find user id of undefined when refreshing
+- logged in user unauthorized/unverified when refreshing
 
-> resolution: the useEffect sometimes happens before the api request, which means user is not defined because the api request didn't happen yet, which means we don't have a user, to fix this, put the currentUser (logged-In-User) in the dependency array of the fetchData useEffects that are associated with a user.
+> resolution: the useEffect happens before the api get request, which means the logged in user is not verified because the api request didn't happen yet, to fix this, put the currentUser (logged-In-User) in the dependency array of the fetchData useEffect that is responsible for fetching the data that is associated with the logged-in-user.
 
