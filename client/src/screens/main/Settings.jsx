@@ -1,7 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 import Layout from "../../layouts/Layout/Layout";
 import Switch from "@material-ui/core/Switch";
-import { useHistory } from "react-router-dom";
 import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
@@ -23,7 +22,6 @@ export default function Settings() {
   const [darkMode, setDarkMode] = useContext(DarkModeContext);
   const [openEdit, setOpenEdit] = useState(false);
   const [allUsers, setAllUsers] = useState([]);
-  const history = useHistory();
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -41,13 +39,13 @@ export default function Settings() {
         return user.id === Number(id) ? updatedUser : user;
       })
     );
-    history.push("/settings");
   };
 
   const onSave = (formData, id) => {
     handleUpdate(formData, id);
     setAllUsers(allUsers);
     setOpenEdit(false);
+    window.location.reload();
   };
 
   const handleOpen = () => {

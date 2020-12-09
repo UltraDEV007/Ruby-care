@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import MuiDialogActions from "@material-ui/core/DialogActions";
@@ -72,7 +72,6 @@ export default function UserEdit({
   handleOpen,
   handleClose,
   onSave,
-  allUsers,
   currentUser,
 }) {
   const [formData, setFormData] = useState({
@@ -127,7 +126,6 @@ export default function UserEdit({
         onSubmit={(e) => {
           e.preventDefault();
           onSave(currentUser.id, formData);
-          window.location.reload();
         }}
       >
         <DialogContent dividers>

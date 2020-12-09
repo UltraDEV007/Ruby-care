@@ -53,7 +53,6 @@ export default function Meds({
           updated={updated}
           med={med}
           handleUpdate={handleUpdate}
-          openOptions={openOptions}
           handleDelete={handleDelete}
         />
       ))
