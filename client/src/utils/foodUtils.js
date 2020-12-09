@@ -28,10 +28,10 @@ export const foodNameJSX = (food) => {
   if (result) {
     return (
       <>
-        {foodMap[result[0]]}
         <span role="img" aria-label={food.name}>
-          &#8199;{food.name}
+          {foodMap[result[0]]}
         </span>
+        &#8199;{food.name}
       </>
     );
   } else {

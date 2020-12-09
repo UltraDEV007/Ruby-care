@@ -1,10 +1,16 @@
 import { makeStyles } from "@material-ui/core/styles";
 import Layout from "../../layouts/Layout/Layout";
 import Switch from "@material-ui/core/Switch";
+import {
+  Route,
+  Link,
+  useHistory,
+  Switch as RouterSwitch,
+} from "react-router-dom";
 import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { indigo } from "@material-ui/core/colors";
 import { CurrentUserContext } from "../../components/Context/CurrentUserContext";
 import { DarkModeContext } from "../../components/Context/DarkModeContext";
@@ -13,9 +19,48 @@ import "moment-timezone";
 import ScrollToTopOnMount from "../../components/Helpers/ScrollToTopOnMount";
 import Brightness4Icon from "@material-ui/icons/Brightness4";
 import { getAge } from "../../utils/getAge";
+import { getAllUsers, putUser } from "../../services/users";
+import UserEdit from "../../components/Dialogs/UserDialogs/UserEdit";
+import Button from "@material-ui/core/Button";
+
 export default function Settings() {
   const [currentUser] = useContext(CurrentUserContext);
   const [darkMode, setDarkMode] = useContext(DarkModeContext);
+  const [openEdit, setOpenEdit] = useState(false);
+  const [allUsers, setAllUsers] = useState([]);
+  const history = useHistory();
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const userData = await getAllUsers();
+      setAllUsers(userData);
+    };
+    fetchUsers();
+  }, []);
+
+  const handleUpdate = async (id, userData) => {
+    const updatedUser = await putUser(id, userData);
+    setAllUsers((prevState) =>
+      prevState.map((user) => {
+        return user.id === Number(id) ? updatedUser : user;
+      })
+    );
+    history.push("/settings");
+  };
+
+  const onSave = (formData, id) => {
+    handleUpdate(formData, id);
+    setAllUsers(allUsers);
+  };
+
+  const handleOpen = () => {
+    setOpenEdit(true);
+  };
+
+  const handleClose = () => {
+    setOpenEdit(false);
+  };
+
   const useStyles = makeStyles((theme) => ({
     root: {
       margin: "0 auto",
@@ -112,6 +157,7 @@ export default function Settings() {
   };
 
   const userDate = currentUser?.created_at?.toLocaleString();
+
   return (
     <Layout title="Settings">
       <ScrollToTopOnMount />
@@ -155,6 +201,34 @@ export default function Settings() {
           </Card>
         </div>
       </div>
+
+      <Button
+        // component={Link}
+        onClick={handleOpen}
+        // to={`/users/${currentUser?.id}/edit`}
+        variant="contained"
+        color="primary"
+        className="edit-button"
+      >
+        <span role="img" aria-label="edit">
+          🔧
+        </span>
+      </Button>
+
+      {/* <RouterSwitch> */}
+      {/* <Route path="/user/:id/edit"> */}
+      {openEdit && (
+        <UserEdit
+          allUsers={allUsers}
+          onSave={onSave}
+          currentUser={currentUser}
+          handleOpen={handleOpen}
+          handleUpdate={handleUpdate}
+          handleClose={handleClose}
+        />
+      )}
+      {/* </Route>
+        </RouterSwitch> */}
     </Layout>
   );
 }

@@ -46,6 +46,7 @@ export default function Meds({
     ) : (
       meds.map((med) => (
         <MedCard
+          openOptions={openOptions}
           RXGuideMeds={RXGuideMeds}
           meds={meds}
           setMeds={setMeds}

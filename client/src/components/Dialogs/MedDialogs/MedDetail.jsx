@@ -61,6 +61,7 @@ export default function MedDetail({
   openDetail,
   handleDetailClose,
   onDelete,
+  onTake,
 }) {
   let currentTime = new Date();
 
@@ -121,21 +122,44 @@ export default function MedDetail({
         )}
       </DialogTitle>
       <DialogActions>
-        <Button variant="contained" color="primary" onClick={handleDetailClose}>
-          {compareDateWithCurrentTime(med?.time) === 1 ? (
+        {compareDateWithCurrentTime(med?.time) === 1 ? (
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={handleDetailClose}
+          >
             <>Not yet</>
-          ) : (
+          </Button>
+        ) : (
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleDetailClose}
+          >
             <>Exit</>
-          )}
-        </Button>
-        <Button
-          variant="contained"
-          color="secondary"
-          className="delete-button"
-          onClick={() => onDelete(med.id)}
-        >
-          {compareDateWithCurrentTime(med?.time) === 1 ? <>Yes</> : <>Delete</>}
-        </Button>
+          </Button>
+        )}
+        {compareDateWithCurrentTime(med?.time) === 1 ? (
+          <Button
+            variant="contained"
+            color="primary"
+            className="delete-button"
+            onClick={() => onTake(med.id)}
+          >
+            Yes
+          </Button>
+        ) : (
+          <Button
+            variant="contained"
+            color="secondary"
+            className="delete-button"
+            onClick={() => onDelete(med.id)}
+          >
+            Delete
+          </Button>
+        )}
+
+        {/* {compareDateWithCurrentTime(med?.time) === 1 ? <>Yes</> : <>Delete</>} */}
       </DialogActions>
     </Dialog>
   );

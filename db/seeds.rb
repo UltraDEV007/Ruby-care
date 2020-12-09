@@ -7,19 +7,19 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
-Mood.destroy_all
-Affirmation.destroy_all
-Insight.destroy_all
-User.destroy_all
-Symptom.destroy_all
-Food.destroy_all
-Medication.destroy_all
+# commented this out because it's going to destory everybodies' accounts and meds,etc
+# Affirmation.destroy_all
+# Insight.destroy_all
+# User.destroy_all
+# Symptom.destroy_all
+# Food.destroy_all
+# Medication.destroy_all
 
 
-@admin = User.create!(name: 'admin', email: 'admin@email.com', password: '12345678', gender: "Male", birthday: DateTime.strptime("10/20/1999 17:00", "%m/%d/%Y %H:%M"))
-@daniel = User.create!(name: 'daniel', email: 'daniel@email.com', password: '12345678', gender: "Male", birthday: DateTime.strptime("10/20/1999 17:00", "%m/%d/%Y %H:%M"))
-@no_insights = User.create!(name: "Ms.No-Insights", email: 'nope@email.com', password: '12345678', gender: "Female", birthday: DateTime.strptime("10/20/1999 17:00", "%m/%d/%Y %H:%M"))
-@bob = User.create!(name: "bob", email: 'bob@email.com', password: '12345678', gender: "Other", birthday: DateTime.strptime("10/20/1999 17:00", "%m/%d/%Y %H:%M"))
+# @admin = User.create!(name: 'admin', email: 'admin@email.com', password: '12345678', gender: "Male", birthday: DateTime.strptime("10/20/1999 17:00", "%m/%d/%Y %H:%M"))
+# @daniel = User.create!(name: 'daniel', email: 'daniel@email.com', password: '12345678', gender: "Male", birthday: DateTime.strptime("10/20/1999 17:00", "%m/%d/%Y %H:%M"))
+# @no_insights = User.create!(name: "Ms.No-Insights", email: 'nope@email.com', password: '12345678', gender: "Female", birthday: DateTime.strptime("10/20/1999 17:00", "%m/%d/%Y %H:%M"))
+# @bob = User.create!(name: "bob", email: 'bob@email.com', password: '12345678', gender: "Other", birthday: DateTime.strptime("10/20/1999 17:00", "%m/%d/%Y %H:%M"))
 
 puts "#{User.count} users created"
 
@@ -37,14 +37,14 @@ puts "#{Mood.count} moods created"
 puts "#{Affirmation.count} affirmations created"
 
 # learned how to use Faker this way from Amber Moore
-@insight1 = Insight.create!(title: "Hello", description: "I dont know this is a description", body: Faker::Lorem.sentence(word_count: 350), user: @daniel)
-@insight2 = Insight.create!(title: "Hello", description: "Saying hi again", body: Faker::Lorem.sentence(word_count: 100), user: @admin)
-@insight3 = Insight.create!(title: "Bye", description: "Goodbye", body: Faker::Lorem.sentence(word_count: 100), user: @admin)
-@insight4 = Insight.create!(title: Faker::Book.title, description: Faker::Lorem.sentence(word_count: 10), body: Faker::Lorem.sentence(word_count: 128), user: @admin)
-@insight5 = Insight.create!(title: Faker::Book.title, description: Faker::Lorem.sentence(word_count: 10), body: Faker::Lorem.sentence(word_count: 320), user: @daniel)
-@insight6 = Insight.create!(title: Faker::Book.title, description: Faker::Lorem.sentence(word_count: 10), body: Faker::Lorem.sentence(word_count: 320), user: @bob)
+# @insight1 = Insight.create!(title: "Hello", description: "I dont know this is a description", body: Faker::Lorem.sentence(word_count: 350), user: @daniel)
+# @insight2 = Insight.create!(title: "Hello", description: "Saying hi again", body: Faker::Lorem.sentence(word_count: 100), user: @admin)
+# @insight3 = Insight.create!(title: "Bye", description: "Goodbye", body: Faker::Lorem.sentence(word_count: 100), user: @admin)
+# @insight4 = Insight.create!(title: Faker::Book.title, description: Faker::Lorem.sentence(word_count: 10), body: Faker::Lorem.sentence(word_count: 128), user: @admin)
+# @insight5 = Insight.create!(title: Faker::Book.title, description: Faker::Lorem.sentence(word_count: 10), body: Faker::Lorem.sentence(word_count: 320), user: @daniel)
+# @insight6 = Insight.create!(title: Faker::Book.title, description: Faker::Lorem.sentence(word_count: 10), body: Faker::Lorem.sentence(word_count: 320), user: @bob)
 
-puts "#{Insight.count} insights created"
+# puts "#{Insight.count} insights created"
 
 # learned strptime from stack overflow : https://stackoverflow.com/questions/5474164/rails-seeding-database-data-and-date-formats
 @symptom1 = Symptom.create!(name: "Chills", time: DateTime.strptime("09/01/2009 17:00", "%m/%d/%Y %H:%M"),  user: @daniel)

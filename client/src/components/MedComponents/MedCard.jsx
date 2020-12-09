@@ -24,7 +24,7 @@ export default function MedCard({
   const [edited, setEdited] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
   const [openDetail, setOpenDetail] = useState(false);
-
+  const [taken, setTaken] = useState(false);
   const onSave = (formData, id) => {
     handleUpdate(formData, id);
     setEdited(true);
@@ -53,6 +53,12 @@ export default function MedCard({
 
   const onDelete = (id) => {
     handleDelete(id);
+    setOpenDetail(false);
+  };
+
+  const onTake = (id) => {
+    handleUpdate(id);
+    setTaken(true);
     setOpenDetail(false);
   };
 
@@ -95,9 +101,35 @@ export default function MedCard({
               <CircularProgress style={{ height: "80px", width: "80px" }} />
             </div>
           )}
-          <div onClick={handleDetailOpen} className="time">
-            <Moment format="MMM/DD/yyyy hh:mm A">{med?.time}</Moment>
-          </div>
+          {!taken ? (
+            <div onClick={handleDetailOpen} className="time">
+              <Typography>
+                You have to take {med?.name} at <br />
+                <Moment format="MMM/DD/yyyy hh:mm A">{med?.time}</Moment>
+              </Typography>
+            </div>
+          ) : (
+            <div>
+              <Typography>
+                {med.name} <br />
+                was taken at <br />
+                <Moment format="MMM/DD/yyyy hh:mm A">{med?.updated_at}</Moment>
+              </Typography>
+            </div>
+            // !openOptions && (
+            //   <Button
+            //     variant="contained"
+            //     color="secondary"
+            //     className="delete-button"
+            //     onClick={() => handleDelete(med.id)}
+            //   >
+            //     <span role="img" aria-label="delete">
+            //       🗑️
+            //     </span>
+            //   </Button>
+            // )
+          )}
+
           <div
             className="buttons"
             style={openOptions ? { display: "flex" } : { display: "none" }}
@@ -132,6 +164,7 @@ export default function MedCard({
             med={med}
             openDetail={openDetail}
             onDelete={onDelete}
+            onTake={onTake}
             handleDetailClose={handleDetailClose}
           />
         )}
