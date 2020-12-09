@@ -10,6 +10,7 @@ import MedEdit from "../Dialogs/MedDialogs/MedEdit";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import MedDetail from "../Dialogs/MedDialogs/MedDetail";
 import Typography from "@material-ui/core/Typography";
+import { compareDateWithCurrentTime } from "../../utils/compareDateWithCurrentTime";
 
 export default function MedCard({
   meds,

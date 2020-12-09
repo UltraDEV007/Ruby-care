@@ -118,12 +118,22 @@ export default function MedDetail({
             You have to take {med?.name}&nbsp;
             <Moment from={currentTime?.toISOString()}>{med?.time}</Moment>
           </Typography>
-        ) : (
+        ) : compareDateWithCurrentTime(med?.time) === 1 && taken === false ? (
           <Typography>Did you take {med?.name}?</Typography>
+        ) : compareDateWithCurrentTime(med?.time) === 1 && taken === true ? (
+          <Typography>
+            You Took {med?.name} at&nbsp;
+            <Moment format="MMM/DD/yyyy hh:mm A">{med.updated_at}</Moment>
+          </Typography>
+        ) : (
+          <Typography>
+            You have to take {med?.name}&nbsp;
+            <Moment from={currentTime?.toISOString()}>{med?.time}</Moment>
+          </Typography>
         )}
       </DialogTitle>
       <DialogActions>
-        {compareDateWithCurrentTime(med?.time) === 1 ? (
+        {compareDateWithCurrentTime(med?.time) === 1 && taken === false ? (
           <Button
             variant="contained"
             color="secondary"
@@ -140,7 +150,7 @@ export default function MedDetail({
             <>Exit</>
           </Button>
         )}
-        {compareDateWithCurrentTime(med?.time) === 1 ? (
+        {compareDateWithCurrentTime(med?.time) === 1 && taken === false ? (
           <Button
             variant="contained"
             color="primary"
