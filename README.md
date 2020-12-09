@@ -202,7 +202,7 @@ src
 |        Footer         | functional |   y   |   n   | _The footer will contain the links to the pages_                                                                                                        |      DarkModeContext     |     functional       |   y   |  y    | _DarkModeContext will contain the logic for changing the theme state from light mode to dark mode and saving it to local storage, then wrapping app.jsx with DarkModeProvider_ |
 |        Header         | functional |   y   |   y   | _The header will contain the logged in user name, page name, and current time_                                                                          |        MedCreate      |  functional | y   |   y    | _MedCreate.jsx will fetch all the data from my [2nd project](https://rxguide.netlify.app/)'s API to fetch all medications and then save the medication |
 |        MedEdit        | functional | y    |  y     | _MedEdit.jsx will get the medicine by id and allow us to edit it_ |
-|  MedDetail            | functional | y    |  y     | _MedDetail will conditionally text render based on wether or not the selected time has passed or not, if it has passed, ask the user if he took his medication, if he says yes, delete the medicine, else, just have exit or delete buttons |
+|  MedDetail            | functional | y    |  y     | _MedDetail will conditionally text render based on wether or not the selected time has passed or not, if it has passed, ask the user if he took his medication, if he says yes, set the medicine to "taken" and tell him that he took the medicine at the time that he said he took it and let him decide if he want's to delete it, else, just have exit or delete buttons |
 
 
 #### Time Estimates
