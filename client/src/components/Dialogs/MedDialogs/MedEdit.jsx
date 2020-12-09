@@ -64,6 +64,7 @@ export default function MedEdit({
   handleOpen,
   handleClose,
   meds,
+  taken,
 }) {
   const [formData, setFormData] = useState({
     name: "",
@@ -167,9 +168,15 @@ export default function MedEdit({
               type="text"
               required
               label={
-                !formData.name
+                name && taken === false
+                  ? `Why do you take ${formData.name}?`
+                  : !name
                   ? `Why do you take your medicaiton?`
-                  : `Why do you take ${formData.name}?`
+                  : name && taken === true
+                  ? `Why did you take ${formData.name}?`
+                  : name && taken === false
+                  ? `Why did you take your medication?`
+                  : `Why do you take this medication?`
               }
               style={{ display: "flex", width: "300px", margin: "10px" }}
               value={formData.reason}
@@ -183,8 +190,14 @@ export default function MedEdit({
               required
               id="datetime-local"
               label={
-                name
+                name && taken === false
                   ? `When do you take ${formData.name}?`
+                  : !name
+                  ? `When do you take this medication?`
+                  : name && taken === true
+                  ? `When did you take ${formData.name}?`
+                  : name && taken === false
+                  ? `When did you take your medication?`
                   : `When do you take this medication?`
               }
               type="datetime-local"

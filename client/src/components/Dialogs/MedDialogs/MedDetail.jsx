@@ -62,6 +62,7 @@ export default function MedDetail({
   handleDetailClose,
   onDelete,
   onTake,
+  taken,
 }) {
   let currentTime = new Date();
 
@@ -112,7 +113,7 @@ export default function MedDetail({
         </Typography>
       </DialogContent>
       <DialogTitle>
-        {compareDateWithCurrentTime(med?.time) < 0 ? (
+        {compareDateWithCurrentTime(med?.time) < 0 && taken === false ? (
           <Typography>
             You have to take {med?.name}&nbsp;
             <Moment from={currentTime?.toISOString()}>{med?.time}</Moment>
@@ -158,8 +159,6 @@ export default function MedDetail({
             Delete
           </Button>
         )}
-
-        {/* {compareDateWithCurrentTime(med?.time) === 1 ? <>Yes</> : <>Delete</>} */}
       </DialogActions>
     </Dialog>
   );

@@ -25,6 +25,7 @@ export default function MedCard({
   const [openEdit, setOpenEdit] = useState(false);
   const [openDetail, setOpenDetail] = useState(false);
   const [taken, setTaken] = useState(false);
+
   const onSave = (formData, id) => {
     handleUpdate(formData, id);
     setEdited(true);
@@ -165,6 +166,7 @@ export default function MedCard({
             openDetail={openDetail}
             onDelete={onDelete}
             onTake={onTake}
+            taken={taken}
             handleDetailClose={handleDetailClose}
           />
         )}
@@ -174,6 +176,7 @@ export default function MedCard({
         <Switch>
           <Route path="/medications/:id/edit">
             <MedEdit
+              taken={taken}
               meds={meds}
               onSave={onSave}
               RXGuideMeds={RXGuideMeds}
