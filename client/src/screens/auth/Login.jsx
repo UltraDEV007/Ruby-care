@@ -187,6 +187,7 @@ export default function Login() {
   };
 
   const handleLogin = async (loginData) => {
+    loginData.email = loginData.email.toLowerCase();
     const userData = await loginUser(loginData);
     setCurrentUser(userData);
     history.push("/");
@@ -220,7 +221,6 @@ export default function Login() {
             alt="logo"
           />
         </div>
-
         {currentUser && (
           <Typography
             className={darkMode === "light" ? classes.user : classes.userDark}
@@ -236,7 +236,6 @@ export default function Login() {
             Gender: {currentUser?.gender}
           </Typography>
         )}
-
         <form
           className={classes.form}
           onSubmit={(e) => {
@@ -270,7 +269,7 @@ export default function Login() {
                     : classes.inputFieldDark
                 }
                 name="email"
-                value={formData.email.toLowerCase()}
+                value={formData.email}
                 onChange={handleChange}
               />
             </FormControl>
@@ -364,6 +363,13 @@ export default function Login() {
           >
             Register
           </Link>
+        </Typography>
+        <br />
+        <Typography
+          className={darkMode === "light" ? classes.user : classes.userDark}
+        >
+          <br />
+          Daniel Michael &copy; 2020
         </Typography>
       </div>
     </>

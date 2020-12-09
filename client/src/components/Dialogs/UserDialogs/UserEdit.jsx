@@ -84,7 +84,6 @@ export default function UserEdit({
   const { name, birthday, gender, email, password } = formData;
   const { id } = useParams();
   const [showPassword, setShowPassword] = useState(false);
-  const [editedUser, setEditedUser] = useState(false);
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -104,7 +103,7 @@ export default function UserEdit({
 
   useEffect(() => {
     const fetchUser = async () => {
-      if (Object.keys(currentUser).length !== 0) {
+      if (currentUser?.id) {
         const oneUser = await getOneUser(currentUser.id);
         setFormData(oneUser);
         return () => {
@@ -112,8 +111,8 @@ export default function UserEdit({
         };
       }
     };
-    fetchUser(currentUser);
-  }, [formData, currentUser, editedUser]);
+    fetchUser();
+  }, [currentUser]);
 
   return (
     <Dialog
@@ -128,7 +127,6 @@ export default function UserEdit({
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          setEditedUser(true);
           onSave(currentUser.id, formData);
         }}
       >

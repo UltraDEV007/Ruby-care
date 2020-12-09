@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 const CurrentUserContext = React.createContext([{}, () => {}]);
 
 function CurrentUserProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState(null);
   const history = useHistory();
 
   useEffect(() => {

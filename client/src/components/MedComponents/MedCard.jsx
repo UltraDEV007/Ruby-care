@@ -11,6 +11,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import MedDetail from "../Dialogs/MedDialogs/MedDetail";
 import Typography from "@material-ui/core/Typography";
 import { compareDateWithCurrentTime } from "../../utils/compareDateWithCurrentTime";
+import { CurrentUserContext } from "../../components/Context/CurrentUserContext";
 
 export default function MedCard({
   meds,
@@ -26,6 +27,7 @@ export default function MedCard({
   const [openEdit, setOpenEdit] = useState(false);
   const [openDetail, setOpenDetail] = useState(false);
   const [taken, setTaken] = useState(false);
+  const [currentUser] = useContext(CurrentUserContext);
 
   const onSave = (formData, id) => {
     handleUpdate(formData, id);
@@ -62,6 +64,10 @@ export default function MedCard({
     handleUpdate(id);
     setTaken(true);
     setOpenDetail(false);
+  };
+
+  const onNotTake = () => {
+    setTaken(false);
   };
 
   return (
@@ -103,21 +109,30 @@ export default function MedCard({
               <CircularProgress style={{ height: "80px", width: "80px" }} />
             </div>
           )}
-          {!taken ? (
-            <div onClick={handleDetailOpen} className="time">
-              <Typography>
-                You have to take {med?.name} at <br />
-                <Moment format="MMM/DD/yyyy hh:mm A">{med?.time}</Moment>
-              </Typography>
-            </div>
-          ) : (
-            <div>
-              <Typography>
-                {med.name} <br />
-                was taken at <br />
-                <Moment format="MMM/DD/yyyy hh:mm A">{med?.updated_at}</Moment>
-              </Typography>
-            </div>
+          {
+            !taken && compareDateWithCurrentTime(med.time) < 0 ? (
+              <div onClick={handleDetailOpen} className="time">
+                <Typography>
+                  You have to take {med?.name} at <br />
+                  <Moment format="MMM/DD/yyyy hh:mm A">{med?.time}</Moment>
+                </Typography>
+              </div>
+            ) : !taken && compareDateWithCurrentTime(med.time) === 1 ? (
+              <div onClick={handleDetailOpen} className="time">
+                <Typography>
+                  You were supposed to take {med?.name} at <br />
+                  <Moment format="MMM/DD/yyyy hh:mm A">{med?.time}</Moment>
+                </Typography>
+              </div>
+            ) : (
+              <div onClick={handleDetailOpen} className="time">
+                <Typography>
+                  {currentUser.name} took {med?.name} at <br />
+                  <Moment format="MMM/DD/yyyy hh:mm A">{med?.time}</Moment>
+                </Typography>
+              </div>
+            )
+
             // !openOptions && (
             //   <Button
             //     variant="contained"
@@ -130,8 +145,7 @@ export default function MedCard({
             //     </span>
             //   </Button>
             // )
-          )}
-
+          }
           <div
             className="buttons"
             style={openOptions ? { display: "flex" } : { display: "none" }}
@@ -168,6 +182,7 @@ export default function MedCard({
             onDelete={onDelete}
             onTake={onTake}
             taken={taken}
+            onNotTake={onNotTake}
             handleDetailClose={handleDetailClose}
           />
         )}

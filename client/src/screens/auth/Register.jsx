@@ -30,7 +30,7 @@ const useStyles = makeStyles(() => ({
     flexFlow: "nowrap",
     alignItems: "center",
     width: "100%",
-    height: "100vh",
+    height: "100%",
   },
   rootDark: {
     display: "flex",
@@ -190,6 +190,7 @@ export default function Register() {
   };
 
   const handleRegister = async (registerData) => {
+    registerData.email = registerData.email.toLowerCase();
     const userData = await registerUser(registerData);
     setCurrentUser(userData);
     history.push("/");
@@ -305,7 +306,7 @@ export default function Register() {
                   : classes.inputFieldDark
               }
               name="email"
-              value={formData.email.toLowerCase()}
+              value={formData.email}
               onChange={handleChange}
             />
           </FormControl>

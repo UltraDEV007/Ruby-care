@@ -62,6 +62,7 @@ export default function MedDetail({
   handleDetailClose,
   onDelete,
   onTake,
+  onNotTake,
   taken,
 }) {
   let currentTime = new Date();
@@ -137,7 +138,7 @@ export default function MedDetail({
           <Button
             variant="contained"
             color="secondary"
-            onClick={handleDetailClose}
+            onClick={onNotTake(med.id)}
           >
             <>Not yet</>
           </Button>

@@ -39,6 +39,7 @@ export default function Settings() {
   }, []);
 
   const handleUpdate = async (id, userData) => {
+    userData.email = userData.email.toLowerCase();
     const updatedUser = await putUser(id, userData);
     setAllUsers((prevState) =>
       prevState.map((user) => {
@@ -51,6 +52,7 @@ export default function Settings() {
   const onSave = (formData, id) => {
     handleUpdate(formData, id);
     setAllUsers(allUsers);
+    setOpenEdit(false);
   };
 
   const handleOpen = () => {
