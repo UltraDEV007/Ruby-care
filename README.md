@@ -268,7 +268,7 @@ src
 
 ## foodUtils.js
 
-> This file is responsible for getting the correct icon for the food based on the typing when you create/edit your food, it uses regex and allows case insensitivity, and all symbols and spaces
+This file is responsible for getting the correct icon for the food based on the typing when you create/edit your food, it uses regex and allows case insensitivity, and all symbols and spaces
 
 > The reason I call it food utils is because as you see, I'm exporting each thing, so I might want to import only one thing in that page for future use, that's why I call it foodUtils.
 
@@ -331,7 +331,7 @@ if the user's input DOESN"T match one of the names in the foodRegex, it will ret
 
 ### ratingLogic.js
 
-> this file is responsible for rendering the amount of rating icons depending the value of the rating from 1-5, (for example: when you rate your food in the app)
+This file is responsible for rendering the amount of rating icons depending the value of the rating from 1-5, (for example: when you rate your food in the app)
 
 - We fill the array with icons and iconParam is one individual icon
 - for example: console.log(Array(5).fill())
