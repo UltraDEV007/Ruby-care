@@ -1,9 +1,8 @@
 import { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { CurrentUserContext } from "../../components/Context/CurrentUserContext";
-import { DarkModeContext } from "../../components/Context/DarkModeContext";
-import { loginUser } from "../../services/auth";
-import { makeStyles } from "@material-ui/styles";
+import { CurrentUserContext } from "../../../components/Context/CurrentUserContext";
+import { DarkModeContext } from "../../../components/Context/DarkModeContext";
+import { loginUser } from "../../../services/auth";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Visibility from "@material-ui/icons/Visibility";
@@ -15,168 +14,15 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 import EmailIcon from "@material-ui/icons/Email";
 import LockIcon from "@material-ui/icons/Lock";
-import { yellow, grey } from "@material-ui/core/colors";
-import { getAge } from "../../utils/getAge";
-const useStyles = makeStyles({
-  root: {
-    display: "flex",
-    flexDirection: "column",
-    flexFlow: "nowrap",
-    alignItems: "center",
-    width: "100%",
-    height: "100vh",
-    background: "#fff",
-  },
-  rootDark: {
-    display: "flex",
-    flexDirection: "column",
-    flexFlow: "nowrap",
-    alignItems: "center",
-    width: "100%",
-    height: "100vh",
-    background: grey[800],
-  },
-  logoContainer: {
-    display: "flex",
-    flexDirection: "row",
-    padding: "20px",
-    marginBottom: "20px",
-  },
-
-  title: {
-    fontFamily: ["Montserrat", "sans-serif"].join(","),
-    fontSize: "36px",
-    padding: "15px",
-    marginTop: "10px",
-    textShadow: "0.5px 4px 10px #999",
-  },
-  titleDark: {
-    fontFamily: ["Montserrat", "sans-serif"].join(","),
-    fontSize: "36px",
-    padding: "15px",
-    marginTop: "10px",
-    textShadow: "0.5px 4px 10px #999",
-    color: yellow[700],
-  },
-  logo: {
-    maxWidth: "100px",
-    maxHeight: "100px",
-  },
-  form: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-  },
-  loginButton: {
-    margin: "20px auto",
-    padding: "20px",
-    color: "#62B5D9",
-    fontSize: "28px",
-    fontFamily: ["Montserrat", "sans-serif"].join(","),
-    textTransform: "capitalize",
-  },
-  loginButtonDark: {
-    margin: "20px auto",
-    padding: "20px",
-    color: yellow[700],
-    fontSize: "28px",
-    fontFamily: ["Montserrat", "sans-serif"].join(","),
-    textTransform: "capitalize",
-  },
-  register: {
-    fontFamily: ["Montserrat", "sans-serif"].join(","),
-    fontSize: "26px",
-    textDecoration: "none",
-    textAlign: "center",
-  },
-  registerDark: {
-    fontFamily: ["Montserrat", "sans-serif"].join(","),
-    fontSize: "26px",
-    textDecoration: "none",
-    color: "#fff",
-    textAlign: "center",
-  },
-  user: {
-    fontFamily: ["Montserrat", "sans-serif"].join(","),
-    fontSize: "10px",
-    textDecoration: "none",
-  },
-  userDark: {
-    fontFamily: ["Montserrat", "sans-serif"].join(","),
-    fontSize: "15px",
-    textDecoration: "none",
-    color: "#fff",
-    padding: "20px",
-    marginBottom: "20px",
-    marginLeft: "40px",
-  },
-  registerLink: {
-    textDecoration: "none",
-    color: "#62B5D9",
-  },
-  registerLinkDark: {
-    textDecoration: "none",
-    color: yellow[700],
-  },
-  inputField: {
-    color: "black",
-    marginBottom: "20px",
-    width: "300px",
-    marginLeft: "10px",
-  },
-  inputFieldDark: {
-    color: "#fff",
-    marginBottom: "20px",
-    width: "300px",
-    marginLeft: "10px",
-  },
-  passwordField: {
-    color: "black",
-    marginBottom: "20px",
-    width: "300px",
-  },
-  passwordFieldDark: {
-    color: "#fff",
-    marginBottom: "20px",
-    width: "300px",
-  },
-  lockIcon: {
-    marginRight: "10px",
-  },
-  inputContainer: {
-    display: "flex",
-    alignItems: "center",
-    color: "black",
-  },
-  inputContainerDark: {
-    display: "flex",
-    alignItems: "center",
-    color: "#fff",
-  },
-  darkLabel: {
-    color: "#fff",
-    marginLeft: "10px",
-  },
-  label: {
-    color: "#000",
-    marginLeft: "10px",
-  },
-  darkPasswordLabel: {
-    color: "#fff",
-  },
-  passwordLabel: {
-    color: "#000",
-  },
-});
+import { getAge } from "../../../utils/getAge";
+import { useStyles } from "./loginStyles.js";
 
 export default function Login() {
-  const history = useHistory();
-  const classes = useStyles();
-
   const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
   const [darkMode] = useContext(DarkModeContext);
-
   const [showPassword, setShowPassword] = useState(false);
+  const history = useHistory();
+  const classes = useStyles({ darkMode });
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);

@@ -67,7 +67,7 @@ export default function SymptomEdit({
     name: "",
     time: "",
   });
-  const { name, time } = formData;
+  const { name } = formData;
   const { id } = useParams();
 
   useEffect(() => {

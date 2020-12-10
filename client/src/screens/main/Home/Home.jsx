@@ -1,27 +1,25 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
+import { useStyles } from "./homeStyles.js";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import MoodsContainer from "../../containers/MoodsContainer";
-import AffirmationsContainer from "../../containers/AffirmationsContainer";
-import SymptomsContainer from "../../containers/SymptomsContainer";
-import MedsContainer from "../../containers/MedsContainer";
-import FoodsContainer from "../../containers/FoodsContainer";
-import Layout from "../../layouts/Layout/Layout";
-import { DarkModeContext } from "../../components/Context/DarkModeContext";
-import { CurrentUserContext } from "../../components/Context/CurrentUserContext";
-import { indigo } from "@material-ui/core/colors";
-import { getAllAffirmations } from "../../services/affirmations";
+import MoodsContainer from "../../../containers/MoodsContainer";
+import AffirmationsContainer from "../../../containers/AffirmationsContainer";
+import SymptomsContainer from "../../../containers/SymptomsContainer";
+import MedsContainer from "../../../containers/MedsContainer";
+import FoodsContainer from "../../../containers/FoodsContainer";
+import Layout from "../../../layouts/Layout/Layout";
+import { DarkModeContext } from "../../../components/Context/DarkModeContext";
+import { CurrentUserContext } from "../../../components/Context/CurrentUserContext";
+import { getAllAffirmations } from "../../../services/affirmations";
 import LinearProgress from "@material-ui/core/LinearProgress";
-import { checkValidity } from "../../utils/checkValidity";
-import NotFound from "../Error/NotFound";
-import ScrollToTopOnMount from "../../components/Helpers/ScrollToTopOnMount";
-import RXGuideLogo from "../../components/MedComponents/RXGuideLogo";
-import { grey } from "@material-ui/core/colors";
+import { checkValidity } from "../../../utils/checkValidity";
+import NotFound from "../../Error/NotFound";
+import ScrollToTopOnMount from "../../../components/Helpers/ScrollToTopOnMount";
+import RXGuideLogo from "../../../components/MedComponents/RXGuideLogo";
 export default function Home() {
   const [darkMode] = useContext(DarkModeContext);
   const [currentUser] = useContext(CurrentUserContext);
@@ -39,46 +37,11 @@ export default function Home() {
     fetchAffirmations();
   }, [currentUser]);
 
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      margin: "4% auto",
-      [theme.breakpoints.down("xs")]: {
-        maxWidth: "90vw",
-      },
-      [theme.breakpoints.up("sm")]: {
-        maxWidth: "90vw",
-      },
-      [theme.breakpoints.up("md")]: {
-        maxWidth: "900px",
-      },
-      [theme.breakpoints.up("lg")]: {
-        maxWidth: "1000px",
-      },
-      [theme.breakpoints.up("xl")]: {
-        maxWidth: "60vw",
-      },
-    },
-    heading: {
-      fontSize: theme.typography.pxToRem(17),
-      fontWeight: theme.typography.fontWeightRegular,
-    },
-    accordion: {
-      boxShadow:
-        darkMode === "light" ? "default" : `0px 0px 4px 1.2px ${indigo[50]}`,
-      marginTop: "20px",
-      marginBottom: "30px",
-    },
-    loadingWrapper: {
-      minHeight: "100vh",
-      maxHeight: "100%",
-      background: darkMode === "dark" ? grey[800] : "#fff",
-    },
-  }));
-  const classes = useStyles();
+  const classes = useStyles({ darkMode });
 
   if (!loadedAffirmation) {
     return (
-      <div className={classes.loadingWrapper} darkMode={darkMode}>
+      <div className={classes.loadingWrapper}>
         <div className="content-container">
           <LinearProgress style={{ margin: "20% auto", width: "50vw" }} />
         </div>

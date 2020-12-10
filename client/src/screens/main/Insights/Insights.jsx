@@ -1,58 +1,14 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import Layout from "../../layouts/Layout/Layout";
-import InsightCard from "../../components/InsightComponents/InsightCard";
-import { DarkModeContext } from "../../components/Context/DarkModeContext";
+import Layout from "../../../layouts/Layout/Layout";
+import InsightCard from "../../../components/InsightComponents/InsightCard";
+import { DarkModeContext } from "../../../components/Context/DarkModeContext";
 import LinearProgress from "@material-ui/core/LinearProgress";
-import styled from "styled-components";
 import Typography from "@material-ui/core/Typography";
-import { yellow, blue } from "@material-ui/core/colors";
-import Search from "../../components/Search/Search";
-import ScrollToTopOnMount from "../../components/Helpers/ScrollToTopOnMount";
+import Search from "../../../components/Search/Search";
+import ScrollToTopOnMount from "../../../components/Helpers/ScrollToTopOnMount";
+import Wrapper from "./styledInsights.js";
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 800px;
-  max-height: 100%;
-
-  .insights-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  .sentence-container {
-    margin: 20px auto;
-  }
-  .sentence {
-    font-size: 1.3rem;
-    margin: 0 auto;
-  }
-  a {
-    text-decoration: none;
-  }
-  .span {
-    color: ${({ darkMode }) =>
-      darkMode === "light" ? blue[500] : yellow[700]};
-  }
-
-  @media screen and (min-width: 600px) {
-    .sentence {
-      font-size: 1.5rem;
-      margin: 0 auto;
-    }
-    @media screen and (min-width: 1280px) {
-      .sentence {
-        font-size: 2rem;
-        margin: 0 auto;
-      }
-      .sentence-container {
-        margin-bottom: 40px;
-      }
-    }
-  }
-`;
 export default function Insights(props) {
   const [darkMode] = useContext(DarkModeContext);
   const [openDelete, setOpenDelete] = useState(false);
@@ -110,10 +66,8 @@ export default function Insights(props) {
         <br />
         <div className="insights-container">
           <Search setSearch={setSearch} />
-          {!props.loaded ? (
+          {!props.loaded && (
             <LinearProgress style={{ margin: "50px auto", width: "30vw" }} />
-          ) : (
-            <></>
           )}
           {queriedInsights}
         </div>

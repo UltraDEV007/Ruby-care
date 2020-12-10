@@ -7,7 +7,7 @@ import {
   putInsight,
   getOneInsight,
 } from "../services/insights";
-import Insights from "../screens/main/Insights";
+import Insights from "../screens/main/Insights/Insights";
 import InsightCreate from "../screens/InsightScreens/InsightCreate";
 import InsightEdit from "../screens/InsightScreens/InsightEdit";
 import InsightDetail from "../screens/InsightScreens/InsightDetail";
