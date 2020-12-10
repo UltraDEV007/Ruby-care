@@ -25,17 +25,15 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: theme.typography.fontWeightRegular,
   },
   accordion: {
-    boxShadow: (props) =>
-      props.darkMode === "light"
-        ? "default"
-        : `0px 0px 4px 1.2px ${indigo[50]}`,
+    boxShadow: ({ darkMode }) =>
+      darkMode === "light" ? "default" : `0px 0px 4px 1.2px ${indigo[50]}`,
     marginTop: "20px",
     marginBottom: "30px",
   },
   loadingWrapper: {
     minHeight: "100vh",
     maxHeight: "100%",
-    background: (props) => (props.darkMode === "dark" ? grey[800] : "#fff"),
+    background: ({ darkMode }) => (darkMode === "dark" ? grey[800] : "#fff"),
   },
 }));
 export { useStyles };

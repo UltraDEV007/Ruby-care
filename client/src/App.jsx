@@ -5,7 +5,7 @@ import Login from "./screens/auth/Login/Login";
 import Register from "./screens/auth/Register/Register";
 import { CurrentUserProvider } from "./components/Context/CurrentUserContext";
 import Home from "./screens/main/Home/Home";
-import Settings from "./screens/main/Settings";
+import Settings from "./screens/main/Settings/Settings";
 import InsightsContainer from "./containers/InsightsContainer";
 import UsersContainer from "./containers/UsersContainer";
 import { DarkModeProvider } from "./components/Context/DarkModeContext";

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import { getAllUsers, getOneUser } from "../services/users";
-import UserDetail from "../screens/UserScreens/UserDetail";
-import Users from "../screens/main/Users";
+import UserDetail from "../screens/UserScreens/UserDetail/UserDetail";
+import Users from "../screens/main/Community/Users";
 
 export default function UsersContainer() {
   const [allUsers, setAllUsers] = useState([]);

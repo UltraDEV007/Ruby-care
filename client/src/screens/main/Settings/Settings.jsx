@@ -1,21 +1,21 @@
 import { makeStyles } from "@material-ui/core/styles";
-import Layout from "../../layouts/Layout/Layout";
+import Layout from "../../../layouts/Layout/Layout";
 import Switch from "@material-ui/core/Switch";
 import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import { useContext, useState, useEffect } from "react";
-import { indigo } from "@material-ui/core/colors";
-import { CurrentUserContext } from "../../components/Context/CurrentUserContext";
-import { DarkModeContext } from "../../components/Context/DarkModeContext";
+import { CurrentUserContext } from "../../../components/Context/CurrentUserContext";
+import { DarkModeContext } from "../../../components/Context/DarkModeContext";
 import Moment from "react-moment";
 import "moment-timezone";
-import ScrollToTopOnMount from "../../components/Helpers/ScrollToTopOnMount";
+import ScrollToTopOnMount from "../../../components/Helpers/ScrollToTopOnMount";
 import Brightness4Icon from "@material-ui/icons/Brightness4";
-import { getAge } from "../../utils/getAge";
-import { getAllUsers, putUser } from "../../services/users";
-import UserEdit from "../../components/Dialogs/UserDialogs/UserEdit";
+import { getAge } from "../../../utils/getAge";
+import { getAllUsers, putUser } from "../../../services/users";
+import UserEdit from "../../../components/Dialogs/UserDialogs/UserEdit";
 import Button from "@material-ui/core/Button";
+import { useStyles } from "./settingStyles";
 
 export default function Settings() {
   const [currentUser] = useContext(CurrentUserContext);
@@ -56,84 +56,7 @@ export default function Settings() {
     setOpenEdit(false);
   };
 
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      margin: "0 auto",
-      [theme.breakpoints.down("xs")]: {
-        maxWidth: "89vw",
-      },
-      [theme.breakpoints.up("sm")]: {
-        maxWidth: "72.5vw",
-      },
-      [theme.breakpoints.up("md")]: {
-        maxWidth: "600px",
-      },
-      [theme.breakpoints.up("xl")]: {
-        maxWidth: "41.5vw",
-      },
-    },
-    categories: {
-      textAlign: "center",
-      padding: "20px",
-      fontSize: "1.5rem",
-      [theme.breakpoints.up("md")]: {
-        fontSize: "1.7rem",
-      },
-      [theme.breakpoints.up("lg")]: {
-        fontSize: "2rem",
-      },
-      [theme.breakpoints.up("xl")]: {
-        fontSize: "2.2rem",
-      },
-    },
-    accountTitle: {
-      textAlign: "center",
-      fontSize: "1.5rem",
-      [theme.breakpoints.up("md")]: {
-        fontSize: "1.7rem",
-      },
-      [theme.breakpoints.up("lg")]: {
-        fontSize: "2rem",
-      },
-      [theme.breakpoints.up("xl")]: {
-        fontSize: "2.2rem",
-      },
-    },
-    card: {
-      display: "flex",
-      boxShadow:
-        darkMode === "light" ? "default" : `0px 0px 4px 1.2px ${indigo[50]}`,
-      marginTop: "20px",
-      marginBottom: "30px",
-    },
-    actionsContainer: {
-      display: "flex",
-      width: "100%",
-      padding: "10px",
-      justifyContent: "space-between",
-    },
-    userContainer: {
-      display: "flex",
-      alignSelf: "center",
-      justifyContent: "center",
-      flexDirection: "column",
-      margin: "0 auto",
-      textAlign: "center",
-      padding: "20px",
-    },
-    darkModeContainer: {
-      display: "flex",
-      alignItems: "center",
-    },
-    manage: {
-      display: "flex",
-      justifyContent: "center",
-      margin: "0 auto",
-      marginBottom: "20px",
-      marginTop: "10px",
-    },
-  }));
-  const classes = useStyles();
+  const classes = useStyles({ darkMode });
 
   const [switchState, setSwitchState] = useState(() => {
     let state = localStorage.getItem("switchState");
