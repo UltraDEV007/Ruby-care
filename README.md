@@ -202,7 +202,7 @@ src
 |        Footer         | functional |   y   |   n   | _The footer will contain the links to the pages_                                                                                                        |      DarkModeContext     |     functional       |   y   |  y    | _DarkModeContext will contain the logic for changing the theme state from light mode to dark mode and saving it to local storage, then wrapping app.jsx with DarkModeProvider_ |
 |        Header         | functional |   y   |   y   | _The header will contain the logged in user name, page name, and current time_                                                                          |        MedCreate      |  functional | y   |   y    | _MedCreate.jsx will fetch all the data from my [2nd project](https://rxguide.netlify.app/)'s API to fetch all medications and then save the medication |
 |        MedEdit        | functional | y    |  y     | _MedEdit.jsx will get the medicine by id and allow us to edit it_ |
-|  MedDetail            | functional | y    |  y     | _MedDetail will conditionally text render based on wether or not the selected time has passed or not, if it has passed, ask the user if he took his medication, if he says yes, delete the medicine, else, just have exit or delete buttons |
+|  MedDetail            | functional | y    |  y     | _MedDetail will conditionally text render based on wether or not the selected time has passed or not, if it has passed, ask the user if he took his medication, if he says yes, set the medicine to "taken" and tell him that he took the medicine at the time that he said he took it and let him decide if he want's to delete it, else, just have exit or delete buttons |
 
 
 #### Time Estimates
@@ -246,7 +246,7 @@ src
 
 [ERD Model Link](https://drive.google.com/file/d/16G7t1UU_fHARCdY8dVpV2eJWvtP0pbsW/view?usp=sharing)
 
-![ERD Model](https://i.imgur.com/YEOlwrE.png)
+![ERD Model](https://i.imgur.com/AyTjaft.png)
 <br>
 
 ---
@@ -268,7 +268,7 @@ src
 
 ## foodUtils.js
 
-> This file is responsible for getting the correct icon for the food based on the typing when you create/edit your food, it uses regex and allows case insensitivity, and all symbols and spaces
+This file is responsible for getting the correct icon for the food based on the typing when you create/edit your food, it uses regex and allows case insensitivity, and all symbols and spaces
 
 > The reason I call it food utils is because as you see, I'm exporting each thing, so I might want to import only one thing in that page for future use, that's why I call it foodUtils.
 
@@ -331,7 +331,7 @@ if the user's input DOESN"T match one of the names in the foodRegex, it will ret
 
 ### ratingLogic.js
 
-> this file is responsible for rendering the amount of rating icons depending the value of the rating from 1-5, (for example: when you rate your food in the app)
+This file is responsible for rendering the amount of rating icons depending the value of the rating from 1-5, (for example: when you rate your food in the app)
 
 - We fill the array with icons and iconParam is one individual icon
 - for example: console.log(Array(5).fill())
@@ -391,4 +391,4 @@ Before Care I used an app called "Gali Health" to track my symptoms, however Gal
 
 ## Changelog
 
-- Dec 9th, 2020 : added the option to edit a signed-in on the settings page(you can't edit other people's users, only yours), registration and login email no longer forced to lower case as it is handeled differently, added more logic to taking the meds, so when the user takes the medicine it doesn't delete it, it just tells him he took and and then he can make the decision if he wanted to delete it.
+- Dec 9th, 2020 : added the option to edit an authorized user on the settings page(you can't edit other people's users, only yours), registration and login email no longer forced to lower case as it is handeled differently, added more logic to taking the meds, so when the user takes the medicine it doesn't delete it, it just tells him he took and and then he can make the decision if he wanted to delete it.
