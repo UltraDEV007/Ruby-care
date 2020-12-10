@@ -1,7 +1,7 @@
 import { blue, yellow } from "@material-ui/core/colors";
 import styled from "styled-components";
 
-const Form = styled.Div`
+const Form = styled.div`
   padding: 20px;
   display: flex;
   flex-direction: column;
