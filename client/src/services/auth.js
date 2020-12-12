@@ -1,5 +1,4 @@
 import api from "./apiConfig";
-
 export const loginUser = async (loginData) => {
   try {
     const resp = await api?.post("/auth/login", { authentication: loginData });
@@ -30,8 +29,15 @@ export const verifyUser = async () => {
   const token = localStorage.getItem("authToken");
   if (token) {
     api.defaults.headers.common.authorization = `Bearer ${token}`;
-    const resp = await api.get("/auth/verify");
-    return resp.data;
+    try {
+      const resp = await api.get("/auth/verify");
+      return resp.data;
+    } catch (error) {
+      let path = window.location.origin + "/login";
+      if (window.location.origin + "/login" !== path) {
+        window.location.href = window.location.origin + "/login";
+      }
+    }
   }
   return null;
 };
