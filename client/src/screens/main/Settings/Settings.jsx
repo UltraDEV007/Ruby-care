@@ -1,4 +1,3 @@
-import { makeStyles } from "@material-ui/core/styles";
 import Layout from "../../../layouts/Layout/Layout";
 import Switch from "@material-ui/core/Switch";
 import Card from "@material-ui/core/Card";
@@ -22,30 +21,38 @@ export default function Settings() {
   const [darkMode, setDarkMode] = useContext(DarkModeContext);
   const [openEdit, setOpenEdit] = useState(false);
   const [allUsers, setAllUsers] = useState([]);
+  const [displayUser, setDisplayUser] = useState(() => {
+    return allUsers?.find((user) => user?.id === currentUser?.id);
+  });
 
   useEffect(() => {
     const fetchUsers = async () => {
       const userData = await getAllUsers();
       setAllUsers(userData);
+      setDisplayUser(() =>
+        userData?.find((user) => user?.id === currentUser?.id)
+      );
     };
     fetchUsers();
-  }, []);
+  }, [currentUser]);
 
   const handleUpdate = async (id, userData) => {
-    userData.email = userData.email.toLowerCase();
+    userData.email = userData?.email?.toLowerCase();
     const updatedUser = await putUser(id, userData);
-    setAllUsers((prevState) =>
-      prevState.map((user) => {
-        return user.id === Number(id) ? updatedUser : user;
-      })
-    );
+    let users = [...allUsers];
+    const index = users.findIndex((u) => u.id === updatedUser.id);
+    if (index > -1) {
+      users.splice(index, 1);
+      setAllUsers([...users, userData]);
+
+      setDisplayUser(userData);
+    }
   };
 
   const onSave = (formData, id) => {
     handleUpdate(formData, id);
-    setAllUsers(allUsers);
     setOpenEdit(false);
-    window.location.reload();
+    // window.location.reload();
   };
 
   const handleOpen = () => {
@@ -89,17 +96,17 @@ export default function Settings() {
       <div className={classes.userContainer}>
         <Typography className={classes.accountTitle}>Your Account</Typography>
         <Typography className={classes.userText}>
-          <strong>Name:</strong>&nbsp;{currentUser?.name}
+          <strong>Name:</strong>&nbsp;{displayUser?.name}
         </Typography>
         <Typography className="age">
           <strong>Age:</strong>&nbsp;
-          {getAge(currentUser?.birthday)} years old
+          {getAge(displayUser?.birthday)} years old
         </Typography>
         <Typography className={classes.userText}>
-          <strong>Gender:</strong>&nbsp;{currentUser?.gender}
+          <strong>Gender:</strong>&nbsp;{displayUser?.gender}
         </Typography>
         <Typography className={classes.userText}>
-          <strong>Email:</strong>&nbsp;{currentUser?.email}
+          <strong>Email:</strong>&nbsp;{displayUser?.email}
         </Typography>
         <Typography>
           <strong>Joined:</strong>&nbsp;
