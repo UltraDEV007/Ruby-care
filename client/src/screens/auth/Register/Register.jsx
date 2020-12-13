@@ -3,8 +3,6 @@ import { CurrentUserContext } from "../../../components/Context/CurrentUserConte
 import { DarkModeContext } from "../../../components/Context/DarkModeContext";
 import { registerUser } from "../../../services/auth";
 import { Link, useHistory } from "react-router-dom";
-import { makeStyles } from "@material-ui/styles";
-import { yellow, grey } from "@material-ui/core/colors";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Visibility from "@material-ui/icons/Visibility";
@@ -52,7 +50,9 @@ export default function Register() {
     password: "",
     birthday: "",
     gender: "",
+    passwordConfirm: "",
   });
+  const { name, email, password, birthday, gender, passwordConfirm } = formData;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -62,6 +62,13 @@ export default function Register() {
     }));
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (password !== passwordConfirm) {
+      return alert("Password and password confirmation do not match!");
+    }
+    handleRegister(formData);
+  };
   return (
     <div className={darkMode === "light" ? classes.root : classes.rootDark}>
       <div className={classes.logoContainer}>
@@ -91,13 +98,7 @@ export default function Register() {
           Gender: {currentUser?.gender}
         </Typography>
       )}
-      <form
-        className={classes.form}
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleRegister(formData);
-        }}
-      >
+      <form className={classes.form} onSubmit={handleSubmit}>
         <div
           className={
             darkMode === "light"
@@ -124,7 +125,7 @@ export default function Register() {
               type="text"
               inputProps={{ maxLength: 20 }}
               name="name"
-              value={formData.name}
+              value={name}
               onChange={handleChange}
             />
           </FormControl>
@@ -156,7 +157,7 @@ export default function Register() {
                   : classes.inputFieldDark
               }
               name="email"
-              value={formData.email}
+              value={email}
               onChange={handleChange}
             />
           </FormControl>
@@ -190,7 +191,7 @@ export default function Register() {
               name="password"
               id="password"
               type={showPassword ? "text" : "password"}
-              value={formData.password}
+              value={password}
               onChange={handleChange}
               endAdornment={
                 <InputAdornment position="end">
@@ -223,7 +224,67 @@ export default function Register() {
           </FormControl>
         </div>
         <br />
-
+        <div
+          className={
+            darkMode === "light"
+              ? classes.inputContainer
+              : classes.inputContainerDark
+          }
+        >
+          <LockIcon className={classes.lockIcon} />
+          <FormControl>
+            <InputLabel
+              className={
+                darkMode === "light"
+                  ? classes.passwordLabel
+                  : classes.darkPasswordLabel
+              }
+              htmlFor="passwordConfirm"
+            >
+              Confirm Password
+            </InputLabel>
+            <Input
+              className={
+                darkMode === "light"
+                  ? classes.passwordField
+                  : classes.passwordFieldDark
+              }
+              name="passwordConfirm"
+              id="passwordConfirm"
+              type={showPassword ? "text" : "password"}
+              value={passwordConfirm}
+              onChange={handleChange}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                  >
+                    {showPassword ? (
+                      <Visibility
+                        style={
+                          darkMode === "dark"
+                            ? { color: "#fff" }
+                            : { color: "#000" }
+                        }
+                      />
+                    ) : (
+                      <VisibilityOff
+                        style={
+                          darkMode === "dark"
+                            ? { color: "#fff" }
+                            : { color: "#000" }
+                        }
+                      />
+                    )}
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
+          </FormControl>
+        </div>
+        <br />
         <div
           className={
             darkMode === "light"
@@ -243,7 +304,7 @@ export default function Register() {
             InputLabelProps={{
               shrink: true,
             }}
-            value={formData.birthday}
+            value={birthday}
             onChange={handleChange}
           />
         </div>
@@ -264,7 +325,7 @@ export default function Register() {
               native
               required
               label="gender"
-              value={toTitleCase(formData.gender)}
+              value={toTitleCase(gender)}
               onChange={handleChange}
               inputProps={{
                 name: "gender",

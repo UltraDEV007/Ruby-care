@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import { verifyUser } from "../../services/auth";
 import { useHistory } from "react-router-dom";
 
-const CurrentUserContext = React.createContext([{}, () => {}]);
+const CurrentUserContext = createContext([{}, () => {}]);
 
 function CurrentUserProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
