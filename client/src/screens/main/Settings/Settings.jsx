@@ -98,7 +98,11 @@ export default function Settings() {
         <Typography className={classes.userText}>
           <strong>Name:</strong>&nbsp;{displayUser?.name}
         </Typography>
-        <Typography className="age">
+        <Typography className="birthday">
+          <strong>Date of Birth:</strong>&nbsp;
+          <Moment format="MM/DD/YY">{displayUser?.birthday}</Moment>
+        </Typography>
+        <Typography className="birthday">
           <strong>Age:</strong>&nbsp;
           {getAge(displayUser?.birthday)} years old
         </Typography>

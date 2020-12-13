@@ -7,10 +7,10 @@ import { DarkModeContext } from "../../../components/Context/DarkModeContext";
 import { checkInsights } from "../../../utils/checkInsights";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { goBack } from "../../../utils/goBack";
-import LinearProgress from "@material-ui/core/LinearProgress";
 import { toTitleCase } from "../../../utils/toTitleCase";
 import { getAge } from "../../../utils/getAge";
 import Wrapper from "./styledUserDetail";
+import LinearProgressLoading from "../../../components/Loading/LinearProgressLoading";
 
 export default function UserDetail({ getOneUser }) {
   const [user, setUser] = useState(null);
@@ -36,13 +36,7 @@ export default function UserDetail({ getOneUser }) {
   );
 
   if (!loaded) {
-    return (
-      <Wrapper darkMode={darkMode}>
-        <div className="content-container">
-          <LinearProgress style={{ margin: "20% auto", width: "50vw" }} />
-        </div>
-      </Wrapper>
-    );
+    return <LinearProgressLoading darkMode={darkMode} />;
   }
 
   return (

@@ -21,6 +21,7 @@ import { toTitleCase } from "../../../utils/toTitleCase";
 import TextField from "@material-ui/core/TextField";
 import { getAge } from "../../../utils/getAge";
 import { useStyles } from "./registerStyles";
+import EventIcon from "@material-ui/icons/Event";
 
 export default function Register() {
   const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
@@ -96,6 +97,7 @@ export default function Register() {
           Age: {getAge(currentUser?.birthday)}
           <br />
           Gender: {currentUser?.gender}
+          <br />
         </Typography>
       )}
       <form className={classes.form} onSubmit={handleSubmit}>
@@ -292,13 +294,17 @@ export default function Register() {
               : classes.inputContainerDark
           }
         >
+          <EventIcon className={classes.lockIcon} />
+
           <TextField
             id="date"
             required
             label="Date of Birth"
             type="date"
             className={
-              darkMode === "light" ? classes.inputField : classes.inputFieldDark
+              darkMode === "light"
+                ? classes.birthdayField
+                : classes.birthdayFieldDark
             }
             name="birthday"
             InputLabelProps={{

@@ -84,6 +84,8 @@ const useStyles = makeStyles({
     fontFamily: ["Montserrat", "sans-serif"].join(","),
     fontSize: "10px",
     textDecoration: "none",
+    padding: "20px",
+    marginBottom: "20px",
   },
   userDark: {
     fontFamily: ["Montserrat", "sans-serif"].join(","),
@@ -92,7 +94,6 @@ const useStyles = makeStyles({
     color: "#fff",
     padding: "20px",
     marginBottom: "20px",
-    marginLeft: "40px",
   },
   registerLink: {
     textDecoration: "none",

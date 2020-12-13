@@ -6,10 +6,10 @@ import Moment from "react-moment";
 import Typography from "@material-ui/core/Typography";
 import { DarkModeContext } from "../../../components/Context/DarkModeContext";
 import { goBack } from "../../../utils/goBack";
-import LinearProgress from "@material-ui/core/LinearProgress";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import DeleteInsightFromDetail from "../../../components/Modals/DeleteInsightFromDetail";
 import Wrapper from "./styledInsightDetail";
+import LinearProgressLoading from "../../../components/Loading/LinearProgressLoading";
 
 export default function InsightDetail({ getOneInsight, handleDelete }) {
   const [insight, setInsight] = useState(null);
@@ -43,13 +43,7 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
   }, [getOneInsight, id]);
 
   if (!loaded) {
-    return (
-      <Wrapper darkMode={darkMode}>
-        <div className="content-container">
-          <LinearProgress style={{ margin: "20% auto", width: "50vw" }} />
-        </div>
-      </Wrapper>
-    );
+    return <LinearProgressLoading darkMode={darkMode} />;
   }
 
   return (
