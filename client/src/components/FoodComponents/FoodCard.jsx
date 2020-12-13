@@ -93,12 +93,7 @@ export default function FoodCard({
       {openEdit && (
         <Switch>
           <Route path="/foods/:id/edit">
-            <FoodEdit
-              foods={foods}
-              onSave={onSave}
-              handleUpdate={handleUpdate}
-              setOpenEdit={setOpenEdit}
-            />
+            <FoodEdit foods={foods} onSave={onSave} setOpenEdit={setOpenEdit} />
           </Route>
         </Switch>
       )}
