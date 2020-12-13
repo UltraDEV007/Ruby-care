@@ -12,7 +12,7 @@ import {
   DialogActions,
 } from "../../Form/DialogComponents";
 
-export default function FoodEdit({ setOpenEdit, onSave, handleUpdate, foods }) {
+export default function FoodEdit({ setOpenEdit, onSave, foods }) {
   const history = useHistory("/");
   const [formData, setFormData] = useState({
     name: "",
