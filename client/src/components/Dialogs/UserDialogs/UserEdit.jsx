@@ -79,9 +79,11 @@ export default function UserEdit({
     birthday: "",
     email: "",
     gender: "",
+    passwordConfirm: "",
   });
-  const { name, birthday, gender, email, password } = formData;
+  const { name, birthday, gender, email, password, passwordConfirm } = formData;
   const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -112,6 +114,14 @@ export default function UserEdit({
     fetchUser();
   }, [currentUser]);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (password !== passwordConfirm) {
+      return alert("Password and password confirmation do not match");
+    }
+    onSave(currentUser.id, formData);
+  };
+
   return (
     <Dialog
       onClose={handleClose}
@@ -122,12 +132,7 @@ export default function UserEdit({
         <Typography className="title">Edit user</Typography>
       </DialogTitle>
 
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          onSave(currentUser.id, formData);
-        }}
-      >
+      <form onSubmit={handleSubmit}>
         <DialogContent dividers>
           <div className="input-container">
             <div>
@@ -183,7 +188,39 @@ export default function UserEdit({
               </FormControl>
             </div>
             <br />
-
+            <div>
+              <FormControl>
+                <InputLabel htmlFor="passwordConfirm">
+                  Confirm Password
+                </InputLabel>
+                <Input
+                  required
+                  name="passwordConfirm"
+                  id="passwordConfirm"
+                  type={showPasswordConfirm ? "text" : "password"}
+                  value={passwordConfirm}
+                  onChange={handleChange}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={() =>
+                          setShowPasswordConfirm(!showPasswordConfirm)
+                        }
+                        onMouseDown={handleMouseDownPassword}
+                      >
+                        {showPasswordConfirm ? (
+                          <Visibility />
+                        ) : (
+                          <VisibilityOff />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
+              </FormControl>
+            </div>
+            <br />
             <div>
               <TextField
                 id="date"

@@ -22,10 +22,12 @@ import TextField from "@material-ui/core/TextField";
 import { getAge } from "../../../utils/getAge";
 import { useStyles } from "./registerStyles";
 import EventIcon from "@material-ui/icons/Event";
+import { compareDateWithCurrentTime } from "../../../utils/compareDateWithCurrentTime";
 
 export default function Register() {
   const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
   const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
   const [darkMode] = useContext(DarkModeContext);
   const classes = useStyles({ darkMode });
   const history = useHistory();
@@ -119,6 +121,7 @@ export default function Register() {
               Name
             </InputLabel>
             <Input
+              required
               className={
                 darkMode === "light"
                   ? classes.inputField
@@ -151,6 +154,7 @@ export default function Register() {
               Email Address
             </InputLabel>
             <Input
+              required
               id="email"
               type="text"
               className={
@@ -185,6 +189,7 @@ export default function Register() {
               Password
             </InputLabel>
             <Input
+              required
               className={
                 darkMode === "light"
                   ? classes.passwordField
@@ -246,6 +251,7 @@ export default function Register() {
               Confirm Password
             </InputLabel>
             <Input
+              required
               className={
                 darkMode === "light"
                   ? classes.passwordField
@@ -253,17 +259,17 @@ export default function Register() {
               }
               name="passwordConfirm"
               id="passwordConfirm"
-              type={showPassword ? "text" : "password"}
+              type={showPasswordConfirm ? "text" : "password"}
               value={passwordConfirm}
               onChange={handleChange}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
                     aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
+                    onClick={() => setShowPasswordConfirm(!showPasswordConfirm)}
                     onMouseDown={handleMouseDownPassword}
                   >
-                    {showPassword ? (
+                    {showPasswordConfirm ? (
                       <Visibility
                         style={
                           darkMode === "dark"
