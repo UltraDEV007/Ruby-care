@@ -30,10 +30,5 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "20px",
     marginBottom: "30px",
   },
-  loadingWrapper: {
-    minHeight: "100vh",
-    maxHeight: "100%",
-    background: ({ darkMode }) => (darkMode === "dark" ? grey[800] : "#fff"),
-  },
 }));
 export { useStyles };

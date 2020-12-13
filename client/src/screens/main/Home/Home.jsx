@@ -15,11 +15,11 @@ import Layout from "../../../layouts/Layout/Layout";
 import { DarkModeContext } from "../../../components/Context/DarkModeContext";
 import { CurrentUserContext } from "../../../components/Context/CurrentUserContext";
 import { getAllAffirmations } from "../../../services/affirmations";
-import LinearProgress from "@material-ui/core/LinearProgress";
 import { checkValidity } from "../../../utils/checkValidity";
 import NotFound from "../../Error/NotFound";
 import ScrollToTopOnMount from "../../../components/Helpers/ScrollToTopOnMount";
 import RXGuideLogo from "../../../components/MedComponents/RXGuideLogo";
+import LinearProgressLoading from "../../../components/Loading/LinearProgressLoading.jsx";
 export default function Home() {
   const [darkMode] = useContext(DarkModeContext);
   const [currentUser] = useContext(CurrentUserContext);
@@ -39,14 +39,8 @@ export default function Home() {
 
   const classes = useStyles({ darkMode });
 
-  if (!loadedAffirmation) {
-    return (
-      <div className={classes.loadingWrapper}>
-        <div className="content-container">
-          <LinearProgress style={{ margin: "20% auto", width: "50vw" }} />
-        </div>
-      </div>
-    );
+  if (loadedAffirmation) {
+    return <LinearProgressLoading darkMode={darkMode} />;
   }
 
   return checkValidity(location.pathname) ? (
