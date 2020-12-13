@@ -39,7 +39,7 @@ export default function Home() {
 
   const classes = useStyles({ darkMode });
 
-  if (loadedAffirmation) {
+  if (!loadedAffirmation) {
     return <LinearProgressLoading darkMode={darkMode} />;
   }
 
