@@ -22,7 +22,6 @@ import TextField from "@material-ui/core/TextField";
 import { getAge } from "../../../utils/getAge";
 import { useStyles } from "./registerStyles";
 import EventIcon from "@material-ui/icons/Event";
-import { compareDateWithCurrentTime } from "../../../utils/compareDateWithCurrentTime";
 
 export default function Register() {
   const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
