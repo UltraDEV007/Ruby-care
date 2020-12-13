@@ -49,7 +49,6 @@ const useStyles = makeStyles(() => ({
     justifyContent: "center",
   },
   registerButton: {
-    margin: "20px auto",
     padding: "20px",
     color: "#62B5D9",
     fontSize: "28px",
@@ -57,7 +56,6 @@ const useStyles = makeStyles(() => ({
     textTransform: "capitalize",
   },
   registerButtonDark: {
-    margin: "20px auto",
     padding: "20px",
     color: yellow[700],
     fontSize: "28px",

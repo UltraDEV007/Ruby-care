@@ -374,6 +374,12 @@ export default function Register() {
           Login
         </Link>
       </Typography>
+      <br />
+      <Typography
+        className={darkMode === "light" ? classes.user : classes.userDark}
+      >
+        Daniel Michael &copy; 2020
+      </Typography>
     </div>
   );
 }
