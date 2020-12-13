@@ -23,23 +23,8 @@ import {
   DialogContent,
   DialogActions,
 } from "../../Form/DialogComponents";
-import styled from "styled-components";
+import Form from "./StyledUserEdit";
 
-const Form = styled.form`
-  .input-container {
-    display: flex;
-    justify-self: center;
-    align-items: center;
-    justify-content: flex-start;
-  }
-  .input-field {
-    width: 300px;
-  }
-  .icon {
-    margin-top: 10px;
-    margin-right: 10px;
-  }
-`;
 export default function UserEdit({
   handleOpen,
   handleClose,

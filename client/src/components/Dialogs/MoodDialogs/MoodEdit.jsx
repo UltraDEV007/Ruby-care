@@ -6,6 +6,8 @@ import Dialog from "@material-ui/core/Dialog";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import { Link } from "react-router-dom";
+import Moment from "react-moment";
+import "moment-timezone";
 import {
   PoorRadio,
   OkayRadio,
@@ -73,6 +75,13 @@ export default function MoodEdit(props) {
           <Typography>Edit Mood</Typography>
         </DialogTitle>
         <DialogContent dividers>
+          {formData.time && (
+            <Typography>
+              <Moment format="dddd, MMMM Do yyyy: hh:mm A">
+                {formData.time}
+              </Moment>
+            </Typography>
+          )}
           <div>
             <FormLabel>
               Poor

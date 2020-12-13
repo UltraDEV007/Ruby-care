@@ -17,7 +17,6 @@ import {
   DialogContent,
   DialogActions,
 } from "../../Form/DialogComponents";
-// code for radio styling learned from material-ui's docs.
 
 export default function MoodCreate({ open, onSave, handleClose }) {
   const [formData, setFormData] = useState({
@@ -44,8 +43,6 @@ export default function MoodCreate({ open, onSave, handleClose }) {
     }));
   };
 
-  let time = new Date();
-
   return (
     <Dialog
       onClose={handleClose}
@@ -62,9 +59,13 @@ export default function MoodCreate({ open, onSave, handleClose }) {
           How are you feeling?
         </DialogTitle>
         <DialogContent dividers>
-          <Typography>
-            Today, <Moment format="dddd, MMMM Do yyyy: hh:mm A">{time}</Moment>
-          </Typography>
+          {formData.time && (
+            <Typography>
+              <Moment format="dddd, MMMM Do yyyy: hh:mm A">
+                {formData.time}
+              </Moment>
+            </Typography>
+          )}
           <FormLabel>
             Poor
             <PoorRadio
