@@ -59,7 +59,10 @@ export default function FoodEdit({ setOpenEdit, onSave, foods }) {
         aria-labelledby="customized-dialog-title"
         open={() => setOpenEdit(true)}
       >
-        <DialogTitle>
+        <DialogTitle
+          id="customized-dialog-title"
+          onClose={() => setOpenEdit(false)}
+        >
           <Typography className="title">Edit Food</Typography>
         </DialogTitle>
         <form

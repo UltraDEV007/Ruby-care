@@ -69,7 +69,7 @@ export default function MoodEdit(props) {
       open={props.handleOpen}
     >
       <form onSubmit={handleSubmit}>
-        <DialogTitle>
+        <DialogTitle id="customized-dialog-title" onClose={props.handleClose}>
           <Typography>Edit Mood</Typography>
         </DialogTitle>
         <DialogContent dividers>

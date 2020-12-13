@@ -56,7 +56,7 @@ export default function SymptomEdit({
       aria-labelledby="customized-dialog-title"
       open={handleOpen}
     >
-      <DialogTitle>
+      <DialogTitle id="customized-dialog-title" onClose={handleClose}>
         <Typography className="title">Edit Symptom</Typography>
       </DialogTitle>
 

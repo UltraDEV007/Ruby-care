@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
-import MuiDialogActions from "@material-ui/core/DialogActions";
-import MuiDialogContent from "@material-ui/core/DialogContent";
-import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
 import Dialog from "@material-ui/core/Dialog";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
@@ -23,51 +18,28 @@ import NativeSelect from "@material-ui/core/NativeSelect";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import { getOneUser } from "../../../services/users";
 import { toTitleCase } from "../../../utils/toTitleCase";
+import {
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+} from "../../Form/DialogComponents";
+import styled from "styled-components";
 
-const styles = (theme) => ({
-  root: {
-    margin: 0,
-    padding: theme.spacing(2),
-  },
-  closeButton: {
-    position: "absolute",
-    right: theme.spacing(1),
-    top: theme.spacing(1),
-    color: theme.palette.grey[500],
-  },
-});
-
-const DialogTitle = withStyles(styles)((props) => {
-  const { children, classes, onClose, ...other } = props;
-  return (
-    <MuiDialogTitle disableTypography className={classes.root} {...other}>
-      <Typography variant="h6">{children}</Typography>
-      {onClose ? (
-        <IconButton
-          aria-label="close"
-          className={classes.closeButton}
-          onClick={onClose}
-        >
-          <CloseIcon />
-        </IconButton>
-      ) : null}
-    </MuiDialogTitle>
-  );
-});
-
-const DialogContent = withStyles((theme) => ({
-  root: {
-    padding: theme.spacing(2),
-  },
-}))(MuiDialogContent);
-
-const DialogActions = withStyles((theme) => ({
-  root: {
-    margin: 0,
-    padding: theme.spacing(1),
-  },
-}))(MuiDialogActions);
-
+const Form = styled.form`
+  .input-container {
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .input-field {
+    width: 300px;
+  }
+  .icon {
+    margin-top: 10px;
+    margin-right: 10px;
+  }
+`;
 export default function UserEdit({
   handleOpen,
   handleClose,
@@ -128,166 +100,173 @@ export default function UserEdit({
       aria-labelledby="customized-dialog-title"
       open={handleOpen}
     >
-      <DialogTitle>
-        <Typography className="title">Edit user</Typography>
+      <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+        <Typography className="title">Edit Account</Typography>
       </DialogTitle>
 
-      <form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <DialogContent dividers>
           <div className="input-container">
-            <div>
-              <AccountCircleIcon />
-              <FormControl>
-                <InputLabel htmlFor="name">Name</InputLabel>
-                <Input
-                  type="text"
-                  inputProps={{ maxLength: 20 }}
-                  name="name"
-                  value={name}
-                  onChange={handleChange}
-                />
-              </FormControl>
-            </div>
-            <br />
-            <div>
-              <EmailIcon />
-              <FormControl>
-                <InputLabel htmlFor="email">Email Address</InputLabel>
-                <Input
-                  id="email"
-                  type="text"
-                  name="email"
-                  value={email}
-                  onChange={handleChange}
-                />
-              </FormControl>
-            </div>
-            <br />
-            <div>
-              <LockIcon />
-              <FormControl>
-                <InputLabel htmlFor="password">Password</InputLabel>
-                <Input
-                  name="password"
-                  id="password"
-                  type={showPassword ? "text" : "password"}
-                  value={password}
-                  onChange={handleChange}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                      >
-                        {showPassword ? <Visibility /> : <VisibilityOff />}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                />
-              </FormControl>
-            </div>
-            <br />
-            <div>
-              <FormControl>
-                <InputLabel htmlFor="passwordConfirm">
-                  Confirm Password
-                </InputLabel>
-                <Input
-                  required
-                  name="passwordConfirm"
-                  id="passwordConfirm"
-                  type={showPasswordConfirm ? "text" : "password"}
-                  value={passwordConfirm}
-                  onChange={handleChange}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={() =>
-                          setShowPasswordConfirm(!showPasswordConfirm)
-                        }
-                        onMouseDown={handleMouseDownPassword}
-                      >
-                        {showPasswordConfirm ? (
-                          <Visibility />
-                        ) : (
-                          <VisibilityOff />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                />
-              </FormControl>
-            </div>
-            <br />
-            <div>
-              <TextField
-                id="date"
-                required
-                label="Date of Birth"
-                type="date"
-                name="birthday"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                value={birthday}
+            <AccountCircleIcon className="icon" />
+            <FormControl className="name">
+              <InputLabel htmlFor="name">Name</InputLabel>
+              <Input
+                className="input-field"
+                type="text"
+                inputProps={{ maxLength: 20 }}
+                name="name"
+                value={name}
                 onChange={handleChange}
               />
-            </div>
-            <br />
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <FormHelperText style={{ marginLeft: "-20px" }}>
-                What's your gender?
-              </FormHelperText>
-              <FormControl>
-                <NativeSelect
-                  native
-                  required
-                  label="gender"
-                  value={toTitleCase(gender)}
-                  onChange={handleChange}
-                  inputProps={{
-                    name: "gender",
-                    id: "gender-native-simple",
-                  }}
-                >
-                  <option value="" selected disabled hidden>
-                    Select a gender
-                  </option>
-                  <option value={"Male"}>Male</option>
-                  <option value={"Female"}>Female</option>
-                  <option value={"Transgender"}>Transgender</option>
-                  <option value={"Non-binray"}>Non-Binary </option>
-                  <option value={"Other"}>Other</option>
-                </NativeSelect>
-              </FormControl>
-            </div>
-
-            <DialogActions>
-              <Button type="submit" variant="contained" color="primary">
-                Save
-              </Button>
-              <Button
-                to="/settings"
-                component={Link}
-                onClick={handleClose}
-                variant="contained"
-                color="secondary"
-              >
-                Cancel
-              </Button>
-            </DialogActions>
+            </FormControl>
           </div>
+          <br />
+          <div className="input-container">
+            <EmailIcon className="icon" />
+            <FormControl>
+              <InputLabel htmlFor="email">Email Address</InputLabel>
+              <Input
+                className="input-field"
+                id="email"
+                type="text"
+                name="email"
+                value={email}
+                onChange={handleChange}
+              />
+            </FormControl>
+          </div>
+          <br />
+          <div className="input-container">
+            <LockIcon className="icon" />
+            <FormControl>
+              <InputLabel htmlFor="password">Password</InputLabel>
+              <Input
+                className="input-field"
+                name="password"
+                id="password"
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={handleChange}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                    >
+                      {showPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
+          </div>
+          <br />
+          <div className="input-container">
+            <LockIcon className="icon" />
+            <FormControl className="password-confirm">
+              <InputLabel htmlFor="passwordConfirm">
+                Confirm Password
+              </InputLabel>
+              <Input
+                required
+                className="input-field"
+                name="passwordConfirm"
+                id="password-confirm"
+                type={showPasswordConfirm ? "text" : "password"}
+                value={passwordConfirm}
+                onChange={handleChange}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={() =>
+                        setShowPasswordConfirm(!showPasswordConfirm)
+                      }
+                      onMouseDown={handleMouseDownPassword}
+                    >
+                      {showPasswordConfirm ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
+          </div>
+          <br />
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <TextField
+              id="date"
+              required
+              label="Date of Birth"
+              type="date"
+              name="birthday"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              value={birthday}
+              onChange={handleChange}
+            />
+          </div>
+          <br />
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "column",
+              alignItems: "center",
+              marginBottom: "10px",
+            }}
+          >
+            <FormHelperText style={{ marginLeft: "-20px" }}>
+              What's your gender?
+            </FormHelperText>
+            <FormControl>
+              <NativeSelect
+                native
+                required
+                label="gender"
+                value={toTitleCase(gender)}
+                onChange={handleChange}
+                inputProps={{
+                  name: "gender",
+                  id: "gender-native-simple",
+                }}
+              >
+                <option value="" selected disabled hidden>
+                  Select a gender
+                </option>
+                <option value={"Male"}>Male</option>
+                <option value={"Female"}>Female</option>
+                <option value={"Transgender"}>Transgender</option>
+                <option value={"Non-binray"}>Non-Binary </option>
+                <option value={"Other"}>Other</option>
+              </NativeSelect>
+            </FormControl>
+          </div>
+
+          <DialogActions>
+            <Button type="submit" variant="contained" color="primary">
+              Save
+            </Button>
+            <Button
+              to="/settings"
+              component={Link}
+              onClick={handleClose}
+              variant="contained"
+              color="secondary"
+            >
+              Cancel
+            </Button>
+          </DialogActions>
         </DialogContent>
-      </form>
+      </Form>
     </Dialog>
   );
 }
