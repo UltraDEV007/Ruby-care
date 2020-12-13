@@ -54,6 +54,6 @@ class MoodsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def mood_params
-      params.require(:mood).permit(:status, :user_id)
+      params.require(:mood).permit(:status, :time, :user_id)
     end
 end

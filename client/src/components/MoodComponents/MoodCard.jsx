@@ -72,9 +72,9 @@ export default function MoodCard({
           </div>
           <div className="time">
             {!updated ? (
-              <Moment format="MMM/DD/yyyy hh:mm A">{mood.created_at}</Moment>
+              <Moment format="MMM/DD/yyyy hh:mm A">{mood.time}</Moment>
             ) : (
-              <Moment format="MMM/DD/yyyy hh:mm A">{mood.updated_at}</Moment>
+              <Moment format="MMM/DD/yyyy hh:mm A">{mood.time}</Moment>
             )}
           </div>
           <div
