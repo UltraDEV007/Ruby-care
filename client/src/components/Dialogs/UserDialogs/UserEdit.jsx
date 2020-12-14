@@ -36,11 +36,22 @@ export default function UserEdit({
     birthday: "",
     email: "",
     gender: "",
+    oldPassword: "",
+    password: "",
     passwordConfirm: "",
   });
-  const { name, birthday, gender, email, password, passwordConfirm } = formData;
+  const {
+    name,
+    birthday,
+    gender,
+    email,
+    password,
+    passwordConfirm,
+    oldPassword,
+  } = formData;
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
+  const [showOldPassword, setShowOldPassword] = useState(false);
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -74,8 +85,11 @@ export default function UserEdit({
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password !== passwordConfirm) {
-      return alert("Password and password confirmation do not match");
+      return alert("New Password and new password confirmation do not match");
     }
+    // if (oldPassword !== currentUser.password) {
+    //   return alert("Old password does not match");
+    // }
     onSave(currentUser.id, formData);
   };
 
@@ -124,7 +138,33 @@ export default function UserEdit({
           <div className="input-container">
             <LockIcon className="icon" />
             <FormControl>
-              <InputLabel htmlFor="password">Password</InputLabel>
+              <InputLabel htmlFor="password">Old Password</InputLabel>
+              <Input
+                className="input-field"
+                name="oldPassword"
+                id="password"
+                type={showOldPassword ? "text" : "password"}
+                value={oldPassword}
+                onChange={handleChange}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={() => setShowOldPassword(!showOldPassword)}
+                      onMouseDown={handleMouseDownPassword}
+                    >
+                      {showOldPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
+          </div>
+          <br />
+          <div className="input-container">
+            <LockIcon className="icon" />
+            <FormControl>
+              <InputLabel htmlFor="password">New Password</InputLabel>
               <Input
                 className="input-field"
                 name="password"
@@ -151,7 +191,7 @@ export default function UserEdit({
             <LockIcon className="icon" />
             <FormControl className="password-confirm">
               <InputLabel htmlFor="passwordConfirm">
-                Confirm Password
+                Confirm New Password
               </InputLabel>
               <Input
                 required
