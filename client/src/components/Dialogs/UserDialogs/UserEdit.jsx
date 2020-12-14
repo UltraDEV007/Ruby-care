@@ -37,16 +37,16 @@ export default function UserEdit({
     email: "",
     gender: "",
     oldPassword: "",
-    password: "",
-    passwordConfirm: "",
+    newPassword: "",
+    newPasswordConfirm: "",
   });
   const {
     name,
     birthday,
     gender,
     email,
-    password,
-    passwordConfirm,
+    newPassword,
+    newPasswordConfirm,
     oldPassword,
   } = formData;
   const [showPassword, setShowPassword] = useState(false);
@@ -84,7 +84,7 @@ export default function UserEdit({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (password !== passwordConfirm) {
+    if (newPassword !== newPasswordConfirm) {
       return alert("New Password and new password confirmation do not match");
     }
     // if (oldPassword !== currentUser.password) {
@@ -167,10 +167,10 @@ export default function UserEdit({
               <InputLabel htmlFor="password">New Password</InputLabel>
               <Input
                 className="input-field"
-                name="password"
+                name="newPassword"
                 id="password"
                 type={showPassword ? "text" : "password"}
-                value={password}
+                value={newPassword}
                 onChange={handleChange}
                 endAdornment={
                   <InputAdornment position="end">
@@ -196,10 +196,10 @@ export default function UserEdit({
               <Input
                 required
                 className="input-field"
-                name="passwordConfirm"
+                name="newPasswordConfirm"
                 id="password-confirm"
                 type={showPasswordConfirm ? "text" : "password"}
-                value={passwordConfirm}
+                value={newPasswordConfirm}
                 onChange={handleChange}
                 endAdornment={
                   <InputAdornment position="end">

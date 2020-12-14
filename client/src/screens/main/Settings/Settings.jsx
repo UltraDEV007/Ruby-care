@@ -44,7 +44,6 @@ export default function Settings() {
     if (index > -1) {
       users.splice(index, 1);
       setAllUsers([...users, userData]);
-
       setDisplayUser(userData);
     }
   };
@@ -52,7 +51,6 @@ export default function Settings() {
   const onSave = (formData, id) => {
     handleUpdate(formData, id);
     setOpenEdit(false);
-    // window.location.reload();
   };
 
   const handleOpen = () => {

@@ -31,9 +31,6 @@ export default function MedCard({
 
   const onSave = (formData, id) => {
     handleUpdate(formData, id);
-    if (compareDateWithCurrentTime(med.time) === 1) {
-      setTaken(false);
-    }
     setEdited(true);
     setTimeout(async () => {
       setEdited(false);
@@ -67,10 +64,6 @@ export default function MedCard({
     handleUpdate(id);
     setTaken(true);
     setOpenDetail(false);
-  };
-
-  const onNotTake = () => {
-    setTaken(false);
   };
 
   return (
@@ -170,7 +163,6 @@ export default function MedCard({
             onDelete={onDelete}
             onTake={onTake}
             taken={taken}
-            onNotTake={onNotTake}
             handleDetailClose={handleDetailClose}
           />
         )}

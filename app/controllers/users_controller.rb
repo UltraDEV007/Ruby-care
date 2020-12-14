@@ -19,6 +19,7 @@ class UsersController < ApplicationController
 
     if @user.save
       @token = encode({id: @user.id})
+      UserMailer.with(user: @user).sign_up_email.deliver_later(wait: 2.seconds)
       render json: {
         user: @user.attributes.except("password_digest"),
         token: @token
