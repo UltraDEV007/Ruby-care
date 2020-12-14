@@ -93,4 +93,22 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+  
+  # https://hixonrails.com/ruby-on-rails-tutorials/ruby-on-rails-action-mailer-configuration/
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: ENV["SMTP_ADDRESS"],
+    port: 587,
+    user_name: ENV["SMTP_USERNAME"],
+    password: ENV["SMTP_PASSWORD"],
+    authentication: 'login',
+    enable_starttls_auto: true
+  }
+  config.action_mailer.default_url_options = {
+    host: '',
+    port: 1025,
+    protocol: 'http'
+  }
 end

@@ -34,7 +34,9 @@ Rails.application.configure do
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
 
-
+  # telling action mailer to set the delivery method to letter_opener
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
 
