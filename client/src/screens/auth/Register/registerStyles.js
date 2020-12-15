@@ -49,14 +49,14 @@ const useStyles = makeStyles(() => ({
     justifyContent: "center",
   },
   registerButton: {
-    padding: (props) => (props.currentUser ? "5px" : "20px"),
+    padding: (props) => (props.currentUser ? "20px" : "20px"),
     color: "#62B5D9",
     fontSize: "28px",
     fontFamily: ["Montserrat", "sans-serif"].join(","),
     textTransform: "capitalize",
   },
   registerButtonDark: {
-    padding: (props) => (props.currentUser ? "5px" : "20px"),
+    padding: (props) => (props.currentUser ? "20px" : "20px"),
     color: yellow[700],
     fontSize: "28px",
     fontFamily: ["Montserrat", "sans-serif"].join(","),
