@@ -255,7 +255,7 @@ src
 
 - dark mode, the user will be able to switch between light mode and dark mode. ✔️
 - symptoms, the user will be able to get, add, edit and delete symtpoms. ✔️
-- foods, the user will be able to get, add, ddit, and delete foods. ✔️
+- foods, the user will be able to get, add, edit, and delete foods. ✔️
 - medicine, Fetch Medications from my [2nd project's 3rd Party air-table API](https://rxguide.netlify.app/about) and handle full crud on my BE AND FE. ✔️
 - password confirm on register: you will need to confirm your password to create your account.
 - likes, be able to like an insight. 
