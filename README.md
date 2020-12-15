@@ -257,8 +257,9 @@ src
 - symptoms, the user will be able to get, add, edit and delete symtpoms. ✔️
 - foods, the user will be able to get, add, edit, and delete foods. ✔️
 - medicine, Fetch Medications from my [2nd project's 3rd Party air-table API](https://rxguide.netlify.app/about) and handle full crud on my BE AND FE. ✔️
-- password confirm on register: you will need to confirm your password to create your account.
+- password confirm on register: you will need to confirm your password to create your account. ✔️
 - likes, be able to like an insight. 
+- Action-Mailer, get emails on signup and edit.
 - whitelist, if a user enters a link that is not in a whitelist, bring him to a "404 Not found" page ✔️
 ---
 
@@ -392,3 +393,5 @@ Before Care I used an app called "Gali Health" to track my symptoms, however Gal
 ## Changelog
 
 - Dec 9th, 2020 : added the option to edit an authorized user on the settings page(you can't edit other people's users, only yours), registration and login email no longer forced to lower case as it is handeled differently, added more logic to taking the meds, so when the user takes the medicine it doesn't delete it, it just tells him he took and and then he can make the decision if he wanted to delete it.
+
+-Dec 15th, 2020: added password confirm, currentUser is now also handeled with useReducer.
