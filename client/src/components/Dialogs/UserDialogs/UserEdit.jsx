@@ -132,6 +132,7 @@ export default function UserEdit({
                 className="input-field"
                 name="password"
                 id="password"
+                required
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={handleChange}

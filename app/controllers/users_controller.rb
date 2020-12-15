@@ -19,7 +19,7 @@ class UsersController < ApplicationController
 
     if @user.save
       @token = encode({id: @user.id})
-      UserMailer.with(user: @user).sign_up_email.deliver_later(wait: 2.seconds)
+      UserMailer.with(user: @user).sign_up_email.deliver_later
       render json: {
         user: @user.attributes.except("password_digest"),
         token: @token
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      # UserMailer.with(user: @user).update_account_email.deliver_later
+      UserMailer.with(user: @user).update_account_email.deliver_later
       render json: @user
     else
       render json: @user.errors, status: :unprocessable_entity
