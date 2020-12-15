@@ -36,23 +36,12 @@ export default function UserEdit({
     birthday: "",
     email: "",
     gender: "",
-    oldPassword: "",
-    newPassword: "",
-    newPasswordConfirm: "",
+    password: "",
+    passwordConfirm: "",
   });
-  const {
-    name,
-    birthday,
-    gender,
-    email,
-    newPassword,
-    newPasswordConfirm,
-    oldPassword,
-  } = formData;
+  const { name, birthday, gender, email, password, passwordConfirm } = formData;
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
-  const [showOldPassword, setShowOldPassword] = useState(false);
-  const [editPassword, setEditPassword] = useState(false);
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -86,11 +75,8 @@ export default function UserEdit({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (newPassword !== newPasswordConfirm) {
-      return alert("New Password and new password confirmation do not match");
-    }
-    if (oldPassword !== currentUser.password) {
-      return alert("Old password does not match");
+    if (password !== passwordConfirm) {
+      return alert("Password and password confirmation do not match");
     }
     onSave(currentUser.id, formData);
   };
@@ -137,97 +123,65 @@ export default function UserEdit({
             </FormControl>
           </div>
           <br />
-          {editPassword && (
-            <>
-              <div className="input-container">
-                <LockIcon className="icon" />
-                <FormControl>
-                  <InputLabel htmlFor="password">Old Password</InputLabel>
-                  <Input
-                    className="input-field"
-                    name="oldPassword"
-                    id="password"
-                    type={showOldPassword ? "text" : "password"}
-                    value={oldPassword}
-                    onChange={handleChange}
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={() => setShowOldPassword(!showOldPassword)}
-                          onMouseDown={handleMouseDownPassword}
-                        >
-                          {showOldPassword ? <Visibility /> : <VisibilityOff />}
-                        </IconButton>
-                      </InputAdornment>
-                    }
-                  />
-                </FormControl>
-              </div>
-              <br />
-              <div className="input-container">
-                <LockIcon className="icon" />
-                <FormControl>
-                  <InputLabel htmlFor="password">New Password</InputLabel>
-                  <Input
-                    className="input-field"
-                    name="newPassword"
-                    id="password"
-                    type={showPassword ? "text" : "password"}
-                    value={newPassword}
-                    onChange={handleChange}
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword}
-                          onMouseDown={handleMouseDownPassword}
-                        >
-                          {showPassword ? <Visibility /> : <VisibilityOff />}
-                        </IconButton>
-                      </InputAdornment>
-                    }
-                  />
-                </FormControl>
-              </div>
-              <br />
-              <div className="input-container">
-                <LockIcon className="icon" />
-                <FormControl className="password-confirm">
-                  <InputLabel htmlFor="passwordConfirm">
-                    Confirm New Password
-                  </InputLabel>
-                  <Input
-                    required
-                    className="input-field"
-                    name="newPasswordConfirm"
-                    id="password-confirm"
-                    type={showPasswordConfirm ? "text" : "password"}
-                    value={newPasswordConfirm}
-                    onChange={handleChange}
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={() =>
-                            setShowPasswordConfirm(!showPasswordConfirm)
-                          }
-                          onMouseDown={handleMouseDownPassword}
-                        >
-                          {showPasswordConfirm ? (
-                            <Visibility />
-                          ) : (
-                            <VisibilityOff />
-                          )}
-                        </IconButton>
-                      </InputAdornment>
-                    }
-                  />
-                </FormControl>
-              </div>
-              <br />
-            </>
-          )}
+
+          <div className="input-container">
+            <LockIcon className="icon" />
+            <FormControl>
+              <InputLabel htmlFor="password">Password</InputLabel>
+              <Input
+                className="input-field"
+                name="password"
+                id="password"
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={handleChange}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                    >
+                      {showPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
+          </div>
+          <br />
+          <div className="input-container">
+            <LockIcon className="icon" />
+            <FormControl className="password-confirm">
+              <InputLabel htmlFor="passwordConfirm">
+                Confirm Password
+              </InputLabel>
+              <Input
+                required
+                className="input-field"
+                name="passwordConfirm"
+                id="password-confirm"
+                type={showPasswordConfirm ? "text" : "password"}
+                value={passwordConfirm}
+                onChange={handleChange}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={() =>
+                        setShowPasswordConfirm(!showPasswordConfirm)
+                      }
+                      onMouseDown={handleMouseDownPassword}
+                    >
+                      {showPasswordConfirm ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
+          </div>
+          <br />
+
           <div
             style={{
               display: "flex",
@@ -287,18 +241,6 @@ export default function UserEdit({
           </div>
 
           <DialogActions>
-            <Button
-              onClick={() => setEditPassword(!editPassword)}
-              variant="contained"
-              color="primary"
-            >
-              {editPassword === false ? (
-                <>Edit Password</>
-              ) : (
-                <>Disable Edit Password</>
-              )}
-            </Button>
-
             <Button type="submit" variant="contained" color="primary">
               Save
             </Button>
