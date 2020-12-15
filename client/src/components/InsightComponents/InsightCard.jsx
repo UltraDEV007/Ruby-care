@@ -3,7 +3,7 @@ import Moment from "react-moment";
 import "moment-timezone";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
-import { CurrentUserContext } from "../Context/CurrentUserContext";
+import { useStateValue } from "../Context/CurrentUserContext";
 import Card from "@material-ui/core/Card";
 import { makeStyles } from "@material-ui/styles";
 import { yellow, indigo, blue } from "@material-ui/core/colors";
@@ -99,7 +99,7 @@ function InsightCard({
       paddingBottom: "10px",
     },
   }));
-  const [currentUser] = useContext(CurrentUserContext);
+  const [{ currentUser }] = useStateValue();
   const classes = useStyles();
 
   return (

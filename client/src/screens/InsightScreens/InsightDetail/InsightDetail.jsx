@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import Button from "@material-ui/core/Button";
-import { CurrentUserContext } from "../../../components/Context/CurrentUserContext";
+import { useStateValue } from "../../../components/Context/CurrentUserContext";
 import Moment from "react-moment";
 import Typography from "@material-ui/core/Typography";
 import { DarkModeContext } from "../../../components/Context/DarkModeContext";
@@ -13,7 +13,7 @@ import LinearProgressLoading from "../../../components/Loading/LinearProgressLoa
 
 export default function InsightDetail({ getOneInsight, handleDelete }) {
   const [insight, setInsight] = useState(null);
-  const [currentUser] = useContext(CurrentUserContext);
+  const [{ currentUser }] = useStateValue();
   const [darkMode] = useContext(DarkModeContext);
   const [loaded, setLoaded] = useState(false);
   const [openDelete, setOpenDelete] = useState(false);

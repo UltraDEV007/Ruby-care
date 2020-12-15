@@ -11,7 +11,6 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import MedDetail from "../Dialogs/MedDialogs/MedDetail";
 import Typography from "@material-ui/core/Typography";
 import { compareDateWithCurrentTime } from "../../utils/compareDateWithCurrentTime";
-import { CurrentUserContext } from "../../components/Context/CurrentUserContext";
 
 export default function MedCard({
   meds,
@@ -27,7 +26,6 @@ export default function MedCard({
   const [openEdit, setOpenEdit] = useState(false);
   const [openDetail, setOpenDetail] = useState(false);
   const [taken, setTaken] = useState(false);
-  const [currentUser] = useContext(CurrentUserContext);
 
   const onSave = (formData, id) => {
     handleUpdate(formData, id);
@@ -122,7 +120,7 @@ export default function MedCard({
           ) : (
             <div onClick={handleDetailOpen} className="time">
               <Typography>
-                {currentUser.name} took {med?.name} at <br />
+                You took {med?.name} at <br />
                 <Moment format="MMM/DD/yyyy hh:mm A">{med?.time}</Moment>
               </Typography>
             </div>

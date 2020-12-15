@@ -1,7 +1,6 @@
 export const initialState = {
   currentUser: null,
 };
-// based on the action type we're modifying the currentUser
 function reducer(state, action) {
   switch (action.type) {
     case "SET_USER":
