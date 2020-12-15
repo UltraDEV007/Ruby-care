@@ -49,14 +49,14 @@ const useStyles = makeStyles(() => ({
     justifyContent: "center",
   },
   registerButton: {
-    padding: "20px",
+    padding: (props) => (props.currentUser ? "5px" : "20px"),
     color: "#62B5D9",
     fontSize: "28px",
     fontFamily: ["Montserrat", "sans-serif"].join(","),
     textTransform: "capitalize",
   },
   registerButtonDark: {
-    padding: "20px",
+    padding: (props) => (props.currentUser ? "5px" : "20px"),
     color: yellow[700],
     fontSize: "28px",
     fontFamily: ["Montserrat", "sans-serif"].join(","),
@@ -67,14 +67,14 @@ const useStyles = makeStyles(() => ({
     fontSize: "15px",
     textDecoration: "none",
     marginLeft: "40px",
-    marginBottom: "20px",
+    marginBottom: (props) => (props.currentUser ? "5px" : "20px"),
   },
   userDark: {
     fontFamily: ["Montserrat", "sans-serif"].join(","),
     fontSize: "15px",
     textDecoration: "none",
     color: "#fff",
-    marginBottom: "20px",
+    marginBottom: (props) => (props.currentUser ? "5px" : "20px"),
     marginLeft: "40px",
   },
   darkLabel: {
