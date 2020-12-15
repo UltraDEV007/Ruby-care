@@ -3,7 +3,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import HomeIcon from "@material-ui/icons/Home";
-import { CurrentUserContext } from "../../../components/Context/CurrentUserContext";
+import { useStateValue } from "../../../components/Context/CurrentUserContext";
 import { DarkModeContext } from "../../../components/Context/DarkModeContext";
 import { removeToken } from "../../../services/auth";
 import { useHistory, Link, useLocation } from "react-router-dom";
@@ -31,12 +31,12 @@ export default function Header({ title }) {
 
   let location = useLocation();
 
-  const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
   const [darkMode] = useContext(DarkModeContext);
+  const [{ currentUser }, dispatch] = useStateValue();
 
   const history = useHistory();
   const handleLogout = () => {
-    setCurrentUser(null);
+    dispatch({ type: "REMOVE_USER" });
     localStorage.removeItem("authToken");
     removeToken();
     history.push("/login");

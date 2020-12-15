@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { CurrentUserContext } from "../../../components/Context/CurrentUserContext";
+import { useStateValue } from "../../../components/Context/CurrentUserContext";
 import { DarkModeContext } from "../../../components/Context/DarkModeContext";
 import { registerUser } from "../../../services/auth";
 import { Link, useHistory } from "react-router-dom";
@@ -24,7 +24,7 @@ import { useStyles } from "./registerStyles";
 import EventIcon from "@material-ui/icons/Event";
 
 export default function Register() {
-  const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
+  const [{ currentUser }, dispatch] = useStateValue();
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
   const [darkMode] = useContext(DarkModeContext);
@@ -42,7 +42,7 @@ export default function Register() {
   const handleRegister = async (registerData) => {
     registerData.email = registerData.email.toLowerCase();
     const userData = await registerUser(registerData);
-    setCurrentUser(userData);
+    dispatch({ type: "SET_USER", currentUser: userData });
     history.push("/");
   };
 

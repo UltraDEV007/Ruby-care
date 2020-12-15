@@ -1,29 +1,15 @@
-import React, { useState, useEffect, createContext } from "react";
-import { verifyUser } from "../../services/auth";
-import { useHistory } from "react-router-dom";
+import React, { createContext, useReducer, useContext } from "react";
+// this is the data layer, it's accessabile throughout the app
+const CurrentUserContext = createContext();
 
-const CurrentUserContext = createContext([{}, () => {}]);
-
-function CurrentUserProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState(null);
-  const history = useHistory();
-
-  useEffect(() => {
-    const handleVerify = async () => {
-      const userData = await verifyUser();
-      setCurrentUser(userData);
-      if (!userData) {
-        history.push("/login");
-      }
-    };
-    handleVerify();
-  }, [history]);
-
+// this is the provider
+function CurrentUserProvider({ children, reducer, initialState }) {
   return (
-    <CurrentUserContext.Provider value={[currentUser, setCurrentUser]}>
+    <CurrentUserContext.Provider value={useReducer(reducer, initialState)}>
       {children}
     </CurrentUserContext.Provider>
   );
 }
-
-export { CurrentUserContext, CurrentUserProvider };
+// this is how we get the value inside of a component
+const useStateValue = () => useContext(CurrentUserContext);
+export { CurrentUserContext, CurrentUserProvider, useStateValue };

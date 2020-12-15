@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { CurrentUserContext } from "../../../components/Context/CurrentUserContext";
+import { useStateValue } from "../../../components/Context/CurrentUserContext";
 import { DarkModeContext } from "../../../components/Context/DarkModeContext";
 import { loginUser } from "../../../services/auth";
 import Typography from "@material-ui/core/Typography";
@@ -18,7 +18,7 @@ import { getAge } from "../../../utils/getAge";
 import { useStyles } from "./loginStyles.js";
 
 export default function Login() {
-  const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
+  const [{ currentUser }, dispatch] = useStateValue();
   const [darkMode] = useContext(DarkModeContext);
   const [showPassword, setShowPassword] = useState(false);
   const history = useHistory();
@@ -35,7 +35,7 @@ export default function Login() {
   const handleLogin = async (loginData) => {
     loginData.email = loginData.email.toLowerCase();
     const userData = await loginUser(loginData);
-    setCurrentUser(userData);
+    dispatch({ type: "SET_USER", currentUser: userData });
     history.push("/");
   };
 

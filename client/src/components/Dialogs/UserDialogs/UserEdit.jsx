@@ -45,9 +45,9 @@ export default function UserEdit({
     birthday,
     gender,
     email,
-    newPassword,
-    newPasswordConfirm,
-    oldPassword,
+    // newPassword,
+    // newPasswordConfirm,
+    // oldPassword,
   } = formData;
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
@@ -74,6 +74,7 @@ export default function UserEdit({
       if (currentUser?.id) {
         const oneUser = await getOneUser(currentUser.id);
         setFormData(oneUser);
+        console.log(oneUser);
         return () => {
           setFormData(oneUser);
         };
@@ -84,9 +85,9 @@ export default function UserEdit({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (newPassword !== newPasswordConfirm) {
-      return alert("New Password and new password confirmation do not match");
-    }
+    // if (newPassword !== newPasswordConfirm) {
+    //   return alert("New Password and new password confirmation do not match");
+    // }
     // if (oldPassword !== currentUser.password) {
     //   return alert("Old password does not match");
     // }
@@ -100,7 +101,7 @@ export default function UserEdit({
       open={handleOpen}
     >
       <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-        <Typography className="title">Edit Account</Typography>
+        <Typography className="title">Edit Account {email}</Typography>
       </DialogTitle>
 
       <Form onSubmit={handleSubmit}>
@@ -135,7 +136,7 @@ export default function UserEdit({
             </FormControl>
           </div>
           <br />
-          <div className="input-container">
+          {/* <div className="input-container">
             <LockIcon className="icon" />
             <FormControl>
               <InputLabel htmlFor="password">Old Password</InputLabel>
@@ -159,9 +160,9 @@ export default function UserEdit({
                 }
               />
             </FormControl>
-          </div>
+          </div> */}
           <br />
-          <div className="input-container">
+          {/* <div className="input-container">
             <LockIcon className="icon" />
             <FormControl>
               <InputLabel htmlFor="password">New Password</InputLabel>
@@ -185,9 +186,9 @@ export default function UserEdit({
                 }
               />
             </FormControl>
-          </div>
+          </div> */}
           <br />
-          <div className="input-container">
+          {/* <div className="input-container">
             <LockIcon className="icon" />
             <FormControl className="password-confirm">
               <InputLabel htmlFor="passwordConfirm">
@@ -216,7 +217,7 @@ export default function UserEdit({
                 }
               />
             </FormControl>
-          </div>
+          </div> */}
           <br />
           <div
             style={{

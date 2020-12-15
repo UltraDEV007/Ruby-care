@@ -4,7 +4,10 @@ import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import { useContext, useState, useEffect } from "react";
-import { CurrentUserContext } from "../../../components/Context/CurrentUserContext";
+import {
+  CurrentUserContext,
+  useStateValue,
+} from "../../../components/Context/CurrentUserContext";
 import { DarkModeContext } from "../../../components/Context/DarkModeContext";
 import Moment from "react-moment";
 import "moment-timezone";
@@ -17,21 +20,15 @@ import Button from "@material-ui/core/Button";
 import { useStyles } from "./settingStyles";
 
 export default function Settings() {
-  const [currentUser] = useContext(CurrentUserContext);
+  const [{ currentUser }, dispatch] = useStateValue();
   const [darkMode, setDarkMode] = useContext(DarkModeContext);
   const [openEdit, setOpenEdit] = useState(false);
   const [allUsers, setAllUsers] = useState([]);
-  const [displayUser, setDisplayUser] = useState(() => {
-    return allUsers?.find((user) => user?.id === currentUser?.id);
-  });
 
   useEffect(() => {
     const fetchUsers = async () => {
       const userData = await getAllUsers();
       setAllUsers(userData);
-      setDisplayUser(() =>
-        userData?.find((user) => user?.id === currentUser?.id)
-      );
     };
     fetchUsers();
   }, [currentUser]);
@@ -42,9 +39,9 @@ export default function Settings() {
     let users = [...allUsers];
     const index = users.findIndex((u) => u.id === updatedUser.id);
     if (index > -1) {
+      dispatch({ type: "EDIT_USER", currentUser: updatedUser });
       users.splice(index, 1);
       setAllUsers([...users, userData]);
-      setDisplayUser(userData);
     }
   };
 
@@ -94,21 +91,21 @@ export default function Settings() {
       <div className={classes.userContainer}>
         <Typography className={classes.accountTitle}>Your Account</Typography>
         <Typography className={classes.userText}>
-          <strong>Name:</strong>&nbsp;{displayUser?.name}
+          <strong>Name:</strong>&nbsp;{currentUser?.name}
         </Typography>
         <Typography className="birthday">
           <strong>Date of Birth:</strong>&nbsp;
-          <Moment format="MM/DD/YY">{displayUser?.birthday}</Moment>
+          <Moment format="MM/DD/YY">{currentUser?.birthday}</Moment>
         </Typography>
         <Typography className="birthday">
           <strong>Age:</strong>&nbsp;
-          {getAge(displayUser?.birthday)} years old
+          {getAge(currentUser?.birthday)} years old
         </Typography>
         <Typography className={classes.userText}>
-          <strong>Gender:</strong>&nbsp;{displayUser?.gender}
+          <strong>Gender:</strong>&nbsp;{currentUser?.gender}
         </Typography>
         <Typography className={classes.userText}>
-          <strong>Email:</strong>&nbsp;{displayUser?.email}
+          <strong>Email:</strong>&nbsp;{currentUser?.email}
         </Typography>
         <Typography>
           <strong>Joined:</strong>&nbsp;
