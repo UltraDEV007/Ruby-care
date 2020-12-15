@@ -28,7 +28,7 @@ export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
   const [darkMode] = useContext(DarkModeContext);
-  const classes = useStyles({ darkMode });
+  const classes = useStyles({ darkMode, currentUser });
   const history = useHistory();
 
   const handleClickShowPassword = () => {

@@ -22,7 +22,7 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     flexDirection: "row",
     padding: "20px",
-    marginBottom: "20px",
+    marginBottom: (props) => (props.currentUser ? "-10px" : "20px"),
   },
   title: {
     fontFamily: ["Montserrat", "sans-serif"].join(","),

@@ -22,7 +22,7 @@ export default function Login() {
   const [darkMode] = useContext(DarkModeContext);
   const [showPassword, setShowPassword] = useState(false);
   const history = useHistory();
-  const classes = useStyles({ darkMode });
+  const classes = useStyles({ darkMode, currentUser });
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
