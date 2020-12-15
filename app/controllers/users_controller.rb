@@ -31,6 +31,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
+      UserMailer.with(user: @user).update_account_email.deliver_later
       render json: @user
     else
       render json: @user.errors, status: :unprocessable_entity
