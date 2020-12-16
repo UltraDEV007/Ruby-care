@@ -64,7 +64,6 @@ export default function UserEdit({
       if (currentUser?.id) {
         const oneUser = await getOneUser(currentUser.id);
         setFormData(oneUser);
-        console.log(oneUser);
         return () => {
           setFormData(oneUser);
         };
