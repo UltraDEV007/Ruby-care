@@ -4,10 +4,7 @@ import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import { useContext, useState, useEffect } from "react";
-import {
-  CurrentUserContext,
-  useStateValue,
-} from "../../../components/Context/CurrentUserContext";
+import { useStateValue } from "../../../components/Context/CurrentUserContext";
 import { DarkModeContext } from "../../../components/Context/DarkModeContext";
 import Moment from "react-moment";
 import "moment-timezone";
