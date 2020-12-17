@@ -8,9 +8,10 @@ import Button from "@material-ui/core/Button";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import DeleteInsight from "../Modals/DeleteInsight";
 import { useStyles } from "./insightCardStyles.js";
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import { useState } from "react";
+import UnlikedIcon from "@material-ui/icons/FavoriteBorder";
+import LikedIcon from "@material-ui/icons/Favorite";
+import React, { useState, useEffect } from "react";
+import { getAllLikes, destroyLike, postLike } from "../../services/likes";
 
 function InsightCard({
   insight,
@@ -23,6 +24,7 @@ function InsightCard({
 }) {
   const [{ currentUser }] = useStateValue();
   const classes = useStyles({ darkMode });
+  const [allLikes, setAllLikes] = useState([]);
   const [liked, setLiked] = useState(false);
 
   const [likedState, setLikedState] = useState(() => {
@@ -32,8 +34,6 @@ function InsightCard({
     }
     return false;
   });
-
-  const handleLike = () => {};
 
   const handleLikeChange = () => {
     setLikedState(likedState === true ? false : true);
@@ -45,6 +45,29 @@ function InsightCard({
       localStorage.setItem("likedState", false);
     }
   };
+
+  const handleLike = async (likeData) => {
+    const newLike = await postLike(likeData);
+    setAllLikes((prevState) => [...prevState, newLike]);
+  };
+
+  const handleUnlike = async (id) => {
+    await destroyLike(id);
+    setAllLikes((prevState) => prevState.filter((like) => like.id !== id));
+  };
+
+  useEffect(() => {
+    const fetchLikes = async () => {
+      const likeData = await getAllLikes();
+      setAllLikes(likeData);
+    };
+    fetchLikes();
+  }, []);
+
+  // const LIKES = React.Children.toArray(
+  //   allLikes.map((like) => (
+  //   ))
+  //   )
 
   return (
     <>
@@ -71,16 +94,18 @@ function InsightCard({
         </div>
         <div className={classes.likeContainer}>
           {!liked ? (
-            <FavoriteBorderIcon
+            <UnlikedIcon
               className={classes.unLikedInsight}
               // onClick={handleLikeChange}
-              onClick={() => setLiked(true)}
+              // onClick={() => setLiked(true)}
+              onClick={handleLike}
             />
           ) : (
-            <FavoriteIcon
+            <LikedIcon
               className={classes.likedInsight}
               // onClick={handleLikeChange}
-              onClick={() => setLiked(false)}
+              // onClick={() => setLiked(false)}
+              onClick={handleUnlike}
             />
           )}
           &nbsp;
