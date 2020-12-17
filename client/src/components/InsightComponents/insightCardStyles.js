@@ -84,6 +84,7 @@ const useStyles = makeStyles((theme) => ({
   },
   likeContainer: {
     display: "flex",
+    alignItems: "center",
     justifyContent: "flex-end",
   },
   likedInsight: {

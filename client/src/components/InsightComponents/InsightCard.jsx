@@ -25,6 +25,27 @@ function InsightCard({
   const classes = useStyles({ darkMode });
   const [liked, setLiked] = useState(false);
 
+  const [likedState, setLikedState] = useState(() => {
+    let state = localStorage.getItem("likedState");
+    if (state !== null) {
+      return state === "true" ? true : false;
+    }
+    return false;
+  });
+
+  const handleLike = () => {};
+
+  const handleLikeChange = () => {
+    setLikedState(likedState === true ? false : true);
+    if (likedState === "false") {
+      setLiked(true);
+      localStorage.setItem("likedState", true);
+    } else {
+      setLiked(false);
+      localStorage.setItem("likedState", false);
+    }
+  };
+
   return (
     <>
       <Card className={classes.root}>
@@ -49,18 +70,21 @@ function InsightCard({
           <Typography>{insight?.description}</Typography>
         </div>
         <div className={classes.likeContainer}>
-          {insight.user.likes.length}
           {!liked ? (
             <FavoriteBorderIcon
               className={classes.unLikedInsight}
+              // onClick={handleLikeChange}
               onClick={() => setLiked(true)}
             />
           ) : (
             <FavoriteIcon
               className={classes.likedInsight}
+              // onClick={handleLikeChange}
               onClick={() => setLiked(false)}
             />
           )}
+          &nbsp;
+          {insight.user.likes.length} likes
         </div>
 
         {insight?.user_id === currentUser?.id && (
