@@ -8,6 +8,9 @@ import Button from "@material-ui/core/Button";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import DeleteInsight from "../Modals/DeleteInsight";
 import { useStyles } from "./insightCardStyles.js";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import { useState } from "react";
 
 function InsightCard({
   insight,
@@ -20,6 +23,7 @@ function InsightCard({
 }) {
   const [{ currentUser }] = useStateValue();
   const classes = useStyles({ darkMode });
+  const [liked, setLiked] = useState(false);
 
   return (
     <>
@@ -35,13 +39,30 @@ function InsightCard({
             </Typography>
           </Link>
         </div>
-        <>
+        <div>
           <Typography className={classes.date}>
             Created at:&nbsp;
             <Moment format="MMM-DD-yyyy hh:mm A">{insight?.created_at}</Moment>
           </Typography>
-        </>
-        <Typography>{insight?.description}</Typography>
+        </div>
+        <div>
+          <Typography>{insight?.description}</Typography>
+        </div>
+        <div className={classes.likeContainer}>
+          {insight.user.likes.length}
+          {!liked ? (
+            <FavoriteBorderIcon
+              className={classes.unLikedInsight}
+              onClick={() => setLiked(true)}
+            />
+          ) : (
+            <FavoriteIcon
+              className={classes.likedInsight}
+              onClick={() => setLiked(false)}
+            />
+          )}
+        </div>
+
         {insight?.user_id === currentUser?.id && (
           <>
             <div className={classes.buttons}>

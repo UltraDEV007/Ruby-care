@@ -1,4 +1,4 @@
-import { yellow, indigo, blue } from "@material-ui/core/colors";
+import { yellow, indigo, blue, red } from "@material-ui/core/colors";
 import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -81,6 +81,17 @@ const useStyles = makeStyles((theme) => ({
   date: {
     paddingTop: "5px",
     paddingBottom: "10px",
+  },
+  likeContainer: {
+    display: "flex",
+    justifyContent: "flex-end",
+  },
+  likedInsight: {
+    color: ({ darkMode }) => (darkMode === "dark" ? yellow[700] : red[500]),
+    cursor: "pointer",
+  },
+  unLikedInsight: {
+    cursor: "pointer",
   },
 }));
 
