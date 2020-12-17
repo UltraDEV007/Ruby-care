@@ -27,45 +27,53 @@ function InsightCard({
   const [allLikes, setAllLikes] = useState([]);
   const [liked, setLiked] = useState(false);
 
-  const [likedState, setLikedState] = useState(() => {
-    let state = localStorage.getItem("likedState");
-    if (state !== null) {
-      return state === "true" ? true : false;
-    }
-    return false;
-  });
+  // const [likedState, setLikedState] = useState(() => {
+  //   let state = localStorage.getItem("likedState");
+  //   if (state !== null) {
+  //     return state === "true" ? true : false;
+  //   }
+  //   return false;
+  // });
 
-  const handleLikeChange = () => {
-    setLikedState(likedState === true ? false : true);
-    if (likedState === "false") {
-      setLiked(true);
-      localStorage.setItem("likedState", true);
-    } else {
-      setLiked(false);
-      localStorage.setItem("likedState", false);
-    }
-  };
+  // const handleLikeChange = () => {
+  //   setLikedState(likedState === true ? false : true);
+  //   if (likedState === "false") {
+  //     setLiked(true);
+  //     localStorage.setItem("likedState", true);
+  //   } else {
+  //     setLiked(false);
+  //     localStorage.setItem("likedState", false);
+  //   }
+  // };
 
   const handleLike = async (likeData) => {
-    const newLike = await postLike(likeData);
+    setLiked(true);
+
+    const newLike = await postLike({
+      user_id: currentUser.id,
+      insight_id: insight.id,
+      // like: likeData.id,
+    });
     setAllLikes((prevState) => [...prevState, newLike]);
   };
 
   const handleUnlike = async (id) => {
+    setLiked(false);
     await destroyLike(id);
     setAllLikes((prevState) => prevState.filter((like) => like.id !== id));
   };
 
-  useEffect(() => {
-    const fetchLikes = async () => {
-      const likeData = await getAllLikes();
-      setAllLikes(likeData);
-    };
-    fetchLikes();
-  }, []);
+  // useEffect(() => {
+  //   const fetchLikes = async () => {
+  //     const likeData = await getAllLikes();
+  //     setAllLikes(likeData);
+  //   };
+  //   fetchLikes();
+  // }, []);
 
   // const LIKES = React.Children.toArray(
-  //   allLikes.map((like) => (
+  //   allLikes.filter((like) => (
+  // like.insight.id
   //   ))
   //   )
 
@@ -109,7 +117,7 @@ function InsightCard({
             />
           )}
           &nbsp;
-          {insight.user.likes.length} likes
+          {insight?.user?.likes?.length} likes
         </div>
 
         {insight?.user_id === currentUser?.id && (

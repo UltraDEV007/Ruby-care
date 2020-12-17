@@ -1,4 +1,5 @@
 import api from "./apiConfig";
+let CircularJson = require("circular-json");
 
 export const getAllLikes = async () => {
   const resp = await api.get("/likes");
@@ -11,7 +12,8 @@ export const getOneLike = async (id) => {
 };
 
 export const postLike = async (likeData) => {
-  const resp = await api.post("/likes", likeData);
+  console.log(likeData);
+  const resp = await api.post("/likes", CircularJson.stringify(likeData));
   return resp.data;
 };
 

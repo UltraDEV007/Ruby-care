@@ -17,9 +17,11 @@ class LikesController < ApplicationController
 
   # POST /likes
   def create
-    @like = Like.new(like_params)
+    puts (params[:insight_id])
+    @like = Like.new
     @like.user = @current_user
-
+    @insights = Insight.all
+    @like.insight = @insights.find_by(params[:insight_id])
     if @like.save
       render json: @like, status: :created, location: @like
     else
@@ -42,6 +44,7 @@ class LikesController < ApplicationController
       @likes = Like.where(user_id: params[:user_id])
     end
 
+    
     # Only allow a trusted parameter "white list" through.
     def like_params
       params.require(:like).permit(:user_id, :insight_id)

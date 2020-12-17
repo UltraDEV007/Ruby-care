@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "circular-json": "^0.5.9",
     "react-clock": "^3.0.0",
     "react-search-field": "^1.1.0"
   }
