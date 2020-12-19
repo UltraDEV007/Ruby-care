@@ -15,7 +15,7 @@ import { verifyUser } from "./services/auth";
 import { useStateValue } from "./components/Context/CurrentUserContext";
 
 function App() {
-  const [{ currentUser }, dispatch] = useStateValue();
+  const [, dispatch] = useStateValue();
 
   const history = useHistory();
   useEffect(() => {
@@ -27,7 +27,7 @@ function App() {
       }
     };
     handleVerify();
-  }, [history]);
+  }, [history, dispatch]);
   return (
     <Paper>
       <DarkModeProvider>

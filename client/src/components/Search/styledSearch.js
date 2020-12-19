@@ -1,7 +1,7 @@
 import { blue, yellow } from "@material-ui/core/colors";
 import styled from "styled-components";
 
-const Form = styled.div`
+const Form = styled.form`
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -22,6 +22,8 @@ const Form = styled.div`
   .icon {
     position: absolute;
     right: 10px;
+    background: ${({ darkMode }) => (darkMode === "dark" ? "#424242" : "#fff")};
+    height: 100%;
   }
   input {
     width: 68vw;

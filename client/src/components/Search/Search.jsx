@@ -32,6 +32,7 @@ function Search({ search, setSearch }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    toggleSearch();
     handleSearch(e);
   };
 
@@ -58,7 +59,14 @@ function Search({ search, setSearch }) {
         inputProps={{ maxLength: 70 }}
         InputProps={{
           endAdornment: (
-            <InputAdornment onClick={toggleSearch} className="icon">
+            <InputAdornment
+              // style={{
+              //     background: darkMode ? "#424242" : "#fff",
+              //     height: "100%",
+              //   }}
+              onClick={toggleSearch}
+              className="icon"
+            >
               <div class="vl"></div>
               <IconButton>
                 {searchEnabled ? <ClearIcon /> : <SearchIcon />}
