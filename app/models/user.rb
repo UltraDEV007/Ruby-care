@@ -21,5 +21,8 @@ class User < ApplicationRecord
   has_many :symptoms, dependent: :destroy
   has_many :foods, dependent: :destroy
   has_many :medications, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  # has_many :liked_insights, :through => :likes   
+
 end
 

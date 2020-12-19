@@ -4,17 +4,34 @@ class InsightsController < ApplicationController
   before_action :set_user_insight, only: [ :update, :destroy]
 
   # GET /insights
+  
   def index
     # https://stackoverflow.com/questions/20650403/adding-created-at-desc-functionality-in-rails/20651086
+    @likes = Like.all
     @insights = Insight.newest_first
+    for @insight in @insights do
+      
+      @insight.likes = @likes.filter {|x| x.insight_id == @insight.id }
+      puts "HELLO----------------"
+      puts json: @insight.likes
+
+      # puts "JSON----------------"
+      # render json: @insight, :include => {:user => {:include => :likes}}
+    # [:foo, :bar].filter { |x| x == :foo }
+    end
+    render json: @insights, :include => {:user => {:include => :likes}}
+    # @like = Like.find_by(user_id: params[:user_id], insight_id: params[:insight_id])
 
     # this should order the newly created insights from top to bottom
-    render json: @insights, include: :user
+    # @likes = Like.all.filter_by
+    # Like.joins(:insights).where("insights.id = like.insight_id")
+    # render json: @insights, :include => {:likes =>{:include => :user}}  
+
   end
 
   # GET /insights/1
   def show
-    render json: @insight, include: :user
+    render json: @insight, :include => :user
   end
 
   # POST /insights

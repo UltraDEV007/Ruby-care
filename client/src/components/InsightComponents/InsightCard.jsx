@@ -1,15 +1,17 @@
-import React, { useContext } from "react";
 import Moment from "react-moment";
 import "moment-timezone";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
 import { useStateValue } from "../Context/CurrentUserContext";
 import Card from "@material-ui/core/Card";
-import { makeStyles } from "@material-ui/styles";
-import { yellow, indigo, blue } from "@material-ui/core/colors";
 import Button from "@material-ui/core/Button";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import DeleteInsight from "../Modals/DeleteInsight";
+import { useStyles } from "./insightCardStyles.js";
+import UnlikedIcon from "@material-ui/icons/FavoriteBorder";
+import LikedIcon from "@material-ui/icons/Favorite";
+import React, { useState, useEffect } from "react";
+import { getAllLikes, destroyLike, postLike } from "../../services/likes";
 
 function InsightCard({
   insight,
@@ -20,87 +22,53 @@ function InsightCard({
   onDelete,
   darkMode,
 }) {
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      margin: "20px auto",
-      minWidth: "300px",
-      width: "300px",
-      minHeight: "240px",
-      padding: "20px",
-      borderRadius: 0,
-      boxShadow:
-        darkMode === "light" ? "default" : `-1px .5px 4px 2.5px ${indigo[50]}`,
-      [theme.breakpoints.up("md")]: {
-        minWidth: "350px",
-        width: "350px",
-        padding: "20px",
-        margin: "20px",
-      },
-      [theme.breakpoints.up("lg")]: {
-        minWidth: "500px",
-        width: "500px",
-        padding: "30px",
-        margin: "20px",
-      },
-      [theme.breakpoints.up("xl")]: {
-        minWidth: "550px",
-        width: "550px",
-        padding: "30px",
-        margin: "20px",
-      },
-    },
-    link: {
-      textDecoration: "none",
-      display: "flex",
-      alignItems: "center",
-      transition: "transform 250ms ease-in-out",
-      "&:hover": {
-        textDecoration: "underline",
-        textDecorationColor: darkMode === "dark" ? yellow[700] : blue[600],
-        transition: "transform 250ms ease-in-out",
-        cursor: "pointer",
-        transform: "scale(1.02)",
-      },
-    },
-
-    title: {
-      color: darkMode === "dark" ? yellow[700] : blue[600],
-      fontWeight: "bold",
-      fontSize: "24px",
-    },
-    userContainer: {
-      display: "flex",
-      padding: "10px 0 3px 0",
-      alignItems: "center",
-      transition: "transform 250ms ease-in-out",
-      "&:hover": {
-        transition: "transform 250ms ease-in-out",
-        cursor: "pointer",
-        transform: "scale(1.005)",
-      },
-    },
-    userName: {
-      color: darkMode === "dark" ? yellow[700] : blue[600],
-      fontWeight: "bold",
-      fontSize: "19px",
-    },
-    userIcon: {
-      color: darkMode === "dark" ? yellow[700] : blue[600],
-      marginRight: "8px",
-    },
-    buttons: {
-      marginTop: "20px",
-    },
-    delete: {
-      marginLeft: "20px",
-    },
-    date: {
-      paddingTop: "5px",
-      paddingBottom: "10px",
-    },
-  }));
   const [{ currentUser }] = useStateValue();
-  const classes = useStyles();
+  const classes = useStyles({ darkMode });
+  const [allLikes, setAllLikes] = useState([]);
+  const [liked, setLiked] = useState(false);
+  const [likeDisabled, setLikeDisabled] = useState(true);
+
+  useEffect(() => {
+    const fetchLikes = async () => {
+      const likeData = await getAllLikes();
+      setAllLikes(likeData.filter((like) => like.insight_id === insight.id));
+      setLikeDisabled(false);
+    };
+    fetchLikes();
+  }, [insight.id]);
+
+  useEffect(() => {
+    const likeFound = allLikes.find(
+      (like) =>
+        like.insight_id === insight.id && currentUser.id === like.user_id
+    );
+    likeFound ? setLiked(true) : setLiked(false);
+  }, [allLikes, currentUser.id, insight.id]);
+
+  const handleLike = async () => {
+    if (!likeDisabled) {
+      setLiked(true);
+      const newLike = await postLike({
+        user_id: currentUser.id,
+        insight_id: insight.id,
+      });
+      setAllLikes((prevState) => [...prevState, newLike]);
+    }
+  };
+
+  const handleUnlike = async () => {
+    if (!likeDisabled) {
+      setLiked(false);
+      const likeToDelete = allLikes.find(
+        (like) =>
+          like.insight_id === insight.id && currentUser.id === like.user_id
+      );
+      await destroyLike(likeToDelete.id);
+      setAllLikes((prevState) =>
+        prevState.filter((like) => like.id !== likeToDelete.id)
+      );
+    }
+  };
 
   return (
     <>
@@ -116,13 +84,43 @@ function InsightCard({
             </Typography>
           </Link>
         </div>
-        <>
+        <div>
           <Typography className={classes.date}>
             Created at:&nbsp;
             <Moment format="MMM-DD-yyyy hh:mm A">{insight?.created_at}</Moment>
           </Typography>
-        </>
-        <Typography>{insight?.description}</Typography>
+        </div>
+        <div>
+          <Typography>{insight?.description}</Typography>
+        </div>
+        {!likeDisabled && (
+          <div className={classes.likeContainer}>
+            {!liked ? (
+              <UnlikedIcon
+                style={
+                  likeDisabled
+                    ? { pointerEvents: "none" }
+                    : { pointerEvents: "inherit" }
+                }
+                className={classes.unLikedInsight}
+                onClick={handleLike}
+              />
+            ) : (
+              <LikedIcon
+                style={
+                  likeDisabled
+                    ? { pointerEvents: "none" }
+                    : { pointerEvents: "inherit" }
+                }
+                className={classes.likedInsight}
+                onClick={handleUnlike}
+              />
+            )}
+            &nbsp;
+            {allLikes?.length}
+          </div>
+        )}
+
         {insight?.user_id === currentUser?.id && (
           <>
             <div className={classes.buttons}>
