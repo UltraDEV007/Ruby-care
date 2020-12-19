@@ -32,6 +32,7 @@ function Search({ search, setSearch }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    toggleSearch();
     handleSearch(e);
   };
 

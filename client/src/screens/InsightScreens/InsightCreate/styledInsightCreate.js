@@ -2,7 +2,6 @@ import { grey } from "@material-ui/core/colors";
 import styled from "styled-components";
 
 const Div = styled.div`
-  height: 100vh;
   display: flex;
   flex-direction: column;
   background: ${({ darkMode }) => (darkMode === "dark" ? grey[800] : "#fff")};
