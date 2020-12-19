@@ -31,19 +31,19 @@ function InsightCard({
   useEffect(() => {
     const fetchLikes = async () => {
       const likeData = await getAllLikes();
-      setAllLikes(likeData.filter((like) => like.insight_id === insight.id));
+      setAllLikes(likeData?.filter((like) => like?.insight_id === insight?.id));
       setLikeDisabled(false);
     };
     fetchLikes();
-  }, [insight.id]);
+  }, [insight?.id]);
 
   useEffect(() => {
-    const likeFound = allLikes.find(
+    const likeFound = allLikes?.find(
       (like) =>
-        like.insight_id === insight.id && currentUser.id === like.user_id
+        like?.insight_id === insight?.id && currentUser?.id === like?.user_id
     );
     likeFound ? setLiked(true) : setLiked(false);
-  }, [allLikes, currentUser.id, insight.id]);
+  }, [allLikes, currentUser?.id, insight?.id]);
 
   const handleLike = async () => {
     if (!likeDisabled) {
@@ -59,13 +59,13 @@ function InsightCard({
   const handleUnlike = async () => {
     if (!likeDisabled) {
       setLiked(false);
-      const likeToDelete = allLikes.find(
+      const likeToDelete = allLikes?.find(
         (like) =>
-          like.insight_id === insight.id && currentUser.id === like.user_id
+          like?.insight_id === insight?.id && currentUser?.id === like?.user_id
       );
       await destroyLike(likeToDelete.id);
       setAllLikes((prevState) =>
-        prevState.filter((like) => like.id !== likeToDelete.id)
+        prevState.filter((like) => like.id !== likeToDelete?.id)
       );
     }
   };
