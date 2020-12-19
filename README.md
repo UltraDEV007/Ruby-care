@@ -395,4 +395,7 @@ Before Care I used an app called "Gali Health" to track my symptoms, however Gal
 
 - Dec 15th, 2020: added password confirm, currentUser is now also handeled with useReducer.
 
-- Dec 19th, 2020: users can now like and unlike an insight on the insights page.
+<strong>Dec 19th, 2020:</strong>
+ - users can now like and unlike an insight on the insights page.
+ - fixed an issue where unnecessary vertical scrolling was happening.
+ - fixed a zoom bug in the register and login page where white overflow was showing in dark mode.
