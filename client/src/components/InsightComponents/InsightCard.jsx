@@ -26,16 +26,22 @@ function InsightCard({
   const classes = useStyles({ darkMode });
   const [allLikes, setAllLikes] = useState([]);
   const [liked, setLiked] = useState(false);
-  const LIKES = allLikes.filter((like) => like.insight_id === insight.id);
 
   useEffect(() => {
     const fetchLikes = async () => {
       const likeData = await getAllLikes();
-      setAllLikes(likeData);
+      setAllLikes(likeData.filter((like) => like.insight_id === insight.id));
     };
     fetchLikes();
-  }, []);
+  }, [insight.id]);
 
+  useEffect(() => {
+    const likeFound = allLikes.find(
+      (like) =>
+        like.insight_id === insight.id && currentUser.id === like.user_id
+    );
+    likeFound ? setLiked(true) : setLiked(false);
+  }, [allLikes, currentUser.id, insight.id]);
   const handleLike = async () => {
     setLiked(true);
     const newLike = await postLike({
@@ -45,10 +51,9 @@ function InsightCard({
     setAllLikes((prevState) => [...prevState, newLike]);
   };
 
-  const handleUnlike = async (id) => {
-    console.log(id);
+  const handleUnlike = async () => {
     setLiked(false);
-    const likeToDelete = LIKES.find(
+    const likeToDelete = allLikes.find(
       (like) =>
         like.insight_id === insight.id && currentUser.id === like.user_id
     );
@@ -94,8 +99,7 @@ function InsightCard({
             />
           )}
           &nbsp;
-          {/* {insight?.user?.likes?.length} likes */}
-          {LIKES?.length}
+          {allLikes?.length}
         </div>
 
         {insight?.user_id === currentUser?.id && (
