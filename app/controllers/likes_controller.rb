@@ -27,7 +27,6 @@ class LikesController < ApplicationController
 
   # DELETE /likes/1
   def destroy
-    # @like.destroy
     @like = Like.find(params[:id])
     if @like.present?
       @like.destroy

@@ -28,6 +28,14 @@ function InsightCard({
   const [liked, setLiked] = useState(false);
   const LIKES = allLikes.filter((like) => like.insight_id === insight.id);
 
+  useEffect(() => {
+    const fetchLikes = async () => {
+      const likeData = await getAllLikes();
+      setAllLikes(likeData);
+    };
+    fetchLikes();
+  }, []);
+
   const handleLike = async () => {
     setLiked(true);
     const newLike = await postLike({
@@ -45,16 +53,10 @@ function InsightCard({
         like.insight_id === insight.id && currentUser.id === like.user_id
     );
     await destroyLike(likeToDelete.id);
-    setAllLikes((prevState) => prevState.filter((like) => like.id !== id));
+    setAllLikes((prevState) =>
+      prevState.filter((like) => like.id !== likeToDelete.id)
+    );
   };
-
-  useEffect(() => {
-    const fetchLikes = async () => {
-      const likeData = await getAllLikes();
-      setAllLikes(likeData);
-    };
-    fetchLikes();
-  }, []);
 
   return (
     <>
