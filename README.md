@@ -27,7 +27,7 @@
 **Care**
 
 Care is a Full-Stack React & Rails crud app with authentication where the user can track his mood, symptoms, log food, track medications, and share insights with the community.
-So far there are 9 tables all with full crud and associations
+So far there are 10 tables all with full crud and associations
 
 <br>
 
@@ -246,7 +246,7 @@ src
 
 [ERD Model Link](https://drive.google.com/file/d/16G7t1UU_fHARCdY8dVpV2eJWvtP0pbsW/view?usp=sharing)
 
-![ERD Model](https://i.imgur.com/AyTjaft.png)
+![ERD Model](https://i.imgur.com/zr2yx8W.png)
 <br>
 
 ---
