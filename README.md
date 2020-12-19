@@ -393,6 +393,6 @@ Before Care I used an app called "Gali Health" to track my symptoms, however Gal
 
 - Dec 9th, 2020 : added the option to edit an authorized user on the settings page(you can't edit other people's users, only yours), registration and login email no longer forced to lower case as it is handeled differently, added more logic to taking the meds, so when the user takes the medicine it doesn't delete it, it just tells him he took and and then he can make the decision if he wanted to delete it.
 
--Dec 15th, 2020: added password confirm, currentUser is now also handeled with useReducer.
+- Dec 15th, 2020: added password confirm, currentUser is now also handeled with useReducer.
 
--Dec 19th, 2020: users can now like and unlike an insight on the insights page.
+- Dec 19th, 2020: users can now like and unlike an insight on the insights page.
