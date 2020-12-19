@@ -230,7 +230,9 @@ src
 | Create FoodRegex | L | 4hrs | 4hrs | 6hrs |
 | Fetch Medications from a [3rd Party API](https://rxguide.netlify.app/about) and handle full crud on my BE AND FE | L | 7hrs | 7hrs | 7hrs |
 | ETC (styling, error handling, perfecting | L | 6hrs | 6hrs | 6hrs |
-| TOTAL                                                   |          |     44hrs      |     64.5     |     64.5     |
+| Create likes for insights | L | 5hrs | 10hrs | 10hrs |
+
+| TOTAL                                                   |          |     49hrs      |     74.5     |     74.5     |
 
 
 
