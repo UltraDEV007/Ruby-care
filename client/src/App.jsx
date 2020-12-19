@@ -29,8 +29,8 @@ function App() {
     handleVerify();
   }, [history, dispatch]);
   return (
-    <Paper>
-      <DarkModeProvider>
+    <DarkModeProvider>
+      <Paper style={{ minHeight: "100vh" }}>
         <Switch>
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
@@ -40,8 +40,8 @@ function App() {
           <Route path="/" component={Home} />
           <Route path="*" component={NotFound} />
         </Switch>
-      </DarkModeProvider>
-    </Paper>
+      </Paper>
+    </DarkModeProvider>
   );
 }
 

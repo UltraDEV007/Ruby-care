@@ -7,8 +7,6 @@ const useStyles = makeStyles({
     flexDirection: "column",
     flexFlow: "nowrap",
     alignItems: "center",
-    width: "100%",
-    height: "100vh",
     background: "#fff",
   },
   rootDark: {
@@ -16,8 +14,6 @@ const useStyles = makeStyles({
     flexDirection: "column",
     flexFlow: "nowrap",
     alignItems: "center",
-    width: "100%",
-    height: "100vh",
     background: grey[800],
   },
   logoContainer: {
