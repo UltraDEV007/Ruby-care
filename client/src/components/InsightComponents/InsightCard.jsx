@@ -63,19 +63,15 @@ function InsightCard({
     setAllLikes((prevState) => prevState.filter((like) => like.id !== id));
   };
 
-  // useEffect(() => {
-  //   const fetchLikes = async () => {
-  //     const likeData = await getAllLikes();
-  //     setAllLikes(likeData);
-  //   };
-  //   fetchLikes();
-  // }, []);
-
-  // const LIKES = React.Children.toArray(
-  //   allLikes.filter((like) => (
-  // like.insight.id
-  //   ))
-  //   )
+  useEffect(() => {
+    const fetchLikes = async () => {
+      const likeData = await getAllLikes();
+      setAllLikes(likeData);
+    };
+    fetchLikes();
+  }, []);
+  const LIKES = allLikes.filter((like) => like.insight_id === insight.id); //React.Children.toArray(
+  // );
 
   return (
     <>
@@ -117,7 +113,8 @@ function InsightCard({
             />
           )}
           &nbsp;
-          {insight?.user?.likes?.length} likes
+          {/* {insight?.user?.likes?.length} likes */}
+          {LIKES?.length}
         </div>
 
         {insight?.user_id === currentUser?.id && (

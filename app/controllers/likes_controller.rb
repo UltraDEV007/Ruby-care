@@ -15,13 +15,10 @@ class LikesController < ApplicationController
     render json: @likes, include: :user
   end
 
-  # POST /likes
+  # POST /like
   def create
-    puts (params[:insight_id])
-    @like = Like.new
-    @like.user = @current_user
-    @insights = Insight.all
-    @like.insight = @insights.find_by(params[:insight_id])
+   puts json:like_params
+    @like = Like.new(like_params)
     if @like.save
       render json: @like, status: :created, location: @like
     else
