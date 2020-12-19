@@ -11,7 +11,6 @@ export const getOneLike = async (id) => {
 };
 
 export const postLike = async (likeData) => {
-  console.log(likeData);
   const resp = await api.post("/likes", { like: likeData });
   return resp.data;
 };

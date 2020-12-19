@@ -26,11 +26,13 @@ function InsightCard({
   const classes = useStyles({ darkMode });
   const [allLikes, setAllLikes] = useState([]);
   const [liked, setLiked] = useState(false);
+  const [likeDisabled, setLikeDisabled] = useState(true);
 
   useEffect(() => {
     const fetchLikes = async () => {
       const likeData = await getAllLikes();
       setAllLikes(likeData.filter((like) => like.insight_id === insight.id));
+      setLikeDisabled(false);
     };
     fetchLikes();
   }, [insight.id]);
@@ -42,25 +44,30 @@ function InsightCard({
     );
     likeFound ? setLiked(true) : setLiked(false);
   }, [allLikes, currentUser.id, insight.id]);
+
   const handleLike = async () => {
-    setLiked(true);
-    const newLike = await postLike({
-      user_id: currentUser.id,
-      insight_id: insight.id,
-    });
-    setAllLikes((prevState) => [...prevState, newLike]);
+    if (!likeDisabled) {
+      setLiked(true);
+      const newLike = await postLike({
+        user_id: currentUser.id,
+        insight_id: insight.id,
+      });
+      setAllLikes((prevState) => [...prevState, newLike]);
+    }
   };
 
   const handleUnlike = async () => {
-    setLiked(false);
-    const likeToDelete = allLikes.find(
-      (like) =>
-        like.insight_id === insight.id && currentUser.id === like.user_id
-    );
-    await destroyLike(likeToDelete.id);
-    setAllLikes((prevState) =>
-      prevState.filter((like) => like.id !== likeToDelete.id)
-    );
+    if (!likeDisabled) {
+      setLiked(false);
+      const likeToDelete = allLikes.find(
+        (like) =>
+          like.insight_id === insight.id && currentUser.id === like.user_id
+      );
+      await destroyLike(likeToDelete.id);
+      setAllLikes((prevState) =>
+        prevState.filter((like) => like.id !== likeToDelete.id)
+      );
+    }
   };
 
   return (
@@ -86,21 +93,33 @@ function InsightCard({
         <div>
           <Typography>{insight?.description}</Typography>
         </div>
-        <div className={classes.likeContainer}>
-          {!liked ? (
-            <UnlikedIcon
-              className={classes.unLikedInsight}
-              onClick={handleLike}
-            />
-          ) : (
-            <LikedIcon
-              className={classes.likedInsight}
-              onClick={handleUnlike}
-            />
-          )}
-          &nbsp;
-          {allLikes?.length}
-        </div>
+        {!likeDisabled && (
+          <div className={classes.likeContainer}>
+            {!liked ? (
+              <UnlikedIcon
+                style={
+                  likeDisabled
+                    ? { pointerEvents: "none" }
+                    : { pointerEvents: "inherit" }
+                }
+                className={classes.unLikedInsight}
+                onClick={handleLike}
+              />
+            ) : (
+              <LikedIcon
+                style={
+                  likeDisabled
+                    ? { pointerEvents: "none" }
+                    : { pointerEvents: "inherit" }
+                }
+                className={classes.likedInsight}
+                onClick={handleUnlike}
+              />
+            )}
+            &nbsp;
+            {allLikes?.length}
+          </div>
+        )}
 
         {insight?.user_id === currentUser?.id && (
           <>
