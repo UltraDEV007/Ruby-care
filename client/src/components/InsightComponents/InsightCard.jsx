@@ -26,40 +26,25 @@ function InsightCard({
   const classes = useStyles({ darkMode });
   const [allLikes, setAllLikes] = useState([]);
   const [liked, setLiked] = useState(false);
+  const LIKES = allLikes.filter((like) => like.insight_id === insight.id);
 
-  // const [likedState, setLikedState] = useState(() => {
-  //   let state = localStorage.getItem("likedState");
-  //   if (state !== null) {
-  //     return state === "true" ? true : false;
-  //   }
-  //   return false;
-  // });
-
-  // const handleLikeChange = () => {
-  //   setLikedState(likedState === true ? false : true);
-  //   if (likedState === "false") {
-  //     setLiked(true);
-  //     localStorage.setItem("likedState", true);
-  //   } else {
-  //     setLiked(false);
-  //     localStorage.setItem("likedState", false);
-  //   }
-  // };
-
-  const handleLike = async (likeData) => {
+  const handleLike = async () => {
     setLiked(true);
-
     const newLike = await postLike({
       user_id: currentUser.id,
       insight_id: insight.id,
-      // like: likeData.id,
     });
     setAllLikes((prevState) => [...prevState, newLike]);
   };
 
   const handleUnlike = async (id) => {
+    console.log(id);
     setLiked(false);
-    await destroyLike(id);
+    const likeToDelete = LIKES.find(
+      (like) =>
+        like.insight_id === insight.id && currentUser.id === like.user_id
+    );
+    await destroyLike(likeToDelete.id);
     setAllLikes((prevState) => prevState.filter((like) => like.id !== id));
   };
 
@@ -70,8 +55,6 @@ function InsightCard({
     };
     fetchLikes();
   }, []);
-  const LIKES = allLikes.filter((like) => like.insight_id === insight.id); //React.Children.toArray(
-  // );
 
   return (
     <>
@@ -100,15 +83,11 @@ function InsightCard({
           {!liked ? (
             <UnlikedIcon
               className={classes.unLikedInsight}
-              // onClick={handleLikeChange}
-              // onClick={() => setLiked(true)}
               onClick={handleLike}
             />
           ) : (
             <LikedIcon
               className={classes.likedInsight}
-              // onClick={handleLikeChange}
-              // onClick={() => setLiked(false)}
               onClick={handleUnlike}
             />
           )}

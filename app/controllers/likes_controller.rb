@@ -17,7 +17,6 @@ class LikesController < ApplicationController
 
   # POST /like
   def create
-   puts json:like_params
     @like = Like.new(like_params)
     if @like.save
       render json: @like, status: :created, location: @like
@@ -28,7 +27,11 @@ class LikesController < ApplicationController
 
   # DELETE /likes/1
   def destroy
-    @like.destroy
+    # @like.destroy
+    @like = Like.find(params[:id])
+    if @like.present?
+      @like.destroy
+    end
   end
 
   private
