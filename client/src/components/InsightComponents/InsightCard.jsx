@@ -93,6 +93,7 @@ function InsightCard({
         <div>
           <Typography>{insight?.description}</Typography>
         </div>
+        <br />
         {!likeDisabled && (
           <div className={classes.likeContainer}>
             {!liked ? (
