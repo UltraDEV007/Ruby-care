@@ -166,5 +166,25 @@ const useStyles = makeStyles(() => ({
     alignItems: "center",
     justifyContent: "center",
   },
+  // imageContainer: {
+  //   display: "flex",
+  //   flexDirection: "column",
+  //   textAlign: "center",
+  //   position: "relative",
+  //   top: "50px",
+  //   left: "200px",
+  //   margin: "0 30px auto auto",
+  // },
+
+  imageContainer: {
+    position: "absolute",
+    display: "flex",
+    flexDirection: "column",
+    left: "200px",
+    top: "200px",
+  },
+  userImage: {
+    fontSize: "6rem",
+  },
 }));
 export { useStyles };
