@@ -77,6 +77,14 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "20px",
     marginTop: "10px",
   },
+  userImage: {
+    height: "150px",
+    width: "150px",
+    alignSelf: "center",
+    margin: "20px",
+    border: "1px solid white",
+    borderRadius: "50%",
+  },
 }));
 
 export { useStyles };

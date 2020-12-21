@@ -87,6 +87,13 @@ export default function Settings() {
       <ScrollToTopOnMount />
       <div className={classes.userContainer}>
         <Typography className={classes.accountTitle}>Your Account</Typography>
+        {currentUser?.image && (
+          <img
+            className={classes.userImage}
+            src={currentUser?.image}
+            alt={currentUser?.name}
+          />
+        )}
         <Typography className={classes.userText}>
           <strong>Name:</strong>&nbsp;{currentUser?.name}
         </Typography>
