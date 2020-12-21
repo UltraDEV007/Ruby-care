@@ -76,7 +76,15 @@ export default function Header({ title }) {
                 to={`/users/${currentUser?.id}`}
                 className={classes.userName}
               >
-                <AccountCircleIcon className={classes.userIcon} />
+                {!currentUser?.image ? (
+                  <AccountCircleIcon className={classes.userIcon} />
+                ) : (
+                  <img
+                    className={classes.userImage}
+                    src={currentUser?.image}
+                    alt={currentUser?.name}
+                  />
+                )}
                 {currentUser?.name}
               </Typography>
             </>

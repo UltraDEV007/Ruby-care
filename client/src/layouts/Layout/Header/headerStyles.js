@@ -34,6 +34,12 @@ const useStyles = makeStyles((theme) => ({
   userIcon: {
     marginRight: "10px",
   },
+  userImage: {
+    height: "40px",
+    width: "40px",
+    borderRadius: "40px",
+    marginRight: "10px",
+  },
   logOut: {
     marginLeft: "20px",
     padding: "20px",

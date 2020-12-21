@@ -22,6 +22,7 @@ import TextField from "@material-ui/core/TextField";
 import { getAge } from "../../../utils/getAge";
 import { useStyles } from "./registerStyles";
 import EventIcon from "@material-ui/icons/Event";
+import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
 import {
   checkEmailValidity,
   checkPasswordLength,
@@ -61,9 +62,18 @@ export default function Register() {
     password: "",
     birthday: "",
     gender: "",
+    image: "",
     passwordConfirm: "",
   });
-  const { name, email, password, birthday, gender, passwordConfirm } = formData;
+  const {
+    name,
+    email,
+    password,
+    birthday,
+    gender,
+    image,
+    passwordConfirm,
+  } = formData;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -85,14 +95,6 @@ export default function Register() {
 
   return (
     <>
-      <div className={classes.imageContainer}>
-        <div>
-          <AccountCircleIcon
-            // style={{ fontSize: "1.5rem" }}
-            className={classes.userImage}
-          />
-        </div>
-      </div>
       <div className={darkMode === "light" ? classes.root : classes.rootDark}>
         <div className={classes.middleWrapper}>
           <div className={classes.logoContainer}>
@@ -134,7 +136,11 @@ export default function Register() {
                   : classes.inputContainerDark
               }
             >
-              <AccountCircleIcon />
+              {!image ? (
+                <AccountCircleIcon />
+              ) : (
+                <img className={classes.userImage} src={image} alt={name} />
+              )}
               <FormControl>
                 <InputLabel
                   className={
@@ -360,6 +366,38 @@ export default function Register() {
                 value={birthday}
                 onChange={handleChange}
               />
+            </div>
+            <br />
+            <div
+              className={
+                darkMode === "light"
+                  ? classes.inputContainer
+                  : classes.inputContainerDark
+              }
+            >
+              <AddPhotoAlternateIcon />
+              <FormControl>
+                <InputLabel
+                  className={
+                    darkMode === "light" ? classes.label : classes.darkLabel
+                  }
+                  htmlFor="image"
+                >
+                  Image Link
+                </InputLabel>
+                <Input
+                  required
+                  className={
+                    darkMode === "light"
+                      ? classes.inputField
+                      : classes.inputFieldDark
+                  }
+                  type="text"
+                  name="image"
+                  value={image}
+                  onChange={handleChange}
+                />
+              </FormControl>
             </div>
             <br />
             <div
