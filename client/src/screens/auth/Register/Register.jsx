@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { useStateValue } from "../../../components/Context/CurrentUserContext";
 import { DarkModeContext } from "../../../components/Context/DarkModeContext";
 import { registerUser } from "../../../services/auth";
@@ -22,6 +22,7 @@ import TextField from "@material-ui/core/TextField";
 import { getAge } from "../../../utils/getAge";
 import { useStyles } from "./registerStyles";
 import EventIcon from "@material-ui/icons/Event";
+import { checkEmailValidity } from "../../../utils/authUtils";
 
 export default function Register() {
   const [{ currentUser }, dispatch] = useStateValue();
@@ -56,6 +57,8 @@ export default function Register() {
   });
   const { name, email, password, birthday, gender, passwordConfirm } = formData;
 
+  const [emailAlert, setEmailAlert] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -69,8 +72,10 @@ export default function Register() {
     if (password !== passwordConfirm) {
       return alert("Password and password confirmation do not match!");
     }
+    checkEmailValidity(email, setEmailAlert);
     handleRegister(formData);
   };
+
   return (
     <div className={darkMode === "light" ? classes.root : classes.rootDark}>
       <div className={classes.logoContainer}>
@@ -167,6 +172,11 @@ export default function Register() {
             />
           </FormControl>
         </div>
+        {emailAlert && (
+          <div className={classes.emailAlert}>
+            <p>please enter a valid email address</p>
+          </div>
+        )}
         <br />
         <div
           className={
