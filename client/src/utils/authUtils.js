@@ -8,5 +8,19 @@ export const checkEmailValidity = (email, setEmailAlert) => {
     if (!pattern.test(email)) {
       setEmailAlert(true);
     }
+    if (pattern.test(email)) {
+      setEmailAlert(false);
+    }
+  }
+};
+
+export const checkPasswordLength = (password, setPasswordAlert) => {
+  if (typeof password !== undefined) {
+    if (password.length < 8) {
+      setPasswordAlert(true);
+    }
+  }
+  if (password.length >= 8) {
+    setPasswordAlert(false);
   }
 };

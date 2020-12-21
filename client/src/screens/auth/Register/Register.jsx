@@ -22,13 +22,19 @@ import TextField from "@material-ui/core/TextField";
 import { getAge } from "../../../utils/getAge";
 import { useStyles } from "./registerStyles";
 import EventIcon from "@material-ui/icons/Event";
-import { checkEmailValidity } from "../../../utils/authUtils";
+import {
+  checkEmailValidity,
+  checkPasswordLength,
+} from "../../../utils/authUtils";
 
 export default function Register() {
   const [{ currentUser }, dispatch] = useStateValue();
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
+  const [passwordAlert, setPasswordAlert] = useState(false);
   const [darkMode] = useContext(DarkModeContext);
+  const [emailAlert, setEmailAlert] = useState(false);
+  const [passwordConfirmAlert, setPasswordConfirmAlert] = useState(false);
   const classes = useStyles({ darkMode, currentUser });
   const history = useHistory();
 
@@ -57,8 +63,6 @@ export default function Register() {
   });
   const { name, email, password, birthday, gender, passwordConfirm } = formData;
 
-  const [emailAlert, setEmailAlert] = useState(false);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -70,8 +74,9 @@ export default function Register() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password !== passwordConfirm) {
-      return alert("Password and password confirmation do not match!");
+      setPasswordConfirmAlert(true);
     }
+    checkPasswordLength(password, setPasswordAlert);
     checkEmailValidity(email, setEmailAlert);
     handleRegister(formData);
   };
@@ -173,7 +178,7 @@ export default function Register() {
           </FormControl>
         </div>
         {emailAlert && (
-          <div className={classes.emailAlert}>
+          <div className={classes.alert}>
             <p>please enter a valid email address</p>
           </div>
         )}
@@ -239,6 +244,11 @@ export default function Register() {
             />
           </FormControl>
         </div>
+        {passwordAlert && (
+          <div className={classes.alert}>
+            <p>Password has to be 8 characters at minimum</p>
+          </div>
+        )}
         <br />
         <div
           className={
@@ -301,6 +311,11 @@ export default function Register() {
             />
           </FormControl>
         </div>
+        {passwordConfirmAlert && (
+          <div className={classes.alert}>
+            <p>Password and password confirmation do not match!</p>
+          </div>
+        )}
         <br />
         <div
           className={

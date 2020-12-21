@@ -156,7 +156,7 @@ const useStyles = makeStyles(() => ({
   passwordLabel: {
     color: "#000",
   },
-  emailAlert: {
+  alert: {
     color: "red",
     textAlign: "center",
   },

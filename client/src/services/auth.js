@@ -18,9 +18,6 @@ export const registerUser = async (registerData) => {
     api.defaults.headers.common.authorization = `Bearer ${resp.data.token}`;
     return resp.data.user;
   } catch (error) {
-    // alert(
-    //   "Sign-up failed! check these: \n 1. Make sure password is at least 8 characters. \n 2. Make sure email entered is a valid email address. \n 3. Make sure email entered is unique"
-    // );
     throw error;
   }
 };
