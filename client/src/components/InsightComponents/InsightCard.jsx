@@ -78,7 +78,11 @@ function InsightCard({
         </Link>
         <div className={classes.userContainer}>
           <Link className={classes.link} to={`/users/${insight?.user?.id}`}>
-            <AccountCircleIcon className={classes.userIcon} />
+            {insight?.user?.image ? (
+              <img src={insight?.user?.image} alt={insight.user.name} />
+            ) : (
+              <AccountCircleIcon className={classes.userIcon} />
+            )}
             <Typography className={classes.userName}>
               {insight?.user?.name ? insight?.user?.name : <>Anonymous</>}
             </Typography>

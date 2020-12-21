@@ -160,5 +160,11 @@ const useStyles = makeStyles(() => ({
     color: "red",
     textAlign: "center",
   },
+  middleWrapper: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+  },
 }));
 export { useStyles };
