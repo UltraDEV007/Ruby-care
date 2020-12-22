@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
     width: "40px",
     borderRadius: "40px",
     marginRight: "10px",
+    objectFit: "cover",
   },
   logOut: {
     marginLeft: "20px",
