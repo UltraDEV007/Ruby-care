@@ -44,7 +44,9 @@ const Div = styled.div`
     border-radius: 40px;
     margin-top: 3px;
     margin-right: 5px;
+    object-fit: cover;
   }
+
   .users-container {
     text-align: center;
     height: auto;
