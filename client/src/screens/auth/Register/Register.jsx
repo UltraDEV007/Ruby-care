@@ -71,7 +71,6 @@ export default function Register() {
     password: "",
     birthday: "",
     gender: "",
-    image: "",
   });
   const { name, email, password, birthday, gender, image } = formData;
   const [passwordConfirm, setPasswordConfirm] = useState();
@@ -79,7 +78,7 @@ export default function Register() {
   const handleCameraClick = (e) => {
     e.preventDefault();
     setAddImage((currentState) => !currentState);
-    !addImage &&
+    addImage &&
       setFormData({
         name: name,
         email: email,
