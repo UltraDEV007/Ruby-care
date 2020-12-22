@@ -79,7 +79,15 @@ export default function Register() {
   const handleCameraClick = (e) => {
     e.preventDefault();
     setAddImage((currentState) => !currentState);
-    addImage && setFormData({ image: "" });
+    !addImage &&
+      setFormData({
+        name: name,
+        email: email,
+        password: password,
+        birthday: birthday,
+        gender: gender,
+        image: "",
+      });
     imagePreview && setImagePreview(false);
   };
 

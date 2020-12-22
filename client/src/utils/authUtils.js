@@ -16,11 +16,11 @@ export const checkEmailValidity = (email, setEmailAlert) => {
 
 export const checkPasswordLength = (password, setPasswordAlert) => {
   if (typeof password !== undefined) {
-    if (password.length < 8) {
+    if (password?.length < 8) {
       setPasswordAlert(true);
     }
   }
-  if (password.length >= 8) {
+  if (password?.length >= 8) {
     setPasswordAlert(false);
   }
 };
