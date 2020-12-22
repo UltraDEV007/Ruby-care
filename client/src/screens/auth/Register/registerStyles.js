@@ -178,6 +178,7 @@ const useStyles = makeStyles(() => ({
     height: "40px",
     width: "40px",
     borderRadius: "40px",
+    objectFit: "cover",
   },
   bigIcon: {
     height: "100px",
@@ -194,6 +195,7 @@ const useStyles = makeStyles(() => ({
     marginBottom: "5px",
     border: "1px solid white",
     borderRadius: "50%",
+    objectFit: "cover",
   },
   cameraIcon: {
     cursor: "pointer",
