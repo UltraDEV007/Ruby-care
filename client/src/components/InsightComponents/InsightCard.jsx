@@ -79,7 +79,11 @@ function InsightCard({
         <div className={classes.userContainer}>
           <Link className={classes.link} to={`/users/${insight?.user?.id}`}>
             {insight?.user?.image ? (
-              <img src={insight?.user?.image} alt={insight.user.name} />
+              <img
+                src={insight?.user?.image}
+                className={classes.userImage}
+                alt={insight.user.name}
+              />
             ) : (
               <AccountCircleIcon className={classes.userIcon} />
             )}

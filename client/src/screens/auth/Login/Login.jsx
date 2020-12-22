@@ -73,6 +73,13 @@ export default function Login() {
           >
             You're already logged in, is this you?
             <br />
+            {currentUser?.image && (
+              <img
+                className={classes.userLoggedImage}
+                src={currentUser?.image}
+                alt={currentUser?.name}
+              />
+            )}
             Name: {currentUser?.name}
             <br />
             Email: {currentUser?.email}

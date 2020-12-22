@@ -94,6 +94,12 @@ const useStyles = makeStyles((theme) => ({
   unLikedInsight: {
     cursor: "pointer",
   },
+  userImage: {
+    height: "40px",
+    width: "40px",
+    borderRadius: "40px",
+    marginRight: "8px",
+  },
 }));
 
 export { useStyles };

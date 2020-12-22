@@ -148,5 +148,13 @@ const useStyles = makeStyles({
   passwordLabel: {
     color: "#000",
   },
+  userLoggedImage: {
+    height: "50px",
+    width: "50px",
+    alignSelf: "center",
+    margin: "20px",
+    border: "1px solid white",
+    borderRadius: "50%",
+  },
 });
 export { useStyles };

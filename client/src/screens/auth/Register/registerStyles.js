@@ -166,14 +166,6 @@ const useStyles = makeStyles(() => ({
     alignItems: "center",
     justifyContent: "center",
   },
-  imageContainer: {
-    position: "absolute",
-    display: "flex",
-    alignItems: "center",
-    flexDirection: "column",
-    left: "200px",
-    top: "200px",
-  },
   userImage: {
     height: "40px",
     width: "40px",

@@ -18,6 +18,7 @@ import NativeSelect from "@material-ui/core/NativeSelect";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import { getOneUser } from "../../../services/users";
 import { toTitleCase } from "../../../utils/toTitleCase";
+import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
 import {
   DialogTitle,
   DialogContent,
@@ -38,8 +39,17 @@ export default function UserEdit({
     gender: "",
     password: "",
     passwordConfirm: "",
+    image: "",
   });
-  const { name, birthday, gender, email, password, passwordConfirm } = formData;
+  const {
+    name,
+    birthday,
+    gender,
+    email,
+    password,
+    passwordConfirm,
+    image,
+  } = formData;
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
 
@@ -93,7 +103,11 @@ export default function UserEdit({
       <Form onSubmit={handleSubmit}>
         <DialogContent dividers>
           <div className="input-container">
-            <AccountCircleIcon className="icon" />
+            {!image ? (
+              <AccountCircleIcon className="icon" />
+            ) : (
+              <img className="user-image" src={image} alt="invalid url" />
+            )}
             <FormControl className="name">
               <InputLabel htmlFor="name">Name</InputLabel>
               <Input
@@ -204,15 +218,22 @@ export default function UserEdit({
             />
           </div>
           <br />
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              flexDirection: "column",
-              alignItems: "center",
-              marginBottom: "10px",
-            }}
-          >
+          <div className="input-container">
+            <AddPhotoAlternateIcon />
+            <FormControl>
+              <InputLabel htmlFor="image">Image Link</InputLabel>
+              <Input
+                className="input-field"
+                type="text"
+                name="image"
+                value={image}
+                onChange={handleChange}
+              />
+            </FormControl>
+          </div>
+          <br />
+          <br />
+          <div className="gender-container">
             <FormHelperText style={{ marginLeft: "-20px" }}>
               What's your gender?
             </FormHelperText>

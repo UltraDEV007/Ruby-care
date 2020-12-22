@@ -386,7 +386,6 @@ export default function Register() {
                   Image Link
                 </InputLabel>
                 <Input
-                  required
                   className={
                     darkMode === "light"
                       ? classes.inputField
