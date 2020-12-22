@@ -18,7 +18,7 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     flexDirection: "row",
     padding: "20px",
-    marginBottom: (props) => (props.currentUser ? "-10px" : "20px"),
+    marginBottom: (props) => (props.currentUser ? "-10px" : "0"),
   },
   title: {
     fontFamily: ["Montserrat", "sans-serif"].join(","),
@@ -179,7 +179,15 @@ const useStyles = makeStyles(() => ({
     width: "40px",
     borderRadius: "40px",
   },
-  userLoggedImage: {
+  bigIcon: {
+    height: "100px",
+    width: "100px",
+    alignSelf: "center",
+    marginBottom: "5px",
+    border: (props) => props.imagePreview && "1px solid white",
+    borderRadius: (props) => props.imagePreview && "50%",
+  },
+  bigUserImage: {
     height: "100px",
     width: "100px",
     alignSelf: "center",
@@ -187,6 +195,27 @@ const useStyles = makeStyles(() => ({
     marginTop: "20px",
     border: "1px solid white",
     borderRadius: "50%",
+  },
+  cameraIcon: {
+    cursor: "pointer",
+  },
+  crossIcon: {
+    cursor: "pointer",
+  },
+  visibility: {
+    color: (props) => (props.darkMode === "dark" ? "#fff" : "#000"),
+  },
+  passwordIcon: {
+    marginRight: "-10px",
+  },
+  genderContainer: {
+    display: "flex",
+    justifyContent: "center",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  iconButton: {
+    margin: "-25px",
   },
 }));
 export { useStyles };

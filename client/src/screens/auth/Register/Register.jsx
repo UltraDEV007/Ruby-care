@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useStateValue } from "../../../components/Context/CurrentUserContext";
 import { DarkModeContext } from "../../../components/Context/DarkModeContext";
 import { registerUser } from "../../../services/auth";
@@ -23,10 +23,13 @@ import { getAge } from "../../../utils/getAge";
 import { useStyles } from "./registerStyles";
 import EventIcon from "@material-ui/icons/Event";
 import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
+import CameraIcon from "@material-ui/icons/CameraAlt";
+import CrossIcon from "@material-ui/icons/Clear";
 import {
   checkEmailValidity,
   checkPasswordLength,
 } from "../../../utils/authUtils";
+import { getAllUsers } from "../../../services/users";
 
 export default function Register() {
   const [{ currentUser }, dispatch] = useStateValue();
@@ -34,15 +37,30 @@ export default function Register() {
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
   const [passwordAlert, setPasswordAlert] = useState(false);
   const [darkMode] = useContext(DarkModeContext);
-  const [emailAlert, setEmailAlert] = useState(false);
+  const [emailValidityAlert, setEmailValidityAlert] = useState(false);
   const [addImage, setAddImage] = useState(false);
-
+  const [imagePreview, setImagePreview] = useState(false);
   const [passwordConfirmAlert, setPasswordConfirmAlert] = useState(false);
+  const [allUsers, setAllUsers] = useState([]);
+  const [emailUniquenessAlert, setEmailUniquenessAlert] = useState(false);
+
   const classes = useStyles({ darkMode, currentUser });
   const history = useHistory();
 
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const userData = await getAllUsers();
+      setAllUsers(userData);
+    };
+    fetchUsers();
+  }, []);
+
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
+  };
+
+  const handleClickImagePreview = () => {
+    setImagePreview(!imagePreview);
   };
 
   const handleMouseDownPassword = (event) => {
@@ -55,25 +73,23 @@ export default function Register() {
     dispatch({ type: "SET_USER", currentUser: userData });
     history.push("/");
   };
-
+  const [image, setImage] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
     birthday: "",
     gender: "",
-    image: "",
     passwordConfirm: "",
   });
-  const {
-    name,
-    email,
-    password,
-    birthday,
-    gender,
-    image,
-    passwordConfirm,
-  } = formData;
+  const { name, email, password, birthday, gender, passwordConfirm } = formData;
+
+  const handleCameraClick = (e) => {
+    e.preventDefault();
+    setAddImage((currentState) => !currentState);
+    addImage && setImage("");
+    imagePreview && setImagePreview(false);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -89,7 +105,12 @@ export default function Register() {
       setPasswordConfirmAlert(true);
     }
     checkPasswordLength(password, setPasswordAlert);
-    checkEmailValidity(email, setEmailAlert);
+    checkEmailValidity(email, setEmailValidityAlert);
+    if (allUsers.find((user) => user.email === email)) {
+      setEmailUniquenessAlert(true);
+    } else {
+      setEmailUniquenessAlert(false);
+    }
     handleRegister(formData);
   };
 
@@ -112,29 +133,50 @@ export default function Register() {
             />
           </div>
           {currentUser && (
-            <Typography
-              className={darkMode === "light" ? classes.user : classes.userDark}
-            >
-              You already have an account, is this you?
-              {currentUser?.image && (
-                <img
-                  className={classes.userLoggedImage}
-                  src={currentUser?.image}
-                  alt={currentUser?.name}
-                />
-              )}
+            <>
+              <Typography
+                className={
+                  darkMode === "light" ? classes.user : classes.userDark
+                }
+              >
+                You already have an account, is this you?
+                <br />
+                Name: {currentUser?.name}
+                <br />
+                Email: {currentUser?.email}
+                <br />
+                Age: {getAge(currentUser?.birthday)}
+                <br />
+                Gender: {currentUser?.gender}
+                <br />
+              </Typography>
               <br />
-              Name: {currentUser?.name}
-              <br />
-              Email: {currentUser?.email}
-              <br />
-              Age: {getAge(currentUser?.birthday)}
-              <br />
-              Gender: {currentUser?.gender}
-              <br />
-            </Typography>
+            </>
           )}
 
+          <div>
+            {imagePreview ? (
+              <img
+                className={classes.bigUserImage}
+                src={image}
+                alt="Invalid URL"
+              />
+            ) : (
+              <AccountCircleIcon className={classes.bigIcon} />
+            )}
+            <IconButton
+              onMouseDown={(e) => e.preventDefault()}
+              className={classes.iconButton}
+              onClick={handleCameraClick}
+            >
+              {!addImage ? (
+                <CameraIcon className={classes.cameraIcon} />
+              ) : (
+                <CrossIcon className={classes.crossIcon} />
+              )}
+            </IconButton>
+          </div>
+          <br />
           <form className={classes.form} onSubmit={handleSubmit}>
             <div
               className={
@@ -143,7 +185,7 @@ export default function Register() {
                   : classes.inputContainerDark
               }
             >
-              {!image ? (
+              {!imagePreview ? (
                 <AccountCircleIcon />
               ) : (
                 <img
@@ -176,7 +218,6 @@ export default function Register() {
                 />
               </FormControl>
             </div>
-            <br />
             <div
               className={
                 darkMode === "light"
@@ -209,12 +250,22 @@ export default function Register() {
                 />
               </FormControl>
             </div>
-            {emailAlert && (
-              <div className={classes.alert}>
-                <p>please enter a valid email address</p>
-              </div>
+            {emailValidityAlert && (
+              <>
+                <div className={classes.alert}>
+                  <p>Please enter a valid email address</p>
+                </div>
+                <br />
+              </>
             )}
-            <br />
+            {emailUniquenessAlert && (
+              <>
+                <div className={classes.alert}>
+                  <p>This email address already exists!</p>
+                </div>
+                <br />
+              </>
+            )}
             <div
               className={
                 darkMode === "light"
@@ -247,28 +298,19 @@ export default function Register() {
                   value={password}
                   onChange={handleChange}
                   endAdornment={
-                    <InputAdornment position="end">
+                    <InputAdornment
+                      className={classes.passwordIcon}
+                      position="end"
+                    >
                       <IconButton
                         aria-label="toggle password visibility"
                         onClick={handleClickShowPassword}
                         onMouseDown={handleMouseDownPassword}
                       >
                         {showPassword ? (
-                          <Visibility
-                            style={
-                              darkMode === "dark"
-                                ? { color: "#fff" }
-                                : { color: "#000" }
-                            }
-                          />
+                          <Visibility className={classes.visibility} />
                         ) : (
-                          <VisibilityOff
-                            style={
-                              darkMode === "dark"
-                                ? { color: "#fff" }
-                                : { color: "#000" }
-                            }
-                          />
+                          <VisibilityOff className={classes.visibility} />
                         )}
                       </IconButton>
                     </InputAdornment>
@@ -277,11 +319,13 @@ export default function Register() {
               </FormControl>
             </div>
             {passwordAlert && (
-              <div className={classes.alert}>
-                <p>Password has to be 8 characters at minimum</p>
-              </div>
+              <>
+                <div className={classes.alert}>
+                  <p>Password has to be 8 characters at minimum</p>
+                </div>
+                <br />
+              </>
             )}
-            <br />
             <div
               className={
                 darkMode === "light"
@@ -314,7 +358,10 @@ export default function Register() {
                   value={passwordConfirm}
                   onChange={handleChange}
                   endAdornment={
-                    <InputAdornment position="end">
+                    <InputAdornment
+                      className={classes.passwordIcon}
+                      position="end"
+                    >
                       <IconButton
                         aria-label="toggle password visibility"
                         onClick={() =>
@@ -323,21 +370,9 @@ export default function Register() {
                         onMouseDown={handleMouseDownPassword}
                       >
                         {showPasswordConfirm ? (
-                          <Visibility
-                            style={
-                              darkMode === "dark"
-                                ? { color: "#fff" }
-                                : { color: "#000" }
-                            }
-                          />
+                          <Visibility className={classes.visibility} />
                         ) : (
-                          <VisibilityOff
-                            style={
-                              darkMode === "dark"
-                                ? { color: "#fff" }
-                                : { color: "#000" }
-                            }
-                          />
+                          <VisibilityOff className={classes.visibility} />
                         )}
                       </IconButton>
                     </InputAdornment>
@@ -346,11 +381,13 @@ export default function Register() {
               </FormControl>
             </div>
             {passwordConfirmAlert && (
-              <div className={classes.alert}>
-                <p>Password and password confirmation do not match!</p>
-              </div>
+              <>
+                <div className={classes.alert}>
+                  <p>Password and password confirmation do not match!</p>
+                </div>
+                <br />
+              </>
             )}
-            <br />
             <div
               className={
                 darkMode === "light"
@@ -359,7 +396,6 @@ export default function Register() {
               }
             >
               <EventIcon className={classes.lockIcon} />
-
               <TextField
                 id="date"
                 required
@@ -378,46 +414,58 @@ export default function Register() {
                 onChange={handleChange}
               />
             </div>
-            <br />
-            <div
-              className={
-                darkMode === "light"
-                  ? classes.inputContainer
-                  : classes.inputContainerDark
-              }
-            >
-              <AddPhotoAlternateIcon />
-              <FormControl>
-                <InputLabel
-                  className={
-                    darkMode === "light" ? classes.label : classes.darkLabel
-                  }
-                  htmlFor="image"
-                >
-                  Image Link
-                </InputLabel>
-                <Input
-                  className={
-                    darkMode === "light"
-                      ? classes.inputField
-                      : classes.inputFieldDark
-                  }
-                  type="text"
-                  name="image"
-                  value={image}
-                  onChange={handleChange}
-                />
-              </FormControl>
-            </div>
-            <br />
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
+            {addImage && (
+              <div
+                className={
+                  darkMode === "light"
+                    ? classes.inputContainer
+                    : classes.inputContainerDark
+                }
+              >
+                <AddPhotoAlternateIcon />
+                <FormControl>
+                  <InputLabel
+                    className={
+                      darkMode === "light" ? classes.label : classes.darkLabel
+                    }
+                    htmlFor="image"
+                  >
+                    Image Link
+                  </InputLabel>
+                  <Input
+                    className={
+                      darkMode === "light"
+                        ? classes.inputField
+                        : classes.inputFieldDark
+                    }
+                    type="text"
+                    name="image"
+                    value={image}
+                    disabled={imagePreview}
+                    onChange={(e) => setImage(e.target.value)}
+                    endAdornment={
+                      <InputAdornment
+                        className={classes.passwordIcon}
+                        position="end"
+                      >
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickImagePreview}
+                          onMouseDown={handleMouseDownPassword}
+                        >
+                          {imagePreview ? (
+                            <Visibility className={classes.visibility} />
+                          ) : (
+                            <VisibilityOff className={classes.visibility} />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                  />
+                </FormControl>
+              </div>
+            )}
+            <div className={classes.genderContainer}>
               <FormHelperText style={{ marginLeft: "-20px" }}>
                 What's your gender?
               </FormHelperText>
