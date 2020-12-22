@@ -38,6 +38,13 @@ const Div = styled.div`
     font-size: 36px;
   }
 
+  .user-image {
+    height: 40px;
+    width: 40px;
+    border-radius: 40px;
+    margin-top: 3px;
+    margin-right: 5px;
+  }
   .users-container {
     text-align: center;
     height: auto;

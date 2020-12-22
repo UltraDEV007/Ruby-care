@@ -35,6 +35,14 @@ const Wrapper = styled.div`
     margin-bottom: -2px;
     font-size: 30px;
   }
+  .user-image {
+    height: 150px;
+    width: 150px;
+    align-self: center;
+    margin: 20px;
+    border: 1px solid white;
+    border-radius: 50%;
+  }
   .body {
     margin: 0 auto;
     margin-top: 20px;

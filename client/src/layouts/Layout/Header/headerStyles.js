@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       transition: "transform 300ms ease-in-out",
       cursor: "pointer",
-      transform: "scale(1.2)",
+      transform: "scale(1.1)",
     },
   },
   userIcon: {
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       transition: "transform 300ms ease-in",
       cursor: "pointer",
-      transform: "scale(1.2)",
+      transform: "scale(1.1)",
     },
   },
 }));

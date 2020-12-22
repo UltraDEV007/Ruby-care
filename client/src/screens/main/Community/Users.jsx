@@ -21,7 +21,12 @@ const Users = ({ allUsers, loaded }) => {
   const queriedUsers = React.Children.toArray(
     getUsers().map((user) => (
       <Link darkMode={darkMode} to={`/users/${user.id}`} className="link">
-        <AccountCircleIcon className="user-icon" /> <h1>{user.name}</h1>
+        {!user?.image ? (
+          <AccountCircleIcon className="user-icon" />
+        ) : (
+          <img className="user-image" src={user?.image} alt={user?.name} />
+        )}{" "}
+        <h1>{user?.name}</h1>
       </Link>
     ))
   );

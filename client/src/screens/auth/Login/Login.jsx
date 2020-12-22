@@ -72,7 +72,6 @@ export default function Login() {
             className={darkMode === "light" ? classes.user : classes.userDark}
           >
             You're already logged in, is this you?
-            <br />
             {currentUser?.image && (
               <img
                 className={classes.userLoggedImage}
@@ -80,6 +79,7 @@ export default function Login() {
                 alt={currentUser?.name}
               />
             )}
+            <br />
             Name: {currentUser?.name}
             <br />
             Email: {currentUser?.email}

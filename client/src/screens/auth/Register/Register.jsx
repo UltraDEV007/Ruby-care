@@ -116,6 +116,13 @@ export default function Register() {
               className={darkMode === "light" ? classes.user : classes.userDark}
             >
               You already have an account, is this you?
+              {currentUser?.image && (
+                <img
+                  className={classes.userLoggedImage}
+                  src={currentUser?.image}
+                  alt={currentUser?.name}
+                />
+              )}
               <br />
               Name: {currentUser?.name}
               <br />
@@ -139,7 +146,11 @@ export default function Register() {
               {!image ? (
                 <AccountCircleIcon />
               ) : (
-                <img className={classes.userImage} src={image} alt={name} />
+                <img
+                  className={classes.userImage}
+                  src={image}
+                  alt={"invalid url"}
+                />
               )}
               <FormControl>
                 <InputLabel

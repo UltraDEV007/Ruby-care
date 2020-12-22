@@ -64,6 +64,10 @@ const useStyles = makeStyles(() => ({
     textDecoration: "none",
     marginLeft: "40px",
     marginBottom: (props) => (props.currentUser ? "5px" : "20px"),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    textAlign: "center",
   },
   userDark: {
     fontFamily: ["Montserrat", "sans-serif"].join(","),
@@ -72,6 +76,10 @@ const useStyles = makeStyles(() => ({
     color: "#fff",
     marginBottom: (props) => (props.currentUser ? "5px" : "20px"),
     marginLeft: "40px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    textAlign: "center",
   },
   darkLabel: {
     color: "#fff",
@@ -170,6 +178,15 @@ const useStyles = makeStyles(() => ({
     height: "40px",
     width: "40px",
     borderRadius: "40px",
+  },
+  userLoggedImage: {
+    height: "100px",
+    width: "100px",
+    alignSelf: "center",
+    marginBottom: "5px",
+    marginTop: "20px",
+    border: "1px solid white",
+    borderRadius: "50%",
   },
 }));
 export { useStyles };

@@ -44,9 +44,12 @@ export default function UserDetail({ getOneUser }) {
       <div className="content-container">
         <div className="title-container">
           <Typography className="title">
-            <AccountCircleIcon className="user-icon" />
+            {!user?.image && <AccountCircleIcon className="user-icon" />}
             {user?.name}
           </Typography>
+          {user?.image && (
+            <img className="user-image" src={user?.image} alt={user?.name} />
+          )}
           <Typography className="age">
             Age: {getAge(user?.birthday)} years old
           </Typography>
