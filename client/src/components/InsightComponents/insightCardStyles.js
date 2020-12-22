@@ -99,6 +99,7 @@ const useStyles = makeStyles((theme) => ({
     width: "40px",
     borderRadius: "40px",
     marginRight: "8px",
+    objectFit: "cover",
   },
 }));
 
