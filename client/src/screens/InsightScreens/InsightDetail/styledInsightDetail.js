@@ -64,6 +64,13 @@ const Wrapper = styled.div`
     cursor: pointer;
     transform: scale(1.09);
   }
+  .user-image {
+    height: 40px;
+    width: 40px;
+    border-radius: 40px;
+    margin-right: 8px;
+    object-fit: cover;
+  }
   .link {
     text-decoration: none;
     color: ${({ darkMode }) => (darkMode === "dark" ? "#fff" : "#000")};

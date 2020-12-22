@@ -54,8 +54,16 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
             <Typography className="title">&nbsp;{insight?.title}</Typography>
             <Link className="link" to={`/users/${insight?.user?.id}`}>
               <Typography className="user-name">
-                <AccountCircleIcon className="user-icon" />
-                &nbsp;{insight.user?.name}
+                {!insight?.user?.image ? (
+                  <AccountCircleIcon className="user-icon" />
+                ) : (
+                  <img
+                    className="user-image"
+                    src={insight?.user?.image}
+                    alt={insight?.user?.name}
+                  />
+                )}
+                &nbsp;{insight?.user?.name}
               </Typography>
             </Link>
             <Typography>
