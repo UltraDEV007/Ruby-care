@@ -197,9 +197,11 @@ const useStyles = makeStyles(() => ({
   },
   cameraIcon: {
     cursor: "pointer",
+    color: (props) => props.darkMode === "light" && "#000",
   },
   crossIcon: {
     cursor: "pointer",
+    color: (props) => props.darkMode === "light" && "#000",
   },
   visibility: {
     color: (props) => (props.darkMode === "dark" ? "#fff" : "#000"),

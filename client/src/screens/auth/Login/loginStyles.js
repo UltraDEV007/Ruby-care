@@ -78,7 +78,7 @@ const useStyles = makeStyles({
   },
   user: {
     fontFamily: ["Montserrat", "sans-serif"].join(","),
-    fontSize: "10px",
+    fontSize: "15px",
     textDecoration: "none",
     padding: "20px",
     marginBottom: "20px",
