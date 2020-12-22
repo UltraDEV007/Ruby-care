@@ -410,5 +410,7 @@ Before Care I used an app called "Gali Health" to track my symptoms, however Gal
  - fixed an issue where unnecessary vertical scrolling was happening.
  - fixed a zoom bug in the register and login page where white overflow was showing in dark mode.
  
+ <br/>
+ 
  <strong>Dec 22nd, 2020:</strong>
  - You can now add an image when creating or editing an account, it's not required, so if an image isn't added, you get the default account circle icon.
