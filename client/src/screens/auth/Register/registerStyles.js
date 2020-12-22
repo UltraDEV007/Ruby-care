@@ -192,7 +192,6 @@ const useStyles = makeStyles(() => ({
     width: "100px",
     alignSelf: "center",
     marginBottom: "5px",
-    marginTop: "20px",
     border: "1px solid white",
     borderRadius: "50%",
   },

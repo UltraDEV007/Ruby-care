@@ -60,26 +60,26 @@ export default function Register() {
   };
 
   const handleRegister = async (registerData) => {
-    registerData.email = registerData.email.toLowerCase();
+    registerData.email = registerData?.email?.toLowerCase();
     const userData = await registerUser(registerData);
     dispatch({ type: "SET_USER", currentUser: userData });
     history.push("/");
   };
-  const [image, setImage] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
     birthday: "",
     gender: "",
-    passwordConfirm: "",
+    image: "",
   });
-  const { name, email, password, birthday, gender, passwordConfirm } = formData;
+  const { name, email, password, birthday, gender, image } = formData;
+  const [passwordConfirm, setPasswordConfirm] = useState();
 
   const handleCameraClick = (e) => {
     e.preventDefault();
     setAddImage((currentState) => !currentState);
-    addImage && setImage("");
+    addImage && setFormData({ image: "" });
     imagePreview && setImagePreview(false);
   };
 
@@ -351,7 +351,7 @@ export default function Register() {
                   id="passwordConfirm"
                   type={showPasswordConfirm ? "text" : "password"}
                   value={passwordConfirm}
-                  onChange={handleChange}
+                  onChange={(e) => setPasswordConfirm(e.target.value)}
                   endAdornment={
                     <InputAdornment
                       className={classes.passwordIcon}
@@ -437,7 +437,7 @@ export default function Register() {
                     name="image"
                     value={image}
                     disabled={imagePreview}
-                    onChange={(e) => setImage(e.target.value)}
+                    onChange={handleChange}
                     endAdornment={
                       <InputAdornment
                         className={classes.passwordIcon}
