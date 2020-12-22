@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { useStateValue } from "../../../components/Context/CurrentUserContext";
 import { DarkModeContext } from "../../../components/Context/DarkModeContext";
 import { registerUser } from "../../../services/auth";
@@ -25,11 +25,11 @@ import EventIcon from "@material-ui/icons/Event";
 import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
 import CameraIcon from "@material-ui/icons/CameraAlt";
 import CrossIcon from "@material-ui/icons/Clear";
+import FetchUsers from "../../../components/Helpers/FetchUsers";
 import {
   checkEmailValidity,
   checkPasswordLength,
 } from "../../../utils/authUtils";
-import { getAllUsers } from "../../../services/users";
 
 export default function Register() {
   const [{ currentUser }, dispatch] = useStateValue();
@@ -41,19 +41,11 @@ export default function Register() {
   const [addImage, setAddImage] = useState(false);
   const [imagePreview, setImagePreview] = useState(false);
   const [passwordConfirmAlert, setPasswordConfirmAlert] = useState(false);
-  const [allUsers, setAllUsers] = useState([]);
   const [emailUniquenessAlert, setEmailUniquenessAlert] = useState(false);
+  const [allUsers, setAllUsers] = useState([]);
 
   const classes = useStyles({ darkMode, currentUser });
   const history = useHistory();
-
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const userData = await getAllUsers();
-      setAllUsers(userData);
-    };
-    fetchUsers();
-  }, []);
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -101,9 +93,6 @@ export default function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (password !== passwordConfirm) {
-      setPasswordConfirmAlert(true);
-    }
     checkPasswordLength(password, setPasswordAlert);
     checkEmailValidity(email, setEmailValidityAlert);
     if (allUsers.find((user) => user.email === email)) {
@@ -111,11 +100,17 @@ export default function Register() {
     } else {
       setEmailUniquenessAlert(false);
     }
+    if (password !== passwordConfirm) {
+      return setPasswordConfirmAlert(true);
+    } else {
+      setPasswordConfirmAlert(false);
+    }
     handleRegister(formData);
   };
 
   return (
     <>
+      <FetchUsers setAllUsers={setAllUsers} />
       <div className={darkMode === "light" ? classes.root : classes.rootDark}>
         <div className={classes.middleWrapper}>
           <div className={classes.logoContainer}>
