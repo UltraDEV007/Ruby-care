@@ -116,6 +116,30 @@ export default function Register() {
     handleRegister(formData);
   };
 
+  const onImageSelected = (e) => {
+    const img = e.target.files[0];
+    const fileReader = new FileReader();
+    fileReader.addEventListener("load", () => {
+      setFormData({
+        name: name,
+        email: email,
+        password: password,
+        birthday: birthday,
+        gender: gender,
+        image: fileReader.result,
+      });
+      console.log(fileReader.result);
+      setImagePreview(true);
+    });
+    if (img) {
+      fileReader.readAsDataURL(img);
+    }
+  };
+
+  const selectImage = (e) => {
+    document.getElementById("image-upload").click();
+  };
+
   return (
     <>
       <FetchUsers setAllUsers={setAllUsers} />
@@ -170,7 +194,8 @@ export default function Register() {
             <IconButton
               onMouseDown={(e) => e.preventDefault()}
               className={classes.iconButton}
-              onClick={handleCameraClick}
+              // onClick={handleCameraClick}
+              onClick={selectImage}
             >
               {!addImage ? (
                 <CameraIcon className={classes.cameraIcon} />
@@ -417,6 +442,12 @@ export default function Register() {
                 onChange={handleChange}
               />
             </div>
+            <input
+              type="file"
+              id="image-upload"
+              style={{ visibility: "hidden" }}
+              onChange={onImageSelected}
+            />
             {addImage && (
               <div
                 className={
@@ -427,6 +458,9 @@ export default function Register() {
               >
                 <AddPhotoAlternateIcon />
                 <FormControl>
+                  {/* <button type="button" onClick={selectImage}>
+                    Select Image
+                  </button> */}
                   <InputLabel
                     className={
                       darkMode === "light" ? classes.label : classes.darkLabel
