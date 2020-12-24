@@ -29,6 +29,9 @@ export default function MedCard({
 
   const onSave = (formData, id) => {
     handleUpdate(formData, id);
+    if (compareDateWithCurrentTime(med.time) === 1) {
+      setTaken(false);
+    }
     setEdited(true);
     setTimeout(async () => {
       setEdited(false);

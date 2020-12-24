@@ -25,7 +25,7 @@ const Users = ({ allUsers, loaded }) => {
           <AccountCircleIcon className="user-icon" />
         ) : (
           <img className="user-image" src={user?.image} alt={user?.name} />
-        )}{" "}
+        )}
         <h1>{user?.name}</h1>
       </Link>
     ))
