@@ -57,9 +57,10 @@ export default function Settings() {
 
   const classes = useStyles({ darkMode });
 
+  // useState assigns a default value for a variable, an annonymous function is used to set the default value,
+  // we have to use an annonymous funciton because the initial value is decided based on the logic for lines 63-68
   const [switchState, setSwitchState] = useState(() => {
     let state = localStorage.getItem("switchState");
-
     if (state !== null) {
       return state === "true" ? true : false;
     }
