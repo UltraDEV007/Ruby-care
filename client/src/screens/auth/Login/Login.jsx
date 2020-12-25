@@ -96,13 +96,7 @@ export default function Login() {
             handleLogin(formData);
           }}
         >
-          <div
-            className={
-              darkMode === "light"
-                ? classes.inputContainer
-                : classes.inputContainerDark
-            }
-          >
+          <div className={classes.inputContainer}>
             <EmailIcon />
             <FormControl>
               <InputLabel
@@ -128,13 +122,7 @@ export default function Login() {
             </FormControl>
           </div>
           <br />
-          <div
-            className={
-              darkMode === "light"
-                ? classes.inputContainer
-                : classes.inputContainerDark
-            }
-          >
+          <div className={classes.inputContainer}>
             <LockIcon className={classes.lockIcon} />
             <FormControl>
               <InputLabel

@@ -135,12 +135,7 @@ const useStyles = makeStyles({
   inputContainer: {
     display: "flex",
     alignItems: "center",
-    color: "black",
-  },
-  inputContainerDark: {
-    display: "flex",
-    alignItems: "center",
-    color: "#fff",
+    color: ({ darkMode }) => (darkMode === "light" ? "black" : "white"),
   },
   darkLabel: {
     color: "#fff",
@@ -162,7 +157,8 @@ const useStyles = makeStyles({
     alignSelf: "center",
     marginBottom: "5px",
     marginTop: "20px",
-    border: "1px solid white",
+    border: ({ darkMode }) =>
+      darkMode === "dark" ? "1px solid white" : "1px solid #000",
     borderRadius: "50%",
   },
 });

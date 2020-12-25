@@ -82,7 +82,8 @@ const useStyles = makeStyles((theme) => ({
     width: "150px",
     alignSelf: "center",
     margin: "20px",
-    border: "1px solid white",
+    border: (props) =>
+      props.darkMode === "dark" ? "1px solid white" : "1px solid #000",
     borderRadius: "50%",
     objectFit: "cover",
   },

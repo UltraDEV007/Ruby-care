@@ -188,11 +188,7 @@ export default function Register() {
               {!imagePreview ? (
                 <AccountCircleIcon />
               ) : (
-                <img
-                  className={classes.userImage}
-                  src={image}
-                  alt={"invalid url"}
-                />
+                <img className={classes.userImage} src={image} alt={name} />
               )}
               <FormControl>
                 <InputLabel

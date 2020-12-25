@@ -54,10 +54,10 @@ function Search({ search, setSearch }) {
         id="search"
         placeholder={checkPath()}
         value={search}
-        disableUnderline
         onChange={handleSearch}
         inputProps={{ maxLength: 70 }}
         InputProps={{
+          disableUnderline: true,
           endAdornment: (
             <InputAdornment onClick={toggleSearch} className="icon">
               <div class="vl"></div>
