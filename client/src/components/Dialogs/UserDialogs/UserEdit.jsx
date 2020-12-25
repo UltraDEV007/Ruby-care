@@ -18,13 +18,16 @@ import NativeSelect from "@material-ui/core/NativeSelect";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import { getOneUser } from "../../../services/users";
 import { toTitleCase } from "../../../utils/toTitleCase";
-import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
+import CameraIcon from "@material-ui/icons/CameraAlt";
+import ClearIcon from "@material-ui/icons/Clear";
+
 import {
   DialogTitle,
   DialogContent,
   DialogActions,
 } from "../../Form/DialogComponents";
 import Form from "./StyledUserEdit";
+import { DarkModeContext } from "../../Context/DarkModeContext";
 
 export default function UserEdit({
   handleOpen,
@@ -52,13 +55,47 @@ export default function UserEdit({
   } = formData;
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
+  const [darkMode] = React.useContext(DarkModeContext);
 
+  const handleImageClear = () => {
+    setFormData({
+      name: name,
+      birthday: birthday,
+      email: email,
+      gender: gender,
+      password: password,
+      passwordConfirm: passwordConfirm,
+      image: "",
+    });
+  };
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
+  };
+
+  const onImageSelected = (e) => {
+    const img = e.target.files[0];
+    const fileReader = new FileReader();
+    fileReader.addEventListener("load", () => {
+      setFormData({
+        name: name,
+        email: email,
+        password: password,
+        birthday: birthday,
+        gender: gender,
+        image: fileReader.result,
+      });
+    });
+    if (img) {
+      fileReader.readAsDataURL(img);
+    }
+  };
+
+  const selectImage = () => {
+    document.getElementById("image-upload").click();
   };
 
   const handleChange = (e) => {
@@ -100,8 +137,36 @@ export default function UserEdit({
         <Typography className="title">Edit Account</Typography>
       </DialogTitle>
 
-      <Form onSubmit={handleSubmit}>
+      <Form darkMode={darkMode} image={image} onSubmit={handleSubmit}>
         <DialogContent dividers>
+          <div className="user-image-container">
+            {image ? (
+              <img
+                className="big-user-image"
+                src={image}
+                alt={currentUser?.name}
+              />
+            ) : (
+              <AccountCircleIcon className="big-icon" />
+            )}
+            <footer className="picture-buttons">
+              <IconButton
+                onMouseDown={(e) => e.preventDefault()}
+                className="icon-button clear"
+                onClick={handleImageClear}
+              >
+                <ClearIcon className="big-camera-icon" />
+              </IconButton>
+              <IconButton
+                onMouseDown={(e) => e.preventDefault()}
+                className="icon-button"
+                onClick={selectImage}
+              >
+                <CameraIcon className="big-camera-icon" />
+              </IconButton>
+            </footer>
+          </div>
+
           <div className="input-container">
             {!image ? (
               <AccountCircleIcon className="icon" />
@@ -156,7 +221,11 @@ export default function UserEdit({
                       onClick={handleClickShowPassword}
                       onMouseDown={handleMouseDownPassword}
                     >
-                      {showPassword ? <Visibility /> : <VisibilityOff />}
+                      {showPassword ? (
+                        <Visibility className="visibility" />
+                      ) : (
+                        <VisibilityOff className="visibility" />
+                      )}
                     </IconButton>
                   </InputAdornment>
                 }
@@ -187,7 +256,11 @@ export default function UserEdit({
                       }
                       onMouseDown={handleMouseDownPassword}
                     >
-                      {showPasswordConfirm ? <Visibility /> : <VisibilityOff />}
+                      {showPasswordConfirm ? (
+                        <Visibility className="visibility" />
+                      ) : (
+                        <VisibilityOff className="visibility" />
+                      )}
                     </IconButton>
                   </InputAdornment>
                 }
@@ -216,23 +289,13 @@ export default function UserEdit({
               value={birthday}
               onChange={handleChange}
             />
+            <input
+              type="file"
+              id="image-upload"
+              style={{ visibility: "hidden" }}
+              onChange={onImageSelected}
+            />
           </div>
-          <br />
-          <div className="input-container">
-            <AddPhotoAlternateIcon />
-            <FormControl>
-              <InputLabel htmlFor="image">Image Link</InputLabel>
-              <Input
-                className="input-field"
-                type="text"
-                name="image"
-                value={image}
-                onChange={handleChange}
-              />
-            </FormControl>
-          </div>
-          <br />
-          <br />
           <div className="gender-container">
             <FormHelperText style={{ marginLeft: "-20px" }}>
               What's your gender?
@@ -260,7 +323,7 @@ export default function UserEdit({
               </NativeSelect>
             </FormControl>
           </div>
-
+          <br />
           <DialogActions>
             <Button type="submit" variant="contained" color="primary">
               Save

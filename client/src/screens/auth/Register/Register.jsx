@@ -22,9 +22,7 @@ import TextField from "@material-ui/core/TextField";
 import { getAge } from "../../../utils/getAge";
 import { useStyles } from "./registerStyles";
 import EventIcon from "@material-ui/icons/Event";
-import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
 import CameraIcon from "@material-ui/icons/CameraAlt";
-import CrossIcon from "@material-ui/icons/Clear";
 import FetchUsers from "../../../components/Helpers/FetchUsers";
 import {
   checkEmailValidity,
@@ -38,7 +36,6 @@ export default function Register() {
   const [passwordAlert, setPasswordAlert] = useState(false);
   const [darkMode] = useContext(DarkModeContext);
   const [emailValidityAlert, setEmailValidityAlert] = useState(false);
-  const [addImage, setAddImage] = useState(false);
   const [imagePreview, setImagePreview] = useState(false);
   const [passwordConfirmAlert, setPasswordConfirmAlert] = useState(false);
   const [emailUniquenessAlert, setEmailUniquenessAlert] = useState(false);
@@ -49,10 +46,6 @@ export default function Register() {
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
-  };
-
-  const handleClickImagePreview = () => {
-    setImagePreview(!imagePreview);
   };
 
   const handleMouseDownPassword = (event) => {
@@ -75,21 +68,6 @@ export default function Register() {
   });
   const { name, email, password, birthday, gender, image } = formData;
   const [passwordConfirm, setPasswordConfirm] = useState();
-
-  const handleCameraClick = (e) => {
-    e.preventDefault();
-    setAddImage((currentState) => !currentState);
-    addImage &&
-      setFormData({
-        name: name,
-        email: email,
-        password: password,
-        birthday: birthday,
-        gender: gender,
-        image: "",
-      });
-    imagePreview && setImagePreview(false);
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -128,7 +106,6 @@ export default function Register() {
         gender: gender,
         image: fileReader.result,
       });
-      console.log(fileReader.result);
       setImagePreview(true);
     });
     if (img) {
@@ -136,7 +113,7 @@ export default function Register() {
     }
   };
 
-  const selectImage = (e) => {
+  const selectImage = () => {
     document.getElementById("image-upload").click();
   };
 
@@ -186,7 +163,7 @@ export default function Register() {
               <img
                 className={classes.bigUserImage}
                 src={image}
-                alt="Invalid URL"
+                alt={currentUser?.name}
               />
             ) : (
               <AccountCircleIcon className={classes.bigIcon} />
@@ -194,14 +171,9 @@ export default function Register() {
             <IconButton
               onMouseDown={(e) => e.preventDefault()}
               className={classes.iconButton}
-              // onClick={handleCameraClick}
               onClick={selectImage}
             >
-              {!addImage ? (
-                <CameraIcon className={classes.cameraIcon} />
-              ) : (
-                <CrossIcon className={classes.crossIcon} />
-              )}
+              <CameraIcon className={classes.cameraIcon} />
             </IconButton>
           </div>
           <br />
@@ -448,60 +420,6 @@ export default function Register() {
               style={{ visibility: "hidden" }}
               onChange={onImageSelected}
             />
-            {addImage && (
-              <div
-                className={
-                  darkMode === "light"
-                    ? classes.inputContainer
-                    : classes.inputContainerDark
-                }
-              >
-                <AddPhotoAlternateIcon />
-                <FormControl>
-                  {/* <button type="button" onClick={selectImage}>
-                    Select Image
-                  </button> */}
-                  <InputLabel
-                    className={
-                      darkMode === "light" ? classes.label : classes.darkLabel
-                    }
-                    htmlFor="image"
-                  >
-                    Image Link
-                  </InputLabel>
-                  <Input
-                    className={
-                      darkMode === "light"
-                        ? classes.inputField
-                        : classes.inputFieldDark
-                    }
-                    type="text"
-                    name="image"
-                    value={image}
-                    disabled={imagePreview}
-                    onChange={handleChange}
-                    endAdornment={
-                      <InputAdornment
-                        className={classes.passwordIcon}
-                        position="end"
-                      >
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickImagePreview}
-                          onMouseDown={handleMouseDownPassword}
-                        >
-                          {imagePreview ? (
-                            <Visibility className={classes.visibility} />
-                          ) : (
-                            <VisibilityOff className={classes.visibility} />
-                          )}
-                        </IconButton>
-                      </InputAdornment>
-                    }
-                  />
-                </FormControl>
-              </div>
-            )}
             <div className={classes.genderContainer}>
               <FormHelperText style={{ marginLeft: "-20px" }}>
                 What's your gender?

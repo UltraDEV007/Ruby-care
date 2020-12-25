@@ -179,13 +179,18 @@ const useStyles = makeStyles(() => ({
     width: "40px",
     borderRadius: "40px",
     objectFit: "cover",
+    border: ({ darkMode }) =>
+      darkMode === "dark" ? "1px solid #fff" : "1px solid #000",
   },
   bigIcon: {
     height: "100px",
     width: "100px",
     alignSelf: "center",
     marginBottom: "5px",
-    border: (props) => props.imagePreview && "1px solid white",
+    border: (props) =>
+      props.imagePreview + props.darkMode === "light"
+        ? "1px solid black"
+        : props.imagePreview + props.darkMode === "dark" && "1px solid white",
     borderRadius: (props) => props.imagePreview && "50%",
   },
   bigUserImage: {
@@ -193,15 +198,12 @@ const useStyles = makeStyles(() => ({
     width: "100px",
     alignSelf: "center",
     marginBottom: "5px",
-    border: "1px solid white",
+    border: ({ darkMode }) =>
+      darkMode === "dark" ? "1px solid #fff" : "1px solid #000",
     borderRadius: "50%",
     objectFit: "cover",
   },
   cameraIcon: {
-    cursor: "pointer",
-    color: (props) => props.darkMode === "light" && "#000",
-  },
-  crossIcon: {
     cursor: "pointer",
     color: (props) => props.darkMode === "light" && "#000",
   },
