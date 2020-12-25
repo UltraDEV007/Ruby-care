@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
@@ -20,7 +20,6 @@ import { getOneUser } from "../../../services/users";
 import { toTitleCase } from "../../../utils/toTitleCase";
 import CameraIcon from "@material-ui/icons/CameraAlt";
 import ClearIcon from "@material-ui/icons/Clear";
-
 import {
   DialogTitle,
   DialogContent,
@@ -55,7 +54,7 @@ export default function UserEdit({
   } = formData;
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
-  const [darkMode] = React.useContext(DarkModeContext);
+  const [darkMode] = useContext(DarkModeContext);
 
   const handleImageClear = () => {
     setFormData({

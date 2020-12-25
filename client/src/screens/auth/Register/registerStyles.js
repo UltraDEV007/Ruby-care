@@ -6,13 +6,7 @@ const useStyles = makeStyles(() => ({
     flexDirection: "column",
     flexFlow: "nowrap",
     alignItems: "center",
-  },
-  rootDark: {
-    display: "flex",
-    flexDirection: "column",
-    flexFlow: "nowrap",
-    alignItems: "center",
-    background: grey[800],
+    background: (props) => props.darkMode === "dark" && grey[800],
   },
   logoContainer: {
     display: "flex",
@@ -26,14 +20,7 @@ const useStyles = makeStyles(() => ({
     padding: "15px",
     marginTop: "10px",
     textShadow: "0.5px 4px 10px #999",
-  },
-  titleDark: {
-    fontFamily: ["Montserrat", "sans-serif"].join(","),
-    fontSize: "36px",
-    padding: "15px",
-    marginTop: "10px",
-    textShadow: "0.5px 4px 10px #999",
-    color: yellow[700],
+    color: (props) => props.darkMode === "dark" && yellow[700],
   },
   logo: {
     maxWidth: "100px",
@@ -219,8 +206,9 @@ const useStyles = makeStyles(() => ({
     flexDirection: "column",
     alignItems: "center",
   },
-  iconButton: {
-    margin: "-25px",
+  pictureButtons: {
+    display: "flex",
+    justifyContent: "center",
   },
 }));
 export { useStyles };
