@@ -25,7 +25,7 @@ export default function Login() {
   const classes = useStyles({ darkMode, currentUser });
 
   const handleClickShowPassword = () => {
-    setShowPassword(!showPassword);
+    setShowPassword((prevState) => !prevState);
   };
 
   const handleMouseDownPassword = (event) => {
@@ -54,13 +54,9 @@ export default function Login() {
 
   return (
     <>
-      <div className={darkMode === "dark" ? classes.rootDark : classes.root}>
+      <div className={classes.root}>
         <div className={classes.logoContainer}>
-          <Typography
-            className={darkMode === "light" ? classes.title : classes.titleDark}
-          >
-            Care
-          </Typography>
+          <Typography className={classes.title}>Care</Typography>
           <img
             className={classes.logo}
             src="https://i.imgur.com/1QePclv.png"
@@ -68,9 +64,7 @@ export default function Login() {
           />
         </div>
         {currentUser && (
-          <Typography
-            className={darkMode === "light" ? classes.user : classes.userDark}
-          >
+          <Typography className={classes.user}>
             You're already logged in, is this you?
             {currentUser?.image && (
               <img
@@ -99,22 +93,13 @@ export default function Login() {
           <div className={classes.inputContainer}>
             <EmailIcon />
             <FormControl>
-              <InputLabel
-                className={
-                  darkMode === "light" ? classes.label : classes.darkLabel
-                }
-                htmlFor="email"
-              >
+              <InputLabel className={classes.label} htmlFor="email">
                 Email Address
               </InputLabel>
               <Input
                 id="email"
                 type="text"
-                className={
-                  darkMode === "light"
-                    ? classes.inputField
-                    : classes.inputFieldDark
-                }
+                className={classes.inputField}
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
@@ -125,22 +110,11 @@ export default function Login() {
           <div className={classes.inputContainer}>
             <LockIcon className={classes.lockIcon} />
             <FormControl>
-              <InputLabel
-                className={
-                  darkMode === "light"
-                    ? classes.passwordLabel
-                    : classes.darkPasswordLabel
-                }
-                htmlFor="password"
-              >
+              <InputLabel className={classes.passwordLabel} htmlFor="password">
                 Password
               </InputLabel>
               <Input
-                className={
-                  darkMode === "light"
-                    ? classes.passwordField
-                    : classes.passwordFieldDark
-                }
+                className={classes.passwordField}
                 name="password"
                 id="password"
                 type={showPassword ? "text" : "password"}
@@ -154,21 +128,9 @@ export default function Login() {
                       onMouseDown={handleMouseDownPassword}
                     >
                       {showPassword ? (
-                        <Visibility
-                          style={
-                            darkMode === "dark"
-                              ? { color: "#fff" }
-                              : { color: "#000" }
-                          }
-                        />
+                        <Visibility className={classes.visibility} />
                       ) : (
-                        <VisibilityOff
-                          style={
-                            darkMode === "dark"
-                              ? { color: "#fff" }
-                              : { color: "#000" }
-                          }
-                        />
+                        <VisibilityOff className={classes.visibility} />
                       )}
                     </IconButton>
                   </InputAdornment>
@@ -177,38 +139,18 @@ export default function Login() {
             </FormControl>
           </div>
           <br />
-          <Button
-            type="submit"
-            className={
-              darkMode === "light"
-                ? classes.loginButton
-                : classes.loginButtonDark
-            }
-          >
+          <Button type="submit" className={classes.loginButton}>
             Login
           </Button>
         </form>
-        <Typography
-          className={
-            darkMode === "light" ? classes.register : classes.registerDark
-          }
-        >
+        <Typography className={classes.register}>
           Don't have an account? &nbsp;
-          <Link
-            className={
-              darkMode === "light"
-                ? classes.registerLink
-                : classes.registerLinkDark
-            }
-            to="/register"
-          >
+          <Link className={classes.registerLink} to="/register">
             Register
           </Link>
         </Typography>
         <br />
-        <Typography
-          className={darkMode === "light" ? classes.user : classes.userDark}
-        >
+        <Typography className={classes.user}>
           <br />
           Daniel Michael &copy; 2020
         </Typography>

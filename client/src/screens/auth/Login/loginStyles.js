@@ -7,14 +7,7 @@ const useStyles = makeStyles({
     flexDirection: "column",
     flexFlow: "nowrap",
     alignItems: "center",
-    background: "#fff",
-  },
-  rootDark: {
-    display: "flex",
-    flexDirection: "column",
-    flexFlow: "nowrap",
-    alignItems: "center",
-    background: grey[800],
+    background: (props) => (props.darkMode === "light" ? "#fff" : grey[800]),
   },
   logoContainer: {
     display: "flex",
@@ -22,21 +15,13 @@ const useStyles = makeStyles({
     padding: "20px",
     marginBottom: (props) => (props.currentUser ? "-10px" : "20px"),
   },
-
   title: {
     fontFamily: ["Montserrat", "sans-serif"].join(","),
     fontSize: "36px",
     padding: "15px",
     marginTop: "10px",
     textShadow: "0.5px 4px 10px #999",
-  },
-  titleDark: {
-    fontFamily: ["Montserrat", "sans-serif"].join(","),
-    fontSize: "36px",
-    padding: "15px",
-    marginTop: "10px",
-    textShadow: "0.5px 4px 10px #999",
-    color: yellow[700],
+    color: (props) => props.darkMode === "dark" && yellow[700],
   },
   logo: {
     maxWidth: "100px",
@@ -50,15 +35,7 @@ const useStyles = makeStyles({
   loginButton: {
     margin: "20px auto",
     padding: "20px",
-    color: "#62B5D9",
-    fontSize: "28px",
-    fontFamily: ["Montserrat", "sans-serif"].join(","),
-    textTransform: "capitalize",
-  },
-  loginButtonDark: {
-    margin: "20px auto",
-    padding: "20px",
-    color: yellow[700],
+    color: (props) => (props.darkMode === "light" ? "#62B5D9" : yellow[700]),
     fontSize: "28px",
     fontFamily: ["Montserrat", "sans-serif"].join(","),
     textTransform: "capitalize",
@@ -68,13 +45,7 @@ const useStyles = makeStyles({
     fontSize: "26px",
     textDecoration: "none",
     textAlign: "center",
-  },
-  registerDark: {
-    fontFamily: ["Montserrat", "sans-serif"].join(","),
-    fontSize: "26px",
-    textDecoration: "none",
-    color: "#fff",
-    textAlign: "center",
+    color: ({ darkMode }) => darkMode === "dark" && "#fff",
   },
   user: {
     fontFamily: ["Montserrat", "sans-serif"].join(","),
@@ -86,46 +57,20 @@ const useStyles = makeStyles({
     flexDirection: "column",
     alignItems: "center",
     textAlign: "center",
-  },
-  userDark: {
-    fontFamily: ["Montserrat", "sans-serif"].join(","),
-    fontSize: "15px",
-    textDecoration: "none",
-    color: "#fff",
-    padding: "20px",
-    marginBottom: "20px",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    textAlign: "center",
+    color: (props) => props.Darkmode === "dark" && "#fff",
   },
   registerLink: {
     textDecoration: "none",
-    color: "#62B5D9",
-  },
-  registerLinkDark: {
-    textDecoration: "none",
-    color: yellow[700],
+    color: (props) => (props.darkMode === "light" ? "#62B5D9" : yellow[700]),
   },
   inputField: {
-    color: "black",
-    marginBottom: "20px",
-    width: "300px",
-    marginLeft: "10px",
-  },
-  inputFieldDark: {
-    color: "#fff",
+    color: (props) => (props.darkMode === "light" ? "black" : "white"),
     marginBottom: "20px",
     width: "300px",
     marginLeft: "10px",
   },
   passwordField: {
-    color: "black",
-    marginBottom: "20px",
-    width: "300px",
-  },
-  passwordFieldDark: {
-    color: "#fff",
+    color: ({ darkMode }) => (darkMode === "light" ? "black" : "white"),
     marginBottom: "20px",
     width: "300px",
   },
@@ -137,19 +82,12 @@ const useStyles = makeStyles({
     alignItems: "center",
     color: ({ darkMode }) => (darkMode === "light" ? "black" : "white"),
   },
-  darkLabel: {
-    color: "#fff",
-    marginLeft: "10px",
-  },
   label: {
-    color: "#000",
+    color: (props) => (props.darkMode === "light" ? "#000" : "#fff"),
     marginLeft: "10px",
-  },
-  darkPasswordLabel: {
-    color: "#fff",
   },
   passwordLabel: {
-    color: "#000",
+    color: ({ darkMode }) => (darkMode === "light" ? "#000" : "#fff"),
   },
   userLoggedImage: {
     height: "130px",
@@ -160,6 +98,9 @@ const useStyles = makeStyles({
     border: ({ darkMode }) =>
       darkMode === "dark" ? "1px solid white" : "1px solid #000",
     borderRadius: "50%",
+  },
+  visibility: {
+    color: (props) => (props.darkMode === "dark" ? "#fff" : "#000"),
   },
 });
 export { useStyles };
