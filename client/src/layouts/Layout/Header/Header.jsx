@@ -2,18 +2,16 @@ import React, { useContext, useEffect, useState } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import HomeIcon from "@material-ui/icons/Home";
 import { useStateValue } from "../../../components/Context/CurrentUserContext";
 import { DarkModeContext } from "../../../components/Context/DarkModeContext";
 import { removeToken } from "../../../services/auth";
 import { useHistory, Link, useLocation } from "react-router-dom";
-import ForumIcon from "@material-ui/icons/Forum";
-import SettingsIcon from "@material-ui/icons/Settings";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import SupervisedUserCircleIcon from "@material-ui/icons/SupervisedUserCircle";
 import { useStyles } from "./headerStyles";
+import HeaderSearch from "./HeaderSearch";
+import LocationIcons from "./LocationIcons";
 
-export default function Header({ title }) {
+export default function Header({ title, allUsers }) {
   let time = new Date();
   let timeWithoutSeconds = time.toLocaleString([], {
     hour: "2-digit",
@@ -32,7 +30,9 @@ export default function Header({ title }) {
   let location = useLocation();
 
   const [darkMode] = useContext(DarkModeContext);
+  const [search, setSearch] = useState("");
   const [{ currentUser }, dispatch] = useStateValue();
+  const classes = useStyles({ location });
 
   const history = useHistory();
   const handleLogout = () => {
@@ -42,28 +42,38 @@ export default function Header({ title }) {
     history.push("/login");
   };
 
-  const classes = useStyles({ location });
+  const getUsers = () =>
+    allUsers.filter((user) =>
+      user.name.toLowerCase().includes(`${search}`.toLowerCase())
+    );
+
+  const queriedUsers = getUsers().map((user) => (
+    <Link
+      key={user.id}
+      darkMode={darkMode}
+      to={`/users/${user.id}`}
+      className="link"
+    >
+      {!user?.image ? (
+        <AccountCircleIcon className={classes.userIcon} />
+      ) : (
+        <img className="user-image" src={user?.image} alt={user?.name} />
+      )}
+      <h1>{user?.name}</h1>
+    </Link>
+  ));
 
   return (
     <div className={classes.root}>
       <AppBar className={classes.appBar} position="fixed">
         <Toolbar>
-          {location.pathname === "/" ? (
-            <HomeIcon className={classes.menuButton} />
-          ) : location.pathname === "/insights" ? (
-            <ForumIcon className={classes.menuButton} />
-          ) : location.pathname === "/users" ? (
-            <SupervisedUserCircleIcon className={classes.menuButton} />
-          ) : location.pathname === "/settings" ? (
-            <SettingsIcon className={classes.menuButton} />
-          ) : (
-            <HomeIcon className={classes.menuButton} />
-          )}
+          <LocationIcons classes={classes} location={location} />
 
           <Typography variant="h6" className={classes.title}>
             {title}
           </Typography>
           <Typography className={classes.timeClass}>{value}</Typography>
+          <HeaderSearch search={search} setSearch={setSearch} />
           {currentUser ? (
             <>
               <Typography
