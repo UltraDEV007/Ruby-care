@@ -148,6 +148,7 @@ export default function Settings() {
       </div>
       {openEdit && (
         <UserEdit
+          allUsers={allUsers}
           onSave={onSave}
           currentUser={currentUser}
           handleOpen={handleOpen}

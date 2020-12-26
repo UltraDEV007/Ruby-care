@@ -27,12 +27,18 @@ import {
 } from "../../Form/DialogComponents";
 import Form from "./StyledUserEdit";
 import { DarkModeContext } from "../../Context/DarkModeContext";
+import {
+  checkEmailUniqueuess,
+  checkEmailValidity,
+  checkPasswordLength,
+} from "../../../utils/authUtils";
 
 export default function UserEdit({
   handleOpen,
   handleClose,
   onSave,
   currentUser,
+  allUsers,
 }) {
   const [formData, setFormData] = useState({
     name: "",
@@ -54,6 +60,12 @@ export default function UserEdit({
   } = formData;
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
+  const [passwordConfirmAlert, setPasswordConfirmAlert] = useState(false);
+  const [emailUniquenessAlert, setEmailUniquenessAlert] = useState(false);
+  const [emailValidityAlert, setEmailValidityAlert] = useState(false);
+  const [passwordAlert, setPasswordAlert] = useState(false);
+  const [allConditionsAreNotMet, setAllConditionsAreNotMet] = useState(true);
+
   const [darkMode] = useContext(DarkModeContext);
 
   const handleImageClear = () => {
@@ -106,6 +118,25 @@ export default function UserEdit({
   };
 
   useEffect(() => {
+    checkPasswordLength(password, setPasswordAlert);
+    checkEmailValidity(email, setEmailValidityAlert);
+    checkEmailUniqueuess(allUsers, email, setEmailUniquenessAlert, currentUser);
+    if (password !== passwordConfirm) {
+      setPasswordConfirmAlert(true);
+    } else {
+      setPasswordConfirmAlert(false);
+    }
+    if (
+      (checkPasswordLength, checkEmailValidity, checkEmailUniqueuess) &&
+      password === passwordConfirm
+    ) {
+      setAllConditionsAreNotMet(false);
+    } else {
+      setAllConditionsAreNotMet(true);
+    }
+  }, [allUsers, currentUser, email, password, passwordConfirm]);
+
+  useEffect(() => {
     const fetchUser = async () => {
       if (currentUser?.id) {
         const oneUser = await getOneUser(currentUser.id);
@@ -120,9 +151,7 @@ export default function UserEdit({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (password !== passwordConfirm) {
-      return alert("Password and password confirmation do not match");
-    }
+
     onSave(currentUser.id, formData);
   };
 
@@ -200,7 +229,22 @@ export default function UserEdit({
             </FormControl>
           </div>
           <br />
-
+          {emailValidityAlert && (
+            <>
+              <div className="alert">
+                <p>Please enter a valid email address</p>
+              </div>
+              <br />
+            </>
+          )}
+          {emailUniquenessAlert && (
+            <>
+              <div className="alert">
+                <p>This email address already exists!</p>
+              </div>
+              <br />
+            </>
+          )}
           <div className="input-container">
             <LockIcon className="icon" />
             <FormControl>
@@ -230,8 +274,17 @@ export default function UserEdit({
                 }
               />
             </FormControl>
+            <br />
           </div>
           <br />
+          {passwordAlert && (
+            <>
+              <div className="alert">
+                <p>Password has to be 8 characters at minimum</p>
+              </div>
+              <br />
+            </>
+          )}
           <div className="input-container">
             <LockIcon className="icon" />
             <FormControl className="password-confirm">
@@ -267,6 +320,14 @@ export default function UserEdit({
             </FormControl>
           </div>
           <br />
+          {passwordConfirmAlert && (
+            <>
+              <div className="alert">
+                <p>Password and password confirmation do not match!</p>
+              </div>
+              <br />
+            </>
+          )}
 
           <div
             style={{
@@ -324,7 +385,12 @@ export default function UserEdit({
           </div>
           <br />
           <DialogActions>
-            <Button type="submit" variant="contained" color="primary">
+            <Button
+              disabled={allConditionsAreNotMet}
+              type="submit"
+              variant="contained"
+              color="primary"
+            >
               Save
             </Button>
             <Button

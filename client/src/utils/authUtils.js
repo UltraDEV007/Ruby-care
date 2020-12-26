@@ -24,3 +24,20 @@ export const checkPasswordLength = (password, setPasswordAlert) => {
     setPasswordAlert(false);
   }
 };
+
+export const checkEmailUniqueuess = (
+  allUsers,
+  email,
+  setEmailUniquenessAlert,
+  currentUser
+) => {
+  if (
+    allUsers?.find(
+      (user) => user?.email === email && user?.email !== currentUser?.email
+    )
+  ) {
+    setEmailUniquenessAlert(true);
+  } else {
+    setEmailUniquenessAlert(false);
+  }
+};

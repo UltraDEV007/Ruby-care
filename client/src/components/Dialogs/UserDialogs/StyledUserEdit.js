@@ -58,6 +58,10 @@ const Form = styled.form`
   .visibility {
     color: ${({ darkMode }) => (darkMode === "dark" ? "white" : "black")};
   }
+  .alert {
+    color: red;
+    text-align: center;
+  }
 `;
 
 export default Form;
