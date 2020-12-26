@@ -79,21 +79,19 @@ export default function InsightsContainer({ darkMode }) {
             handleDelete={handleDelete}
           />
         </Route>
-        <div>
-          <Route path="/insights">
-            <Insights
-              openDelete={openDelete}
-              onDelete={onDelete}
-              handleDeleteClose={handleDeleteClose}
-              handleDeleteOpen={handleDeleteOpen}
-              loaded={loaded}
-              darkMode={darkMode}
-              updated={updated}
-              insights={insights}
-              handleDelete={handleDelete}
-            />
-          </Route>
-        </div>
+        <Route path="/insights">
+          <Insights
+            openDelete={openDelete}
+            onDelete={onDelete}
+            handleDeleteClose={handleDeleteClose}
+            handleDeleteOpen={handleDeleteOpen}
+            loaded={loaded}
+            darkMode={darkMode}
+            updated={updated}
+            insights={insights}
+            handleDelete={handleDelete}
+          />
+        </Route>
       </Switch>
     </>
   );
