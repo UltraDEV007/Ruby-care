@@ -62,6 +62,7 @@ export default function Home() {
             </div>
           </AccordionDetails>
         </Accordion>
+
         <Accordion className={classes.accordion}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -91,6 +92,7 @@ export default function Home() {
             </div>
           </AccordionDetails>
         </Accordion>
+
         <Accordion className={classes.accordion}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -119,6 +121,7 @@ export default function Home() {
             </div>
           </AccordionDetails>
         </Accordion>
+
         <Accordion className={classes.accordion}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}

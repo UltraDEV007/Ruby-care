@@ -35,7 +35,7 @@ export default function Meds({
     setOpenDialog(false);
   };
 
-  const MEDS = React.Children.toArray(
+  const MEDS =
     meds.length === 0 ? (
       <div className="log-your-med">
         <Typography> Click the </Typography>&nbsp;
@@ -46,6 +46,7 @@ export default function Meds({
     ) : (
       meds.map((med) => (
         <MedCard
+          key={med.id}
           openOptions={openOptions}
           RXGuideMeds={RXGuideMeds}
           meds={meds}
@@ -56,8 +57,7 @@ export default function Meds({
           handleDelete={handleDelete}
         />
       ))
-    )
-  );
+    );
 
   return (
     <>

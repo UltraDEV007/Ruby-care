@@ -34,7 +34,7 @@ export default function Moods({
     setOpenDialog(false);
   };
 
-  const MOODS = React.Children.toArray(
+  const MOODS =
     moods.length === 0 ? (
       <div className="log-your-mood">
         <Typography> Click the </Typography>&nbsp;
@@ -45,6 +45,7 @@ export default function Moods({
     ) : (
       moods.map((mood) => (
         <MoodCard
+          key={mood.id}
           setMoods={setMoods}
           handleUpdate={handleUpdate}
           updated={updated}
@@ -54,8 +55,7 @@ export default function Moods({
           handleDelete={handleDelete}
         />
       ))
-    )
-  );
+    );
 
   return (
     <>

@@ -34,7 +34,7 @@ export default function Affirmations({
     setOpenOptions(!openOptions);
   };
 
-  const AFFIRMATIONS = React.Children.toArray(
+  const AFFIRMATIONS =
     affirmations?.length === 0 ? (
       <div className="log-your-affirmation">
         <Typography> Click the </Typography>&nbsp;
@@ -45,6 +45,7 @@ export default function Affirmations({
     ) : (
       affirmations.map((affirmation) => (
         <AffirmationLetter
+          key={affirmation.id}
           updated={updated}
           setAffirmations={setAffirmations}
           handleUpdate={handleUpdate}
@@ -54,8 +55,7 @@ export default function Affirmations({
           affirmations={affirmations}
         />
       ))
-    )
-  );
+    );
 
   return (
     <>

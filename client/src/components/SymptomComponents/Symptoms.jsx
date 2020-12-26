@@ -29,7 +29,7 @@ export default function Symptoms({
     setOpenOptions(!openOptions);
   };
 
-  const SYMPTOMS = React.Children.toArray(
+  const SYMPTOMS =
     symptoms.length === 0 ? (
       <div className="log-your-symptom">
         <Typography> Click the </Typography>&nbsp;
@@ -40,6 +40,7 @@ export default function Symptoms({
     ) : (
       symptoms.map((symptom) => (
         <SymptomCard
+          key={symptom.id}
           symptoms={symptoms}
           setSymptoms={setSymptoms}
           handleUpdate={handleUpdate}
@@ -49,8 +50,7 @@ export default function Symptoms({
           handleDelete={handleDelete}
         />
       ))
-    )
-  );
+    );
 
   const onSave = (formData) => {
     handleCreate(formData);
