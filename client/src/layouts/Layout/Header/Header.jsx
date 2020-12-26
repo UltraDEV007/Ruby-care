@@ -67,55 +67,64 @@ export default function Header({ title, allUsers }) {
     <div className={classes.root}>
       <AppBar className={classes.appBar} position="fixed">
         <Toolbar>
-          <LocationIcons classes={classes} location={location} />
+          <div className={classes.headerLeft}>
+            <LocationIcons classes={classes} location={location} />
 
-          <Typography variant="h6" className={classes.title}>
-            {title}
-          </Typography>
-          <Typography className={classes.timeClass}>{value}</Typography>
-          <HeaderSearch search={search} setSearch={setSearch} />
-          {currentUser ? (
-            <>
-              <Typography
-                component={Link}
-                style={
-                  darkMode === "light"
-                    ? { textDecoration: "none", color: "#fff" }
-                    : { textDecoration: "none", color: "#000" }
-                }
-                to={`/users/${currentUser?.id}`}
-                className={classes.userName}
-              >
-                {!currentUser?.image ? (
-                  <AccountCircleIcon className={classes.userIcon} />
-                ) : (
-                  <img
-                    className={classes.userImage}
-                    src={currentUser?.image}
-                    alt={currentUser?.name}
-                  />
-                )}
-                {currentUser?.name}
-              </Typography>
-            </>
-          ) : (
-            <Link style={{ textDecoration: "none" }} to="/login">
-              <Typography
-                style={
-                  darkMode === "dark" ? { color: "#000" } : { color: "#fff" }
-                }
-              >
-                Login/Register
-              </Typography>
-            </Link>
-          )}
-          {location.pathname === "/settings" && (
-            <Typography className={classes.logOut} onClick={handleLogout}>
-              Log out
+            <Typography variant="h6" className={classes.title}>
+              {title}
             </Typography>
-          )}
+
+            <HeaderSearch search={search} setSearch={setSearch} />
+          </div>
+          <div className={classes.headerCenter}>
+            <Typography className={classes.timeClass}>{value}</Typography>
+          </div>
+
+          <div className={classes.headerRight}>
+            {currentUser ? (
+              <>
+                <Typography
+                  component={Link}
+                  style={
+                    darkMode === "light"
+                      ? { textDecoration: "none", color: "#fff" }
+                      : { textDecoration: "none", color: "#000" }
+                  }
+                  to={`/users/${currentUser?.id}`}
+                  className={classes.userName}
+                >
+                  {!currentUser?.image ? (
+                    <AccountCircleIcon className={classes.userIcon} />
+                  ) : (
+                    <img
+                      className={classes.userImage}
+                      src={currentUser?.image}
+                      alt={currentUser?.name}
+                    />
+                  )}
+                  {currentUser?.name}
+                </Typography>
+              </>
+            ) : (
+              <Link style={{ textDecoration: "none" }} to="/login">
+                <Typography
+                  style={
+                    darkMode === "dark" ? { color: "#000" } : { color: "#fff" }
+                  }
+                >
+                  Login/Register
+                </Typography>
+              </Link>
+            )}
+            {location.pathname === "/settings" && (
+              <Typography className={classes.logOut} onClick={handleLogout}>
+                Log out
+              </Typography>
+            )}
+          </div>
         </Toolbar>
       </AppBar>
+      <div className="usersContainer">{search !== "" && queriedUsers}</div>
     </div>
   );
 }
