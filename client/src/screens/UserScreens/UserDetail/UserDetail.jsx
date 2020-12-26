@@ -27,13 +27,15 @@ export default function UserDetail({ getOneUser }) {
     getData();
   }, [getOneUser, id]);
 
-  const INSIGHTS = React.Children.toArray(
-    user?.insights?.map((insight) => (
-      <Link className="insights-link" to={`./../insights/${insight.id}`}>
-        {insight?.title}
-      </Link>
-    ))
-  );
+  const INSIGHTS = user?.insights?.map((insight) => (
+    <Link
+      key={insight.id}
+      className="insights-link"
+      to={`./../insights/${insight.id}`}
+    >
+      {insight?.title}
+    </Link>
+  ));
 
   if (!loaded) {
     return <LinearProgressLoading darkMode={darkMode} />;

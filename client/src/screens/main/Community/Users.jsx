@@ -18,18 +18,21 @@ const Users = ({ allUsers, loaded }) => {
       user.name.toLowerCase().includes(`${search}`.toLowerCase())
     );
 
-  const queriedUsers = React.Children.toArray(
-    getUsers().map((user) => (
-      <Link darkMode={darkMode} to={`/users/${user.id}`} className="link">
-        {!user?.image ? (
-          <AccountCircleIcon className="user-icon" />
-        ) : (
-          <img className="user-image" src={user?.image} alt={user?.name} />
-        )}
-        <h1>{user?.name}</h1>
-      </Link>
-    ))
-  );
+  const queriedUsers = getUsers().map((user) => (
+    <Link
+      key={user.id}
+      darkMode={darkMode}
+      to={`/users/${user.id}`}
+      className="link"
+    >
+      {!user?.image ? (
+        <AccountCircleIcon className="user-icon" />
+      ) : (
+        <img className="user-image" src={user?.image} alt={user?.name} />
+      )}
+      <h1>{user?.name}</h1>
+    </Link>
+  ));
 
   return (
     <Layout title="Community">

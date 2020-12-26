@@ -35,21 +35,20 @@ export default function Insights(props) {
         insight?.user?.name?.toLowerCase().includes(`${search}`.toLowerCase())
     );
 
-  const queriedInsights = React.Children.toArray(
-    getInsights().map((insight) => (
-      <InsightCard
-        darkMode={darkMode}
-        updated={props.updated}
-        insights={props.insights}
-        insight={insight}
-        handleOpen={handleDeleteOpen}
-        handleClose={handleDeleteClose}
-        onDelete={onDelete}
-        openDelete={openDelete}
-        handleDelete={props.handleDelete}
-      />
-    ))
-  );
+  const queriedInsights = getInsights().map((insight) => (
+    <InsightCard
+      key={insight.id}
+      darkMode={darkMode}
+      updated={props.updated}
+      insights={props.insights}
+      insight={insight}
+      handleOpen={handleDeleteOpen}
+      handleClose={handleDeleteClose}
+      onDelete={onDelete}
+      openDelete={openDelete}
+      handleDelete={props.handleDelete}
+    />
+  ));
 
   return (
     <Layout title="Insights">
