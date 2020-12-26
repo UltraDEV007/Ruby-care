@@ -13,9 +13,17 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(1),
   },
   title: {
-    flexGrow: 0.2,
+    flexGrow: 0.3,
+    paddingRight: "10px",
+    marginRight: "5px",
   },
   timeClass: {
+    [theme.breakpoints.up("md")]: {
+      display: "block",
+      marginRight: "20px",
+      padding: "0px",
+    },
+    display: "none",
     textAlign: "center",
   },
   headerLeft: {
@@ -36,6 +44,8 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 999999,
     marginTop: "70px",
     background: ({ darkMode }) => (darkMode === "dark" ? "white" : "#3788E5"),
+    width: "200px",
+    marginLeft: "150px",
   },
   headerRight: {
     display: "inline-flex",

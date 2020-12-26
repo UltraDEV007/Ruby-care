@@ -14,6 +14,21 @@ import QueriedUsers from "./QueriedUsers";
 import Card from "@material-ui/core/Card";
 
 export default function Header({ title, allUsers }) {
+  const [leftSearch, setLeftSearch] = useState(false);
+  const [middleSearch, setMiddleSearch] = useState(false);
+
+  const changeSearchLocation = () => {
+    const width = window?.innerWidth;
+    if (width >= 960) {
+      setLeftSearch(true);
+      setMiddleSearch(false);
+    } else {
+      setLeftSearch(false);
+      setMiddleSearch(true);
+    }
+  };
+  window.addEventListener("resize", changeSearchLocation);
+
   let time = new Date();
   let timeWithoutSeconds = time.toLocaleString([], {
     hour: "2-digit",
@@ -68,14 +83,23 @@ export default function Header({ title, allUsers }) {
                 {title}
               </Typography>
 
-              <HeaderSearch
-                darkMode={darkMode}
-                search={search}
-                setSearch={setSearch}
-              />
+              {leftSearch && (
+                <HeaderSearch
+                  darkMode={darkMode}
+                  search={search}
+                  setSearch={setSearch}
+                />
+              )}
             </div>
             <div className={classes.headerCenter}>
               <Typography className={classes.timeClass}>{value}</Typography>
+              {middleSearch && (
+                <HeaderSearch
+                  darkMode={darkMode}
+                  search={search}
+                  setSearch={setSearch}
+                />
+              )}
             </div>
 
             <div className={classes.headerRight}>
