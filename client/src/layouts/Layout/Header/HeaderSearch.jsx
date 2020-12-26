@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Card from "@material-ui/core/Card";
 import ClearIcon from "@material-ui/icons/Clear";
 import { yellow } from "@material-ui/core/colors";
+import { useEffect, useState } from "react";
 
 let Search = styled.div`
   position: relative;
@@ -58,13 +59,31 @@ const Dropdown = styled(Card)`
 `;
 
 function HeaderSearch({ search, setSearch, darkMode, queriedUsers }) {
+  const [placeholder, setPlaceholder] = useState("Search Care");
+
+  useEffect(() => {
+    const changePlaceHolder = () => {
+      const width = window?.innerWidth;
+      if (width <= 468) {
+        setPlaceholder("Search");
+      } else {
+        setPlaceholder("Search Care");
+      }
+    };
+    changePlaceHolder();
+    window.addEventListener("resize", changePlaceHolder);
+    return () => {
+      window.removeEventListener("resize", changePlaceHolder);
+    };
+  }, []);
+
   return (
     <>
       <Search darkMode={darkMode}>
         <StyledTextField
           darkMode={darkMode}
           type="text"
-          placeholder="Search Care"
+          placeholder={placeholder}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           InputProps={{

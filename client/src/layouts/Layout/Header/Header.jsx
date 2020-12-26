@@ -26,7 +26,7 @@ export default function Header({ title, allUsers }) {
         setLeftSearch(false);
         setMiddleSearch(true);
       }
-      if (width <= 400) {
+      if (width <= 404) {
         setLeftSearch(false);
         setMiddleSearch(false);
       }
