@@ -102,8 +102,8 @@ So far there are 10 tables all with full crud and associations
 <br>
 
 ### Component Tree
-> ![Component Tree Image](https://i.imgur.com/odu5aus.png)
-> [Component Tree Link (Whimsical)](https://whimsical.com/care-JWXTaZdt8XN5jBPYfiuagm)
+
+> ![Component Tree Image](https://i.imgur.com/odu5aus.png) > [Component Tree Link (Whimsical)](https://whimsical.com/care-JWXTaZdt8XN5jBPYfiuagm)
 
 <br>
 
@@ -167,7 +167,7 @@ src
    |__ InsightCreate.jsx
    |__ InsightDetail.jsx
 |__ Modals/
-  |__ DeleteInsight.jsx 
+  |__ DeleteInsight.jsx
 |__ utils/
  |__ checkValidity.js
  |__ goBack.js
@@ -178,64 +178,59 @@ src
 
 #### Component Breakdown
 
-|       Component       |    Type    | state | props | Description                                                                                                                                             |
-| :-------------------: | :--------: | :---: | :---: | :------------------------------------------------------------------------------------------------------------------------------------------------------ |
-|        Header         | functional |   y   |   y   | _The header will contain the page name, current time and current user name and logout_                                                                  |
-|    MoodsContainer     | functional |   y   |   n   | _Moods container will have all axios requests and pass them as props to other Mood components_                                                          |
-|       MoodCard        | functional |   y   |   y   | _The card will render the Mood info via props._                                                                                                         |
-|       MoodEdit        | functional |   y   |   y   | _will contain the form to edit a mood_                                                                                                                  |
-|      MoodCreate       | functional |   y   |   y   | _will contain the form to create a mood_                                                                                                                |
-| AffirmationsContainer | functional |   y   |   n   | _Affirmations container will have all axios requests and pass them as props to other affirmation components_                                            |
-|   AffirmationsCard    | functional |   y   |   y   | _The cards will render the affirmation info via props._                                                                                                 |
-|   AffirmationDetail   | functional |   y   |   y   | _AffirmationDetail will render the affirmation content text and have links to edit or delete one_                                                       |
-|   AffirmationCreate   | functional |   y   |   y   | _AffirmationCreate will have the form to submit text content and create an affirmation_                                                                 |
-|    AffirmationEdit    | functional |   y   |   y   | _AffirmationEdit will have the input field to edit an affirmation and a submit button_                                                                  |
-|   InsightsContainer   | functional |   y   |   n   | _Insights container will have all axios requests and pass them as props to other insight components_                                                    |
-|     InsightsCard      | functional |   y   |   y   | _The cards will render the insight post info via props._                                                                                                |
-|     InsightCreate     | functional |   y   |   y   | _InsightCreate will have the form with the input fields to create an insight_                                                                           |
-|      InsightEdit      | functional |   y   |   y   | _InsightEdit will have the form with the input fields to edit an insight_                                                                               |
-|     InsightDetail     | functional |   y   |   y   | _The InsightDetail screen will render the insight title, body and user name_                                                                            |
-|  CurrentUserContext   | functional |   y   |   n   | _CurrentUserContext.jsx will contain the provider and context for current user to be used globally throughtout the app_                                 |
-|         Home          | functional |   n   |   n   | _The Home screen will include all the logged moods and affirmations_                                                                                    |
-|       Community       | functional |   n   |   n   | _The Community screen will include all insights made by users and the option to edit or delete an insight_                                              |
-|         More          | functional |   y   |   y   | _The More page will comtain current user info such as name email and password (will be editable as postmvp feature, and will have a dark mode switcher_ |
-|        Footer         | functional |   y   |   n   | _The footer will contain the links to the pages_                                                                                                        |      DarkModeContext     |     functional       |   y   |  y    | _DarkModeContext will contain the logic for changing the theme state from light mode to dark mode and saving it to local storage, then wrapping app.jsx with DarkModeProvider_ |
-|        Header         | functional |   y   |   y   | _The header will contain the logged in user name, page name, and current time_                                                                          |        MedCreate      |  functional | y   |   y    | _MedCreate.jsx will fetch all the data from my [2nd project](https://rxguide.netlify.app/)'s API to fetch all medications and then save the medication |
-|        MedEdit        | functional | y    |  y     | _MedEdit.jsx will get the medicine by id and allow us to edit it_ |
-|  MedDetail            | functional | y    |  y     | _MedDetail will conditionally text render based on wether or not the selected time has passed or not, if it has passed, ask the user if he took his medication, if he says yes, set the medicine to "taken" and tell him that he took the medicine at the time that he said he took it and let him decide if he want's to delete it, else, just have exit or delete buttons_ |
-
+|       Component       |    Type    | state | props | Description                                                                                                                                                                                                                                                                                                                                                                  |
+| :-------------------: | :--------: | :---: | :---: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- | ---------- | --- | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+|        Header         | functional |   y   |   y   | _The header will contain the page name, current time and current user name and logout_                                                                                                                                                                                                                                                                                       |
+|    MoodsContainer     | functional |   y   |   n   | _Moods container will have all axios requests and pass them as props to other Mood components_                                                                                                                                                                                                                                                                               |
+|       MoodCard        | functional |   y   |   y   | _The card will render the Mood info via props._                                                                                                                                                                                                                                                                                                                              |
+|       MoodEdit        | functional |   y   |   y   | _will contain the form to edit a mood_                                                                                                                                                                                                                                                                                                                                       |
+|      MoodCreate       | functional |   y   |   y   | _will contain the form to create a mood_                                                                                                                                                                                                                                                                                                                                     |
+| AffirmationsContainer | functional |   y   |   n   | _Affirmations container will have all axios requests and pass them as props to other affirmation components_                                                                                                                                                                                                                                                                 |
+|   AffirmationsCard    | functional |   y   |   y   | _The cards will render the affirmation info via props._                                                                                                                                                                                                                                                                                                                      |
+|   AffirmationDetail   | functional |   y   |   y   | _AffirmationDetail will render the affirmation content text and have links to edit or delete one_                                                                                                                                                                                                                                                                            |
+|   AffirmationCreate   | functional |   y   |   y   | _AffirmationCreate will have the form to submit text content and create an affirmation_                                                                                                                                                                                                                                                                                      |
+|    AffirmationEdit    | functional |   y   |   y   | _AffirmationEdit will have the input field to edit an affirmation and a submit button_                                                                                                                                                                                                                                                                                       |
+|   InsightsContainer   | functional |   y   |   n   | _Insights container will have all axios requests and pass them as props to other insight components_                                                                                                                                                                                                                                                                         |
+|     InsightsCard      | functional |   y   |   y   | _The cards will render the insight post info via props._                                                                                                                                                                                                                                                                                                                     |
+|     InsightCreate     | functional |   y   |   y   | _InsightCreate will have the form with the input fields to create an insight_                                                                                                                                                                                                                                                                                                |
+|      InsightEdit      | functional |   y   |   y   | _InsightEdit will have the form with the input fields to edit an insight_                                                                                                                                                                                                                                                                                                    |
+|     InsightDetail     | functional |   y   |   y   | _The InsightDetail screen will render the insight title, body and user name_                                                                                                                                                                                                                                                                                                 |
+|  CurrentUserContext   | functional |   y   |   n   | _CurrentUserContext.jsx will contain the provider and context for current user to be used globally throughtout the app_                                                                                                                                                                                                                                                      |
+|         Home          | functional |   n   |   n   | _The Home screen will include all the logged moods and affirmations_                                                                                                                                                                                                                                                                                                         |
+|       Community       | functional |   n   |   n   | _The Community screen will include all insights made by users and the option to edit or delete an insight_                                                                                                                                                                                                                                                                   |
+|         More          | functional |   y   |   y   | _The More page will comtain current user info such as name email and password (will be editable as postmvp feature, and will have a dark mode switcher_                                                                                                                                                                                                                      |
+|        Footer         | functional |   y   |   n   | _The footer will contain the links to the pages_                                                                                                                                                                                                                                                                                                                             | DarkModeContext | functional | y   | y   | _DarkModeContext will contain the logic for changing the theme state from light mode to dark mode and saving it to local storage, then wrapping app.jsx with DarkModeProvider_ |
+|        Header         | functional |   y   |   y   | _The header will contain the logged in user name, page name, and current time_                                                                                                                                                                                                                                                                                               | MedCreate       | functional | y   | y   | \_MedCreate.jsx will fetch all the data from my [2nd project](https://rxguide.netlify.app/)'s API to fetch all medications and then save the medication                        |
+|        MedEdit        | functional |   y   |   y   | _MedEdit.jsx will get the medicine by id and allow us to edit it_                                                                                                                                                                                                                                                                                                            |
+|       MedDetail       | functional |   y   |   y   | _MedDetail will conditionally text render based on wether or not the selected time has passed or not, if it has passed, ask the user if he took his medication, if he says yes, set the medicine to "taken" and tell him that he took the medicine at the time that he said he took it and let him decide if he want's to delete it, else, just have exit or delete buttons_ |
 
 #### Time Estimates
 
-| Task                                                    | Priority | Estimated Time | Time Invested | Actual Time |
-| ------------------------------------------------------- | :------: | :------------: | :-----------: | :---------: |
-| Create Insight, Affirmations, Moods, CRUD Actions in BE |    H     |     4 hrs      |    30min     |     30min     |
-| Create Symptoms BE CRUD                                 |    L     |      1hr       |     20min     |     20min     |
-| Create Authentication in BE                             |    H     |      2hrs      |     10min     |     10min     |
-| Create Layout                                           |    M     |      3hrs      |     30min     |     30min     |
-| Create FE Authentication                                |    H     |      3hrs      |      1hr      |     1hr     |
-| Create Insight FE-CRUD                                  |    H     |      3hrs      |     2hrs      |     2hrs     |
-| Create Mood FE-CRUD                                     |    H     |      3hrs      |     4hrs      |     4hrs     |
-| Create Affirmation FE-CRUD                              |    M     |      3hrs      |     2hrs      |     2hrs     |
-| Create Symptom FE-CRUD                                  |    L     |      2hrs      |     2hrs      |      2hrs       |
-| Create Home Page                                        |    H     |      2hrs      |     30min     |     30min     |
-| Create Register Page                                    |    H     |      2hrs      |     30min     |     30min     |
-| Styling                                                 |    M     |     15 hrs     |     15hrs      |     15hrs     |
-| Create Sign-in Page                                     |    H     |      2hrs      |    2.5hrs     |     2.5hrs     |
-| Create Insights Page                                    |    H     |      2hr       |     30min     |     30min     |
-| Create Settings Page                                    |    L     |      1hr       |     2hrs      |     2hrs     |
-| Create, refactor and debug Dark Mode                    |    L     |      1hr       |     6hrs      |     6hrs     |
-| Create Food BE-CRUD | L | 1hr | 1hr | 1hr |
-| Create Food FE-CRUD | L | 2hr | 2hrs | 64hrs |
-| Create FoodRegex | L | 4hrs | 4hrs | 6hrs |
-| Fetch Medications from a [3rd Party API](https://rxguide.netlify.app/about) and handle full crud on my BE AND FE | L | 7hrs | 7hrs | 7hrs |
-| ETC (styling, error handling, perfecting | L | 6hrs | 6hrs | 6hrs |
-| Create likes for insights | L | 5hrs | 10hrs | 10hrs |
-| TOTAL                                                   |          |     49hrs      |     74.5hrs     |     74.5hrs     |
-
-
-
-
+| Task                                                                                                             | Priority | Estimated Time | Time Invested | Actual Time |
+| ---------------------------------------------------------------------------------------------------------------- | :------: | :------------: | :-----------: | :---------: |
+| Create Insight, Affirmations, Moods, CRUD Actions in BE                                                          |    H     |     4 hrs      |     30min     |    30min    |
+| Create Symptoms BE CRUD                                                                                          |    L     |      1hr       |     20min     |    20min    |
+| Create Authentication in BE                                                                                      |    H     |      2hrs      |     10min     |    10min    |
+| Create Layout                                                                                                    |    M     |      3hrs      |     30min     |    30min    |
+| Create FE Authentication                                                                                         |    H     |      3hrs      |      1hr      |     1hr     |
+| Create Insight FE-CRUD                                                                                           |    H     |      3hrs      |     2hrs      |    2hrs     |
+| Create Mood FE-CRUD                                                                                              |    H     |      3hrs      |     4hrs      |    4hrs     |
+| Create Affirmation FE-CRUD                                                                                       |    M     |      3hrs      |     2hrs      |    2hrs     |
+| Create Symptom FE-CRUD                                                                                           |    L     |      2hrs      |     2hrs      |    2hrs     |
+| Create Home Page                                                                                                 |    H     |      2hrs      |     30min     |    30min    |
+| Create Register Page                                                                                             |    H     |      2hrs      |     30min     |    30min    |
+| Styling                                                                                                          |    M     |     15 hrs     |     15hrs     |    15hrs    |
+| Create Sign-in Page                                                                                              |    H     |      2hrs      |    2.5hrs     |   2.5hrs    |
+| Create Insights Page                                                                                             |    H     |      2hr       |     30min     |    30min    |
+| Create Settings Page                                                                                             |    L     |      1hr       |     2hrs      |    2hrs     |
+| Create, refactor and debug Dark Mode                                                                             |    L     |      1hr       |     6hrs      |    6hrs     |
+| Create Food BE-CRUD                                                                                              |    L     |      1hr       |      1hr      |     1hr     |
+| Create Food FE-CRUD                                                                                              |    L     |      2hr       |     2hrs      |    64hrs    |
+| Create FoodRegex                                                                                                 |    L     |      4hrs      |     4hrs      |    6hrs     |
+| Fetch Medications from a [3rd Party API](https://rxguide.netlify.app/about) and handle full crud on my BE AND FE |    L     |      7hrs      |     7hrs      |    7hrs     |
+| ETC (styling, error handling, perfecting                                                                         |    L     |      6hrs      |     6hrs      |    6hrs     |
+| Create likes for insights                                                                                        |    L     |      5hrs      |     10hrs     |    10hrs    |
+| TOTAL                                                                                                            |          |     49hrs      |    74.5hrs    |   74.5hrs   |
 
 > _Why is this necessary? Time frames are key to the development cycle. You have limited time to code your app, and your estimates can then be used to evaluate possibilities of your MVP and post-MVP based on time needed. It's best you assume an additional hour for each component, as well as a few hours added to the total time, to play it safe._
 
@@ -261,6 +256,7 @@ src
 - password confirm on register: you will need to confirm your password to create your account. ✔️
 - likes, be able to like an insight. ✔️
 - whitelist, if a user enters a link that is not in a whitelist, bring him to a "404 Not found" page ✔️
+
 ---
 
 # Code Showcase
@@ -325,10 +321,9 @@ export const foodNameJSX = (food) => {
 It takes the result that the user entered, forces it to lowerCase, trims the empty spaces, and uses match on the foodRegex
 
 if we have a result, meaning if the input that the user has entered matches one of the names on the foodRegex,
-we return the first result of the foodMap, which is the icon, we surround it with a span tag and a role of "img" for accessability, 
+we return the first result of the foodMap, which is the icon, we surround it with a span tag and a role of "img" for accessability,
 then we use #8199; to add a space, simillar to nbsp but a little bigger of space, and attach it next to the food name,
 if the user's input DOESN"T match one of the names in the foodRegex, it will return an icon with a fork and a knife instead, which is material UI's <RestaurantIcon />, a user still deserves an icon for his food even if it doesnt match :), I'm planning on adding foods every day, so this foodMap and regex list will get bigger and will have more icons to match user's input over time.
-
 
 ### ratingLogic.js
 
@@ -372,13 +367,13 @@ export default function ratingLogic(ratingParam, iconParam) {
 - What is RXGuide?
 
 > [RXGuide](https://rxguide.netlify.app/about) is my second ever project,
-  it's a front-end react-app that uses an airtable back end to do full crud,
-  I use my airtable API from RXGuide on this project to Create, read, update, and delete a medication and associate it to a user.
+> it's a front-end react-app that uses an airtable back end to do full crud,
+> I use my airtable API from RXGuide on this project to Create, read, update, and delete a medication and associate it to a user.
 
 - What inspired you?
 
 > Making a "utility belt/self tracking" app was my dream ever since I started programming, I personally have IBD, so I want to track my mood, symptoms, medicine, etc all the time. This app allows me to do that and also share posts with the community at the same time.
-Before Care I used an app called "Gali Health" to track my symptoms, however Gali didn't allow me to track food, and also it was specific to IBD, whereas this app allows you to track all kinds of symptoms and share all kinds of posts.
+> Before Care I used an app called "Gali Health" to track my symptoms, however Gali didn't allow me to track food, and also it was specific to IBD, whereas this app allows you to track all kinds of symptoms and share all kinds of posts.
 
 - Whats the next step?
 
@@ -393,24 +388,31 @@ Before Care I used an app called "Gali Health" to track my symptoms, however Gal
 ## Changelog
 
 <strong>Dec 9th, 2020:</strong>
+
 - added the option to edit an authorized user on the settings page(you can't edit other people's users, only yours)
 - registration and login email no longer forced to lower case as it is handeled differently.
 - added more logic to taking the meds, so when the user takes the medicine it doesn't delete it, it just tells him he took and and then he can make the decision if he wanted to delete it.
 
 <br />
 
-<strong>Dec 15th, 2020:</strong> 
-- added password confirm. 
+<strong>Dec 15th, 2020:</strong>
+
+- added password confirm.
 - currentUser is now also handeled with useReducer.
 
 <br/>
 
 <strong>Dec 19th, 2020:</strong>
- - users can now like and unlike an insight on the insights page.
- - fixed an issue where unnecessary vertical scrolling was happening.
- - fixed a zoom bug in the register and login page where white overflow was showing in dark mode.
- 
+
+- users can now like and unlike an insight on the insights page.
+- fixed an issue where unnecessary vertical scrolling was happening.
+- fixed a zoom bug in the register and login page where white overflow was showing in dark mode.
+
  <br/>
  
  <strong>Dec 22nd, 2020:</strong>
  - You can now add an image when creating or editing an account, it's not required, so if an image isn't added, you get the default account circle icon.
+
+<strong>Dec 25th, 2020:</strong>
+
+- You can now add an image with actual file upload instead of pasting a link.
