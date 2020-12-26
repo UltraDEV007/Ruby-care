@@ -11,7 +11,6 @@ import { useStyles } from "./headerStyles";
 import HeaderSearch from "./HeaderSearch";
 import LocationIcons from "./LocationIcons";
 import QueriedUsers from "./QueriedUsers";
-import Card from "@material-ui/core/Card";
 
 export default function Header({ title, allUsers }) {
   const [leftSearch, setLeftSearch] = useState(false);
@@ -78,11 +77,9 @@ export default function Header({ title, allUsers }) {
     <QueriedUsers darkMode={darkMode} user={user} />
   ));
 
+  // if search input === insight disable queriedUsers else enable queriedUsers and disable queriedInsights
   return (
     <>
-      <Card className={classes.usersContainer}>
-        {search !== "" && queriedUsers}
-      </Card>
       <div className={classes.root}>
         <AppBar className={classes.appBar} position="fixed">
           <Toolbar>
@@ -95,6 +92,7 @@ export default function Header({ title, allUsers }) {
 
               {leftSearch && (
                 <HeaderSearch
+                  queriedUsers={queriedUsers}
                   darkMode={darkMode}
                   search={search}
                   setSearch={setSearch}
@@ -105,6 +103,7 @@ export default function Header({ title, allUsers }) {
               <Typography className={classes.timeClass}>{value}</Typography>
               {middleSearch && (
                 <HeaderSearch
+                  queriedUsers={queriedUsers}
                   darkMode={darkMode}
                   search={search}
                   setSearch={setSearch}

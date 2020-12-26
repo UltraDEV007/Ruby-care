@@ -70,15 +70,12 @@ export default function UserEdit({
 
   const handleImageClear = () => {
     setFormData({
-      name: name,
-      birthday: birthday,
-      email: email,
-      gender: gender,
-      password: password,
-      passwordConfirm: passwordConfirm,
+      ...formData,
       image: "",
     });
+    document.getElementById("image-upload").value = "";
   };
+
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
@@ -116,9 +113,8 @@ export default function UserEdit({
       [name]: value,
     }));
   };
-
-  useEffect(() => {
-    checkPasswordLength(password, setPasswordAlert);
+  const handleValidity = () => {
+    password && checkPasswordLength(password, setPasswordAlert);
     checkEmailValidity(email, setEmailValidityAlert);
     checkEmailUniqueuess(allUsers, email, setEmailUniquenessAlert, currentUser);
     if (password !== passwordConfirm) {
@@ -127,14 +123,34 @@ export default function UserEdit({
       setPasswordConfirmAlert(false);
     }
     if (
-      (checkPasswordLength, checkEmailValidity, checkEmailUniqueuess) &&
-      password === passwordConfirm
+      !passwordAlert &&
+      !emailValidityAlert &&
+      !emailUniquenessAlert &&
+      password === passwordConfirm &&
+      password &&
+      name
     ) {
       setAllConditionsAreNotMet(false);
     } else {
       setAllConditionsAreNotMet(true);
     }
-  }, [allUsers, currentUser, email, password, passwordConfirm]);
+  };
+
+  useEffect(() => {
+    handleValidity();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    allUsers,
+    currentUser,
+    email,
+    password,
+    passwordConfirm,
+    emailValidityAlert,
+    emailUniquenessAlert,
+    passwordAlert,
+    name,
+  ]);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -151,7 +167,8 @@ export default function UserEdit({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    handleValidity();
+    checkPasswordLength(password, setPasswordAlert);
     onSave(currentUser.id, formData);
   };
 

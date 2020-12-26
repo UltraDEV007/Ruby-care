@@ -39,14 +39,6 @@ const useStyles = makeStyles((theme) => ({
     flex: "0.33",
     padding: "5px",
   },
-  usersContainer: {
-    position: "fixed",
-    zIndex: 999999,
-    marginTop: "70px",
-    background: ({ darkMode }) => (darkMode === "dark" ? "white" : "#3788E5"),
-    width: "200px",
-    marginLeft: "150px",
-  },
   headerRight: {
     display: "inline-flex",
     alignItems: "center",

@@ -1,16 +1,13 @@
-import { makeStyles } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import SearchIcon from "@material-ui/icons/Search";
 import styled from "styled-components";
+import Card from "@material-ui/core/Card";
 
 let Search = styled.div`
+  position: relative;
   input {
     font-family: "Montserrat", sans-serif;
     color: ${({ darkMode }) => (darkMode === "dark" ? "black" : "white")};
-    &::placeholder {
-      /* color: ${({ darkMode }) =>
-        darkMode === "dark" ? "black" : "white"}; */
-    }
   }
   .icon {
     color: ${({ darkMode }) => (darkMode === "dark" ? "black" : "white")};
@@ -36,32 +33,31 @@ const StyledTextField = styled(TextField)`
   }
 `;
 
-const useStyles = makeStyles({
-  underline: {
-    color: "red",
-    "&::after": {
-      border: "2px solid red",
-    },
-  },
-});
+const Dropdown = styled(Card)`
+  position: absolute;
+  min-width: 250px;
+  top: 35px;
+  background: ${({ darkMode }) => (darkMode === "dark" ? "white" : "#3788E5")};
+`;
 
-function HeaderSearch({ search, setSearch, darkMode }) {
-  const classes = useStyles();
+function HeaderSearch({ search, setSearch, darkMode, queriedUsers }) {
   return (
-    <Search darkMode={darkMode}>
-      <StyledTextField
-        darkMode={darkMode}
-        type="text"
-        placeholder="Search Care"
-        value={search}
-        className={classes.underline}
-        onChange={(e) => setSearch(e.target.value)}
-        InputProps={{
-          startAdornment: <SearchIcon className="icon" />,
-          // classes: { underline: classes.underline },
-        }}
-      />
-    </Search>
+    <>
+      <Search darkMode={darkMode}>
+        <StyledTextField
+          darkMode={darkMode}
+          type="text"
+          placeholder="Search Care"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          InputProps={{
+            startAdornment: <SearchIcon className="icon" />,
+            // classes: { underline: classes.underline },
+          }}
+        />
+        <Dropdown darkMode={darkMode}>{search && queriedUsers}</Dropdown>
+      </Search>
+    </>
   );
 }
 

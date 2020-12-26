@@ -118,13 +118,11 @@ export default function Register() {
 
   const handleImageClear = () => {
     setFormData({
-      name: name,
-      birthday: birthday,
-      email: email,
-      gender: gender,
-      password: password,
+      ...formData,
       image: "",
     });
+    document.getElementById("image-upload").value = "";
+
     setImagePreview(false);
   };
 
