@@ -17,17 +17,27 @@ export default function Header({ title, allUsers }) {
   const [leftSearch, setLeftSearch] = useState(false);
   const [middleSearch, setMiddleSearch] = useState(false);
 
-  const changeSearchLocation = () => {
-    const width = window?.innerWidth;
-    if (width >= 960) {
-      setLeftSearch(true);
-      setMiddleSearch(false);
-    } else {
-      setLeftSearch(false);
-      setMiddleSearch(true);
-    }
-  };
-  window.addEventListener("resize", changeSearchLocation);
+  useEffect(() => {
+    const changeSearchLocation = () => {
+      const width = window?.innerWidth;
+      if (width >= 960) {
+        setLeftSearch(true);
+        setMiddleSearch(false);
+      } else {
+        setLeftSearch(false);
+        setMiddleSearch(true);
+      }
+      if (width <= 400) {
+        setLeftSearch(false);
+        setMiddleSearch(false);
+      }
+    };
+    changeSearchLocation();
+    window.addEventListener("resize", changeSearchLocation);
+    return () => {
+      window.removeEventListener("resize", changeSearchLocation);
+    };
+  }, []);
 
   let time = new Date();
   let timeWithoutSeconds = time.toLocaleString([], {
