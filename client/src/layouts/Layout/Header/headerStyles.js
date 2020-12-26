@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(1),
   },
   title: {
-    flexGrow: 0.1,
+    flexGrow: 0.2,
   },
   timeClass: {
     textAlign: "center",
@@ -30,6 +30,12 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     flex: "0.33",
     padding: "5px",
+  },
+  usersContainer: {
+    position: "fixed",
+    zIndex: 999999,
+    marginTop: "70px",
+    background: ({ darkMode }) => (darkMode === "dark" ? "white" : "#3788E5"),
   },
   headerRight: {
     display: "inline-flex",
@@ -66,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
   logOut: {
     marginLeft: "10px",
     transition: "transform 350ms ease-out",
-    [theme.breakpoints.up("md")]: {
+    [theme.breakpoints.up("sm")]: {
       marginLeft: "30px",
     },
     "&:hover": {
