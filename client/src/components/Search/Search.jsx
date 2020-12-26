@@ -60,7 +60,7 @@ function Search({ search, setSearch }) {
           disableUnderline: true,
           endAdornment: (
             <InputAdornment onClick={toggleSearch} className="icon">
-              <div class="vl"></div>
+              <div className="vl"></div>
               <IconButton>
                 {searchEnabled ? <ClearIcon /> : <SearchIcon />}
               </IconButton>

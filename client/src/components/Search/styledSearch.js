@@ -10,6 +10,7 @@ const Form = styled.form`
   &::placeholder {
     color: ${({ darkMode }) => (darkMode === "dark" ? "#fff" : `inherit`)};
   }
+
   .vl {
     border-left: ${({ darkMode }) =>
       darkMode === "dark"
@@ -25,6 +26,7 @@ const Form = styled.form`
     background: ${({ darkMode }) => (darkMode === "dark" ? "#424242" : "#fff")};
     height: 100%;
   }
+
   input {
     width: 68vw;
     font-size: 18px;
@@ -39,11 +41,13 @@ const Form = styled.form`
     box-shadow: ${({ darkMode }) =>
       darkMode === "dark" ? `5px 5px${yellow[700]}` : `5px 5px ${blue[500]}`};
   }
+
   @media screen and (min-width: 1200px) {
     input {
       width: 50vw;
     }
   }
+
   input:focus {
     outline: none;
   }
