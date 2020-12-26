@@ -35,7 +35,7 @@ const Div = styled.div`
   .user-icon {
     margin-top: 3px;
     margin-right: 5px;
-    font-size: 36px;
+    font-size: 40px;
   }
 
   .user-image {
@@ -48,13 +48,21 @@ const Div = styled.div`
   }
 
   .users-container {
-    text-align: center;
-    height: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
   }
 
   .title-container {
     text-align: center;
     font-size: 2rem;
+  }
+
+  .queried-users {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
   }
 
   @media screen and (min-width: 1280px) {

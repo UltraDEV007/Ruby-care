@@ -2,15 +2,30 @@ import TextField from "@material-ui/core/TextField";
 import SearchIcon from "@material-ui/icons/Search";
 import styled from "styled-components";
 import Card from "@material-ui/core/Card";
+import ClearIcon from "@material-ui/icons/Clear";
+import { yellow } from "@material-ui/core/colors";
 
 let Search = styled.div`
   position: relative;
+
   input {
     font-family: "Montserrat", sans-serif;
     color: ${({ darkMode }) => (darkMode === "dark" ? "black" : "white")};
+    padding-left: 5px;
   }
+
   .icon {
     color: ${({ darkMode }) => (darkMode === "dark" ? "black" : "white")};
+  }
+
+  .icon.clear {
+    cursor: pointer;
+  }
+
+  .dropdown-items {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
   }
 `;
 
@@ -36,8 +51,10 @@ const StyledTextField = styled(TextField)`
 const Dropdown = styled(Card)`
   position: absolute;
   min-width: 250px;
-  top: 35px;
-  background: ${({ darkMode }) => (darkMode === "dark" ? "white" : "#3788E5")};
+  top: 45px;
+  background: ${({ darkMode }) =>
+    darkMode === "dark" ? yellow[700] : "#3788E5"};
+  box-shadow: -3px 5px 17px 1px #000;
 `;
 
 function HeaderSearch({ search, setSearch, darkMode, queriedUsers }) {
@@ -51,11 +68,16 @@ function HeaderSearch({ search, setSearch, darkMode, queriedUsers }) {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           InputProps={{
-            startAdornment: <SearchIcon className="icon" />,
-            // classes: { underline: classes.underline },
+            startAdornment: !search ? (
+              <SearchIcon className="icon" />
+            ) : (
+              <ClearIcon onClick={() => setSearch("")} className="icon clear" />
+            ),
           }}
         />
-        <Dropdown darkMode={darkMode}>{search && queriedUsers}</Dropdown>
+        <Dropdown darkMode={darkMode}>
+          <div className="dropdown-items">{search && queriedUsers}</div>
+        </Dropdown>
       </Search>
     </>
   );

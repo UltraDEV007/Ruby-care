@@ -77,7 +77,6 @@ export default function Header({ title, allUsers }) {
     <QueriedUsers darkMode={darkMode} user={user} />
   ));
 
-  // if search input === insight disable queriedUsers else enable queriedUsers and disable queriedInsights
   return (
     <>
       <div className={classes.root}>

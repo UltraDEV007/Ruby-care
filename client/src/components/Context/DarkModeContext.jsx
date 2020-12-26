@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import {
   ThemeProvider,
   unstable_createMuiStrictModeTheme as createMuiTheme,
 } from "@material-ui/core/styles";
 import { yellow, red, blue } from "@material-ui/core/colors";
 
-const DarkModeContext = React.createContext([{}, () => {}]);
+const DarkModeContext = createContext([{}, () => {}]);
+
 function DarkModeProvider({ children }) {
   const [darkMode, setDarkMode] = useState("");
   const palletType = darkMode === "dark" ? "dark" : "light";

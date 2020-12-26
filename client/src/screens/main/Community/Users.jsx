@@ -50,7 +50,7 @@ const Users = ({ allUsers, loaded }) => {
             {!loaded ? (
               <LinearProgress style={{ margin: "50px auto", width: "30vw" }} />
             ) : (
-              queriedUsers
+              <div className="queried-users">{queriedUsers}</div>
             )}
           </>
         </div>
