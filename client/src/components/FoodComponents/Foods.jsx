@@ -29,7 +29,7 @@ export default function Foods({
     setOpenOptions(!openOptions);
   };
 
-  const FOODS = React.Children.toArray(
+  const FOODS =
     foods.length === 0 ? (
       <div className="log-your-food">
         <Typography> Click the </Typography>&nbsp;
@@ -41,6 +41,7 @@ export default function Foods({
       foods.map((food) => (
         <FoodCard
           foods={foods}
+          key={food.id}
           setFoods={setFoods}
           updated={updated}
           food={food}
@@ -49,8 +50,7 @@ export default function Foods({
           handleDelete={handleDelete}
         />
       ))
-    )
-  );
+    );
 
   const onSave = (formData) => {
     handleCreate(formData);
