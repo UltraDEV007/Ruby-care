@@ -152,7 +152,14 @@ export default function Login() {
         <br />
         <Typography className={classes.user}>
           <br />
-          Daniel Michael &copy; 2020
+          <a
+            className={classes.link}
+            target="_blank"
+            rel="noreferrer"
+            href="http://www.github.com/dannymichaels/care"
+          >
+            Daniel Michael &copy; 2020
+          </a>
         </Typography>
       </div>
     </>

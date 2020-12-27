@@ -193,13 +193,7 @@ export default function Register() {
           </div>
           <br />
           <form className={classes.form} onSubmit={handleSubmit}>
-            <div
-              className={
-                darkMode === "light"
-                  ? classes.inputContainer
-                  : classes.inputContainerDark
-              }
-            >
+            <div className={classes.inputContainer}>
               {!imagePreview ? (
                 <AccountCircleIcon />
               ) : (
@@ -229,13 +223,7 @@ export default function Register() {
                 />
               </FormControl>
             </div>
-            <div
-              className={
-                darkMode === "light"
-                  ? classes.inputContainer
-                  : classes.inputContainerDark
-              }
-            >
+            <div className={classes.inputContainer}>
               <EmailIcon />
               <FormControl>
                 <InputLabel
@@ -277,13 +265,7 @@ export default function Register() {
                 <br />
               </>
             )}
-            <div
-              className={
-                darkMode === "light"
-                  ? classes.inputContainer
-                  : classes.inputContainerDark
-              }
-            >
+            <div className={classes.inputContainer}>
               <LockIcon className={classes.lockIcon} />
               <FormControl>
                 <InputLabel
@@ -337,13 +319,7 @@ export default function Register() {
                 <br />
               </>
             )}
-            <div
-              className={
-                darkMode === "light"
-                  ? classes.inputContainer
-                  : classes.inputContainerDark
-              }
-            >
+            <div className={classes.inputContainer}>
               <LockIcon className={classes.lockIcon} />
               <FormControl>
                 <InputLabel
@@ -399,24 +375,14 @@ export default function Register() {
                 <br />
               </>
             )}
-            <div
-              className={
-                darkMode === "light"
-                  ? classes.inputContainer
-                  : classes.inputContainerDark
-              }
-            >
+            <div className={classes.inputContainer}>
               <EventIcon className={classes.lockIcon} />
               <TextField
                 id="date"
                 required
                 label="Date of Birth"
                 type="date"
-                className={
-                  darkMode === "light"
-                    ? classes.birthdayField
-                    : classes.birthdayFieldDark
-                }
+                className={classes.birthdayField}
                 name="birthday"
                 InputLabelProps={{
                   shrink: true,
@@ -487,7 +453,14 @@ export default function Register() {
           <Typography
             className={darkMode === "light" ? classes.user : classes.userDark}
           >
-            Daniel Michael &copy; 2020
+            <a
+              className={classes.link}
+              target="_blank"
+              rel="noreferrer"
+              href="http://www.github.com/dannymichaels/care"
+            >
+              Daniel Michael &copy; 2020
+            </a>
           </Typography>
         </div>
       </div>

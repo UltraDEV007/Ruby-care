@@ -102,5 +102,15 @@ const useStyles = makeStyles({
   visibility: {
     color: (props) => (props.darkMode === "dark" ? "#fff" : "#000"),
   },
+  link: {
+    textDecoration: "none",
+    color: "inherit",
+    transition: "transform 250ms ease-in-out",
+    "&:hover": {
+      transition: "transform 250ms ease-in-out",
+      cursor: "pointer",
+      transform: "scale(1.005)",
+    },
+  },
 });
 export { useStyles };

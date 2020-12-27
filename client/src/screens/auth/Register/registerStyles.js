@@ -49,7 +49,6 @@ const useStyles = makeStyles(() => ({
     fontFamily: ["Montserrat", "sans-serif"].join(","),
     fontSize: "15px",
     textDecoration: "none",
-    marginLeft: "40px",
     marginBottom: (props) => (props.currentUser ? "5px" : "20px"),
     display: "flex",
     flexDirection: "column",
@@ -62,7 +61,6 @@ const useStyles = makeStyles(() => ({
     textDecoration: "none",
     color: "#fff",
     marginBottom: (props) => (props.currentUser ? "5px" : "20px"),
-    marginLeft: "40px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -111,13 +109,7 @@ const useStyles = makeStyles(() => ({
     marginLeft: "10px",
   },
   birthdayField: {
-    color: "black",
-    marginBottom: "20px",
-    width: "300px",
-    marginLeft: "0",
-  },
-  birthdayFieldDark: {
-    color: "#fff",
+    color: (props) => (props.darkMode === "light" ? "black" : "white"),
     marginBottom: "20px",
     width: "300px",
     marginLeft: "0",
@@ -138,12 +130,7 @@ const useStyles = makeStyles(() => ({
   inputContainer: {
     display: "flex",
     alignItems: "center",
-    color: "black",
-  },
-  inputContainerDark: {
-    display: "flex",
-    alignItems: "center",
-    color: "#fff",
+    color: (props) => (props.darkMode === "light" ? "black" : "black"),
   },
   darkPasswordLabel: {
     color: "#fff",
@@ -209,6 +196,16 @@ const useStyles = makeStyles(() => ({
   pictureButtons: {
     display: "flex",
     justifyContent: "center",
+  },
+  link: {
+    textDecoration: "none",
+    color: "inherit",
+    transition: "transform 250ms ease-in-out",
+    "&:hover": {
+      transition: "transform 250ms ease-in-out",
+      cursor: "pointer",
+      transform: "scale(1.005)",
+    },
   },
 }));
 export { useStyles };
