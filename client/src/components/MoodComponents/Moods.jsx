@@ -34,7 +34,7 @@ export default function Moods({
     setOpenDialog(false);
   };
 
-  const MOODS =
+  const moodsJSX =
     moods.length === 0 ? (
       <div className="log-your-mood">
         <Typography> Click the </Typography>&nbsp;
@@ -60,7 +60,7 @@ export default function Moods({
   return (
     <>
       <div className="moods">
-        {loaded ? MOODS : <>Loading...</>}
+        {loaded ? moodsJSX : <>Loading...</>}
         <div className="mood-buttons-container">
           <Button
             className="edit-moods"
