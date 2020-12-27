@@ -29,7 +29,7 @@ export default function Foods({
     setOpenOptions(!openOptions);
   };
 
-  const FOODS =
+  const foodsJSX =
     foods.length === 0 ? (
       <div className="log-your-food">
         <Typography> Click the </Typography>&nbsp;
@@ -60,7 +60,7 @@ export default function Foods({
   return (
     <>
       <div className="foods">
-        {loaded ? FOODS : <>Loading...</>}
+        {loaded ? foodsJSX : <>Loading...</>}
         <div className="food-buttons-container">
           <Button
             className="edit-foods"
