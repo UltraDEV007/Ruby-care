@@ -35,7 +35,7 @@ export default function Meds({
     setOpenDialog(false);
   };
 
-  const MEDS =
+  const medsJSX =
     meds.length === 0 ? (
       <div className="log-your-med">
         <Typography> Click the </Typography>&nbsp;
@@ -62,7 +62,7 @@ export default function Meds({
   return (
     <>
       <div className="meds">
-        {loaded ? MEDS : <>Loading...</>}
+        {loaded ? medsJSX : <>Loading...</>}
         <div className="med-buttons-container">
           <Button
             className="edit-meds"
