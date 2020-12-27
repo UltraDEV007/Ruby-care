@@ -58,7 +58,7 @@ const Dropdown = styled(Card)`
   box-shadow: -3px 5px 17px 1px #000;
 `;
 
-function HeaderSearch({ search, setSearch, darkMode, queriedUsers }) {
+function HeaderSearch({ search, setSearch, darkMode, usersJSX }) {
   const [placeholder, setPlaceholder] = useState("Search Care");
 
   useEffect(() => {
@@ -95,7 +95,7 @@ function HeaderSearch({ search, setSearch, darkMode, queriedUsers }) {
           }}
         />
         <Dropdown darkMode={darkMode}>
-          <div className="dropdown-items">{search && queriedUsers}</div>
+          <div className="dropdown-items">{search && usersJSX}</div>
         </Dropdown>
       </Search>
     </>

@@ -46,7 +46,7 @@ export default function Header({ title, allUsers }) {
       user.name.toLowerCase().includes(`${search}`.toLowerCase())
     );
 
-  const queriedUsers = getUsers().map((user) => (
+  const usersJSX = getUsers().map((user) => (
     <QueriedUsers darkMode={darkMode} user={user} />
   ));
 
@@ -69,7 +69,7 @@ export default function Header({ title, allUsers }) {
 
               {leftSearch && (
                 <HeaderSearch
-                  queriedUsers={queriedUsers}
+                  usersJSX={usersJSX}
                   darkMode={darkMode}
                   search={search}
                   setSearch={setSearch}
@@ -81,9 +81,10 @@ export default function Header({ title, allUsers }) {
               <Typography className={classes.timeClass}>
                 <Moment format="hh:mm A">{currentTime}</Moment>
               </Typography>
+
               {middleSearch && (
                 <HeaderSearch
-                  queriedUsers={queriedUsers}
+                  usersJSX={usersJSX}
                   darkMode={darkMode}
                   search={search}
                   setSearch={setSearch}
@@ -118,13 +119,7 @@ export default function Header({ title, allUsers }) {
                 </>
               ) : (
                 <Link style={{ textDecoration: "none" }} to="/login">
-                  <Typography
-                    style={
-                      darkMode === "dark"
-                        ? { color: "#000" }
-                        : { color: "#fff" }
-                    }
-                  >
+                  <Typography className={classes.text}>
                     Login/Register
                   </Typography>
                 </Link>

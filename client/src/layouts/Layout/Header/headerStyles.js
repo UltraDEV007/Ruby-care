@@ -26,6 +26,10 @@ const useStyles = makeStyles((theme) => ({
     display: "none",
     textAlign: "center",
   },
+  text: {
+    color: (props) =>
+      props.darkMode === "dark" ? { color: "#000" } : { color: "#fff" },
+  },
   headerLeft: {
     display: "inline-flex",
     alignItems: "center",
