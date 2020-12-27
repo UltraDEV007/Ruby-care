@@ -34,7 +34,7 @@ export default function Affirmations({
     setOpenOptions(!openOptions);
   };
 
-  const AFFIRMATIONS =
+  const affirmationsJSX =
     affirmations?.length === 0 ? (
       <div className="log-your-affirmation">
         <Typography> Click the </Typography>&nbsp;
@@ -60,7 +60,7 @@ export default function Affirmations({
   return (
     <>
       <div className="affirmations">
-        {loaded ? AFFIRMATIONS : <>Loading...</>}
+        {loaded ? affirmationsJSX : <>Loading...</>}
         <div className="mood-buttons-container">
           <Button
             className="edit-affirmations"
