@@ -11,54 +11,27 @@ import { useStyles } from "./headerStyles";
 import HeaderSearch from "./HeaderSearch";
 import LocationIcons from "./LocationIcons";
 import QueriedUsers from "./QueriedUsers";
+import Moment from "react-moment";
+import "moment-timezone";
+import SearchBarLocation from "./SearchBarLocation";
 
 export default function Header({ title, allUsers }) {
   const [leftSearch, setLeftSearch] = useState(false);
   const [middleSearch, setMiddleSearch] = useState(false);
+  const [currentTime, setCurrentTime] = useState(Date.now());
+  const [search, setSearch] = useState("");
+  const [darkMode] = useContext(DarkModeContext);
+  const [{ currentUser }, dispatch] = useStateValue();
+
+  const classes = useStyles({ darkMode });
+  let location = useLocation();
 
   useEffect(() => {
-    const changeSearchLocation = () => {
-      const width = window?.innerWidth;
-      if (width >= 960) {
-        setLeftSearch(true);
-        setMiddleSearch(false);
-      } else {
-        setLeftSearch(false);
-        setMiddleSearch(true);
-      }
-      if (width <= 404) {
-        setLeftSearch(false);
-        setMiddleSearch(false);
-      }
-    };
-    changeSearchLocation();
-    window.addEventListener("resize", changeSearchLocation);
-    return () => {
-      window.removeEventListener("resize", changeSearchLocation);
-    };
-  }, []);
-
-  let time = new Date();
-  let timeWithoutSeconds = time.toLocaleString([], {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-  const [value, setValue] = useState(timeWithoutSeconds);
-
-  useEffect(() => {
-    const interval = setInterval(() => setValue(timeWithoutSeconds), 1000);
-
+    const interval = setInterval(() => setCurrentTime(Date.now()), 1000);
     return () => {
       clearInterval(interval);
     };
-  }, [timeWithoutSeconds]);
-
-  let location = useLocation();
-
-  const [darkMode] = useContext(DarkModeContext);
-  const [search, setSearch] = useState("");
-  const [{ currentUser }, dispatch] = useStateValue();
-  const classes = useStyles({ darkMode });
+  });
 
   const history = useHistory();
   const handleLogout = () => {
@@ -89,6 +62,11 @@ export default function Header({ title, allUsers }) {
                 {title}
               </Typography>
 
+              <SearchBarLocation
+                setLeftSearch={setLeftSearch}
+                setMiddleSearch={setMiddleSearch}
+              />
+
               {leftSearch && (
                 <HeaderSearch
                   queriedUsers={queriedUsers}
@@ -98,8 +76,11 @@ export default function Header({ title, allUsers }) {
                 />
               )}
             </div>
+
             <div className={classes.headerCenter}>
-              <Typography className={classes.timeClass}>{value}</Typography>
+              <Typography className={classes.timeClass}>
+                <Moment format="hh:mm A">{currentTime}</Moment>
+              </Typography>
               {middleSearch && (
                 <HeaderSearch
                   queriedUsers={queriedUsers}
