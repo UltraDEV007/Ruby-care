@@ -29,7 +29,7 @@ export default function Symptoms({
     setOpenOptions(!openOptions);
   };
 
-  const SYMPTOMS =
+  const symptomsJSX =
     symptoms.length === 0 ? (
       <div className="log-your-symptom">
         <Typography> Click the </Typography>&nbsp;
@@ -60,7 +60,7 @@ export default function Symptoms({
   return (
     <>
       <div className="symptoms">
-        {loaded ? SYMPTOMS : <>Loading...</>}
+        {loaded ? symptomsJSX : <>Loading...</>}
         <div className="symptom-buttons-container">
           <Button
             className="edit-symptoms"
