@@ -175,7 +175,7 @@ src
  |__ emojiLogic.js
  |__ ratingLogic.js
 ```
-
+<br/>
 #### Component Breakdown
 
 |       Component       |    Type    | state | props | Description                                                                                                                                             |
@@ -204,6 +204,7 @@ src
 |        MedEdit        | functional | y    |  y     | _MedEdit.jsx will get the medicine by id and allow us to edit it_ |
 |  MedDetail            | functional | y    |  y     | _MedDetail will conditionally text render based on wether or not the selected time has passed or not, if it has passed, ask the user if he took his medication, if he says yes, set the medicine to "taken" and tell him that he took the medicine at the time that he said he took it and let him decide if he want's to delete it, else, just have exit or delete buttons_ |
 
+<br/>
 
 #### Time Estimates
 
