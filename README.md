@@ -176,6 +176,7 @@ src
  |__ ratingLogic.js
 ```
 <br/>
+
 #### Component Breakdown
 
 |       Component       |    Type    | state | props | Description                                                                                                                                             |
