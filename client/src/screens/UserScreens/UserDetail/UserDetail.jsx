@@ -11,6 +11,8 @@ import { toTitleCase } from "../../../utils/toTitleCase";
 import { getAge } from "../../../utils/getAge";
 import Wrapper from "./styledUserDetail";
 import LinearProgressLoading from "../../../components/Loading/LinearProgressLoading";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import IconButton from "@material-ui/core/IconButton";
 
 export default function UserDetail({ getOneUser }) {
   const [user, setUser] = useState(null);
@@ -45,23 +47,30 @@ export default function UserDetail({ getOneUser }) {
     <Wrapper darkMode={darkMode}>
       <div className="content-container">
         <div className="title-container">
-          <Typography className="title">
-            {!user?.image && <AccountCircleIcon className="user-icon" />}
-            {user?.name}
-          </Typography>
-          {user?.image && (
-            <img className="user-image" src={user?.image} alt={user?.name} />
-          )}
-          <Typography className="age">
-            Age: {getAge(user?.birthday)} years old
-          </Typography>
-          <Typography className="gender">
-            Gender: {toTitleCase(user.gender)}
-          </Typography>
-          Joined:&nbsp;
-          <Moment format="dddd, MMMM Do yyyy">
-            <small>{user?.created_at}</small>
-          </Moment>
+          <div className="arrow-container">
+            <IconButton className="arrow-icon" onClick={goBack}>
+              <ArrowBackIcon className="arrow-icon" />
+            </IconButton>
+          </div>
+          <div className="inner-column">
+            <Typography className="title">
+              {!user?.image && <AccountCircleIcon className="user-icon" />}
+              {user?.name}
+            </Typography>
+            {user?.image && (
+              <img className="user-image" src={user?.image} alt={user?.name} />
+            )}
+            <Typography className="age">
+              Age: {getAge(user?.birthday)} years old
+            </Typography>
+            <Typography className="gender">
+              Gender: {toTitleCase(user.gender)}
+            </Typography>
+            Joined:&nbsp;
+            <Moment format="dddd, MMMM Do yyyy">
+              <small>{user?.created_at}</small>
+            </Moment>
+          </div>
         </div>
         <hr className="top-hr" />
         <div className="body">
