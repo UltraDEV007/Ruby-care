@@ -2,20 +2,17 @@ import { grey, yellow } from "@material-ui/core/colors";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  min-height: 100vh;
-  max-height: 100%;
   background: ${({ darkMode }) => (darkMode === "dark" ? grey[800] : "#fff")};
   .content-container {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    .buttons {
+    footer {
       display: flex;
       flex-direction: row;
       justify-content: center;
-      margin-top: 20px;
     }
-    .buttons2 {
+    .buttons {
       display: flex;
       flex-direction: row;
       align-self: center;
@@ -23,23 +20,24 @@ const Wrapper = styled.div`
   }
   .title-container {
     align-self: center;
-    padding: 20px;
     margin-top: 40px;
     color: ${({ darkMode }) => (darkMode === "dark" ? grey[100] : "#000")};
     text-align: center;
+    padding: 20px;
   }
   .title {
-    font-size: 1.2rem;
+    font-size: clamp(20px, 10vw, 40px);
+    padding: 5px;
   }
   .insight-body {
     margin: 0 auto;
     margin-top: 20px;
-    min-width: 400px;
     color: ${({ darkMode }) => (darkMode === "dark" ? grey[100] : "#000")};
-    min-height: 400px;
-    padding: 20px 50px;
     text-align: left;
-    font-size: 1rem;
+  }
+  .hr-bottom {
+    margin-top: 10px;
+    margin-bottom: 13px;
   }
   .user-name {
     font-size: 1.3rem;
@@ -49,6 +47,16 @@ const Wrapper = styled.div`
     align-items: center;
     text-align: center;
     justify-content: center;
+  }
+  .arrow-container {
+    position: absolute;
+    left: 0;
+    padding: 20px;
+    top: 0;
+  }
+  .arrow-icon {
+    font-size: clamp(30px, 10vw, 60px);
+    padding: 1px;
   }
   .user-icon {
     margin-right: 10px;
@@ -82,20 +90,35 @@ const Wrapper = styled.div`
   hr {
     margin-top: 20px;
   }
-
+  .inner-column {
+    width: 98%;
+    max-width: 1100px;
+    padding: 20px;
+    height: 98%;
+    max-height: 1100px;
+  }
+  .insight-text {
+    line-height: 1.5rem;
+    font-size: clamp(12px, 10vw, 16px);
+  }
   @media screen and (min-width: 600px) {
-    .title {
-      font-size: 1.5rem;
+    .inner-column {
+      width: 98%;
+      max-width: 1100px;
+      padding: 20px 50px;
     }
-    .insight-body {
-      font-size: 1.2rem;
+    .insight-text {
+      font-size: clamp(1rem, 20vw 1.1rem);
     }
     @media screen and (min-width: 1280px) {
-      .title {
-        font-size: 2rem;
+      .insight-text {
+        font-size: clamp(1.3rem, 20vw, 1.4rem);
+        line-height: 1.7rem;
       }
-      .insight-body {
-        font-size: 1.3rem;
+      .inner-column {
+        width: 98%;
+        max-width: 1100px;
+        padding: 20px 20px;
       }
     }
   }

@@ -10,6 +10,8 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import DeleteInsightFromDetail from "../../../components/Modals/DeleteInsightFromDetail";
 import Wrapper from "./styledInsightDetail";
 import LinearProgressLoading from "../../../components/Loading/LinearProgressLoading";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import IconButton from "@material-ui/core/IconButton";
 
 export default function InsightDetail({ getOneInsight, handleDelete }) {
   const [insight, setInsight] = useState(null);
@@ -51,6 +53,11 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
       <Wrapper darkMode={darkMode}>
         <div className="content-container">
           <div className="title-container">
+            <div className="arrow-container">
+              <IconButton className="arrow-icon" onClick={goBack}>
+                <ArrowBackIcon className="arrow-icon" />
+              </IconButton>
+            </div>
             <Typography className="title">&nbsp;{insight?.title}</Typography>
             <Link className="link" to={`/users/${insight?.user?.id}`}>
               <Typography className="user-name">
@@ -75,7 +82,7 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
           </div>
           {insight?.user_id === currentUser?.id && (
             <>
-              <div className="buttons2">
+              <div className="buttons">
                 <Button
                   component={Link}
                   to={`/insights/${insight?.id}/edit`}
@@ -97,16 +104,18 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
             </>
           )}
           <hr />
-          <div className="insight-body">
-            <p>{insight?.body}</p>
-          </div>
+          <section className="insight-body">
+            <div className="inner-column">
+              <p className="insight-text">{insight?.body}</p>
+            </div>
+          </section>
           <br />
-          <hr />
-          <div className="buttons">
+          <hr className="hr-bottom" />
+          <footer>
             <Button variant="contained" color="secondary" onClick={goBack}>
               Go Back
             </Button>
-          </div>
+          </footer>
         </div>
       </Wrapper>
       <DeleteInsightFromDetail
