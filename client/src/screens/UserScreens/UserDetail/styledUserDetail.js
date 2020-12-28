@@ -108,9 +108,11 @@ const Wrapper = styled.div`
     cursor: pointer;
     transform: translateY(-1.06px);
   }
-  @media screen and (min-width: 600px) {
-    height: 150px;
-    width: 150px;
+  @media screen and (min-width: 1024px) {
+    .user-image {
+      height: 150px;
+      width: 150px;
+    }
   }
 `;
 export default Wrapper;
