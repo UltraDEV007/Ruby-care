@@ -52,28 +52,26 @@ export default function UserDetail({ getOneUser }) {
               <ArrowBackIcon className="arrow-icon" />
             </IconButton>
           </div>
-          <div className="inner-column">
-            <Typography className="title">
-              {!user?.image && <AccountCircleIcon className="user-icon" />}
-              {user?.name}
-            </Typography>
-            {user?.image && (
-              <img className="user-image" src={user?.image} alt={user?.name} />
-            )}
-            <Typography className="age">
-              Age: {getAge(user?.birthday)} years old
-            </Typography>
-            <Typography className="gender">
-              Gender: {toTitleCase(user.gender)}
-            </Typography>
-            Joined:&nbsp;
-            <Moment format="dddd, MMMM Do yyyy">
-              <small>{user?.created_at}</small>
-            </Moment>
-          </div>
+          <Typography className="title">
+            {!user?.image && <AccountCircleIcon className="user-icon" />}
+            {user?.name}
+          </Typography>
+          {user?.image && (
+            <img className="user-image" src={user?.image} alt={user?.name} />
+          )}
+          <Typography className="age">
+            Age: {getAge(user?.birthday)} years old
+          </Typography>
+          <Typography className="gender">
+            Gender: {toTitleCase(user.gender)}
+          </Typography>
+          Joined:&nbsp;
+          <Moment format="dddd, MMMM Do yyyy">
+            <small>{user?.created_at}</small>
+          </Moment>
         </div>
         <hr className="top-hr" />
-        <div className="body">
+        <div className="inner-column">
           <div className="check-insights">{checkInsights(user)}</div>
           <div className="insights-container">{INSIGHTS}</div>
         </div>

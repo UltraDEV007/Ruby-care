@@ -51,9 +51,10 @@ const Wrapper = styled.div`
     border-radius: 50%;
     object-fit: cover;
   }
-  .body {
+  .inner-column {
     margin: 0 auto;
     margin-top: 20px;
+    padding: 20px;
     min-height: 400px;
     color: ${({ darkMode }) => (darkMode === "dark" ? grey[100] : "#000")};
   }
@@ -70,6 +71,7 @@ const Wrapper = styled.div`
   }
   .check-insights {
     margin-bottom: 10px;
+    font-size: clamp(0.8rem, 10vw, 1.6rem);
   }
   .edit {
     margin-right: 10px;
@@ -88,6 +90,7 @@ const Wrapper = styled.div`
     text-decoration: none;
     overflow-wrap: break-word;
     font-size: 1.5rem;
+    font-size: clamp(16px, 10vw, 1.5rem);
     font-family: "montserrat", sans-serif;
   }
   a:hover {
