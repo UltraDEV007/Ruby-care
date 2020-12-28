@@ -81,7 +81,6 @@ const Wrapper = styled.div`
   .top-hr {
     margin-top: 20px;
   }
-
   .age,
   .gender,
   .date {
@@ -89,14 +88,12 @@ const Wrapper = styled.div`
     font-size: 1.2rem;
     font-size: clamp(0.9rem, 2vw, 2vh);
   }
-
   a {
     color: ${({ darkMode }) => (darkMode === "dark" ? yellow[700] : blue[600])};
     text-decoration: none;
     overflow-wrap: break-word;
     font-size: 1.5rem;
     font-size: clamp(1.5rem, 3vw, 2rem);
-
     padding: 1.7px;
     font-family: "montserrat", sans-serif;
   }
@@ -110,6 +107,10 @@ const Wrapper = styled.div`
     transition: transform 300ms ease-in-out;
     cursor: pointer;
     transform: translateY(-1.06px);
+  }
+  @media screen and (min-width: 600px) {
+    height: 150px;
+    width: 150px;
   }
 `;
 export default Wrapper;
