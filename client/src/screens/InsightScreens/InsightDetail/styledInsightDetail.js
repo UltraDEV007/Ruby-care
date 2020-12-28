@@ -21,13 +21,13 @@ const Wrapper = styled.div`
   .title-container {
     align-self: center;
     margin-top: 40px;
-    color: ${({ darkMode }) => (darkMode === "dark" ? grey[100] : "#000")};
     text-align: center;
-    padding: 20px;
+    color: ${({ darkMode }) => (darkMode === "dark" ? grey[100] : "#000")};
   }
   .title {
     font-size: clamp(20px, 10vw, 40px);
-    padding: 5px;
+    padding-top: 20px;
+    text-align: center;
   }
   .insight-body {
     margin: 0 auto;
@@ -51,7 +51,7 @@ const Wrapper = styled.div`
   .arrow-container {
     position: absolute;
     left: 0;
-    padding: 20px;
+    padding: 10px;
     top: 0;
   }
   .arrow-icon {

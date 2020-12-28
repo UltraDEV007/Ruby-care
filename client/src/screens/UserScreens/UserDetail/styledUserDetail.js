@@ -18,8 +18,7 @@ const Wrapper = styled.div`
   }
   .title-container {
     align-self: center;
-    padding: 20px;
-    margin-top: 20px;
+    margin-top: 40px;
     color: ${({ darkMode }) => (darkMode === "dark" ? grey[100] : "#000")};
   }
   .title {
@@ -29,7 +28,7 @@ const Wrapper = styled.div`
   .arrow-container {
     position: absolute;
     left: 0;
-    padding: 20px;
+    padding: 10px;
     top: 0;
   }
   .arrow-icon {
@@ -71,7 +70,7 @@ const Wrapper = styled.div`
   }
   .check-insights {
     margin-bottom: 10px;
-    font-size: clamp(0.8rem, 10vw, 1.6rem);
+    font-size: clamp(0.8rem, 5vw, 1.3rem);
   }
   .edit {
     margin-right: 10px;
