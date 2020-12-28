@@ -94,8 +94,7 @@ const Wrapper = styled.div`
     width: 98%;
     max-width: 1100px;
     padding: 20px;
-    height: 98%;
-    max-height: 1100px;
+    min-height: 600px;
   }
   .insight-text {
     line-height: 1.5rem;
