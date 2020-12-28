@@ -22,7 +22,8 @@ const Wrapper = styled.div`
     color: ${({ darkMode }) => (darkMode === "dark" ? grey[100] : "#000")};
   }
   .title {
-    font-size: clamp(20px, 10vw, 40px);
+    font-size: 1.6rem;
+    font-size: clamp(1.5rem, 4vw, 40px);
     padding-top: 20px;
   }
   .arrow-container {
@@ -44,8 +45,10 @@ const Wrapper = styled.div`
   .user-image {
     height: 150px;
     width: 150px;
+    width: clamp(50px, 100px, 150px);
+    height: clamp(50px, 100px, 150px);
     align-self: center;
-    margin: 20px;
+    margin: 10px;
     border: 1px solid white;
     border-radius: 50%;
     object-fit: cover;
@@ -69,8 +72,8 @@ const Wrapper = styled.div`
     display: none;
   }
   .check-insights {
-    margin-bottom: 10px;
-    font-size: clamp(0.8rem, 5vw, 1.3rem);
+    margin-bottom: 20px;
+    font-size: clamp(0.9rem, 2vw, 2vh);
   }
   .edit {
     margin-right: 10px;
@@ -80,16 +83,21 @@ const Wrapper = styled.div`
   }
 
   .age,
-  .gender {
+  .gender,
+  .date {
     padding-bottom: 1px;
-    font-size: clamp(0.5rem, 10vw, 1.2rem);
+    font-size: 1.2rem;
+    font-size: clamp(0.9rem, 2vw, 2vh);
   }
+
   a {
     color: ${({ darkMode }) => (darkMode === "dark" ? yellow[700] : blue[600])};
     text-decoration: none;
     overflow-wrap: break-word;
     font-size: 1.5rem;
-    font-size: clamp(16px, 10vw, 1.5rem);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+
+    padding: 1.7px;
     font-family: "montserrat", sans-serif;
   }
   a:hover {
@@ -102,10 +110,6 @@ const Wrapper = styled.div`
     transition: transform 300ms ease-in-out;
     cursor: pointer;
     transform: translateY(-1.06px);
-  }
-  @media screen and (min-width: 600px) {
-    @media screen and (min-width: 1280px) {
-    }
   }
 `;
 export default Wrapper;

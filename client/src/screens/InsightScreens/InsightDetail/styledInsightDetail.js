@@ -24,11 +24,7 @@ const Wrapper = styled.div`
     text-align: center;
     color: ${({ darkMode }) => (darkMode === "dark" ? grey[100] : "#000")};
   }
-  .title {
-    font-size: clamp(20px, 10vw, 40px);
-    padding-top: 20px;
-    text-align: center;
-  }
+
   .insight-body {
     margin: 0 auto;
     margin-top: 20px;
@@ -41,6 +37,7 @@ const Wrapper = styled.div`
   }
   .user-name {
     font-size: 1.3rem;
+    font-size: clamp(1rem, 3vw, 1.3rem);
     transition: transform 250ms ease-in-out;
     padding: 2px;
     display: flex;
@@ -100,6 +97,12 @@ const Wrapper = styled.div`
     line-height: 1.5rem;
     font-size: clamp(12px, 10vw, 16px);
   }
+  .title {
+    font-size: 1.6rem;
+    font-size: clamp(1rem, 4vw, 4vh);
+    padding-top: 20px;
+    text-align: center;
+  }
   @media screen and (min-width: 600px) {
     .inner-column {
       width: 98%;
@@ -107,10 +110,12 @@ const Wrapper = styled.div`
       padding: 20px 50px;
     }
     .insight-text {
+      font-size: 1rem;
       font-size: clamp(1rem, 20vw 1.1rem);
     }
     @media screen and (min-width: 1280px) {
       .insight-text {
+        font-size: 1.3rem;
         font-size: clamp(1.3rem, 20vw, 1.4rem);
         line-height: 1.7rem;
       }

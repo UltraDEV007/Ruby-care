@@ -65,10 +65,12 @@ export default function UserDetail({ getOneUser }) {
           <Typography className="gender">
             Gender: {toTitleCase(user.gender)}
           </Typography>
-          Joined:&nbsp;
-          <Moment format="dddd, MMMM Do yyyy">
-            <small>{user?.created_at}</small>
-          </Moment>
+          <Typography className="date">
+            Joined:&nbsp;
+            <Moment format="dddd, MMMM Do yyyy">
+              <small>{user?.created_at}</small>
+            </Moment>
+          </Typography>
         </div>
         <hr className="top-hr" />
         <div className="inner-column">
