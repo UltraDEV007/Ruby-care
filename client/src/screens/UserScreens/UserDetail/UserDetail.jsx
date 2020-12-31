@@ -70,7 +70,7 @@ export default function UserDetail({ getOneUser }) {
           <Typography className="date">
             Joined:&nbsp;
             <Moment format="dddd, MMMM Do yyyy">
-              <small>{userDate}</small>
+              {userDate}
             </Moment>
           </Typography>
         </div>
