@@ -1,8 +1,12 @@
 import api from "./apiConfig";
 
 export const getAllAffirmations = async () => {
-  const resp = await api.get("/affirmations");
-  return resp.data;
+  try {
+    const resp = await api.get("/affirmations");
+    return resp.data;
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const getOneAffirmation = async (id) => {
