@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import SentimentSatisfiedSharpIcon from "@material-ui/icons/SentimentSatisfiedSharp";
+import { DarkModeContext } from "../../Context/DarkModeContext";
 
-function GoodEmoji({ darkMode }) {
+function GoodEmoji() {
+  const [darkMode] = useContext(DarkModeContext);
+
   return (
     <>
-      {" "}
       <SentimentSatisfiedSharpIcon
         style={
           !darkMode

@@ -1,4 +1,5 @@
 import Button from "@material-ui/core/Button";
+import { useContext } from "react";
 import Dialog from "@material-ui/core/Dialog";
 import Typography from "@material-ui/core/Typography";
 import Moment from "react-moment";
@@ -8,6 +9,12 @@ import {
   DialogContent,
   DialogActions,
 } from "../../Form/DialogComponents";
+import { emojiLogic } from "../../../utils/emojiLogic";
+import GoodEmoji from "../../MoodComponents/Emojis/GoodEmoji";
+import PoorEmoji from "../../MoodComponents/Emojis/PoorEmoji";
+import OkayEmoji from "../../MoodComponents/Emojis/OkayEmoji";
+import GreatEmoji from "../../MoodComponents/Emojis/GreatEmoji";
+import { DarkModeContext } from "../../Context/DarkModeContext";
 
 export default function MoodDetail({
   mood,
@@ -15,6 +22,7 @@ export default function MoodDetail({
   onDelete,
   setOpenDetail,
 }) {
+  const [darkMode] = useContext(DarkModeContext);
   return (
     <Dialog
       onClose={() => setOpenDetail(false)}
@@ -23,7 +31,11 @@ export default function MoodDetail({
       <DialogTitle
         id="customized-dialog-title"
         onClose={() => setOpenDetail(false)}>
-        {mood.status}
+        emojiLogic( mood.status,
+        <PoorEmoji darkMode={darkMode} />,
+        <OkayEmoji darkMode={darkMode} />,
+        <GoodEmoji darkMode={darkMode} />,
+        <GreatEmoji darkMode={darkMode} />)
       </DialogTitle>
       <DialogContent
         dividers

@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import SentimentVeryDissatisfiedIcon from "@material-ui/icons/SentimentVeryDissatisfied";
+import { DarkModeContext } from "../../Context/DarkModeContext";
+function PoorEmoji() {
+  const [darkMode] = useContext(DarkModeContext);
 
-function PoorEmoji({ darkMode }) {
   return (
     <SentimentVeryDissatisfiedIcon
       style={

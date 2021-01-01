@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
+import { DarkModeContext } from "../../Context/DarkModeContext";
+function GreatEmoji() {
+  const [darkMode] = useContext(DarkModeContext);
 
-function GreatEmoji({ darkMode }) {
   return (
     <>
       <InsertEmoticonIcon

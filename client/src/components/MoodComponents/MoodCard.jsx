@@ -6,10 +6,6 @@ import Moment from "react-moment";
 import "moment-timezone";
 import { DarkModeContext } from "../Context/DarkModeContext";
 import { indigo } from "@material-ui/core/colors/";
-import GreatEmoji from "./Emojis/GreatEmoji";
-import PoorEmoji from "./Emojis/PoorEmoji";
-import OkayEmoji from "./Emojis/OkayEmoji";
-import GoodEmoji from "./Emojis/GoodEmoji";
 import { emojiLogic } from "../../utils/emojiLogic";
 import MoodEdit from "../Dialogs/MoodDialogs/MoodEdit";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -66,17 +62,7 @@ export default function MoodCard({
         <div className="mood-container">
           <div className="hover-container" onClick={() => setOpenDetail(true)}>
             <div className="status">
-              {!edited ? (
-                emojiLogic(
-                  mood.status,
-                  <PoorEmoji darkMode={darkMode} />,
-                  <OkayEmoji darkMode={darkMode} />,
-                  <GoodEmoji darkMode={darkMode} />,
-                  <GreatEmoji darkMode={darkMode} />
-                )
-              ) : (
-                <CircularProgress />
-              )}
+              {!edited ? emojiLogic(mood.status) : <CircularProgress />}
               <p>{mood.status}</p>
             </div>
             <div className="time">
