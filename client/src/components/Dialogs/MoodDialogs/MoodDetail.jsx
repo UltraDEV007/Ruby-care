@@ -1,5 +1,4 @@
 import Button from "@material-ui/core/Button";
-import { useContext } from "react";
 import Dialog from "@material-ui/core/Dialog";
 import Typography from "@material-ui/core/Typography";
 import Moment from "react-moment";
@@ -23,10 +22,16 @@ export default function MoodDetail({
       aria-labelledby="customized-dialog-title"
       open={openDetail}>
       <DialogTitle
-        style={{ display: "flex", alignItems: "center" }}
         id="customized-dialog-title"
         onClose={() => setOpenDetail(false)}>
-        {emojiLogic(mood.status)} &nbsp; {mood?.status}
+        <Typography
+          style={{
+            fontSize: "1.25rem",
+            display: "flex",
+            alignItems: "center",
+          }}>
+          {emojiLogic(mood.status)} &nbsp; {mood?.status}
+        </Typography>
       </DialogTitle>
       <DialogContent
         dividers
