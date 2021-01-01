@@ -42,6 +42,8 @@ export default function UserDetail({ getOneUser }) {
   if (!loaded) {
     return <LinearProgressLoading darkMode={darkMode} />;
   }
+  
+  const userDate = user?.created_at?.toLocaleString();
 
   return (
     <Wrapper darkMode={darkMode}>
@@ -68,7 +70,7 @@ export default function UserDetail({ getOneUser }) {
           <Typography className="date">
             Joined:&nbsp;
             <Moment format="dddd, MMMM Do yyyy">
-              <small>{user?.created_at}</small>
+              {userDate}
             </Moment>
           </Typography>
         </div>
