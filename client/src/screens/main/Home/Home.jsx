@@ -26,7 +26,6 @@ export default function Home() {
   const [currentUser] = useContext(CurrentUserContext);
   const [affirmations, setAffirmations] = useState([]);
   const [loadedAffirmation, setLoadedAffirmation] = useState(false);
-
   let location = useLocation();
 
   useEffect(() => {
@@ -52,8 +51,7 @@ export default function Home() {
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
+            id="panel1a-header">
             <Typography className={classes.heading}>Mood</Typography>
           </AccordionSummary>
           <AccordionDetails>
@@ -67,8 +65,7 @@ export default function Home() {
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
+            id="panel1a-header">
             <Typography className={classes.heading}>
               {affirmations?.length === 0 ? (
                 <></>
@@ -97,8 +94,7 @@ export default function Home() {
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
+            id="panel1a-header">
             <Typography className={classes.heading}>Symptoms</Typography>
           </AccordionSummary>
           <AccordionDetails>
@@ -111,8 +107,7 @@ export default function Home() {
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
+            id="panel1a-header">
             <Typography className={classes.heading}>Food diary</Typography>
           </AccordionSummary>
           <AccordionDetails>
@@ -126,8 +121,7 @@ export default function Home() {
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
+            id="panel1a-header">
             <RXGuideLogo />
           </AccordionSummary>
           <AccordionDetails>

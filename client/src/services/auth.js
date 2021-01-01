@@ -7,6 +7,7 @@ export const loginUser = async (loginData) => {
     return resp?.data?.user;
   } catch (error) {
     alert("Email and/or password do not match");
+    throw error;
   }
 };
 

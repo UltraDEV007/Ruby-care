@@ -9,14 +9,15 @@ import InsightsContainer from "./containers/InsightsContainer";
 import UsersContainer from "./containers/UsersContainer";
 import { DarkModeProvider } from "./components/Context/DarkModeContext";
 import NotFound from "./screens/Error/NotFound";
+import FirefoxBrowser from "./screens/Error/FirefoxBrowser";
 import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
 import { verifyUser } from "./services/auth";
 import { useStateValue } from "./components/Context/CurrentUserContext";
+import { firefoxAgent } from "./utils/detectBrowsers";
 
 function App() {
   const [, dispatch] = useStateValue();
-
   const history = useHistory();
   useEffect(() => {
     const handleVerify = async () => {
@@ -28,6 +29,14 @@ function App() {
     };
     handleVerify();
   }, [history, dispatch]);
+
+  if (firefoxAgent) {
+    return (
+      <>
+        <FirefoxBrowser firefoxAgent={firefoxAgent} />;
+      </>
+    );
+  }
   return (
     <DarkModeProvider>
       <Paper style={{ minHeight: "100vh" }}>
