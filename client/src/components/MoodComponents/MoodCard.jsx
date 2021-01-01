@@ -13,6 +13,7 @@ import GoodEmoji from "./Emojis/GoodEmoji";
 import { emojiLogic } from "../../utils/emojiLogic";
 import MoodEdit from "../Dialogs/MoodDialogs/MoodEdit";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import MoodDetail from "../Dialogs/MoodDialogs/MoodDetail";
 
 export default function MoodCard({
   mood,
@@ -26,6 +27,7 @@ export default function MoodCard({
   const [darkMode] = useContext(DarkModeContext);
   const [openEdit, setOpenEdit] = useState(false);
   const [edited, setEdited] = useState(false);
+  const [openDetail, setOpenDetail] = useState(false);
 
   const handleOpen = () => {
     setOpenEdit(true);
@@ -45,6 +47,13 @@ export default function MoodCard({
     setMoods(moods);
   };
 
+  const onDelete = (id) => {
+    handleDelete(id);
+    if (openDetail) {
+      setOpenDetail(false);
+    }
+  };
+
   return (
     <>
       <Card
@@ -53,42 +62,41 @@ export default function MoodCard({
             ? { boxShadow: "default" }
             : { boxShadow: `0px 0px 4px 1.2px ${indigo[50]}` }
         }
-        className="mood-card"
-      >
+        className="mood-card">
         <div className="mood-container">
-          <div className="status">
-            {!edited ? (
-              emojiLogic(
-                mood.status,
-                <PoorEmoji darkMode={darkMode} />,
-                <OkayEmoji darkMode={darkMode} />,
-                <GoodEmoji darkMode={darkMode} />,
-                <GreatEmoji darkMode={darkMode} />
-              )
-            ) : (
-              <CircularProgress />
-            )}
-            <p>{mood.status}</p>
-          </div>
-          <div className="time">
-            {!updated ? (
-              <Moment format="MMM/DD/yyyy hh:mm A">{mood.time}</Moment>
-            ) : (
-              <Moment format="MMM/DD/yyyy hh:mm A">{mood.time}</Moment>
-            )}
+          <div className="hover-container" onClick={() => setOpenDetail(true)}>
+            <div className="status">
+              {!edited ? (
+                emojiLogic(
+                  mood.status,
+                  <PoorEmoji darkMode={darkMode} />,
+                  <OkayEmoji darkMode={darkMode} />,
+                  <GoodEmoji darkMode={darkMode} />,
+                  <GreatEmoji darkMode={darkMode} />
+                )
+              ) : (
+                <CircularProgress />
+              )}
+              <p>{mood.status}</p>
+            </div>
+            <div className="time">
+              {!updated ? (
+                <Moment format="MMM/DD/yyyy hh:mm A">{mood.time}</Moment>
+              ) : (
+                <Moment format="MMM/DD/yyyy hh:mm A">{mood.time}</Moment>
+              )}
+            </div>
           </div>
           <div
             className="buttons"
-            style={openOptions ? { display: "flex" } : { display: "none" }}
-          >
+            style={openOptions ? { display: "flex" } : { display: "none" }}>
             <Button
               component={Link}
               to={`/moods/${mood.id}/edit`}
               onClick={handleOpen}
               variant="contained"
               color="primary"
-              className="edit-button"
-            >
+              className="edit-button">
               <span role="img" aria-label="edit">
                 🔧
               </span>
@@ -98,8 +106,7 @@ export default function MoodCard({
               variant="contained"
               color="secondary"
               className="delete-button"
-              onClick={() => handleDelete(mood.id)}
-            >
+              onClick={() => handleDelete(mood.id)}>
               <span role="img" aria-label="delete">
                 🗑️
               </span>
@@ -120,6 +127,14 @@ export default function MoodCard({
               />
             </Route>
           </Switch>
+        )}
+        {openDetail && (
+          <MoodDetail
+            mood={mood}
+            openDetail={openDetail}
+            onDelete={onDelete}
+            setOpenDetail={setOpenDetail}
+          />
         )}
       </>
     </>

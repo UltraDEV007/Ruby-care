@@ -3,16 +3,14 @@ import Dialog from "@material-ui/core/Dialog";
 import Typography from "@material-ui/core/Typography";
 import Moment from "react-moment";
 import "moment-timezone";
-import ratingLogic from "../../../utils/ratingLogic";
-import { foodNameJSX } from "../../../utils/foodUtils";
 import {
   DialogTitle,
   DialogContent,
   DialogActions,
 } from "../../Form/DialogComponents";
 
-export default function FoodDetail({
-  food,
+export default function MoodDetail({
+  mood,
   openDetail,
   onDelete,
   setOpenDetail,
@@ -25,7 +23,7 @@ export default function FoodDetail({
       <DialogTitle
         id="customized-dialog-title"
         onClose={() => setOpenDetail(false)}>
-        {foodNameJSX(food)}
+        {mood.status}
       </DialogTitle>
       <DialogContent
         dividers
@@ -35,25 +33,16 @@ export default function FoodDetail({
           width: "300px",
           overflowWrap: "break-word",
         }}>
-        <Typography> Rating:&nbsp;{ratingLogic(food?.rating, "⭐")}</Typography>
-      </DialogContent>
-      <DialogContent
-        dividers
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          width: "300px",
-          overflowWrap: "break-word",
-        }}>
-        <Typography>Factors:</Typography>
+        <Typography>Reason:</Typography>
         <Typography style={{ marginTop: "2px" }}>
-          <small>{food?.factors}</small>
+          <small>{mood.reason}</small>
         </Typography>
       </DialogContent>
+
       <DialogTitle>
         <Typography>
           <Moment format="dddd, MMMM Do yyyy: hh:mm A">
-            {food?.time?.toLocaleString()}
+            {mood?.time?.toLocaleString()}
           </Moment>
         </Typography>
       </DialogTitle>
@@ -68,7 +57,7 @@ export default function FoodDetail({
           variant="contained"
           color="secondary"
           className="delete-button"
-          onClick={() => onDelete(food.id)}>
+          onClick={() => onDelete(mood.id)}>
           Delete
         </Button>
       </DialogActions>
