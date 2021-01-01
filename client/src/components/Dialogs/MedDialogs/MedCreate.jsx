@@ -63,7 +63,7 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
       medication_class: medicine?.fields.class,
     };
     onSave(selectedMedData);
-    // setting the formData to an emtry string after submission to avoid the case
+    // setting the formData to an empty string after submission to avoid the case
     // where the user makes creates another one right after sending one without refreshing.
     setFormData("");
   };
