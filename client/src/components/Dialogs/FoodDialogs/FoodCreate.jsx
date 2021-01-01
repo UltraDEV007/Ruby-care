@@ -36,14 +36,15 @@ export default function FoodCreate({ open, onSave, handleClose }) {
     <Dialog
       onClose={handleClose}
       aria-labelledby="customized-dialog-title"
-      open={open}
-    >
+      open={open}>
       <form
         onSubmit={(e) => {
           e.preventDefault();
           onSave(formData);
-        }}
-      >
+          // setting the formData to an empty string after submission to avoid the case
+          // where the user makes creates another one right after sending one without refreshing.
+          setFormData("");
+        }}>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           <div style={{ display: "flex", alignItems: "center" }}>
             <CreateIcon style={{ marginRight: "10px" }} />
@@ -102,8 +103,7 @@ export default function FoodCreate({ open, onSave, handleClose }) {
                 inputProps={{
                   name: "rating",
                   id: "rating-native-simple",
-                }}
-              >
+                }}>
                 <option value={1}>⭐</option>
                 <option value={2}>⭐ ⭐ </option>
                 <option value={3}>⭐ ⭐ ⭐ </option>
