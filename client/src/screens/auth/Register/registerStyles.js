@@ -130,7 +130,7 @@ const useStyles = makeStyles(() => ({
   inputContainer: {
     display: "flex",
     alignItems: "center",
-    color: (props) => (props.darkMode === "light" ? "black" : "black"),
+    color: (props) => (props.darkMode === "light" ? "black" : "white"),
   },
   darkPasswordLabel: {
     color: "#fff",
