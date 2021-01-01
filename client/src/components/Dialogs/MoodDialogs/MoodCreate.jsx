@@ -17,21 +17,23 @@ import {
   DialogContent,
   DialogActions,
 } from "../../Form/DialogComponents";
+import { compareDateWithCurrentTime } from "../../../utils/compareDateWithCurrentTime";
 
 export default function MoodCreate({ open, onSave, handleClose }) {
   const [formData, setFormData] = useState({
     status: "Okay",
     time: "",
+    reason: "",
   });
 
-  const handleChange = (e) => {
+  const handleStatus = (e) => {
     const { name } = e.target;
     setFormData({
       status: name,
     });
   };
 
-  const handleTime = (e) => {
+  const handleChange = (e) => {
     let { name, value } = e.target;
     if (name === "time" && value) {
       let date = new Date(value);
@@ -57,7 +59,11 @@ export default function MoodCreate({ open, onSave, handleClose }) {
           setFormData("");
         }}>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          How are you feeling?
+          {compareDateWithCurrentTime(formData.time) === 1 && formData.time ? (
+            <>How were you feeling? </>
+          ) : (
+            <>How are you feeling?</>
+          )}
         </DialogTitle>
         <DialogContent dividers>
           {formData.time && (
@@ -73,7 +79,7 @@ export default function MoodCreate({ open, onSave, handleClose }) {
               type="radio"
               name="Poor"
               checked={formData.status === "Poor"}
-              onChange={handleChange}
+              onChange={handleStatus}
             />
           </FormLabel>
           <FormLabel>
@@ -82,7 +88,7 @@ export default function MoodCreate({ open, onSave, handleClose }) {
               type="radio"
               name="Okay"
               checked={formData.status === "Okay"}
-              onChange={handleChange}
+              onChange={handleStatus}
             />
           </FormLabel>
           <FormLabel>
@@ -91,7 +97,7 @@ export default function MoodCreate({ open, onSave, handleClose }) {
               type="radio"
               name="Good"
               checked={formData.status === "Good"}
-              onChange={handleChange}
+              onChange={handleStatus}
             />
           </FormLabel>
           <FormLabel>
@@ -100,7 +106,7 @@ export default function MoodCreate({ open, onSave, handleClose }) {
               type="radio"
               name="Great"
               checked={formData.status === "Great"}
-              onChange={handleChange}
+              onChange={handleStatus}
             />
           </FormLabel>
 
@@ -112,10 +118,27 @@ export default function MoodCreate({ open, onSave, handleClose }) {
               label={`Please choose a time`}
               type="datetime-local"
               style={{ width: "300px", margin: "10px" }}
-              onChange={handleTime}
+              onChange={handleChange}
               InputLabelProps={{
                 shrink: true,
               }}
+            />
+          </div>
+
+          <div className="input-container">
+            <TextField
+              className="select-css"
+              name="reason"
+              type="text"
+              required
+              label={
+                compareDateWithCurrentTime(formData.time) === 1
+                  ? `why did you feel this way?`
+                  : `why do you feel this way?`
+              }
+              style={{ display: "flex", width: "300px", margin: "10px" }}
+              value={formData.reason}
+              onChange={handleChange}
             />
           </div>
         </DialogContent>
