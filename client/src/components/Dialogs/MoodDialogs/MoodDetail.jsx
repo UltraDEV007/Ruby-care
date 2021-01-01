@@ -10,11 +10,6 @@ import {
   DialogActions,
 } from "../../Form/DialogComponents";
 import { emojiLogic } from "../../../utils/emojiLogic";
-import GoodEmoji from "../../MoodComponents/Emojis/GoodEmoji";
-import PoorEmoji from "../../MoodComponents/Emojis/PoorEmoji";
-import OkayEmoji from "../../MoodComponents/Emojis/OkayEmoji";
-import GreatEmoji from "../../MoodComponents/Emojis/GreatEmoji";
-import { DarkModeContext } from "../../Context/DarkModeContext";
 
 export default function MoodDetail({
   mood,
@@ -22,20 +17,16 @@ export default function MoodDetail({
   onDelete,
   setOpenDetail,
 }) {
-  const [darkMode] = useContext(DarkModeContext);
   return (
     <Dialog
       onClose={() => setOpenDetail(false)}
       aria-labelledby="customized-dialog-title"
       open={openDetail}>
       <DialogTitle
+        style={{ display: "flex", alignItems: "center" }}
         id="customized-dialog-title"
         onClose={() => setOpenDetail(false)}>
-        emojiLogic( mood.status,
-        <PoorEmoji darkMode={darkMode} />,
-        <OkayEmoji darkMode={darkMode} />,
-        <GoodEmoji darkMode={darkMode} />,
-        <GreatEmoji darkMode={darkMode} />)
+        {emojiLogic(mood.status)} &nbsp; {mood?.status}
       </DialogTitle>
       <DialogContent
         dividers

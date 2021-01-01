@@ -15,6 +15,9 @@ ActiveRecord::Schema.define(version: 2021_01_01_224537) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  #  when adding a new column to a table, remember to do this SQL query:
+  #  example: DELETE FROM moods WHERE reason IS NULL;
+
   create_table "affirmations", force: :cascade do |t|
     t.string "content"
     t.bigint "user_id", null: false
