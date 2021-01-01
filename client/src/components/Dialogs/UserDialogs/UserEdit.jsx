@@ -46,20 +46,12 @@ export default function UserEdit({
     email: "",
     gender: "",
     password: "",
-    passwordConfirm: "",
     image: "",
   });
-  const {
-    name,
-    birthday,
-    gender,
-    email,
-    password,
-    passwordConfirm,
-    image,
-  } = formData;
+  const { name, birthday, gender, email, password, image } = formData;
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
+  const [passwordConfirm, setPasswordConfirm] = useState(false);
   const [passwordConfirmAlert, setPasswordConfirmAlert] = useState(false);
   const [emailUniquenessAlert, setEmailUniquenessAlert] = useState(false);
   const [emailValidityAlert, setEmailValidityAlert] = useState(false);
@@ -176,8 +168,7 @@ export default function UserEdit({
     <Dialog
       onClose={handleClose}
       aria-labelledby="customized-dialog-title"
-      open={handleOpen}
-    >
+      open={handleOpen}>
       <DialogTitle id="customized-dialog-title" onClose={handleClose}>
         <Typography className="title">Edit Account</Typography>
       </DialogTitle>
@@ -198,15 +189,13 @@ export default function UserEdit({
               <IconButton
                 onMouseDown={(e) => e.preventDefault()}
                 className="icon-button clear"
-                onClick={handleImageClear}
-              >
+                onClick={handleImageClear}>
                 <ClearIcon className="big-camera-icon" />
               </IconButton>
               <IconButton
                 onMouseDown={(e) => e.preventDefault()}
                 className="icon-button"
-                onClick={selectImage}
-              >
+                onClick={selectImage}>
                 <CameraIcon className="big-camera-icon" />
               </IconButton>
             </footer>
@@ -279,8 +268,7 @@ export default function UserEdit({
                     <IconButton
                       aria-label="toggle password visibility"
                       onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                    >
+                      onMouseDown={handleMouseDownPassword}>
                       {showPassword ? (
                         <Visibility className="visibility" />
                       ) : (
@@ -315,7 +303,7 @@ export default function UserEdit({
                 id="password-confirm"
                 type={showPasswordConfirm ? "text" : "password"}
                 value={passwordConfirm}
-                onChange={handleChange}
+                onChange={(e) => setPasswordConfirm(e.target.value)}
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
@@ -323,8 +311,7 @@ export default function UserEdit({
                       onClick={() =>
                         setShowPasswordConfirm(!showPasswordConfirm)
                       }
-                      onMouseDown={handleMouseDownPassword}
-                    >
+                      onMouseDown={handleMouseDownPassword}>
                       {showPasswordConfirm ? (
                         <Visibility className="visibility" />
                       ) : (
@@ -352,8 +339,7 @@ export default function UserEdit({
               justifyContent: "center",
               flexDirection: "column",
               alignItems: "center",
-            }}
-          >
+            }}>
             <TextField
               id="date"
               required
@@ -387,8 +373,7 @@ export default function UserEdit({
                 inputProps={{
                   name: "gender",
                   id: "gender-native-simple",
-                }}
-              >
+                }}>
                 <option value="" selected disabled hidden>
                   Select a gender
                 </option>
@@ -406,8 +391,7 @@ export default function UserEdit({
               disabled={allConditionsAreNotMet}
               type="submit"
               variant="contained"
-              color="primary"
-            >
+              color="primary">
               Save
             </Button>
             <Button
@@ -415,8 +399,7 @@ export default function UserEdit({
               component={Link}
               onClick={handleClose}
               variant="contained"
-              color="secondary"
-            >
+              color="secondary">
               Cancel
             </Button>
           </DialogActions>
