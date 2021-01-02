@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    render json: @user.attributes.except('password_digest'), include: :insights
+    render json: @user, include: :insights
   end
 
 
