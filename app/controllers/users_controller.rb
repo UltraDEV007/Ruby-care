@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     # another example:  @users = User.order('name ASC'), order by name ascending.
     @users = User.order('created_at ASC')
     # render the users but down show password digest and updated at (even if hashed)
-    render json: @users.map {|user| user.attributes.except('password_digest', 'updated_at', include: :insights)} 
+    render json: @users.map {|user| user.attributes.except('password_digest', 'updated_at')}
   end
 
   def show
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
 
   def destroy
    if can_modify? 
-    UserMailer.with(user: @user).delete_account_email.deliver_now
+    UserMailer.with(user: @user).delete_account_email.deliver_later
     @user.destroy!
    else 
     render json: {error: "Unauthorized action"}, status: :unauthorized
