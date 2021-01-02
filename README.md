@@ -427,4 +427,4 @@ export default function ratingLogic(ratingParam, iconParam) {
 
 - fixed a bug where sometimes in Mood Creation or Edit it would return "Invalid Date" instead of the selected date.
 
-- A user can now delete his account if wanting to in the settings page, he will be asked by a confirmation modal to confirm that he indeed wants to delete it.
+- Users can now delete his account if wanting to in the settings page, he will be asked by a confirmation modal to confirm that he indeed wants to delete it.
