@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     # another example:  @users = User.order('name ASC'), order by name ascending.
     @users = User.order('created_at ASC')
     # render the users but down show password digest and updated at (even if hashed)
-    render json: @users.map {|user| user.attributes.except('password_digest', 'updated_at')}, include: :insights 
+    render json: @users.map {|user| user.attributes.except('password_digest', 'updated_at', include: :insights)} 
   end
 
   def show
