@@ -424,3 +424,5 @@ export default function ratingLogic(ratingParam, iconParam) {
 <strong>Jan 1st, 2020:</strong>
 
 - You can now write a reason for how you felt when creating/editing a mood.
+
+- fixed a bug where sometimes in Mood Creation or Edit it would return "Invalid Date" instead of the selected date.
