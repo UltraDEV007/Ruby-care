@@ -19,11 +19,13 @@ import {
   DialogContent,
   DialogActions,
 } from "../../Form/DialogComponents";
+import { compareDateWithCurrentTime } from "../../../utils/compareDateWithCurrentTime";
 
 export default function MoodEdit(props) {
   const [formData, setFormData] = useState({
     status: "",
     time: "",
+    reason: "",
   });
   const { id } = useParams();
 
@@ -45,14 +47,14 @@ export default function MoodEdit(props) {
     props.onSave(id, formData);
   };
 
-  const handleChange = (e) => {
+  const handleStatus = (e) => {
     const { name } = e.target;
     setFormData({
       status: name,
     });
   };
 
-  const handleTime = (e) => {
+  const handleChange = (e) => {
     let { name, value } = e.target;
     if (name === "time" && value) {
       let date = new Date(value);
@@ -68,8 +70,7 @@ export default function MoodEdit(props) {
     <Dialog
       onClose={props.handleClose}
       aria-labelledby="customized-dialog-title"
-      open={props.handleOpen}
-    >
+      open={props.handleOpen}>
       <form onSubmit={handleSubmit}>
         <DialogTitle id="customized-dialog-title" onClose={props.handleClose}>
           <Typography>Edit Mood</Typography>
@@ -89,7 +90,7 @@ export default function MoodEdit(props) {
                 type="radio"
                 name="Poor"
                 checked={formData.status === "Poor"}
-                onChange={handleChange}
+                onChange={handleStatus}
               />
             </FormLabel>
             <FormLabel>
@@ -98,7 +99,7 @@ export default function MoodEdit(props) {
                 type="radio"
                 name="Okay"
                 checked={formData.status === "Okay"}
-                onChange={handleChange}
+                onChange={handleStatus}
               />
             </FormLabel>
 
@@ -108,7 +109,7 @@ export default function MoodEdit(props) {
                 type="radio"
                 name="Good"
                 checked={formData.status === "Good"}
-                onChange={handleChange}
+                onChange={handleStatus}
               />
             </FormLabel>
             <FormLabel>
@@ -117,7 +118,7 @@ export default function MoodEdit(props) {
                 type="radio"
                 name="Great"
                 checked={formData.status === "Great"}
-                onChange={handleChange}
+                onChange={handleStatus}
               />
             </FormLabel>
           </div>
@@ -130,10 +131,27 @@ export default function MoodEdit(props) {
               label={`Please choose a time`}
               type="datetime-local"
               style={{ width: "300px", margin: "10px" }}
-              onChange={handleTime}
+              onChange={handleChange}
               InputLabelProps={{
                 shrink: true,
               }}
+            />
+          </div>
+
+          <div className="input-container">
+            <TextField
+              className="select-css"
+              name="reason"
+              type="text"
+              required
+              label={
+                compareDateWithCurrentTime(formData.time) === 1 && formData.time
+                  ? `why did you feel this way?`
+                  : `why do you feel this way?`
+              }
+              style={{ display: "flex", width: "300px", margin: "10px" }}
+              value={formData.reason}
+              onChange={handleChange}
             />
           </div>
         </DialogContent>
@@ -147,8 +165,7 @@ export default function MoodEdit(props) {
             component={Link}
             variant="contained"
             color="secondary"
-            onClick={props.handleClose}
-          >
+            onClick={props.handleClose}>
             Cancel
           </Button>
         </DialogActions>

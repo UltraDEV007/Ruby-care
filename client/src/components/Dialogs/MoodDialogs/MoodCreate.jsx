@@ -22,15 +22,17 @@ import { compareDateWithCurrentTime } from "../../../utils/compareDateWithCurren
 export default function MoodCreate({ open, onSave, handleClose }) {
   const [formData, setFormData] = useState({
     status: "Okay",
-    time: "",
+    time: new Date().toISOString(),
     reason: "",
   });
 
   const handleStatus = (e) => {
     const { name } = e.target;
-    setFormData({
+    setFormData((prevState) => ({
+      // spreading through previous state so date doesn't give "invalid date on submission"
+      ...prevState,
       status: name,
-    });
+    }));
   };
 
   const handleChange = (e) => {
@@ -56,7 +58,7 @@ export default function MoodCreate({ open, onSave, handleClose }) {
           onSave(formData);
           // setting the formData to an empty string after submission to avoid the case
           // where the user makes creates another one right after sending one without refreshing.
-          setFormData("");
+          setFormData({ ...formData, status: formData.status });
         }}>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           {compareDateWithCurrentTime(formData.time) === 1 && formData.time ? (
@@ -132,7 +134,7 @@ export default function MoodCreate({ open, onSave, handleClose }) {
               type="text"
               required
               label={
-                compareDateWithCurrentTime(formData.time) === 1
+                compareDateWithCurrentTime(formData.time) === 1 && formData.time
                   ? `why did you feel this way?`
                   : `why do you feel this way?`
               }
