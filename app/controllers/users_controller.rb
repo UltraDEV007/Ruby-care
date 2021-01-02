@@ -48,7 +48,8 @@ class UsersController < ApplicationController
 
   def destroy
    if can_modify? 
-    @user.destroy 
+    UserMailer.with(user: @user).delete_account_email.deliver_now
+    @user.destroy!
    else 
     render json: {error: "Unauthorized action"}, status: :unauthorized
    end

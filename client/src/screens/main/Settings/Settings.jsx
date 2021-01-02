@@ -16,6 +16,8 @@ import UserEdit from "../../../components/Dialogs/UserDialogs/UserEdit";
 import Button from "@material-ui/core/Button";
 import { useStyles } from "./settingStyles";
 import UserDelete from "../../../components/Modals/UserDelete";
+import { removeToken } from "../../../services/auth";
+import { useHistory } from "react-router-dom";
 
 export default function Settings() {
   const [{ currentUser }, dispatch] = useStateValue();
@@ -23,6 +25,8 @@ export default function Settings() {
   const [openEdit, setOpenEdit] = useState(false);
   const [allUsers, setAllUsers] = useState([]);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+
+  const history = useHistory();
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -62,6 +66,10 @@ export default function Settings() {
     setAllUsers((prevState) =>
       prevState.filter((currentUser) => currentUser.id !== id)
     );
+    dispatch({ type: "REMOVE_USER" });
+    localStorage.removeItem("authToken");
+    removeToken();
+    history.push("/login");
   };
 
   const classes = useStyles({ darkMode });
