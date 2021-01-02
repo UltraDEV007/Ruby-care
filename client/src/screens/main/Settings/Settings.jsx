@@ -11,16 +11,18 @@ import "moment-timezone";
 import ScrollToTopOnMount from "../../../components/Helpers/ScrollToTopOnMount";
 import Brightness4Icon from "@material-ui/icons/Brightness4";
 import { getAge } from "../../../utils/getAge";
-import { getAllUsers, putUser } from "../../../services/users";
+import { destroyUser, getAllUsers, putUser } from "../../../services/users";
 import UserEdit from "../../../components/Dialogs/UserDialogs/UserEdit";
 import Button from "@material-ui/core/Button";
 import { useStyles } from "./settingStyles";
+import UserDelete from "../../../components/Modals/UserDelete";
 
 export default function Settings() {
   const [{ currentUser }, dispatch] = useStateValue();
   const [darkMode, setDarkMode] = useContext(DarkModeContext);
   const [openEdit, setOpenEdit] = useState(false);
   const [allUsers, setAllUsers] = useState([]);
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -53,6 +55,13 @@ export default function Settings() {
 
   const handleClose = () => {
     setOpenEdit(false);
+  };
+
+  const handleDelete = async (id) => {
+    await destroyUser(id);
+    setAllUsers((prevState) =>
+      prevState.filter((currentUser) => currentUser.id !== id)
+    );
   };
 
   const classes = useStyles({ darkMode });
@@ -122,9 +131,15 @@ export default function Settings() {
         className={classes.manage}
         onClick={handleOpen}
         variant="contained"
-        color="primary"
-      >
+        color="primary">
         Edit Account
+      </Button>
+      <Button
+        className={classes.manage}
+        onClick={() => setIsDeleteOpen((prevState) => !prevState)}
+        variant="contained"
+        color="primary">
+        Delete Account
       </Button>
       <hr />
       <br />
@@ -154,6 +169,14 @@ export default function Settings() {
           handleOpen={handleOpen}
           handleUpdate={handleUpdate}
           handleClose={handleClose}
+        />
+      )}
+      {isDeleteOpen && (
+        <UserDelete
+          currentUser={currentUser}
+          handleDelete={handleDelete}
+          openDelete={isDeleteOpen}
+          setOpenDelete={setIsDeleteOpen}
         />
       )}
     </Layout>
