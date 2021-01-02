@@ -49,9 +49,11 @@ export default function MoodEdit(props) {
 
   const handleStatus = (e) => {
     const { name } = e.target;
-    setFormData({
+    setFormData((prevState) => ({
+      // spreading through previous state so date doesn't give "invalid date on submission"
+      ...prevState,
       status: name,
-    });
+    }));
   };
 
   const handleChange = (e) => {
