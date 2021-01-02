@@ -10,7 +10,7 @@ class InsightsController < ApplicationController
     @insights = Insight.newest_first
     
     for @insight in @insights do  
-      @insight.likes = @likes.filter {|x| x.insight_id == @insight.id }
+      @insight.likes = @likes.filter {|like| like.insight_id == @insight.id }
     end
     render json: @insights, :include => {:user => {:include => :likes}} 
   end

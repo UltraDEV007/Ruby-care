@@ -51,7 +51,7 @@ export default function UserEdit({
   const { name, birthday, gender, email, password, image } = formData;
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
-  const [passwordConfirm, setPasswordConfirm] = useState(false);
+  const [passwordConfirm, setPasswordConfirm] = useState("");
   const [passwordConfirmAlert, setPasswordConfirmAlert] = useState(false);
   const [emailUniquenessAlert, setEmailUniquenessAlert] = useState(false);
   const [emailValidityAlert, setEmailValidityAlert] = useState(false);
