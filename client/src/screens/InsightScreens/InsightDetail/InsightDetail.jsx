@@ -88,16 +88,14 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
                   to={`/insights/${insight?.id}/edit`}
                   className="edit"
                   variant="contained"
-                  color="primary"
-                >
+                  color="primary">
                   Edit
                 </Button>
                 <Button
                   className="delete"
                   variant="contained"
                   color="secondary"
-                  onClick={() => handleDeleteOpen(insight.id)}
-                >
+                  onClick={() => handleDeleteOpen(insight.id)}>
                   Delete
                 </Button>
               </div>
