@@ -6,6 +6,7 @@ class User < ApplicationRecord
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :password, length: { minimum: 8 }
   validates :gender, presence: true, uniqueness: false
+  before_save :downcase_email
 
   has_many :moods, dependent: :destroy
   has_many :insights, dependent: :destroy
@@ -14,6 +15,11 @@ class User < ApplicationRecord
   has_many :foods, dependent: :destroy
   has_many :medications, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :liked_insights, :through => :likes
+
+  def downcase_email
+    self.email.downcase!
+  end
 
 end
 
