@@ -146,8 +146,7 @@ export default function Register() {
               <Typography
                 className={
                   darkMode === "light" ? classes.user : classes.userDark
-                }
-              >
+                }>
                 You already have an account, is this you?
                 <br />
                 Name: {currentUser?.name}
@@ -177,16 +176,14 @@ export default function Register() {
                 <IconButton
                   onMouseDown={(e) => e.preventDefault()}
                   className={classes.clearIcon}
-                  onClick={handleImageClear}
-                >
+                  onClick={handleImageClear}>
                   <ClearIcon className={classes.clearIcon} />
                 </IconButton>
               )}
               <IconButton
                 onMouseDown={(e) => e.preventDefault()}
                 className={classes.iconButton}
-                onClick={selectImage}
-              >
+                onClick={selectImage}>
                 <CameraIcon className={classes.cameraIcon} />
               </IconButton>
             </footer>
@@ -204,8 +201,7 @@ export default function Register() {
                   className={
                     darkMode === "light" ? classes.label : classes.darkLabel
                   }
-                  htmlFor="name"
-                >
+                  htmlFor="name">
                   Name
                 </InputLabel>
                 <Input
@@ -230,8 +226,7 @@ export default function Register() {
                   className={
                     darkMode === "light" ? classes.label : classes.darkLabel
                   }
-                  htmlFor="email"
-                >
+                  htmlFor="email">
                   Email Address
                 </InputLabel>
                 <Input
@@ -274,8 +269,7 @@ export default function Register() {
                       ? classes.passwordLabel
                       : classes.darkPasswordLabel
                   }
-                  htmlFor="password"
-                >
+                  htmlFor="password">
                   Password
                 </InputLabel>
                 <Input
@@ -293,13 +287,11 @@ export default function Register() {
                   endAdornment={
                     <InputAdornment
                       className={classes.passwordIcon}
-                      position="end"
-                    >
+                      position="end">
                       <IconButton
                         aria-label="toggle password visibility"
                         onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                      >
+                        onMouseDown={handleMouseDownPassword}>
                         {showPassword ? (
                           <Visibility className={classes.visibility} />
                         ) : (
@@ -328,8 +320,7 @@ export default function Register() {
                       ? classes.passwordLabel
                       : classes.darkPasswordLabel
                   }
-                  htmlFor="passwordConfirm"
-                >
+                  htmlFor="passwordConfirm">
                   Confirm Password
                 </InputLabel>
                 <Input
@@ -347,15 +338,13 @@ export default function Register() {
                   endAdornment={
                     <InputAdornment
                       className={classes.passwordIcon}
-                      position="end"
-                    >
+                      position="end">
                       <IconButton
                         aria-label="toggle password visibility"
                         onClick={() =>
                           setShowPasswordConfirm(!showPasswordConfirm)
                         }
-                        onMouseDown={handleMouseDownPassword}
-                      >
+                        onMouseDown={handleMouseDownPassword}>
                         {showPasswordConfirm ? (
                           <Visibility className={classes.visibility} />
                         ) : (
@@ -384,6 +373,9 @@ export default function Register() {
                 type="date"
                 className={classes.birthdayField}
                 name="birthday"
+                InputProps={{
+                  inputProps: { max: "2018-12-12" },
+                }}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -411,8 +403,7 @@ export default function Register() {
                   inputProps={{
                     name: "gender",
                     id: "gender-native-simple",
-                  }}
-                >
+                  }}>
                   <option value="" selected disabled hidden>
                     Select a gender
                   </option>
@@ -431,34 +422,31 @@ export default function Register() {
                 darkMode === "light"
                   ? classes.registerButton
                   : classes.registerButtonDark
-              }
-            >
+              }>
               Register
             </Button>
           </form>
           <Typography
-            className={darkMode === "light" ? classes.login : classes.loginDark}
-          >
+            className={
+              darkMode === "light" ? classes.login : classes.loginDark
+            }>
             Already have an account? &nbsp;
             <Link
               className={
                 darkMode === "light" ? classes.loginLink : classes.loginLinkDark
               }
-              to="/login"
-            >
+              to="/login">
               Login
             </Link>
           </Typography>
           <br />
           <Typography
-            className={darkMode === "light" ? classes.user : classes.userDark}
-          >
+            className={darkMode === "light" ? classes.user : classes.userDark}>
             <a
               className={classes.link}
               target="_blank"
               rel="noreferrer"
-              href="http://www.github.com/dannymichaels/care"
-            >
+              href="http://www.github.com/dannymichaels/care">
               Daniel Michael &copy; 2020
             </a>
           </Typography>
