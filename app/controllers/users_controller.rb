@@ -7,8 +7,8 @@ class UsersController < ApplicationController
     # show all users, but order by created_at ascending
     # another example:  @users = User.order('name ASC'), order by name ascending.
     @users = User.order('created_at ASC')
-    # render the users but down show password digest and updated at (even if hashed)
-    render json: @users.map {|user| user.attributes.except('password_digest', 'updated_at')}
+    # render the users but down show password digest and updated at (even if hashed)  
+    render json: @users.map {|user| user.attributes.except('password_digest', 'updated_at').merge({liked_insights: user.likes})}
   end
 
   def show
