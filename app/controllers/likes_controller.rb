@@ -6,8 +6,8 @@ class LikesController < ApplicationController
   # GET /likes
   def index
     @likes = Like.all
-
-    render json: @likes
+    # no point in showing "updated_at" for a like, you can't update a like, only create or "undo" (delete) one.
+    render json: @likes.map {|like| like.attributes.except('updated_at').merge({insight_title: like.insight.title, user: like.user.name})}
   end
 
   # GET /likes/1
