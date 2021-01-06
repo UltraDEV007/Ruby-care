@@ -27,8 +27,9 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
   },
   text: {
-    color: (props) =>
-      props.darkMode === "dark" ? { color: "#000" } : { color: "#fff" },
+    color: ({ darkMode }) =>
+      darkMode === "dark" ? { color: "#000" } : { color: "#fff" },
+    textDecoration: "none",
   },
   headerLeft: {
     display: "inline-flex",

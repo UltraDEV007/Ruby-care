@@ -97,14 +97,10 @@ export default function Register() {
     const img = e.target.files[0];
     const fileReader = new FileReader();
     fileReader.addEventListener("load", () => {
-      setFormData({
-        name: name,
-        email: email,
-        password: password,
-        birthday: birthday,
-        gender: gender,
+      setFormData((prevState) => ({
+        ...prevState,
         image: fileReader.result,
-      });
+      }));
       setImagePreview(true);
     });
     if (img) {

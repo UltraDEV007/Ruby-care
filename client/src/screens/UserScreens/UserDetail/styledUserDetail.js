@@ -49,7 +49,8 @@ const Wrapper = styled.div`
     height: clamp(50px, 100px, 150px);
     align-self: center;
     margin: 10px;
-    border: 1px solid white;
+    border: ${({ darkMode }) =>
+      darkMode === "dark" ? "1px solid white" : "1px solid black"};
     border-radius: 50%;
     object-fit: cover;
   }
