@@ -431,4 +431,12 @@ export default function ratingLogic(ratingParam, iconParam) {
 
 - fixed a bug where sometimes in Mood Creation or Edit it would return "Invalid Date" instead of the selected date.
 
-- Users can now delete his account if wanting to in the settings page, he will be asked by a confirmation modal to confirm that he indeed wants to delete it.
+- A User can now delete his account if wanting to in the settings page, he will be asked by a confirmation modal to confirm that he indeed wants to delete it.
+
+<strong>Jan 6th, 2020:</strong>
+
+- Fixed an exploit where users could keep 2 tabs open and like posts twice.
+- Improved loading times for fetching posts in insights page
+- When you select a time necessary to take a medicine, it will now rerender live instead of needing to manually cause a rerender or reload.
+- When creating a new insight, the new insight will now also show in all multiple open tabs without needing a rerender/reload (was fine for 1 tab).
+
