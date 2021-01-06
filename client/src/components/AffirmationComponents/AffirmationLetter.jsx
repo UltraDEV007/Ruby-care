@@ -14,14 +14,14 @@ export default function AffirmationLetter({
   setAffirmations,
 }) {
   const [openEdit, setOpenEdit] = useState(false);
-  const [edited, setEdited] = useState(false);
+  const [isRefreshed, setIsRefreshed] = useState(false);
   const [openDetail, setOpenDetail] = useState(false);
 
   const onSave = (formData, id) => {
     handleUpdate(formData, id);
-    setEdited(true);
+    setIsRefreshed(true);
     setTimeout(async () => {
-      setEdited(false);
+      setIsRefreshed(false);
       setOpenEdit(false);
     }, 800);
     setAffirmations(affirmations);
@@ -50,7 +50,7 @@ export default function AffirmationLetter({
 
   return (
     <>
-      {!edited ? (
+      {!isRefreshed ? (
         <>
           <div className="affirmation-container">
             <div className="content">
@@ -65,16 +65,14 @@ export default function AffirmationLetter({
             </div>
             <div
               className="buttons"
-              style={openOptions ? { display: "flex" } : { display: "none" }}
-            >
+              style={openOptions ? { display: "flex" } : { display: "none" }}>
               <Button
                 component={Link}
                 to={`/affirmations/${affirmation.id}/edit`}
                 onClick={handleOpen}
                 variant="contained"
                 color="primary"
-                className="edit-button"
-              >
+                className="edit-button">
                 <span role="img" aria-label="edit">
                   🔧
                 </span>
@@ -84,8 +82,7 @@ export default function AffirmationLetter({
                 variant="contained"
                 color="secondary"
                 className="delete-button"
-                onClick={() => handleDelete(affirmation.id)}
-              >
+                onClick={() => handleDelete(affirmation.id)}>
                 <span role="img" aria-label="delete">
                   🗑️
                 </span>
