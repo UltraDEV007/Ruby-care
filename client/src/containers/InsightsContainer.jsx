@@ -31,18 +31,37 @@ export default function InsightsContainer({ darkMode }) {
   const handleDeleteClose = () => {
     setOpenDelete(false);
   };
+
+  // const refresh = () => {
+  //   fetchInsights();
+  // };
+
+  const fetchInsights = async () => {
+    const insightData = await getAllInsights();
+    setInsights(insightData);
+    setLoaded(true);
+  };
+
+  // for two tabs open
+  // // useEffect(() => {
+  // //   window.addEventListener("storage", refresh);
+  // //   return () => {
+  // //     window.removeEventListener("storage", refresh);
+  // //   };
+  // // }, []);
+
   useEffect(() => {
-    const fetchInsights = async () => {
-      const insightData = await getAllInsights();
-      setInsights(insightData);
-      setLoaded(true);
-    };
-    fetchInsights();
-  }, []);
+    // refetch insights when loaded is set to false (for creating a new insight and seeing the new insight on 2 tabs open)
+    // this is for a more "live", feel, wasn't necessary when only having 1 tab open.
+    if (!loaded) {
+      fetchInsights();
+    }
+  }, [loaded]);
 
   const handleCreate = async (insightData) => {
     const newInsight = await postInsight(insightData);
     setInsights((prevState) => [newInsight, ...prevState]);
+    setLoaded(false);
     history.push("/insights");
   };
 

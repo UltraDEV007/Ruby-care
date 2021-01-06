@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import { Switch, Route, Link } from "react-router-dom";
@@ -26,6 +26,8 @@ export default function MedCard({
   const [openEdit, setOpenEdit] = useState(false);
   const [openDetail, setOpenDetail] = useState(false);
   const [taken, setTaken] = useState(false);
+  const [rerender, toggleRerender] = useState(false);
+  let timerId = useRef(null);
 
   const onSave = (formData, id) => {
     handleUpdate(formData, id);
@@ -66,6 +68,19 @@ export default function MedCard({
     setTaken(true);
     setOpenDetail(false);
   };
+
+  useEffect(() => {
+    if (compareDateWithCurrentTime(med.time) === -1) {
+      let delay = new Date(med.time).getTime() - Date.now();
+      if (timerId.current) {
+        clearTimeout(timerId.current);
+      }
+      timerId.current = setTimeout(() => {
+        toggleRerender(!rerender);
+      }, delay);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [med?.time]);
 
   return (
     <>

@@ -42,6 +42,8 @@ function InsightCard({
         like?.insight_id === insight?.id && currentUser?.id === like?.user_id
     );
     likeFound ? setLiked(true) : setLiked(false);
+
+    localStorage.setItem("update", likeFound ? "true" : "false"); // when liking with 2 tabs open to avoid an exploit (syncing the data between multiple tabs)
   }, [allLikes, currentUser?.id, insight?.id]);
 
   const handleLike = async () => {
@@ -132,7 +134,7 @@ function InsightCard({
           {allLikes?.length}
         </div>
 
-        {insight?.user_id === currentUser?.id && (
+        {insight?.user.id === currentUser?.id && (
           <>
             <div className={classes.buttons}>
               <Link to={`/insights/${insight.id}/edit`}>

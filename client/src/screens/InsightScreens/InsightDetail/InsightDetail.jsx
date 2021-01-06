@@ -80,7 +80,7 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
               </Moment>
             </Typography>
           </div>
-          {insight?.user_id === currentUser?.id && (
+          {insight?.user.id === currentUser?.id && (
             <>
               <div className="buttons">
                 <Button
