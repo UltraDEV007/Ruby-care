@@ -103,8 +103,7 @@ export default function Header({ title, allUsers }) {
                         : { textDecoration: "none", color: "#000" }
                     }
                     to={`/users/${currentUser?.id}`}
-                    className={classes.userName}
-                  >
+                    className={classes.userName}>
                     {!currentUser?.image ? (
                       <AccountCircleIcon className={classes.userIcon} />
                     ) : (
@@ -118,7 +117,7 @@ export default function Header({ title, allUsers }) {
                   </Typography>
                 </>
               ) : (
-                <Link style={{ textDecoration: "none" }} to="/login">
+                <Link className={classes.text} to="/login">
                   <Typography className={classes.text}>
                     Login/Register
                   </Typography>
