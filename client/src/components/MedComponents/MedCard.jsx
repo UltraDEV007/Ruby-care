@@ -22,7 +22,7 @@ export default function MedCard({
   RXGuideMeds,
 }) {
   const [darkMode] = useContext(DarkModeContext);
-  const [edited, setEdited] = useState(false);
+  const [isRefreshed, setIsRefreshed] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
   const [openDetail, setOpenDetail] = useState(false);
   const [taken, setTaken] = useState(false);
@@ -32,9 +32,9 @@ export default function MedCard({
     if (compareDateWithCurrentTime(med.time) === 1) {
       setTaken(false);
     }
-    setEdited(true);
+    setIsRefreshed(true);
     setTimeout(async () => {
-      setEdited(false);
+      setIsRefreshed(false);
       setOpenEdit(false);
     }, 800);
     setMeds(meds);
@@ -78,16 +78,14 @@ export default function MedCard({
                 cursor: "pointer",
               }
         }
-        className="med-card"
-      >
+        className="med-card">
         <div className="med-container">
           <Typography
             style={{ fontFamily: "Montserrat", fontSize: "1.1rem" }}
-            onClick={handleDetailOpen}
-          >
+            onClick={handleDetailOpen}>
             {med.name}
           </Typography>
-          {!edited ? (
+          {!isRefreshed ? (
             <div style={{ padding: "20px" }}>
               <img
                 onClick={handleDetailOpen}
@@ -130,16 +128,14 @@ export default function MedCard({
           )}
           <div
             className="buttons"
-            style={openOptions ? { display: "flex" } : { display: "none" }}
-          >
+            style={openOptions ? { display: "flex" } : { display: "none" }}>
             <Button
               component={Link}
               onClick={handleOpen}
               to={`/medications/${med.id}/edit`}
               variant="contained"
               color="primary"
-              className="edit-button"
-            >
+              className="edit-button">
               <span role="img" aria-label="edit">
                 🔧
               </span>
@@ -149,8 +145,7 @@ export default function MedCard({
               variant="contained"
               color="secondary"
               className="delete-button"
-              onClick={() => handleDelete(med.id)}
-            >
+              onClick={() => handleDelete(med.id)}>
               <span role="img" aria-label="delete">
                 🗑️
               </span>

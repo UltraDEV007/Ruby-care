@@ -18,14 +18,14 @@ export default function SymptomCard({
   setSymptoms,
 }) {
   const [darkMode] = useContext(DarkModeContext);
-  const [edited, setEdited] = useState(false);
+  const [isRefreshed, setIsRefreshed] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
 
   const onSave = (formData, id) => {
     handleUpdate(formData, id);
-    setEdited(true);
+    setIsRefreshed(true);
     setTimeout(async () => {
-      setEdited(false);
+      setIsRefreshed(false);
       setOpenEdit(false);
     }, 800);
     setSymptoms(symptoms);
@@ -41,15 +41,14 @@ export default function SymptomCard({
 
   return (
     <>
-      {!edited ? (
+      {!isRefreshed ? (
         <Card
           style={
             darkMode === "light"
               ? { boxShadow: "default" }
               : { boxShadow: `0px 0px 4px 1.2px ${indigo[50]}` }
           }
-          className="symptom-card"
-        >
+          className="symptom-card">
           <div className="symptom-container">
             {symptom.name}
             <div className="time">
@@ -59,16 +58,14 @@ export default function SymptomCard({
             </div>
             <div
               className="buttons"
-              style={openOptions ? { display: "flex" } : { display: "none" }}
-            >
+              style={openOptions ? { display: "flex" } : { display: "none" }}>
               <Button
                 component={Link}
                 onClick={handleOpen}
                 to={`/symptoms/${symptom.id}/edit`}
                 variant="contained"
                 color="primary"
-                className="edit-button"
-              >
+                className="edit-button">
                 <span role="img" aria-label="edit">
                   🔧
                 </span>
@@ -78,8 +75,7 @@ export default function SymptomCard({
                 variant="contained"
                 color="secondary"
                 className="delete-button"
-                onClick={() => handleDelete(symptom.id)}
-              >
+                onClick={() => handleDelete(symptom.id)}>
                 <span role="img" aria-label="delete">
                   🗑️
                 </span>

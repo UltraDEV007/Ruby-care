@@ -21,15 +21,15 @@ export default function FoodCard({
   handleDelete,
 }) {
   const [darkMode] = useContext(DarkModeContext);
-  const [edited, setEdited] = useState(false);
+  const [isRefreshed, setIsRefreshed] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
   const [openDetail, setOpenDetail] = useState(false);
 
   const onSave = (formData, id) => {
     handleUpdate(formData, id);
-    setEdited(true);
+    setIsRefreshed(true);
     setTimeout(async () => {
-      setEdited(false);
+      setIsRefreshed(false);
       setOpenEdit(false);
     }, 800);
     setFoods(foods);
@@ -53,7 +53,7 @@ export default function FoodCard({
         className="food-card">
         <div className="food-container">
           <div className="hover-container" onClick={() => setOpenDetail(true)}>
-            {!edited ? foodNameJSX(food) : <CircularProgress />}
+            {!isRefreshed ? foodNameJSX(food) : <CircularProgress />}
             <div className="time">
               <Moment format="MMM/DD/yyyy hh:mm A">
                 {food?.time?.toLocaleString()}
