@@ -11,7 +11,7 @@ import { useStyles } from "./insightCardStyles.js";
 import UnlikedIcon from "@material-ui/icons/FavoriteBorder";
 import LikedIcon from "@material-ui/icons/Favorite";
 import React, { useState, useEffect } from "react";
-import { getAllLikes, destroyLike, postLike } from "../../services/likes";
+import { destroyLike, postLike } from "../../services/likes";
 
 function InsightCard({
   insight,
@@ -30,12 +30,11 @@ function InsightCard({
 
   useEffect(() => {
     const fetchLikes = async () => {
-      const likeData = await getAllLikes();
-      setAllLikes(likeData?.filter((like) => like?.insight_id === insight?.id));
+      setAllLikes(insight.likes);
       setLikeDisabled(false);
     };
     fetchLikes();
-  }, [insight?.id]);
+  }, [insight?.likes]);
 
   useEffect(() => {
     const likeFound = allLikes?.find(
@@ -48,17 +47,20 @@ function InsightCard({
   const handleLike = async () => {
     if (!likeDisabled) {
       setLiked(true);
+      setLikeDisabled(true);
       const newLike = await postLike({
         user_id: currentUser.id,
         insight_id: insight.id,
       });
       setAllLikes((prevState) => [...prevState, newLike]);
+      setLikeDisabled(false);
     }
   };
 
   const handleUnlike = async () => {
     if (!likeDisabled) {
       setLiked(false);
+      setLikeDisabled(true);
       const likeToDelete = allLikes?.find(
         (like) =>
           like?.insight_id === insight?.id && currentUser?.id === like?.user_id
@@ -68,6 +70,7 @@ function InsightCard({
         prevState.filter((like) => like.id !== likeToDelete?.id)
       );
     }
+    setLikeDisabled(false);
   };
 
   return (
@@ -102,33 +105,32 @@ function InsightCard({
           <Typography>{insight?.description}</Typography>
         </div>
         <br />
-        {!likeDisabled && (
-          <div className={classes.likeContainer}>
-            {!liked ? (
-              <UnlikedIcon
-                style={
-                  likeDisabled
-                    ? { pointerEvents: "none" }
-                    : { pointerEvents: "inherit" }
-                }
-                className={classes.unLikedInsight}
-                onClick={handleLike}
-              />
-            ) : (
-              <LikedIcon
-                style={
-                  likeDisabled
-                    ? { pointerEvents: "none" }
-                    : { pointerEvents: "inherit" }
-                }
-                className={classes.likedInsight}
-                onClick={handleUnlike}
-              />
-            )}
-            &nbsp;
-            {allLikes?.length}
-          </div>
-        )}
+
+        <div className={classes.likeContainer}>
+          {!liked ? (
+            <UnlikedIcon
+              style={
+                likeDisabled
+                  ? { pointerEvents: "none" }
+                  : { pointerEvents: "inherit" }
+              }
+              className={classes.unLikedInsight}
+              onClick={handleLike}
+            />
+          ) : (
+            <LikedIcon
+              style={
+                likeDisabled
+                  ? { pointerEvents: "none" }
+                  : { pointerEvents: "inherit" }
+              }
+              className={classes.likedInsight}
+              onClick={handleUnlike}
+            />
+          )}
+          &nbsp;
+          {allLikes?.length}
+        </div>
 
         {insight?.user_id === currentUser?.id && (
           <>
@@ -142,8 +144,7 @@ function InsightCard({
                 className={classes.delete}
                 variant="contained"
                 color="secondary"
-                onClick={() => handleOpen(insight.id)}
-              >
+                onClick={() => handleOpen(insight.id)}>
                 Delete
               </Button>
             </div>
