@@ -22,7 +22,7 @@ export default function MoodCard({
 }) {
   const [darkMode] = useContext(DarkModeContext);
   const [openEdit, setOpenEdit] = useState(false);
-  const [edited, setEdited] = useState(false);
+  const [isRefreshed, setIsRefreshed] = useState(false);
   const [openDetail, setOpenDetail] = useState(false);
 
   const handleOpen = () => {
@@ -35,9 +35,9 @@ export default function MoodCard({
 
   const onSave = (formData, id) => {
     handleUpdate(formData, id);
-    setEdited(true);
+    setIsRefreshed(true);
     setTimeout(async () => {
-      setEdited(false);
+      setIsRefreshed(false);
       setOpenEdit(false);
     }, 800);
     setMoods(moods);
@@ -62,7 +62,7 @@ export default function MoodCard({
         <div className="mood-container">
           <div className="hover-container" onClick={() => setOpenDetail(true)}>
             <div className="status">
-              {!edited ? emojiLogic(mood.status) : <CircularProgress />}
+              {!isRefreshed ? emojiLogic(mood.status) : <CircularProgress />}
               <p>{mood.status}</p>
             </div>
             <div className="time">
