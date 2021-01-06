@@ -61,10 +61,10 @@ export default function UserEdit({
   const [darkMode] = useContext(DarkModeContext);
 
   const handleImageClear = () => {
-    setFormData({
-      ...formData,
+    setFormData((prevState) => ({
+      ...prevState,
       image: "",
-    });
+    }));
     document.getElementById("image-upload").value = "";
   };
 
