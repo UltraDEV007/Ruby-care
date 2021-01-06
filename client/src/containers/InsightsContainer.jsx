@@ -32,23 +32,11 @@ export default function InsightsContainer({ darkMode }) {
     setOpenDelete(false);
   };
 
-  // const refresh = () => {
-  //   fetchInsights();
-  // };
-
   const fetchInsights = async () => {
     const insightData = await getAllInsights();
     setInsights(insightData);
     setLoaded(true);
   };
-
-  // for two tabs open
-  // // useEffect(() => {
-  // //   window.addEventListener("storage", refresh);
-  // //   return () => {
-  // //     window.removeEventListener("storage", refresh);
-  // //   };
-  // // }, []);
 
   useEffect(() => {
     // refetch insights when loaded is set to false (for creating a new insight and seeing the new insight on 2 tabs open)
