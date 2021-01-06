@@ -60,6 +60,7 @@ export default function InsightsContainer({ darkMode }) {
         return insight.id === Number(id) ? updatedInsight : insight;
       })
     );
+    setLoaded(false);
     setUpdated(true);
     history.push("/insights");
   };
