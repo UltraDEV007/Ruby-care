@@ -122,7 +122,7 @@ export default function MedCard({
             <div onClick={handleDetailOpen} className="time">
               <Typography>
                 You took {med?.name} at <br />
-                <Moment format="MMM/DD/yyyy hh:mm A">{med?.time}</Moment>
+                <Moment format="MMM/DD/yyyy hh:mm A">{med?.updated_at}</Moment>
               </Typography>
             </div>
           )}
