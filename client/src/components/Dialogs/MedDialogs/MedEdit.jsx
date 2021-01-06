@@ -83,7 +83,7 @@ export default function MedEdit({
     const selectedMedData = {
       ...formData,
       image: medicine?.fields.image,
-      medication_class: medicine?.fields.class,
+      medication_class: medicine?.fields.medClass,
     };
     onSave(id, selectedMedData);
   };
