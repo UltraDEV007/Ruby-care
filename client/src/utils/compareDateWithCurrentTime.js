@@ -3,7 +3,7 @@ export const compareDateWithCurrentTime = (date) => {
   let selectedTime = new Date(date).getTime();
 
   if (currentTime < selectedTime) {
-    // if the currentTime is less than the selectedTime return 1
+    // if the currentTime is less than the selectedTime return -1
     return -1;
   } else if (currentTime > selectedTime) {
     // if the currentTime is greater than select time we're returning 1
