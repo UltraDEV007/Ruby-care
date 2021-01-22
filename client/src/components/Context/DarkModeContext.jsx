@@ -40,6 +40,8 @@ function DarkModeProvider({ children }) {
     },
   });
 
+  // logic to maintaining darkMode in local storage from stack overflow
+ // https://stackoverflow.com/questions/63097218/darkmode-store-in-local-storage-react-with-material-ui
 // rest of logic in screens/main/Settings.jsx
   useEffect(() => {
     const existingPreference = localStorage.getItem("darkMode");
