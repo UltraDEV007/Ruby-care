@@ -6,6 +6,7 @@ import { useStateValue } from "../../../components/Context/CurrentUserContext";
 import { DarkModeContext } from "../../../components/Context/DarkModeContext";
 import { useStyles } from "./headerStyles";
 import { removeToken } from "../../../services/auth";
+import LogoutIcon from "@material-ui/icons/ExitToApp";
 
 function CurrentUserContainer({ isMenuShowing }) {
   const [{ currentUser }, dispatch] = useStateValue();
@@ -57,9 +58,13 @@ function CurrentUserContainer({ isMenuShowing }) {
         </Typography>
       )}
       {isMenuShowing && (
-        <Typography className={classes.logOut} onClick={handleLogout}>
-          Log out
-        </Typography>
+        <>
+          <br />
+          <Typography onClick={handleLogout} className={classes.logOutBurger}>
+            <LogoutIcon className={classes.userIcon} />
+            Log out
+          </Typography>
+        </>
       )}
     </>
   );

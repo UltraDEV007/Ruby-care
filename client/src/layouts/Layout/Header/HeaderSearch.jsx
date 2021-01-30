@@ -27,7 +27,6 @@ let Search = styled.div`
     display: flex;
     flex-direction: column;
     align-items: start;
-    z-index: 999999;
   }
 `;
 
@@ -65,7 +64,7 @@ function HeaderSearch({ search, setSearch, darkMode, usersJSX, open }) {
   const [placeholder, setPlaceholder] = useState("Search Care");
 
   useEffect(() => {
-    const changePlaceHolder = () => {
+    const handleSearchResize = () => {
       const width = window?.innerWidth;
       if (width <= 468) {
         setPlaceholder("Search");
@@ -73,10 +72,10 @@ function HeaderSearch({ search, setSearch, darkMode, usersJSX, open }) {
         setPlaceholder("Search Care");
       }
     };
-    changePlaceHolder();
-    window.addEventListener("resize", changePlaceHolder);
+    handleSearchResize();
+    window.addEventListener("resize", handleSearchResize);
     return () => {
-      window.removeEventListener("resize", changePlaceHolder);
+      window.removeEventListener("resize", handleSearchResize);
     };
   }, []);
 
@@ -97,9 +96,12 @@ function HeaderSearch({ search, setSearch, darkMode, usersJSX, open }) {
             ),
           }}
         />
-        <Dropdown darkMode={darkMode}>
-          <div className="dropdown-items">{search && usersJSX}</div>
-        </Dropdown>
+        {/* the other dropdown when it's open is moved to OpenNavBar.jsx */}
+        {!open && (
+          <Dropdown darkMode={darkMode}>
+            <div className="dropdown-items">{search && usersJSX}</div>
+          </Dropdown>
+        )}
       </Search>
     </>
   );

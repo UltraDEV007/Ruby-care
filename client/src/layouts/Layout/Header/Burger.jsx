@@ -44,7 +44,7 @@ const StyledBurger = styled.div`
   }
 `;
 
-const Burger = ({ open, setOpen, search, setSearch }) => {
+const Burger = ({ open, setOpen, search, setSearch, usersJSX }) => {
   const [darkMode] = useContext(DarkModeContext);
 
   return (
@@ -60,6 +60,7 @@ const Burger = ({ open, setOpen, search, setSearch }) => {
       </StyledBurger>
       <OpenNavBar
         open={open}
+        usersJSX={usersJSX}
         setOpen={setOpen}
         setSearch={setSearch}
         search={search}

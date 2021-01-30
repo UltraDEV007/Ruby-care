@@ -90,6 +90,7 @@ export default function Header({ title, allUsers }) {
                 setOpen={setIsMenuShowing}
                 setSearch={setSearch}
                 search={search}
+                usersJSX={usersJSX}
               />
             </div>
           </Toolbar>

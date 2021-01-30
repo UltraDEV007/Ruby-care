@@ -23,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
       marginRight: "20px",
       padding: "0px",
     },
-    // display: "none",
     textAlign: "center",
   },
   text: {
@@ -82,17 +81,24 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("sm")]: {
       marginLeft: "30px",
     },
+
     "&:hover": {
       transition: "transform 300ms ease-in",
       cursor: "pointer",
       transform: "scale(1.1)",
     },
   },
-
-  // search: {
-  //   display: (props) => (props.isMenuShowing ? "block" : "none"),
-  // },
-
+  logOutBurger: {
+    transition: "transform 350ms ease-out",
+    display: "flex",
+    alignItems: "center",
+    padding: "5px",
+    "&:hover": {
+      transition: "transform 300ms ease-in",
+      cursor: "pointer",
+      transform: "scale(1.1)",
+    },
+  },
   userContainer: {
     [theme.breakpoints.down("sm")]: {
       display: "none",
