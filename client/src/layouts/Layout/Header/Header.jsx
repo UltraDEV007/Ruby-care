@@ -111,8 +111,7 @@ export default function Header({ title, allUsers }) {
           </Toolbar>
         </AppBar>
       </div>
-
-      <OpenNavBar isMenuShowing={open} />
+      {isMenuShowing && <OpenNavBar open={isMenuShowing} />}
     </>
   );
 }
