@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 
 let Search = styled.div`
   position: relative;
-
+  z-index: 9999999999;
   input {
     font-family: "Montserrat", sans-serif;
     color: ${({ darkMode }) => (darkMode === "dark" ? "black" : "white")};
@@ -27,6 +27,7 @@ let Search = styled.div`
     display: flex;
     flex-direction: column;
     align-items: start;
+    z-index: 999999;
   }
 `;
 
@@ -53,6 +54,8 @@ const Dropdown = styled(Card)`
   position: absolute;
   min-width: 250px;
   top: 45px;
+  z-index: 999999;
+
   background: ${({ darkMode }) =>
     darkMode === "dark" ? yellow[700] : "#3788E5"};
   box-shadow: -3px 5px 17px 1px #000;

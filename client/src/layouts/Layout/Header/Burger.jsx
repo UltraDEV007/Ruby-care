@@ -7,9 +7,9 @@ import { yellow, blue } from "@material-ui/core/colors";
 const StyledBurger = styled.div`
   width: 2rem;
   height: 2rem;
-  position: fixed;
-  top: 15px;
-  right: 20px;
+  position: relative;
+  top: 0;
+  right: 0;
   z-index: 999;
   justify-content: space-around;
   flex-flow: column nowrap;
@@ -44,7 +44,7 @@ const StyledBurger = styled.div`
   }
 `;
 
-const Burger = ({ open, setOpen, search, setSearch, handleLogout }) => {
+const Burger = ({ open, setOpen, search, setSearch }) => {
   const [darkMode] = useContext(DarkModeContext);
 
   return (
@@ -61,7 +61,6 @@ const Burger = ({ open, setOpen, search, setSearch, handleLogout }) => {
       <OpenNavBar
         open={open}
         setOpen={setOpen}
-        handleLogout={handleLogout}
         setSearch={setSearch}
         search={search}
       />

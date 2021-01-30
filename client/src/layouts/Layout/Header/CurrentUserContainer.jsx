@@ -1,16 +1,24 @@
 import { useContext } from "react";
 import { Typography } from "@material-ui/core";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import { useLocation, Link } from "react-router-dom";
+import { useHistory, useLocation, Link } from "react-router-dom";
 import { useStateValue } from "../../../components/Context/CurrentUserContext";
 import { DarkModeContext } from "../../../components/Context/DarkModeContext";
 import { useStyles } from "./headerStyles";
+import { removeToken } from "../../../services/auth";
 
-function CurrentUserContainer({ handleLogout }) {
+function CurrentUserContainer({ isMenuShowing }) {
+  const [{ currentUser }, dispatch] = useStateValue();
   const { pathname } = useLocation();
+  const history = useHistory();
+  const handleLogout = () => {
+    dispatch({ type: "REMOVE_USER" });
+    localStorage.removeItem("authToken");
+    removeToken();
+    history.push("/login");
+  };
 
   const classes = useStyles();
-  const [{ currentUser }] = useStateValue();
   const [darkMode] = useContext(DarkModeContext);
 
   return (
@@ -44,6 +52,11 @@ function CurrentUserContainer({ handleLogout }) {
         </Link>
       )}
       {pathname === "/settings" && (
+        <Typography className={classes.logOut} onClick={handleLogout}>
+          Log out
+        </Typography>
+      )}
+      {isMenuShowing && (
         <Typography className={classes.logOut} onClick={handleLogout}>
           Log out
         </Typography>

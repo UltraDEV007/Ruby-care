@@ -1,19 +1,19 @@
 import { useEffect } from "react";
 
-export default function SearchBarLocation({ setLeftSearch, setMiddleSearch }) {
+export default function HandleResizeEvents({
+  setLeftSearch,
+  setIsMenuShowing,
+}) {
   useEffect(() => {
     const changeSearchLocation = () => {
       const width = window?.innerWidth;
       if (width >= 960) {
         setLeftSearch(true);
-        setMiddleSearch(false);
       } else {
         setLeftSearch(false);
-        setMiddleSearch(true);
       }
-      if (width <= 404) {
-        setLeftSearch(false);
-        setMiddleSearch(false);
+      if (width >= 959) {
+        setIsMenuShowing(false);
       }
     };
     changeSearchLocation();
@@ -21,6 +21,6 @@ export default function SearchBarLocation({ setLeftSearch, setMiddleSearch }) {
     return () => {
       window.removeEventListener("resize", changeSearchLocation);
     };
-  }, [setLeftSearch, setMiddleSearch]);
+  }, [setLeftSearch, setIsMenuShowing]);
   return null;
 }

@@ -2,10 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import { useStateValue } from "../../../components/Context/CurrentUserContext";
 import { DarkModeContext } from "../../../components/Context/DarkModeContext";
-import { removeToken } from "../../../services/auth";
-import { useHistory, Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { useStyles } from "./headerStyles";
 import HeaderSearch from "./HeaderSearch";
@@ -13,18 +11,15 @@ import LocationIcons from "./LocationIcons";
 import QueriedUsers from "./QueriedUsers";
 import Moment from "react-moment";
 import "moment-timezone";
-import SearchBarLocation from "./SearchBarLocation";
+import HandleResizeEvents from "./HandleResizeEvents";
 import CurrentUserContainer from "./CurrentUserContainer";
-import OpenNavBar from "./OpenNavBar";
 import Burger from "./Burger";
 
 export default function Header({ title, allUsers }) {
   const [leftSearch, setLeftSearch] = useState(false);
-  const [middleSearch, setMiddleSearch] = useState(false);
   const [currentTime, setCurrentTime] = useState(Date.now());
   const [search, setSearch] = useState("");
   const [darkMode] = useContext(DarkModeContext);
-  const [{ currentUser }, dispatch] = useStateValue();
   const [isMenuShowing, setIsMenuShowing] = useState(false);
 
   const classes = useStyles({ darkMode, isMenuShowing });
@@ -37,22 +32,14 @@ export default function Header({ title, allUsers }) {
     };
   });
 
-  const history = useHistory();
-  const handleLogout = () => {
-    dispatch({ type: "REMOVE_USER" });
-    localStorage.removeItem("authToken");
-    removeToken();
-    history.push("/login");
-  };
-
   const getUsers = () =>
     allUsers.filter((user) =>
       user.name.toLowerCase().includes(`${search}`.toLowerCase())
     );
 
-  const usersJSX = getUsers().map((user) => (
-    <QueriedUsers darkMode={darkMode} user={user} />
-  ));
+  const usersJSX = getUsers()
+    .slice(0, 6)
+    .map((user) => <QueriedUsers darkMode={darkMode} user={user} />);
 
   return (
     <>
@@ -66,9 +53,10 @@ export default function Header({ title, allUsers }) {
                 {title}
               </Typography>
 
-              <SearchBarLocation
+              <HandleResizeEvents
                 setLeftSearch={setLeftSearch}
-                setMiddleSearch={setMiddleSearch}
+                setIsMenuShowing={setIsMenuShowing}
+                isMenuShowing={isMenuShowing}
               />
 
               {leftSearch && (
@@ -85,34 +73,21 @@ export default function Header({ title, allUsers }) {
               <Typography className={classes.timeClass}>
                 <Moment format="hh:mm A">{currentTime}</Moment>
               </Typography>
-
-              {/* {middleSearch && (
-                <HeaderSearch
-                  open={isMenuShowing}
-                  usersJSX={usersJSX}
-                  darkMode={darkMode}
-                  search={search}
-                  setSearch={setSearch}
-                />
-              )} */}
             </div>
 
             <div className={classes.headerRight}>
               <div className={classes.userContainer}>
                 <CurrentUserContainer
-                  currentUser={currentUser}
                   Typography={Typography}
                   Link={Link}
                   darkMode={darkMode}
                   classes={classes}
                   AccountCircleIcon={AccountCircleIcon}
-                  handleLogout={handleLogout}
                 />
               </div>
               <Burger
                 open={isMenuShowing}
                 setOpen={setIsMenuShowing}
-                handleLogout={handleLogout}
                 setSearch={setSearch}
                 search={search}
               />

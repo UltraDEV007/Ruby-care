@@ -21,10 +21,12 @@ const Ul = styled.ul`
   list-style: none;
   z-index: 998;
   overflow: scroll;
+  display: flex;
+  align-items: center;
   li {
     padding: 40px;
     font-size: large;
-    color: black;
+    /* color: black; */
     font-weight: 30px;
     text-decoration: none;
   }
@@ -37,10 +39,6 @@ const Ul = styled.ul`
   span:hover {
     cursor: pointer;
   }
-  @media (max-width: 768px) {
-    width: 100%;
-    text-align: center;
-  }
   img {
     width: 100px;
     object-fit: contain;
@@ -49,12 +47,20 @@ const Ul = styled.ul`
     text-decoration: none;
   }
 `;
-function OpenNavBar({ open, handleLogout, search, setSearch }) {
+function OpenNavBar({ open, search, setSearch }) {
   const [darkMode] = useContext(DarkModeContext);
   return (
     <Ul open={open}>
-      <HeaderSearch search={search} setSearch={setSearch} />
-      <CurrentUserContainer handleLogout={handleLogout} />
+      <li>
+        <HeaderSearch
+          darkMode={darkMode}
+          search={search}
+          setSearch={setSearch}
+        />
+      </li>
+      <li>
+        <CurrentUserContainer isMenuShowing={open} />
+      </li>
     </Ul>
   );
 }
