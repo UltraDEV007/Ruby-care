@@ -52,7 +52,7 @@ function CurrentUserContainer({ isMenuShowing }) {
           <Typography className={classes.text}>Login/Register</Typography>
         </Link>
       )}
-      {pathname === "/settings" && (
+      {pathname === "/settings" && !isMenuShowing && (
         <Typography className={classes.logOut} onClick={handleLogout}>
           Log out
         </Typography>
