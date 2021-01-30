@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 
 let Search = styled.div`
   position: relative;
-  display: ${({ open }) => (open ? "block" : "none")};
 
   input {
     font-family: "Montserrat", sans-serif;

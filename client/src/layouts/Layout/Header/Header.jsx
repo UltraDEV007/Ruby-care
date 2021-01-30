@@ -16,6 +16,7 @@ import "moment-timezone";
 import SearchBarLocation from "./SearchBarLocation";
 import CurrentUserContainer from "./CurrentUserContainer";
 import OpenNavBar from "./OpenNavBar";
+import Burger from "./Burger";
 
 export default function Header({ title, allUsers }) {
   const [leftSearch, setLeftSearch] = useState(false);
@@ -85,33 +86,40 @@ export default function Header({ title, allUsers }) {
                 <Moment format="hh:mm A">{currentTime}</Moment>
               </Typography>
 
-              {middleSearch && (
+              {/* {middleSearch && (
                 <HeaderSearch
-                  className={classes.search}
                   open={isMenuShowing}
                   usersJSX={usersJSX}
                   darkMode={darkMode}
                   search={search}
                   setSearch={setSearch}
                 />
-              )}
+              )} */}
             </div>
 
             <div className={classes.headerRight}>
-              <CurrentUserContainer
-                currentUser={currentUser}
-                Typography={Typography}
-                Link={Link}
-                darkMode={darkMode}
-                classes={classes}
-                AccountCircleIcon={AccountCircleIcon}
+              <div className={classes.userContainer}>
+                <CurrentUserContainer
+                  currentUser={currentUser}
+                  Typography={Typography}
+                  Link={Link}
+                  darkMode={darkMode}
+                  classes={classes}
+                  AccountCircleIcon={AccountCircleIcon}
+                  handleLogout={handleLogout}
+                />
+              </div>
+              <Burger
+                open={isMenuShowing}
+                setOpen={setIsMenuShowing}
                 handleLogout={handleLogout}
+                setSearch={setSearch}
+                search={search}
               />
             </div>
           </Toolbar>
         </AppBar>
       </div>
-      {isMenuShowing && <OpenNavBar open={isMenuShowing} />}
     </>
   );
 }

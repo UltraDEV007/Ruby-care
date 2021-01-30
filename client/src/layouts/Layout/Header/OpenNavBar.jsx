@@ -1,12 +1,15 @@
-import React from "react";
+import { useContext } from "react";
 import styled from "styled-components";
+import { DarkModeContext } from "../../../components/Context/DarkModeContext";
 import CurrentUserContainer from "./CurrentUserContainer";
 import HeaderSearch from "./HeaderSearch";
+import { yellow, red, blue } from "@material-ui/core/colors";
 
 const Ul = styled.ul`
   margin: 0;
   flex-flow: column nowrap;
-  background-color: #ffccff;
+  background-color: ${({ darkMode }) =>
+    darkMode === "light" ? blue[600] : yellow[700]};
   position: fixed;
   transform: ${({ open }) => (open ? "translateX(0)" : "translateX(100%)")};
   top: 0;
@@ -46,11 +49,12 @@ const Ul = styled.ul`
     text-decoration: none;
   }
 `;
-function OpenNavBar({ open }) {
+function OpenNavBar({ open, handleLogout, search, setSearch }) {
+  const [darkMode] = useContext(DarkModeContext);
   return (
     <Ul open={open}>
-      <HeaderSearch />
-      <CurrentUserContainer />
+      <HeaderSearch search={search} setSearch={setSearch} />
+      <CurrentUserContainer handleLogout={handleLogout} />
     </Ul>
   );
 }

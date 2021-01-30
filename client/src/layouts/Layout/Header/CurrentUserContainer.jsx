@@ -1,16 +1,17 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
+import { useContext } from "react";
+import { Typography } from "@material-ui/core";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import { useLocation, Link } from "react-router-dom";
+import { useStateValue } from "../../../components/Context/CurrentUserContext";
+import { DarkModeContext } from "../../../components/Context/DarkModeContext";
+import { useStyles } from "./headerStyles";
 
-function CurrentUserContainer({
-  currentUser,
-  handleLogout,
-  classes,
-  Typography,
-  Link,
-  darkMode,
-  AccountCircleIcon,
-}) {
+function CurrentUserContainer({ handleLogout }) {
   const { pathname } = useLocation();
+
+  const classes = useStyles();
+  const [{ currentUser }] = useStateValue();
+  const [darkMode] = useContext(DarkModeContext);
 
   return (
     <>

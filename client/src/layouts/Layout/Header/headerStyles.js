@@ -89,8 +89,14 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
-  search: {
-    display: (props) => (props.isMenuShowing ? "block" : "none"),
+  // search: {
+  //   display: (props) => (props.isMenuShowing ? "block" : "none"),
+  // },
+
+  userContainer: {
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
   },
 }));
 
