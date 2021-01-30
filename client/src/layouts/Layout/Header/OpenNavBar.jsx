@@ -9,8 +9,7 @@ import Card from "@material-ui/core/Card";
 const Ul = styled.ul`
   margin: 0;
   flex-flow: column nowrap;
-  background-color: ${({ darkMode }) =>
-    darkMode === "light" ? blue[600] : yellow[700]};
+  background-color: ${({ isLight }) => (isLight ? blue[600] : yellow[700])};
   position: fixed;
   transform: ${({ open }) => (open ? "translateX(0)" : "translateX(100%)")};
   top: 0;
@@ -68,7 +67,7 @@ const Dropdown = styled(Card)`
 function OpenNavBar({ open, search, setSearch, usersJSX }) {
   const [darkMode] = useContext(DarkModeContext);
   return (
-    <Ul open={open}>
+    <Ul open={open} isLight={darkMode === "light"}>
       <li>
         <HeaderSearch
           darkMode={darkMode}
