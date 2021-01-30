@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { DarkModeContext } from "../../../components/Context/DarkModeContext";
 import CurrentUserContainer from "./CurrentUserContainer";
 import HeaderSearch from "./HeaderSearch";
-import { yellow, red, blue } from "@material-ui/core/colors";
+import { yellow, blue } from "@material-ui/core/colors";
 import Card from "@material-ui/core/Card";
 
 const Ul = styled.ul`
@@ -27,12 +27,8 @@ const Ul = styled.ul`
   li {
     padding: 40px;
     font-size: large;
-    /* color: black; */
     font-weight: 30px;
     text-decoration: none;
-    /* display: flex;
-    flex-direction: column;
-    align-items: center; */
   }
   li:hover {
     cursor: default;
@@ -60,7 +56,8 @@ const Dropdown = styled(Card)`
 
   background: ${({ darkMode }) =>
     darkMode === "dark" ? yellow[700] : "#3788E5"};
-  box-shadow: ${({ search }) => (search ? "-3px 5px 17px 1px #000" : "")};
+  box-shadow: ${({ isSearching }) =>
+    isSearching ? "-3px 5px 17px 1px #000" : ""};
   .dropdown-items {
     display: flex;
     flex-direction: column;
@@ -79,7 +76,7 @@ function OpenNavBar({ open, search, setSearch, usersJSX }) {
           setSearch={setSearch}
           open={open}
         />
-        <Dropdown search={search} darkMode={darkMode}>
+        <Dropdown isSearching={search} darkMode={darkMode}>
           <div className="dropdown-items">{search && usersJSX}</div>
         </Dropdown>
       </li>
