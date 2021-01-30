@@ -14,6 +14,8 @@ import QueriedUsers from "./QueriedUsers";
 import Moment from "react-moment";
 import "moment-timezone";
 import SearchBarLocation from "./SearchBarLocation";
+import CurrentUserContainer from "./CurrentUserContainer";
+import OpenNavBar from "./OpenNavBar";
 
 export default function Header({ title, allUsers }) {
   const [leftSearch, setLeftSearch] = useState(false);
@@ -22,8 +24,9 @@ export default function Header({ title, allUsers }) {
   const [search, setSearch] = useState("");
   const [darkMode] = useContext(DarkModeContext);
   const [{ currentUser }, dispatch] = useStateValue();
+  const [isMenuShowing, setIsMenuShowing] = useState(false);
 
-  const classes = useStyles({ darkMode });
+  const classes = useStyles({ darkMode, isMenuShowing });
   let location = useLocation();
 
   useEffect(() => {
@@ -84,6 +87,8 @@ export default function Header({ title, allUsers }) {
 
               {middleSearch && (
                 <HeaderSearch
+                  className={classes.search}
+                  open={isMenuShowing}
                   usersJSX={usersJSX}
                   darkMode={darkMode}
                   search={search}
@@ -93,45 +98,21 @@ export default function Header({ title, allUsers }) {
             </div>
 
             <div className={classes.headerRight}>
-              {currentUser ? (
-                <>
-                  <Typography
-                    component={Link}
-                    style={
-                      darkMode === "light"
-                        ? { textDecoration: "none", color: "#fff" }
-                        : { textDecoration: "none", color: "#000" }
-                    }
-                    to={`/users/${currentUser?.id}`}
-                    className={classes.userName}>
-                    {!currentUser?.image ? (
-                      <AccountCircleIcon className={classes.userIcon} />
-                    ) : (
-                      <img
-                        className={classes.userImage}
-                        src={currentUser?.image}
-                        alt={currentUser?.name}
-                      />
-                    )}
-                    {currentUser?.name}
-                  </Typography>
-                </>
-              ) : (
-                <Link className={classes.text} to="/login">
-                  <Typography className={classes.text}>
-                    Login/Register
-                  </Typography>
-                </Link>
-              )}
-              {location.pathname === "/settings" && (
-                <Typography className={classes.logOut} onClick={handleLogout}>
-                  Log out
-                </Typography>
-              )}
+              <CurrentUserContainer
+                currentUser={currentUser}
+                Typography={Typography}
+                Link={Link}
+                darkMode={darkMode}
+                classes={classes}
+                AccountCircleIcon={AccountCircleIcon}
+                handleLogout={handleLogout}
+              />
             </div>
           </Toolbar>
         </AppBar>
       </div>
+
+      <OpenNavBar isMenuShowing={open} />
     </>
   );
 }

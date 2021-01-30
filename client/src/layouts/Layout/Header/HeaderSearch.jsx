@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 
 let Search = styled.div`
   position: relative;
+  display: ${({ open }) => (open ? "block" : "none")};
 
   input {
     font-family: "Montserrat", sans-serif;
@@ -58,7 +59,7 @@ const Dropdown = styled(Card)`
   box-shadow: -3px 5px 17px 1px #000;
 `;
 
-function HeaderSearch({ search, setSearch, darkMode, usersJSX }) {
+function HeaderSearch({ search, setSearch, darkMode, usersJSX, open }) {
   const [placeholder, setPlaceholder] = useState("Search Care");
 
   useEffect(() => {
@@ -79,7 +80,7 @@ function HeaderSearch({ search, setSearch, darkMode, usersJSX }) {
 
   return (
     <>
-      <Search darkMode={darkMode}>
+      <Search open={open} darkMode={darkMode}>
         <StyledTextField
           darkMode={darkMode}
           type="text"

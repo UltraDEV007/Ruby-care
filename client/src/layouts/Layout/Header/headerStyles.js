@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
       marginRight: "20px",
       padding: "0px",
     },
-    display: "none",
+    // display: "none",
     textAlign: "center",
   },
   text: {
@@ -87,6 +87,10 @@ const useStyles = makeStyles((theme) => ({
       cursor: "pointer",
       transform: "scale(1.1)",
     },
+  },
+
+  search: {
+    display: (props) => (props.isMenuShowing ? "block" : "none"),
   },
 }));
 
