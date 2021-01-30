@@ -100,6 +100,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   userContainer: {
+    display: "flex",
     [theme.breakpoints.down("sm")]: {
       display: "none",
     },
