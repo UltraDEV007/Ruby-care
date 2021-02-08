@@ -12,6 +12,8 @@ import UnlikedIcon from "@material-ui/icons/FavoriteBorder";
 import LikedIcon from "@material-ui/icons/Favorite";
 import React, { useState, useEffect } from "react";
 import { destroyLike, postLike } from "../../services/likes";
+import IconButton from "@material-ui/core/IconButton";
+import InputAdornment from "@material-ui/core/InputAdornment";
 
 function InsightCard({
   insight,
@@ -73,6 +75,10 @@ function InsightCard({
     setLikeDisabled(false);
   };
 
+  let likePointerEvents = likeDisabled
+    ? { pointerEvents: "none" }
+    : { pointerEvents: "inherit" };
+
   return (
     <>
       <Card className={classes.root}>
@@ -107,27 +113,15 @@ function InsightCard({
         <br />
 
         <div className={classes.likeContainer}>
-          {!liked ? (
-            <UnlikedIcon
-              style={
-                likeDisabled
-                  ? { pointerEvents: "none" }
-                  : { pointerEvents: "inherit" }
-              }
-              className={classes.unLikedInsight}
-              onClick={handleLike}
-            />
-          ) : (
-            <LikedIcon
-              style={
-                likeDisabled
-                  ? { pointerEvents: "none" }
-                  : { pointerEvents: "inherit" }
-              }
-              className={classes.likedInsight}
-              onClick={handleUnlike}
-            />
-          )}
+          <IconButton
+            style={likePointerEvents}
+            onClick={!liked ? handleLike : handleUnlike}>
+            {!liked ? (
+              <UnlikedIcon className={classes.unLikedInsight} />
+            ) : (
+              <LikedIcon className={classes.likedInsight} />
+            )}
+          </IconButton>
           &nbsp;
           {allLikes?.length}
         </div>
