@@ -13,7 +13,6 @@ import LikedIcon from "@material-ui/icons/Favorite";
 import React, { useState, useEffect } from "react";
 import { destroyLike, postLike } from "../../services/likes";
 import IconButton from "@material-ui/core/IconButton";
-import InputAdornment from "@material-ui/core/InputAdornment";
 
 function InsightCard({
   insight,
