@@ -14,13 +14,9 @@ function Search({ search, setSearch }) {
   const [searchEnabled, setSearchEnabled] = useState(false);
 
   const checkPath = () => {
-    if (
-      location.pathname === "/insights" ||
-      location.pathname === "/insights/"
-    ) {
+    if (location.pathname.includes("/insights")) {
       return "Search by insight or user";
-    }
-    if (location.pathname === "/users" || location.pathname === "/users/")
+    } 
       return "Search by user";
   };
 
