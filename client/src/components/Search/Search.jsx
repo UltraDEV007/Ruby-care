@@ -10,14 +10,14 @@ import Form from "./styledSearch";
 
 function Search({ search, setSearch }) {
   const [darkMode] = useContext(DarkModeContext);
-  let location = useLocation();
   const [searchEnabled, setSearchEnabled] = useState(false);
+  let location = useLocation();
 
   const checkPath = () => {
     if (location.pathname.includes("/insights")) {
       return "Search by insight or user";
-    } 
-      return "Search by user";
+    }
+    return "Search by user";
   };
 
   const handleSearch = (e) => {
