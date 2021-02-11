@@ -1,63 +1,60 @@
 import { useContext } from "react";
-import styled from "styled-components";
 import { DarkModeContext } from "../../../components/Context/DarkModeContext";
 import OpenNavBar from "./OpenNavBar";
-import { yellow, blue } from "@material-ui/core/colors";
+import { makeStyles } from "@material-ui/core";
 
-const StyledBurger = styled.div`
-  width: 2rem;
-  height: 2rem;
-  position: relative;
-  top: 0;
-  right: 0;
-  z-index: 999;
-  justify-content: space-around;
-  flex-flow: column nowrap;
-  display: none;
+const useStyles = makeStyles((theme) => ({
+  burgerIcon: {
+    width: "2rem",
+    height: "2rem",
+    position: "relative",
+    top: 0,
+    right: 0,
+    zIndex: 999,
+    justifyContent: "space-around",
+    flexFlow: "column nowrap",
+    display: "none",
 
-  &:hover {
-    cursor: pointer;
-  }
-  div {
-    width: 2rem;
-    height: 0.25rem;
-    box-shadow: 0px 0.1px 1.5px 0.5px #999999;
-    background-color: ${({ isLight }) => (isLight ? "#fff" : "#000")};
+    "&:hover": {
+      cursor: "pointer",
+    },
 
-    border-radius: 10px;
-    transform-origin: 1px;
-    transition: all 0.3s linear;
-    &:nth-child(1) {
-      transform: ${({ open }) => (open ? "rotate(45deg)" : "rotate(0)")};
-    }
-    &:nth-child(2) {
-      transform: ${({ open }) => (open ? "translateX(100%)" : "translateX(0)")};
-      opacity: ${({ open }) => (open ? 0 : 1)};
-    }
-    &:nth-child(3) {
-      transform: ${({ open }) => (open ? "rotate(-45deg)" : "rotate(0)")};
-    }
-  }
-
-  @media screen and (max-width: 959px) {
-    display: flex;
-  }
-`;
+    "& > *": {
+      width: "2rem",
+      height: "0.25rem",
+      boxShadow: "0px 0.1px 1.5px 0.5px #999999",
+      backgroundColor: ({ isLight }) => (isLight ? "#fff" : "#000"),
+      borderRadius: "10px",
+      transformOrigin: "1px",
+      transition: "all 0.3s linear",
+      "&:nth-child(1)": {
+        transform: ({ open }) => (open ? "rotate(45deg)" : "rotate(0)"),
+      },
+      "&:nth-child(2)": {
+        transform: ({ open }) => (open ? "translateX(100%)" : "translateX(0)"),
+        opacity: ({ open }) => (open ? 0 : 1),
+      },
+      "&:nth-child(3)": {
+        transform: ({ open }) => (open ? "rotate(-45deg)" : "rotate(0)"),
+      },
+    },
+    [theme.breakpoints.down("sm")]: {
+      display: "flex",
+    },
+  },
+}));
 
 const Burger = ({ open, setOpen, search, setSearch, usersJSX }) => {
   const [darkMode] = useContext(DarkModeContext);
+  const classes = useStyles({ open, isLight: darkMode === "light" });
 
   return (
     <>
-      <StyledBurger
-        open={open}
-        isLight={darkMode === "light"}
-        setOpen={setOpen}
-        onClick={() => setOpen(!open)}>
+      <div className={classes.burgerIcon} onClick={() => setOpen(!open)}>
         <div />
         <div />
         <div />
-      </StyledBurger>
+      </div>
       <OpenNavBar
         open={open}
         usersJSX={usersJSX}
