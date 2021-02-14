@@ -17,8 +17,8 @@ export default function AffirmationLetter({
   const [isRefreshed, setIsRefreshed] = useState(false);
   const [openDetail, setOpenDetail] = useState(false);
 
-  const onSave = (formData, id) => {
-    handleUpdate(formData, id);
+  const onSave = (id, formData) => {
+    handleUpdate(id, formData);
     setIsRefreshed(true);
     setTimeout(async () => {
       setIsRefreshed(false);

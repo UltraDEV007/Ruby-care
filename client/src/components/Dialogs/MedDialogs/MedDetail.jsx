@@ -19,15 +19,15 @@ export default function MedDetail({
   onTake,
   taken,
 }) {
-  let currentTime = new Date();
   const [medData, setMedData] = useState({});
+
+  let currentTime = new Date();
 
   useEffect(() => {
     const getMedData = () => {
       const { name, medication_class, image, reason, time } = med;
       setMedData({ name, medication_class, image, time, reason });
     };
-
     if (med.id) {
       getMedData();
     }
