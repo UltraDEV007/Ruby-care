@@ -10,13 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_01_224537) do
+ActiveRecord::Schema.define(version: 2021_02_14_040752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  #  when adding a new column to a table, remember to do this SQL query:
-  #  example: DELETE FROM moods WHERE reason IS NULL;
 
   create_table "affirmations", force: :cascade do |t|
     t.string "content"
@@ -52,6 +49,7 @@ ActiveRecord::Schema.define(version: 2021_01_01_224537) do
     t.bigint "insight_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["insight_id", "user_id"], name: "index_likes_on_insight_id_and_user_id", unique: true
     t.index ["insight_id"], name: "index_likes_on_insight_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
