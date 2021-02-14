@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import Typography from "@material-ui/core/Typography";
@@ -16,17 +17,27 @@ export default function MedDetail({
   handleDetailClose,
   onDelete,
   onTake,
-  onNotTake,
   taken,
 }) {
   let currentTime = new Date();
+  const [medData, setMedData] = useState({});
+
+  useEffect(() => {
+    const getMedData = () => {
+      const { name, medication_class, image, reason, time } = med;
+      setMedData({ name, medication_class, image, time, reason });
+    };
+
+    if (med.id) {
+      getMedData();
+    }
+  }, [med]);
 
   return (
     <Dialog
       onClose={handleDetailClose}
       aria-labelledby="customized-dialog-title"
-      open={openDetail}
-    >
+      open={openDetail}>
       <DialogTitle id="customized-dialog-title" onClose={handleDetailClose}>
         <Typography
           style={{
@@ -35,8 +46,7 @@ export default function MedDetail({
             fontSize: "1.3rem",
             fontFamily: "Montserrat, sans-serif",
             padding: "5px",
-          }}
-        >
+          }}>
           <img
             src={med.image}
             style={{ height: "30px", width: "50px" }}
@@ -56,8 +66,7 @@ export default function MedDetail({
           flexDirection: "column",
           width: "300px",
           overflowWrap: "break-word",
-        }}
-      >
+        }}>
         {compareDateWithCurrentTime(med?.time) < 0 ? (
           <Typography>I take {med.name} because...</Typography>
         ) : (
@@ -92,16 +101,14 @@ export default function MedDetail({
           <Button
             variant="contained"
             color="secondary"
-            onClick={handleDetailClose}
-          >
+            onClick={handleDetailClose}>
             <>Not yet</>
           </Button>
         ) : (
           <Button
             variant="contained"
             color="primary"
-            onClick={handleDetailClose}
-          >
+            onClick={handleDetailClose}>
             <>Exit</>
           </Button>
         )}
@@ -110,8 +117,7 @@ export default function MedDetail({
             variant="contained"
             color="primary"
             className="delete-button"
-            onClick={() => onTake(med.id)}
-          >
+            onClick={() => onTake(med.id, medData)}>
             Yes
           </Button>
         ) : (
@@ -119,8 +125,7 @@ export default function MedDetail({
             variant="contained"
             color="secondary"
             className="delete-button"
-            onClick={() => onDelete(med.id)}
-          >
+            onClick={() => onDelete(med.id)}>
             Delete
           </Button>
         )}

@@ -29,8 +29,8 @@ export default function MedCard({
   const [rerender, toggleRerender] = useState(false);
   let timerId = useRef(null);
 
-  const onSave = (formData, id) => {
-    handleUpdate(formData, id);
+  const onSave = (id, formData) => {
+    handleUpdate(id, formData);
     if (compareDateWithCurrentTime(med.time) === 1) {
       setTaken(false);
     }
@@ -63,8 +63,8 @@ export default function MedCard({
     setOpenDetail(false);
   };
 
-  const onTake = (id) => {
-    handleUpdate(id);
+  const onTake = (id, medData) => {
+    handleUpdate(id, medData);
     setTaken(true);
     setOpenDetail(false);
   };
