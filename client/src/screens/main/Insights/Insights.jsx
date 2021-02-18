@@ -28,14 +28,14 @@ export default function Insights(props) {
 
   const [search, setSearch] = useState("");
 
-  const getInsights = () =>
+  const getQueriedInsights = () =>
     props.insights?.filter(
       (insight) =>
-        insight?.title?.toLowerCase().includes(`${search}`.toLowerCase()) ||
-        insight?.user?.name?.toLowerCase().includes(`${search}`.toLowerCase())
+        insight?.title?.toLowerCase().includes(search.toLowerCase()) ||
+        insight?.user?.name?.toLowerCase().includes(search.toLowerCase())
     );
 
-  const queriedInsights = getInsights().map((insight) => (
+  const insightsJSX = getQueriedInsights().map((insight) => (
     <InsightCard
       key={insight.id}
       darkMode={darkMode}
@@ -68,7 +68,7 @@ export default function Insights(props) {
           {!props.loaded && (
             <LinearProgress style={{ margin: "50px auto", width: "30vw" }} />
           )}
-          {queriedInsights}
+          {insightsJSX}
         </div>
       </Wrapper>
     </Layout>
