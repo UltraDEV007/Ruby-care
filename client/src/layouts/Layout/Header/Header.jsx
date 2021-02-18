@@ -34,7 +34,7 @@ export default function Header({ title, allUsers }) {
 
   const getUsers = () =>
     allUsers.filter((user) =>
-      user.name.toLowerCase().includes(`${search}`.toLowerCase())
+      user.name.toLowerCase().includes(search.toLowerCase())
     );
 
   const usersJSX = getQueriedUsers().slice(0, 6).map(user => <QueriedUsers darkMode={darkMode} user={user} />);
