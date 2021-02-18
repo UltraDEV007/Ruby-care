@@ -39,8 +39,6 @@ export default function InsightsContainer({ darkMode }) {
   };
 
   useEffect(() => {
-    // refetch insights when loaded is set to false (for creating a new insight and seeing the new insight on 2 tabs open)
-    // this is for a more "live", feel, wasn't necessary when only having 1 tab open.
     if (!loaded) {
       fetchInsights();
     }
