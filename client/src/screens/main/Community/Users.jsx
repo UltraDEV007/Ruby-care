@@ -13,12 +13,12 @@ const Users = ({ allUsers, loaded }) => {
   const [darkMode] = useContext(DarkModeContext);
   const [search, setSearch] = useState("");
 
-  const getUsers = () =>
+  const getQueriedUsers = () =>
     allUsers.filter((user) =>
-      user.name.toLowerCase().includes(`${search}`.toLowerCase())
+      user.name.toLowerCase().includes(search.toLowerCase())
     );
 
-  const queriedUsers = getUsers().map((user) => (
+  const usersJSX = getQueriedUsers().map((user) => (
     <Link
       key={user.id}
       darkMode={darkMode}
@@ -45,12 +45,12 @@ const Users = ({ allUsers, loaded }) => {
         <div className="users-container">
           <>
             <p className="users-title">
-              {checkUserLength(queriedUsers, loaded)}
+              {checkUserLength(usersJSX, loaded)}
             </p>
             {!loaded ? (
               <LinearProgress style={{ margin: "50px auto", width: "30vw" }} />
             ) : (
-              <div className="queried-users">{queriedUsers}</div>
+              <div className="queried-users">{usersJSX}</div>
             )}
           </>
         </div>
