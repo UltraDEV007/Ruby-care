@@ -18,7 +18,7 @@ class InsightsController < ApplicationController
 
   # GET /insights/1
   def show
-    render json: @insight.attributes.except('updated_at', 'user_id').merge( {user: @insight.user.attributes.except('password_digest', 'updated_at', 'email')})
+    render json: @insight.attributes.except('updated_at', 'user_id').merge( {user: @insight.user.attributes.except('password_digest', 'updated_at', 'email')}, likes: @insight.likes.map {|like| like.attributes.except('updated_at')}, comments: @insight.comments.map {|comment| comment.attributes.merge({user: comment.user.attributes.except("password_digest", "created_at", "updated_at", "email", "birthday", "id")})})
   end
 
   # POST /insights

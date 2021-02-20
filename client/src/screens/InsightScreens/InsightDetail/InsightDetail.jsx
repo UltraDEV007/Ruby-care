@@ -48,11 +48,14 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
     return <LinearProgressLoading darkMode={darkMode} />;
   }
 
-  const COMMENTS =
-    insight.comments &&
-    insight.comments.map((comment) => {
-      <div>hello</div>;
-    });
+  console.log("test", insight.comments);
+
+  const COMMENTS = insight.comments.map((comment) => (
+    <div key={comment.id}>
+      <p>{comment.user?.name}</p>
+      <p> {comment.content} </p>
+    </div>
+  ));
 
   return (
     <>
@@ -114,8 +117,11 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
             </div>
           </section>
           <section className="insight-comments">
-            <div className="inner-column">{COMMENTS}</div>
+            <div className="inner-column-comments">
+              {insight.comments && COMMENTS}
+            </div>
           </section>
+
           <br />
           <hr className="hr-bottom" />
           <footer>

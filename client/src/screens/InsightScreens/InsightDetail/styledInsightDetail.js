@@ -93,6 +93,13 @@ const Wrapper = styled.div`
     padding: 20px;
     min-height: 600px;
   }
+  .inner-column-comments {
+    display: block;
+    width: 98%;
+    max-width: 1100px;
+    padding: 20px;
+    min-height: 200px;
+  }
   .insight-text {
     line-height: 1.5rem;
     font-size: clamp(12px, 10vw, 16px);
