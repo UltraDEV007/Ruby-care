@@ -9,6 +9,8 @@ const useStyles = makeStyles((theme) => ({
     minHeight: "240px",
     padding: "20px",
     borderRadius: 0,
+    background: "#fff",
+    border: ({ darkMode }) => darkMode === "light" && "1px solid #DBDBDB",
     boxShadow: (props) =>
       props.darkMode === "light"
         ? "default"
