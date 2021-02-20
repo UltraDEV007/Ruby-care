@@ -1,4 +1,4 @@
-import { yellow, grey } from "@material-ui/core/colors";
+import { yellow } from "@material-ui/core/colors";
 import { makeStyles } from "@material-ui/styles";
 const useStyles = makeStyles(() => ({
   root: {
@@ -6,7 +6,6 @@ const useStyles = makeStyles(() => ({
     flexDirection: "column",
     flexFlow: "nowrap",
     alignItems: "center",
-    background: (props) => props.darkMode === "dark" && grey[800],
   },
   logoContainer: {
     display: "flex",

@@ -28,6 +28,8 @@ const useStyles = makeStyles((theme) => ({
       darkMode === "light" ? "default" : `0px 0px 4px 1.2px ${indigo[50]}`,
     marginTop: "20px",
     marginBottom: "30px",
+    background: ({ darkMode }) => darkMode === "light" && "#fff",
+    border: ({ darkMode }) => darkMode === "light" && "1px solid #DBDBDB",
   },
 }));
 export { useStyles };
