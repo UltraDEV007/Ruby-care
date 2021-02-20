@@ -36,9 +36,7 @@ const Wrapper = styled.div`
   }
 
   .insight-comments {
-    /* display: grid; */
-    /* grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); */
-    display: block;
+    display: "block";
     margin-top: 20px;
     color: ${({ darkMode }) => (darkMode === "dark" ? grey[100] : "#000")};
     text-align: left;
@@ -46,9 +44,8 @@ const Wrapper = styled.div`
 
   .comment-list {
     display: grid;
-    /* grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); */
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    grid-gap: 20px;
+    grid-gap: 40px 20px;
   }
 
   .hr-bottom {

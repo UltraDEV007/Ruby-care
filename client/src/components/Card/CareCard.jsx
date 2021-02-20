@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import "moment-timezone";
-import { useStyles } from "./careCardStyles";
+import { insightCardStyles, commentCardStyles } from "./careCardStyles";
 
 export default function CareCard({
   postPath,
@@ -22,7 +22,12 @@ export default function CareCard({
   commentStyles,
 }) {
   const [darkMode] = useContext(DarkModeContext);
-  const classes = useStyles({ isLight: darkMode === "light", commentStyles });
+  const styleProps = { isLight: darkMode === "light" };
+
+  const classes = commentStyles
+    ? commentCardStyles(styleProps)
+    : insightCardStyles(styleProps);
+
   const [{ currentUser }] = useStateValue();
 
   return (

@@ -81,7 +81,7 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
           post={comment}
           openDeleteModal={handleDeleteCommentOpen}
           description={comment?.content}
-          commentStyles
+          commentStyles={true}
         />
 
         <DeleteCommentFromDetail

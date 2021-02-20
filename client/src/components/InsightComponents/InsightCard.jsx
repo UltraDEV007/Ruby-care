@@ -99,6 +99,7 @@ function InsightCard({
         post={insight}
         description={insight.description}
         openDeleteModal={handleOpen}
+        commentStyles={false}
       />
 
       <DeleteInsight
