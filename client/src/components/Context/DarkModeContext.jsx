@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from "react";
+import React, { useState, createContext } from "react";
 import {
   ThemeProvider,
   unstable_createMuiStrictModeTheme as createMuiTheme,
