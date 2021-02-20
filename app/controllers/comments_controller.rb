@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :update, :destroy]
+  before_action :authorize_request, only: [:create, :update, :destroy]
 
   # GET /comments
   def index
@@ -15,7 +16,8 @@ class CommentsController < ApplicationController
 
   # POST /comments
   def create
-    @comment = Comment.new(comment_params)
+    @insight = Insight.find(params[:insight_id])
+    @comment = @insight.comments.new(comment_params)
 
     if @comment.save
       render json: @comment, status: :created, location: @comment
