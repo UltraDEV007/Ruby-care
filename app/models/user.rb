@@ -16,7 +16,8 @@ class User < ApplicationRecord
   has_many :medications, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :liked_insights, :through => :likes
-
+  has_many :comments
+  
   def downcase_email
     self.email.downcase!
   end

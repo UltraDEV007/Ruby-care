@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
   def show
     # getting the user, and his insights, except the insight's user_id, because we already get that when we render the user.
-    render json: @user.attributes.except('email, password_digest, updated_at').merge({insights: @user.insights.map {|insight| insight.attributes.except('updated_at', 'user_id')}})
+    render json: @user.attributes.except('email, password_digest, updated_at').merge( {liked_insights: @user.likes.map {|like| like.attributes.slice().merge({ :title => like.insight.title, :insight_id => like.insight_id, :like_id => like.id})}}, {insights: @user.insights.map {|insight| insight.attributes.except('updated_at', 'user_id')}})
   end
 
   # POST /users
