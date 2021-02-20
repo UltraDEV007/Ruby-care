@@ -4,7 +4,10 @@ import Button from "@material-ui/core/Button";
 import Moment from "react-moment";
 import Typography from "@material-ui/core/Typography";
 import { DarkModeContext } from "../../../components/Context/DarkModeContext";
-import { checkInsights } from "../../../utils/checkInsights";
+import {
+  checkInsights,
+  checkedLikedInsights,
+} from "../../../utils/checkInsights";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { goBack } from "../../../utils/goBack";
 import { toTitleCase } from "../../../utils/toTitleCase";
@@ -33,16 +36,25 @@ export default function UserDetail({ getOneUser }) {
     <Link
       key={insight.id}
       className="insights-link"
-      to={`./../insights/${insight.id}`}
-    >
+      to={`./../insights/${insight.id}`}>
       {insight?.title}
     </Link>
   ));
 
+  const LIKED_INSIGHTS = React.Children.toArray(
+    user?.liked_insights?.map((likedInsight) => (
+      <Link
+        className="insights-link"
+        to={`./../insights/${likedInsight.insight_id}`}>
+        {likedInsight?.title}
+      </Link>
+    ))
+  );
+
   if (!loaded) {
     return <LinearProgressLoading darkMode={darkMode} />;
   }
-  
+
   const userDate = user?.created_at?.toLocaleString();
 
   return (
@@ -69,15 +81,15 @@ export default function UserDetail({ getOneUser }) {
           </Typography>
           <Typography className="date">
             Joined:&nbsp;
-            <Moment format="dddd, MMMM Do yyyy">
-              {userDate}
-            </Moment>
+            <Moment format="dddd, MMMM Do yyyy">{userDate}</Moment>
           </Typography>
         </div>
         <hr className="top-hr" />
         <div className="inner-column">
           <div className="check-insights">{checkInsights(user)}</div>
           <div className="insights-container">{INSIGHTS}</div>
+          <div className="check-insights">{checkedLikedInsights(user)}</div>
+          <div className="insights-container">{LIKED_INSIGHTS}</div>
         </div>
         <br />
         <br />
