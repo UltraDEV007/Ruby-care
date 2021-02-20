@@ -88,8 +88,8 @@ export default function UserDetail({ getOneUser }) {
         <div className="inner-column">
           <div className="check-insights">{checkInsights(user)}</div>
           <div className="insights-container">{INSIGHTS}</div>
-          <div className="check-insights">{checkedLikedInsights(user)}</div>
-          <div className="insights-container">{LIKED_INSIGHTS}</div>
+          <div className="check-likes">{checkedLikedInsights(user)}</div>
+          <div className="likes-container">{LIKED_INSIGHTS}</div>
         </div>
         <br />
         <br />

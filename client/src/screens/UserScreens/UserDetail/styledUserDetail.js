@@ -69,12 +69,25 @@ const Wrapper = styled.div`
     scrollbar-width: none;
     overflow-y: scroll;
   }
-  .insights-container::-webkit-scrollbar {
+  .likes-container {
+    display: flex;
+    flex-direction: column;
+    max-height: 250px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow-y: scroll;
+  }
+  .insights-container::-webkit-scrollbar,
+  .likes-container::-webkit-scrollbar {
     display: none;
   }
   .check-insights {
     margin-bottom: 20px;
     font-size: clamp(0.9rem, 2vw, 2vh);
+  }
+  .check-likes {
+    font-size: clamp(0.9rem, 2vw, 2vh);
+    margin-top: 20px;
   }
   .edit {
     margin-right: 10px;
