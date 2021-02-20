@@ -120,15 +120,6 @@ const Wrapper = styled.div`
     min-height: 600px;
   }
 
-  .inner-column-comments {
-    display: block;
-    width: 98%;
-    max-width: 1100px;
-    margin-right: auto;
-    margin-left: auto;
-    padding: 10px;
-  }
-
   .insight-text {
     line-height: 1.5rem;
     font-size: clamp(12px, 10vw, 16px);
@@ -138,6 +129,22 @@ const Wrapper = styled.div`
     font-size: 1.6rem;
     font-size: clamp(1rem, 4vw, 4vh);
     padding-top: 20px;
+    text-align: center;
+  }
+
+  .comments-title {
+    font-size: 1.6rem;
+    font-size: clamp(1rem, 4vw, 4vh);
+    padding: 20px;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .no-comments {
+    font-size: 1.6rem;
+    font-size: clamp(0.9rem, 4vw, 3.6vh);
+    padding: 5px;
+    margin-top: 5px;
     text-align: center;
   }
 

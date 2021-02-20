@@ -14,7 +14,8 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import IconButton from "@material-ui/core/IconButton";
 import CareCard from "../../../components/Card/CareCard";
 import DeleteCommentFromDetail from "../../../components/Modals/DeleteCommentFromDetail";
-import { destroyComment } from "../../../services/comments";
+import { destroyComment, postComment } from "../../../services/comments";
+import TextField from "@material-ui/core/TextField";
 
 export default function InsightDetail({ getOneInsight, handleDelete }) {
   const [insight, setInsight] = useState(null);
@@ -23,6 +24,9 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
   const [loaded, setLoaded] = useState(false);
   const [openInsightDelete, setOpenInsightDelete] = useState(false);
   const [openCommentDelete, setOpenCommentDelete] = useState(false);
+  const [formData, setFormData] = useState({
+    content: "",
+  });
 
   const { id } = useParams();
 
@@ -96,6 +100,23 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
     );
   });
 
+  const handleCommentChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const submitComment = async (e) => {
+    e.preventDefault();
+    let createdComment = await postComment(formData, insight.id);
+    setInsight((prevState) => ({
+      ...prevState,
+      comments: [...prevState.comments, createdComment],
+    }));
+  };
+
   return (
     <>
       <Wrapper darkMode={darkMode}>
@@ -150,18 +171,49 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
             </>
           )}
           <hr />
-          <section className="insight-body">
+          <main className="insight-body">
             <div className="inner-column">
               <p className="insight-text">{insight?.body}</p>
+              <section className="insight-comments">
+                <br />
+                <Typography className="comments-title">
+                  Comment Section
+                </Typography>
+                <br />
+                {insight.comments.length ? (
+                  <ol className="comment-list">{COMMENTS}</ol>
+                ) : (
+                  <Typography className="no-comments">
+                    No Comments...
+                  </Typography>
+                )}
+                <form onSubmit={submitComment} className="create-comment">
+                  <div className="input-container content">
+                    <TextField
+                      required
+                      multiline
+                      rowsMax={10}
+                      type="text"
+                      name="content"
+                      label="Write a comment"
+                      value={formData.content}
+                      onChange={handleCommentChange}
+                      id="outlined-multiline-static"
+                      rows={4}
+                      variant="filled"
+                    />
+                  </div>
+                  <Button
+                    disabled={!formData.content}
+                    type="submit"
+                    color="primary"
+                    variant="contained">
+                    Submit Comment
+                  </Button>
+                </form>
+              </section>
             </div>
-          </section>
-          {insight.comments && (
-            <section className="insight-comments">
-              <div className="inner-column-comments">
-                <ol className="comment-list">{COMMENTS}</ol>
-              </div>
-            </section>
-          )}
+          </main>
 
           <br />
           <hr className="hr-bottom" />
