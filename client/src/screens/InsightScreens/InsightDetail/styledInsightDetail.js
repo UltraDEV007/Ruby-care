@@ -31,6 +31,14 @@ const Wrapper = styled.div`
     color: ${({ darkMode }) => (darkMode === "dark" ? grey[100] : "#000")};
     text-align: left;
   }
+  .insight-comments {
+    display: flex;
+
+    justify-content: "center";
+    margin-top: 20px;
+    color: ${({ darkMode }) => (darkMode === "dark" ? grey[100] : "#000")};
+    text-align: left;
+  }
   .hr-bottom {
     margin-top: 10px;
     margin-bottom: 13px;
@@ -94,7 +102,9 @@ const Wrapper = styled.div`
     min-height: 600px;
   }
   .inner-column-comments {
-    display: block;
+    display: flex;
+    justify-content: center;
+    flex-flow: row-wrap;
     width: 98%;
     max-width: 1100px;
     padding: 20px;
@@ -111,7 +121,8 @@ const Wrapper = styled.div`
     text-align: center;
   }
   @media screen and (min-width: 600px) {
-    .inner-column {
+    .inner-column,
+    .inner-column-comments {
       width: 98%;
       max-width: 1100px;
       padding: 20px 50px;
@@ -126,7 +137,8 @@ const Wrapper = styled.div`
         font-size: clamp(1.3rem, 20vw, 1.4rem);
         line-height: 1.7rem;
       }
-      .inner-column {
+      .inner-column,
+      .inner-column-comments {
         width: 98%;
         max-width: 1100px;
         padding: 20px 20px;

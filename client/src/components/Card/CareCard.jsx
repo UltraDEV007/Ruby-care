@@ -18,6 +18,7 @@ export default function CareCard({
   user,
   openDeleteModal,
   likesJSX,
+  description,
 }) {
   const [darkMode] = useContext(DarkModeContext);
   const classes = useStyles({ darkMode });
@@ -26,7 +27,7 @@ export default function CareCard({
   return (
     <>
       <Card className={classes.root}>
-        <Link className={classes.link} to={postPath}>
+        <Link className={classes.link} to={postPath ?? ""}>
           <Typography className={classes.title}>{title}</Typography>
         </Link>
         <div className={classes.userContainer}>
@@ -52,7 +53,7 @@ export default function CareCard({
           </Typography>
         </div>
         <div>
-          <Typography>{post?.description}</Typography>
+          <Typography>{description}</Typography>
         </div>
         <br />
 

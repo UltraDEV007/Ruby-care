@@ -97,6 +97,7 @@ function InsightCard({
         title={insight?.title}
         likesJSX={likesJSX}
         post={insight}
+        description={insight.description}
         openDeleteModal={handleOpen}
       />
 

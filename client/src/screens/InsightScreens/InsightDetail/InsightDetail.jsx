@@ -12,27 +12,37 @@ import Wrapper from "./styledInsightDetail";
 import LinearProgressLoading from "../../../components/Loading/LinearProgressLoading";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import IconButton from "@material-ui/core/IconButton";
+import CareCard from "../../../components/Card/CareCard";
+import DeleteCommentFromDetail from "../../../components/Modals/DeleteCommentFromDetail";
+import { destroyComment } from "../../../services/comments";
 
 export default function InsightDetail({ getOneInsight, handleDelete }) {
   const [insight, setInsight] = useState(null);
   const [{ currentUser }] = useStateValue();
   const [darkMode] = useContext(DarkModeContext);
   const [loaded, setLoaded] = useState(false);
-  const [openDelete, setOpenDelete] = useState(false);
+  const [openInsightDelete, setOpenInsightDelete] = useState(false);
+  const [openCommentDelete, setOpenCommentDelete] = useState(false);
 
   const { id } = useParams();
 
-  const onDelete = (id) => {
+  const onInsightDelete = (id) => {
     handleDelete(id);
-    setOpenDelete(false);
+    if (openInsightDelete) {
+      setOpenInsightDelete(false);
+    }
   };
 
   const handleDeleteOpen = (id) => {
-    setOpenDelete(id);
+    setOpenInsightDelete(id);
+  };
+
+  const handleDeleteCommentOpen = (id) => {
+    setOpenCommentDelete(id);
   };
 
   const handleDeleteClose = () => {
-    setOpenDelete(false);
+    setOpenInsightDelete(false);
   };
 
   useEffect(() => {
@@ -50,12 +60,38 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
 
   console.log("test", insight.comments);
 
-  const COMMENTS = insight.comments.map((comment) => (
-    <div key={comment.id}>
-      <p>{comment.user?.name}</p>
-      <p> {comment.content} </p>
-    </div>
-  ));
+  const COMMENTS = insight.comments.map((comment) => {
+    const handleCommentDelete = async (insightId, commentId) => {
+      await destroyComment(insightId, commentId);
+      if (openCommentDelete) {
+        setInsight((prevState) =>
+          [prevState].filter((insight) => insight.comment.id !== id)
+        );
+        setOpenCommentDelete(false);
+      }
+    };
+
+    return (
+      <>
+        <CareCard
+          key={comment?.id}
+          user={comment?.user}
+          post={comment}
+          openDeleteModal={handleDeleteCommentOpen}
+          description={comment?.content}
+        />
+
+        <DeleteCommentFromDetail
+          insight={insight}
+          comment={comment}
+          openDelete={openCommentDelete === comment.id}
+          handleOpen={handleDeleteOpen}
+          onDelete={handleCommentDelete}
+          handleClose={() => setOpenCommentDelete(false)}
+        />
+      </>
+    );
+  });
 
   return (
     <>
@@ -133,8 +169,8 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
       </Wrapper>
       <DeleteInsightFromDetail
         insight={insight}
-        openDelete={openDelete === insight.id}
-        onDelete={onDelete}
+        openDelete={openInsightDelete === insight.id}
+        onDelete={onInsightDelete}
         handleOpen={handleDeleteOpen}
         handleDelete={handleDelete}
         handleClose={handleDeleteClose}

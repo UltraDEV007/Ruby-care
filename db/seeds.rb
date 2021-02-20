@@ -72,5 +72,10 @@ puts "#{Medication.count} medications created"
 puts "#{Like.count} likes created!"
 
 @comment1 = Comment.create!(insight: @insight1, user: @bob, content: "awesome post! thanks for sharing!")
+@comment2 = Comment.create!(insight: @insight1, user: @bob, content: "awesome post! thanks for sharing!")
+@comment3 = Comment.create!(insight: @insight1, user: @bob, content: "awesome post! thanks for sharing!")
+@comment4 = Comment.create!(insight: @insight1, user: @bob, content: "awesome post! thanks for sharing!")
+@comment5 = Comment.create!(insight: @insight1, user: @daniel, content: "awesome post! thanks for sharing!")
+
 
 puts "#{Comment.count} comments created!"
