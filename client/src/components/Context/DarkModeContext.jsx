@@ -1,9 +1,10 @@
-import React, { useState, useEffect, createContext } from "react";
+import React, { useState, createContext } from "react";
 import {
   ThemeProvider,
   unstable_createMuiStrictModeTheme as createMuiTheme,
 } from "@material-ui/core/styles";
 import { yellow, red, blue } from "@material-ui/core/colors";
+import CssBaseline from "@material-ui/core/CssBaseline";
 
 const DarkModeContext = createContext();
 
@@ -21,9 +22,14 @@ function DarkModeProvider({ children }) {
 
   const mainPrimaryColor = darkMode === "light" ? blue[600] : yellow[700];
   const mainSecondaryColor = darkMode === "light" ? red[600] : "#ff8f00";
+  const bgColor = darkMode === "light" ? "#FAFAF2" : "#424242";
 
-  const darkTheme = createMuiTheme({
+  const handleTheme = createMuiTheme({
     palette: {
+      background: {
+        paper: bgColor,
+        default: bgColor,
+      },
       type: palletType,
       text: {
         primary: themeTextColor,
@@ -34,7 +40,6 @@ function DarkModeProvider({ children }) {
         },
         primary: themeTextColor,
       },
-
       typography: {
         fontFamily: ["Roboto", "sans-serif"].join(","),
       },
@@ -48,7 +53,8 @@ function DarkModeProvider({ children }) {
   });
 
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={handleTheme}>
+      <CssBaseline />
       <DarkModeContext.Provider value={[darkMode, setDarkMode]}>
         {children}
       </DarkModeContext.Provider>
