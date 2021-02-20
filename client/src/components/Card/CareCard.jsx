@@ -19,9 +19,10 @@ export default function CareCard({
   openDeleteModal,
   likesJSX,
   description,
+  commentStyles,
 }) {
   const [darkMode] = useContext(DarkModeContext);
-  const classes = useStyles({ darkMode });
+  const classes = useStyles({ isLight: darkMode === "light", commentStyles });
   const [{ currentUser }] = useStateValue();
 
   return (

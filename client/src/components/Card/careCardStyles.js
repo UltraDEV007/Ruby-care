@@ -4,34 +4,32 @@ import { makeStyles } from "@material-ui/styles";
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: "20px auto",
-    minWidth: "300px",
-    width: "300px",
+    minWidth: ({ commentStyles }) => !commentStyles && "300px",
+    width: ({ commentStyles }) => !commentStyles && "300px",
     minHeight: "240px",
     padding: "20px",
     borderRadius: 0,
-    background: ({ darkMode }) => darkMode === "light" && "#fff",
-    border: ({ darkMode }) => darkMode === "light" && "1px solid #DBDBDB",
-    boxShadow: (props) =>
-      props.darkMode === "light"
-        ? "default"
-        : `-1px .5px 4px 2.5px ${indigo[50]}`,
+    background: ({ isLight }) => isLight && "#fff",
+    border: ({ isLight }) => isLight && "1px solid #DBDBDB",
+    boxShadow: ({ isLight }) =>
+      isLight ? "default" : `-1px .5px 4px 2.5px ${indigo[50]}`,
     [theme.breakpoints.up("md")]: {
       minWidth: "350px",
       width: "350px",
       padding: "20px",
-      margin: "20px",
+      margin: ({ commentStyles }) => !commentStyles && "20px",
     },
     [theme.breakpoints.up("lg")]: {
       minWidth: "500px",
       width: "500px",
       padding: "30px",
-      margin: "20px",
+      margin: ({ commentStyles }) => !commentStyles && "20px",
     },
     [theme.breakpoints.up("xl")]: {
       minWidth: "550px",
       width: "550px",
-      padding: "30px",
-      margin: "20px",
+      padding: ({ commentStyles }) => !commentStyles && "30px",
+      margin: ({ commentStyles }) => !commentStyles && "20px",
     },
   },
   link: {
@@ -41,8 +39,8 @@ const useStyles = makeStyles((theme) => ({
     transition: "transform 250ms ease-in-out",
     "&:hover": {
       textDecoration: "underline",
-      textDecorationColor: ({ darkMode }) =>
-        darkMode === "dark" ? yellow[700] : blue[600],
+      textDecorationColor: ({ isLight }) =>
+        !isLight ? yellow[700] : blue[600],
       transition: "transform 250ms ease-in-out",
       cursor: "pointer",
       transform: "scale(1.02)",
@@ -50,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   title: {
-    color: (props) => (props.darkMode === "dark" ? yellow[700] : blue[600]),
+    color: (props) => (!props.isLight ? yellow[700] : blue[600]),
     fontWeight: "bold",
     fontSize: "24px",
   },
@@ -66,12 +64,12 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   userName: {
-    color: ({ darkMode }) => (darkMode === "dark" ? yellow[700] : blue[600]),
+    color: ({ isLight }) => (!isLight ? yellow[700] : blue[600]),
     fontWeight: "bold",
     fontSize: "19px",
   },
   userIcon: {
-    color: ({ darkMode }) => (darkMode === "dark" ? yellow[700] : blue[600]),
+    color: ({ isLight }) => (!isLight ? yellow[700] : blue[600]),
     marginRight: "8px",
   },
   buttons: {
@@ -90,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "flex-end",
   },
   likedInsight: {
-    color: ({ darkMode }) => (darkMode === "dark" ? yellow[700] : red[500]),
+    color: ({ isLight }) => (isLight ? yellow[700] : red[500]),
     cursor: "pointer",
   },
   unLikedInsight: {

@@ -58,17 +58,19 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
     return <LinearProgressLoading darkMode={darkMode} />;
   }
 
-  console.log("test", insight.comments);
-
   const COMMENTS = insight.comments.map((comment) => {
     const handleCommentDelete = async (insightId, commentId) => {
-      await destroyComment(insightId, commentId);
-      if (openCommentDelete) {
-        setInsight((prevState) =>
-          [prevState].filter((insight) => insight.comment.id !== id)
-        );
-        setOpenCommentDelete(false);
+      const deletedComment = await destroyComment(insightId, commentId);
+
+      if (deletedComment) {
+        setInsight((prevState) => ({
+          ...prevState,
+          comments: prevState.comments.filter((comment) => {
+            return comment.id !== Number(commentId);
+          }),
+        }));
       }
+      setOpenCommentDelete(false);
     };
 
     return (
@@ -79,6 +81,7 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
           post={comment}
           openDeleteModal={handleDeleteCommentOpen}
           description={comment?.content}
+          commentStyles
         />
 
         <DeleteCommentFromDetail
@@ -152,11 +155,13 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
               <p className="insight-text">{insight?.body}</p>
             </div>
           </section>
-          <section className="insight-comments">
-            <div className="inner-column-comments">
-              {insight.comments && COMMENTS}
-            </div>
-          </section>
+          {insight.comments && (
+            <section className="insight-comments">
+              <div className="inner-column-comments">
+                <ol className="comment-list">{COMMENTS}</ol>
+              </div>
+            </section>
+          )}
 
           <br />
           <hr className="hr-bottom" />
