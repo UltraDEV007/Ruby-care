@@ -36,10 +36,14 @@ const Form = styled.form`
       darkMode === "dark"
         ? `1px solid ${yellow[700]}`
         : `1px solid ${blue[500]}`};
+
     text-align: left;
     box-shadow: 5px 5px peachpuff;
+
     box-shadow: ${({ darkMode }) =>
       darkMode === "dark" ? `5px 5px${yellow[700]}` : `5px 5px ${blue[500]}`};
+
+    background: ${({ darkMode }) => darkMode === "light" && "#fff"};
   }
 
   @media screen and (min-width: 1200px) {

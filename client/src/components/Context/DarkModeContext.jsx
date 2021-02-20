@@ -4,8 +4,6 @@ import {
   unstable_createMuiStrictModeTheme as createMuiTheme,
 } from "@material-ui/core/styles";
 import { yellow, red, blue } from "@material-ui/core/colors";
-import CssBaseline from "@material-ui/core/CssBaseline";
-
 const DarkModeContext = createContext();
 
 function DarkModeProvider({ children }) {
@@ -22,7 +20,7 @@ function DarkModeProvider({ children }) {
 
   const mainPrimaryColor = darkMode === "light" ? blue[600] : yellow[700];
   const mainSecondaryColor = darkMode === "light" ? red[600] : "#ff8f00";
-  const bgColor = darkMode === "light" ? "#FAFAF2" : "#424242";
+  const bgColor = darkMode === "light" ? "#FAFAFA" : "#424242";
 
   const handleTheme = createMuiTheme({
     palette: {
@@ -54,7 +52,6 @@ function DarkModeProvider({ children }) {
 
   return (
     <ThemeProvider theme={handleTheme}>
-      <CssBaseline />
       <DarkModeContext.Provider value={[darkMode, setDarkMode]}>
         {children}
       </DarkModeContext.Provider>
