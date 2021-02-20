@@ -10,25 +10,25 @@ import { indigo, blue } from "@material-ui/core/colors";
 import { DarkModeContext } from "../../components/Context/DarkModeContext";
 import SupervisedUserCircleIcon from "@material-ui/icons/SupervisedUserCircle";
 
+const useStyles = makeStyles({
+  root: {
+    background: ({ isDark }) => !isDark && "#fff",
+    width: "100vw",
+    position: "fixed",
+    bottom: 0,
+    marginTop: "20px",
+    boxShadow: ({ isDark }) =>
+      isDark ? `2px 2px 3px 2px ${indigo[50]}` : `2px 2px 3px 2px ${blue[600]}`,
+  },
+  footer: {
+    height: "50px",
+    marginTop: "20px",
+  },
+});
+
 function Footer() {
   const [darkMode] = useContext(DarkModeContext);
-  const useStyles = makeStyles({
-    root: {
-      width: "100vw",
-      position: "fixed",
-      bottom: 0,
-      marginTop: "20px",
-      boxShadow:
-        darkMode === "dark"
-          ? `2px 2px 3px 2px ${indigo[50]}`
-          : `2px 2px 3px 2px ${blue[600]}`,
-    },
-    footer: {
-      height: "50px",
-      marginTop: "20px",
-    },
-  });
-  const classes = useStyles();
+  const classes = useStyles({ isDark: darkMode === "dark" });
   const history = useHistory();
 
   const routerMap = {
@@ -59,8 +59,7 @@ function Footer() {
             setValue(newValue);
           }}
           showLabels
-          className={classes.root}
-        >
+          className={classes.root}>
           <BottomNavigationAction label="Home" icon={<HomeIcon />} />
           <BottomNavigationAction label="Insights" icon={<ForumIcon />} />
           <BottomNavigationAction
