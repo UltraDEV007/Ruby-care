@@ -14,7 +14,7 @@ function DarkModeProvider({ children }) {
       return themeState === "light" ? "light" : "dark";
     }
     return "light";
-  }); // handleThemeChange in Settings.jsx lines 87-99;
+  }); // handleThemeChange in src/screens/main/Settings.jsx lines 87-99;
 
   const palletType = darkMode === "dark" ? "dark" : "light";
   const themeTextColor = darkMode === "dark" ? "#fff" : "#000";
