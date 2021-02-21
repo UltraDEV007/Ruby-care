@@ -64,16 +64,15 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
 
   const COMMENTS = insight.comments.map((comment) => {
     const handleCommentDelete = async (insightId, commentId) => {
-      const deletedComment = await destroyComment(insightId, commentId);
+      await destroyComment(insightId, commentId);
 
-      if (deletedComment) {
-        setInsight((prevState) => ({
-          ...prevState,
-          comments: prevState.comments.filter((comment) => {
-            return comment.id !== Number(commentId);
-          }),
-        }));
-      }
+      setInsight((prevState) => ({
+        ...prevState,
+        comments: prevState.comments.filter((comment) => {
+          return comment.id !== Number(commentId);
+        }),
+      }));
+
       setOpenCommentDelete(false);
     };
 
@@ -108,12 +107,28 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
     }));
   };
 
-  const submitComment = async (e) => {
-    e.preventDefault();
-    let createdComment = await postComment(formData, insight.id);
+  const handleCreateComment = async (formData, insightId) => {
+    let createdComment = await postComment(formData, insightId);
+
+    let newComment = {
+      ...createdComment,
+      user: currentUser,
+    };
+
     setInsight((prevState) => ({
       ...prevState,
-      comments: [...prevState.comments, createdComment],
+      comments: [...prevState.comments, newComment],
+    }));
+  };
+
+  const handleSubmitComment = async (e) => {
+    e.preventDefault();
+
+    await handleCreateComment(formData, insight.id);
+
+    return setFormData((prevState) => ({
+      ...prevState,
+      content: "",
     }));
   };
 
@@ -187,7 +202,7 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
                     No Comments...
                   </Typography>
                 )}
-                <form onSubmit={submitComment} className="create-comment">
+                <form onSubmit={handleSubmitComment} className="create-comment">
                   <div className="input-container content">
                     <TextField
                       required

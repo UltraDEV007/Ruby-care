@@ -148,6 +148,15 @@ const Wrapper = styled.div`
     text-align: center;
   }
 
+  .create-comment {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
   @media screen and (min-width: 600px) {
     .inner-column {
       width: 98%;

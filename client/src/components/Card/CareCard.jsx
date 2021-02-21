@@ -38,7 +38,7 @@ export default function CareCard({
         </Link>
         <div className={classes.userContainer}>
           <Link className={classes.link} to={`/users/${user?.id}`}>
-            {user.image ? (
+            {user?.image ? (
               <img
                 src={user?.image}
                 className={classes?.userImage}
@@ -65,7 +65,7 @@ export default function CareCard({
 
         {likesJSX && <div className={classes.likeContainer}>{likesJSX}</div>}
 
-        {post?.user.id === currentUser?.id && (
+        {post?.user?.id === currentUser?.id && (
           <>
             <div className={classes.buttons}>
               <Link to={editPath}>
