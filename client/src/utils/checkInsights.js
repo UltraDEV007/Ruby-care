@@ -6,3 +6,12 @@ export const checkInsights = (user) => {
   }
   return <h1>{user?.insights?.length}&nbsp;Insights:</h1>;
 };
+
+export const checkedLikedInsights = (user) => {
+  if (user?.liked_insights?.length === 0) {
+    return <></>;
+  } else if (user?.liked_insights.length === 1) {
+    return <h1>{user?.liked_insights?.length}&nbsp;Liked Insight:</h1>;
+  }
+  return <h1>{user?.liked_insights?.length}&nbsp;Liked Insights:</h1>;
+};

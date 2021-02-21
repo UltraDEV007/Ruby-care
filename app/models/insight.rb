@@ -6,7 +6,8 @@ class Insight < ApplicationRecord
   before_save :capitalize_title
 
   has_many :likes, dependent: :destroy
-
+  has_many :comments, dependent: :destroy
+  
   def capitalize_title
     self.title.capitalize!
   end

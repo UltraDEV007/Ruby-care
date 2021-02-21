@@ -1,14 +1,11 @@
 import { useState, useContext } from "react";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import SettingsIcon from "@material-ui/icons/Settings";
-import HomeIcon from "@material-ui/icons/Home";
-import ForumIcon from "@material-ui/icons/Forum";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import { indigo, blue } from "@material-ui/core/colors";
 import { DarkModeContext } from "../../components/Context/DarkModeContext";
-import SupervisedUserCircleIcon from "@material-ui/icons/SupervisedUserCircle";
+import { FOOTER_ROUTES as routes } from "../../utils/navigation";
 
 const useStyles = makeStyles({
   root: {
@@ -37,6 +34,7 @@ function Footer() {
     2: "/users",
     3: "/settings",
   };
+
   const [value, setValue] = useState(() => {
     if (history.location.pathname === "/insights") {
       return 1;
@@ -60,13 +58,9 @@ function Footer() {
           }}
           showLabels
           className={classes.root}>
-          <BottomNavigationAction label="Home" icon={<HomeIcon />} />
-          <BottomNavigationAction label="Insights" icon={<ForumIcon />} />
-          <BottomNavigationAction
-            label="Community"
-            icon={<SupervisedUserCircleIcon />}
-          />
-          <BottomNavigationAction label="Settings" icon={<SettingsIcon />} />
+          {routes.map((route) => (
+            <BottomNavigationAction label={route.label} icon={route.icon} />
+          ))}
         </BottomNavigation>
       </div>
     </>

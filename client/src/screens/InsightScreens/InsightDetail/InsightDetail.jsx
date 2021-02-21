@@ -12,27 +12,48 @@ import Wrapper from "./styledInsightDetail";
 import LinearProgressLoading from "../../../components/Loading/LinearProgressLoading";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import IconButton from "@material-ui/core/IconButton";
+import CareCard from "../../../components/Card/CareCard";
+import DeleteCommentFromDetail from "../../../components/Modals/DeleteCommentFromDetail";
+import {
+  destroyComment,
+  postComment,
+  putComment,
+} from "../../../services/comments";
+import TextField from "@material-ui/core/TextField";
+import EditCommentFromDetail from "../../../components/Modals/EditCommentFromDetail";
 
 export default function InsightDetail({ getOneInsight, handleDelete }) {
   const [insight, setInsight] = useState(null);
   const [{ currentUser }] = useStateValue();
   const [darkMode] = useContext(DarkModeContext);
   const [loaded, setLoaded] = useState(false);
-  const [openDelete, setOpenDelete] = useState(false);
+  const [openInsightDelete, setOpenInsightDelete] = useState(false);
+  const [openCommentDelete, setOpenCommentDelete] = useState(false);
+  const [openCommentEdit, setOpenCommentEdit] = useState(false);
+
+  const [formData, setFormData] = useState({
+    content: "",
+  });
 
   const { id } = useParams();
 
-  const onDelete = (id) => {
+  const onInsightDelete = (id) => {
     handleDelete(id);
-    setOpenDelete(false);
+    if (openInsightDelete) {
+      setOpenInsightDelete(false);
+    }
   };
 
   const handleDeleteOpen = (id) => {
-    setOpenDelete(id);
+    setOpenInsightDelete(id);
+  };
+
+  const handleDeleteCommentOpen = (id) => {
+    setOpenCommentDelete(id);
   };
 
   const handleDeleteClose = () => {
-    setOpenDelete(false);
+    setOpenInsightDelete(false);
   };
 
   useEffect(() => {
@@ -47,6 +68,103 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
   if (!loaded) {
     return <LinearProgressLoading darkMode={darkMode} />;
   }
+
+  const COMMENTS = insight.comments.map((comment) => {
+    const handleCommentDelete = async (insightId, commentId) => {
+      await destroyComment(insightId, commentId);
+      setInsight((prevState) => ({
+        ...prevState,
+        comments: prevState.comments.filter((comment) => {
+          return comment.id !== Number(commentId);
+        }),
+      }));
+
+      setOpenCommentDelete(false);
+    };
+
+    const handleCommentUpdate = async (insightId, commentData, commentId) => {
+      const editedComment = await putComment(insightId, commentData, commentId);
+
+      const updatedComment = {
+        ...editedComment,
+        user: currentUser,
+      };
+
+      setInsight((prevState) => ({
+        ...prevState,
+        comments: prevState.comments.map((comment) => {
+          return comment.id === Number(commentId) ? updatedComment : comment;
+        }),
+      }));
+      setOpenCommentEdit(false);
+    };
+
+    return (
+      <>
+        <CareCard
+          key={comment?.id}
+          user={comment?.user}
+          post={comment}
+          openDeleteModal={handleDeleteCommentOpen}
+          openEditModal={() => setOpenCommentEdit(comment.id)}
+          description={comment?.content}
+          commentStyles={true}
+          EditIsLink={false}
+        />
+
+        <DeleteCommentFromDetail
+          insight={insight}
+          comment={comment}
+          openDelete={openCommentDelete === comment.id}
+          handleOpen={handleDeleteOpen}
+          onDelete={handleCommentDelete}
+          handleClose={() => setOpenCommentDelete(false)}
+        />
+
+        <EditCommentFromDetail
+          insight={insight}
+          comment={comment}
+          openEdit={openCommentEdit === comment.id}
+          onSave={handleCommentUpdate}
+          setOpenEdit={setOpenCommentEdit}
+          handleClose={() => setOpenCommentEdit(false)}
+        />
+      </>
+    );
+  });
+
+  const handleCommentChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleCreateComment = async (formData, insightId) => {
+    let createdComment = await postComment(formData, insightId);
+
+    let newComment = {
+      ...createdComment,
+      user: currentUser,
+    };
+
+    setInsight((prevState) => ({
+      ...prevState,
+      comments: [...prevState.comments, newComment],
+    }));
+  };
+
+  const handleSubmitComment = async (e) => {
+    e.preventDefault();
+
+    await handleCreateComment(formData, insight.id);
+
+    return setFormData((prevState) => ({
+      ...prevState,
+      content: "",
+    }));
+  };
 
   return (
     <>
@@ -102,11 +220,53 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
             </>
           )}
           <hr />
-          <section className="insight-body">
+          <main className="insight-body">
             <div className="inner-column">
               <p className="insight-text">{insight?.body}</p>
+              <section className="insight-comments">
+                <br />
+                <Typography className="comments-title">
+                  Comment Section
+                </Typography>
+                <br />
+                {insight.comments.length ? (
+                  <ol className="comment-list">{COMMENTS}</ol>
+                ) : (
+                  <Typography className="no-comments">
+                    No Comments...
+                  </Typography>
+                )}
+
+                <form onSubmit={handleSubmitComment} className="create-comment">
+                  <div className="input-container content">
+                    <TextField
+                      required
+                      multiline
+                      rowsMax={10}
+                      type="text"
+                      name="content"
+                      label="Write a comment"
+                      className="create-comment-input"
+                      value={formData.content}
+                      onChange={handleCommentChange}
+                      id="outlined-multiline-static"
+                      rows={4}
+                      variant="filled"
+                    />
+                  </div>
+                  <Button
+                    disabled={!formData.content}
+                    type="submit"
+                    color="primary"
+                    variant="contained"
+                    className="create-comment-button">
+                    Submit Comment
+                  </Button>
+                </form>
+              </section>
             </div>
-          </section>
+          </main>
+
           <br />
           <hr className="hr-bottom" />
           <footer>
@@ -118,8 +278,8 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
       </Wrapper>
       <DeleteInsightFromDetail
         insight={insight}
-        openDelete={openDelete === insight.id}
-        onDelete={onDelete}
+        openDelete={openInsightDelete === insight.id}
+        onDelete={onInsightDelete}
         handleOpen={handleDeleteOpen}
         handleDelete={handleDelete}
         handleClose={handleDeleteClose}
