@@ -68,6 +68,7 @@ const useStyles = makeStyles((theme) => ({
   userIcon: {
     marginRight: "10px",
   },
+
   userImage: {
     height: "40px",
     width: "40px",
@@ -101,6 +102,7 @@ const useStyles = makeStyles((theme) => ({
   },
   userContainer: {
     display: "flex",
+    alignItems: "center",
     [theme.breakpoints.down("sm")]: {
       display: "none",
     },
