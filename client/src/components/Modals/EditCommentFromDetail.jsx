@@ -61,7 +61,7 @@ export default function EditCommentFromDetail({
                 name="content"
                 required
                 id="content-input"
-                label="Edit COmment"
+                label="Edit Comment"
                 type="text"
                 style={{ width: "300px", margin: "10px" }}
                 value={content}
