@@ -13,7 +13,7 @@ class InsightsController < ApplicationController
       @insight.likes = @likes.filter {|like| like.insight_id == @insight.id }
     end
        # Don't need to show the user_id because the user's id is already shown underneath the insight's user part.              
-    render json: @insights.map {|insight| insight.attributes.except('updated_at', 'user_id').merge( {user: insight.user.attributes.except('password_digest', 'created_at', 'email', 'updated_at', 'birthday'), likes: insight.likes.map {|like| like.attributes.except('updated_at')} })}
+    render json: @insights.map {|insight| insight.attributes.except('updated_at', 'user_id').merge({comments: insight.comments}, {user: insight.user.attributes.except('password_digest', 'created_at', 'email', 'updated_at', 'birthday'), likes: insight.likes.map {|like| like.attributes.except('updated_at')} })}
   end
 
   # GET /insights/1

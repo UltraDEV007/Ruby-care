@@ -7,6 +7,8 @@ import React, { useState, useEffect } from "react";
 import { destroyLike, postLike } from "../../services/likes";
 import IconButton from "@material-ui/core/IconButton";
 import CareCard from "../../components/Card/CareCard";
+import { useHistory } from "react-router-dom";
+import ForumIcon from "@material-ui/icons/Forum";
 
 function InsightCard({
   insight,
@@ -22,6 +24,7 @@ function InsightCard({
   const [allLikes, setAllLikes] = useState([]);
   const [liked, setLiked] = useState(false);
   const [likeDisabled, setLikeDisabled] = useState(true);
+  const { push } = useHistory();
 
   useEffect(() => {
     const fetchLikes = async () => {
@@ -88,7 +91,16 @@ function InsightCard({
     </>
   );
 
-  const commentsJSX = <></>;
+  const commentsJSX = (
+    <>
+      <IconButton onClick={() => push(`/insights/${insight?.id}`)}>
+        <ForumIcon />
+      </IconButton>
+      &nbsp;
+      {insight?.comments?.length}
+    </>
+  );
+
   return (
     <>
       <CareCard
@@ -97,6 +109,7 @@ function InsightCard({
         user={insight?.user}
         title={insight?.title}
         likesJSX={likesJSX}
+        commentsJSX={commentsJSX}
         post={insight}
         description={insight.description}
         openDeleteModal={handleOpen}

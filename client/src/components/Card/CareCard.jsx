@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import "moment-timezone";
 import { insightCardStyles, commentCardStyles } from "./careCardStyles";
+import { Box, Grid } from "@material-ui/core";
 
 export default function CareCard({
   postPath,
@@ -20,6 +21,7 @@ export default function CareCard({
   likesJSX,
   description,
   commentStyles,
+  commentsJSX,
 }) {
   const [darkMode] = useContext(DarkModeContext);
   const styleProps = { isLight: darkMode === "light" };
@@ -63,7 +65,23 @@ export default function CareCard({
         </div>
         <br />
 
-        {likesJSX && <div className={classes.likeContainer}>{likesJSX}</div>}
+        <Grid container direction="row" justify="flex-end" alignItems="center">
+          {commentsJSX && (
+            <Grid item className={classes.likeContainer}>
+              <Box mx={1} my={0.5}>
+                {commentsJSX}
+              </Box>
+            </Grid>
+          )}
+
+          {likesJSX && (
+            <Grid item className={classes.likeContainer}>
+              <Box mx={1} my={0.5}>
+                {likesJSX}
+              </Box>
+            </Grid>
+          )}
+        </Grid>
 
         {post?.user?.id === currentUser?.id && (
           <>
