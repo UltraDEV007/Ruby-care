@@ -2,8 +2,9 @@ import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import { DialogTitle, DialogActions } from "../Form/DialogComponents";
 
-export default function DeleteInsightFromDetail({
+export default function DeleteCommentFromDetail({
   insight,
+  comment,
   handleClose,
   openDelete,
   onDelete,
@@ -28,7 +29,7 @@ export default function DeleteInsightFromDetail({
           variant="contained"
           color="secondary"
           className="delete-button"
-          onClick={() => onDelete(insight.id)}>
+          onClick={() => onDelete(insight.id, comment.id)}>
           Delete
         </Button>
       </DialogActions>

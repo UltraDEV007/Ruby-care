@@ -15,6 +15,7 @@ Food.destroy_all
 Medication.destroy_all
 Mood.destroy_all
 Like.destroy_all 
+Comment.destroy_all
 
 @admin = User.create!(name: 'admin', email: 'admin@email.com', password: '12345678', gender: "Male", birthday: DateTime.strptime("10/20/1999 17:00", "%m/%d/%Y %H:%M"))
 @daniel = User.create!(name: 'daniel', email: 'daniel@email.com', password: '12345678', gender: "Male", birthday: DateTime.strptime("10/20/1999 17:00", "%m/%d/%Y %H:%M"), image: "https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/76997955_1489435331210059_7578690168563957760_n.jpg?_nc_cat=111&ccb=2&_nc_sid=09cbfe&_nc_ohc=ZbXWEQKhCgMAX8Lr6le&_nc_ht=scontent-lga3-1.xx&oh=e2a9637defb5457915c642acc00e3902&oe=60063C21")
@@ -69,3 +70,12 @@ puts "#{Medication.count} medications created"
 @like3 = Like.create!(user: @bob, insight: @insight2)
 
 puts "#{Like.count} likes created!"
+
+@comment1 = Comment.create!(insight: @insight1, user: @bob, content: "awesome post! thanks for sharing!")
+@comment2 = Comment.create!(insight: @insight1, user: @bob, content: "awesome post! thanks for sharing!")
+@comment3 = Comment.create!(insight: @insight1, user: @bob, content: "awesome post! thanks for sharing!")
+@comment4 = Comment.create!(insight: @insight1, user: @bob, content: "awesome post! thanks for sharing!")
+@comment5 = Comment.create!(insight: @insight1, user: @daniel, content: "awesome post! thanks for sharing!")
+
+
+puts "#{Comment.count} comments created!"

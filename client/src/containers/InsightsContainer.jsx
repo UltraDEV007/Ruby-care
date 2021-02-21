@@ -19,6 +19,14 @@ export default function InsightsContainer({ darkMode }) {
   const [openDelete, setOpenDelete] = useState(false);
   const history = useHistory();
 
+  const handleDelete = async (id) => {
+    await destroyInsight(id);
+    setInsights((prevState) =>
+      prevState.filter((insight) => insight.id !== id)
+    );
+    history.push("/insights");
+  };
+
   const onDelete = (id) => {
     handleDelete(id);
     setOpenDelete(false);
@@ -63,13 +71,6 @@ export default function InsightsContainer({ darkMode }) {
     history.push("/insights");
   };
 
-  const handleDelete = async (id) => {
-    await destroyInsight(id);
-    setInsights((prevState) =>
-      prevState.filter((insight) => insight.id !== id)
-    );
-    history.push("/insights");
-  };
   return (
     <>
       <Switch>
