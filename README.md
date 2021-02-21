@@ -438,10 +438,9 @@ export default function ratingLogic(ratingParam, iconParam) {
 - Fixed an exploit where users could keep 2 tabs open and like posts twice.
 - Improved loading times for fetching posts in insights page
 - When you select a time necessary to take a medicine, it will now rerender live instead of needing to manually cause a rerender or reload.
-- When creating a new insight, the new insight will now also show in all multiple open tabs without needing a rerender/reload (was fine for 1 tab).
 
 <strong>Feb 20th, 2020:</strong>
 
-- Replaced pure white with eggshell white for light mode for eye comfort and style.
+- Replaced pure white background color with eggshell white for light mode for eye comfort and style.
 - Users can now comment, edit comments, and delete comments on insights.
 - You can also now see a user's liked insights inside his profile page
