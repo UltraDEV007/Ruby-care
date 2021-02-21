@@ -236,6 +236,7 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
                     No Comments...
                   </Typography>
                 )}
+
                 <form onSubmit={handleSubmitComment} className="create-comment">
                   <div className="input-container content">
                     <TextField
@@ -245,6 +246,7 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
                       type="text"
                       name="content"
                       label="Write a comment"
+                      className="create-comment-input"
                       value={formData.content}
                       onChange={handleCommentChange}
                       id="outlined-multiline-static"
@@ -256,7 +258,8 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
                     disabled={!formData.content}
                     type="submit"
                     color="primary"
-                    variant="contained">
+                    variant="contained"
+                    className="create-comment-button">
                     Submit Comment
                   </Button>
                 </form>

@@ -157,6 +157,17 @@ const Wrapper = styled.div`
     padding: 10px;
   }
 
+  .input-container.content {
+    margin-top: 20px;
+    padding: 20px;
+    .create-comment-input {
+      width: 50vw;
+    }
+    .create-comment-button {
+      margin-top: 20px;
+    }
+  }
+
   @media screen and (min-width: 600px) {
     .inner-column {
       width: 98%;
