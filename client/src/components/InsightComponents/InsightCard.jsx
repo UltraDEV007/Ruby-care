@@ -114,6 +114,7 @@ function InsightCard({
         description={insight.description}
         openDeleteModal={handleOpen}
         commentStyles={false}
+        editIsLink={true}
       />
 
       <DeleteInsight

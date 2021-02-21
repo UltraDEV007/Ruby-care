@@ -22,6 +22,8 @@ export default function CareCard({
   description,
   commentStyles,
   commentsJSX,
+  editIsLink,
+  openEditModal,
 }) {
   const [darkMode] = useContext(DarkModeContext);
   const styleProps = { isLight: darkMode === "light" };
@@ -86,16 +88,25 @@ export default function CareCard({
         {post?.user?.id === currentUser?.id && (
           <>
             <div className={classes.buttons}>
-              <Link to={editPath}>
-                <Button variant="contained" color="primary">
+              {editIsLink ? (
+                <Link to={editPath}>
+                  <Button variant="contained" color="primary">
+                    Edit
+                  </Button>
+                </Link>
+              ) : (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => openEditModal(post?.id)}>
                   Edit
                 </Button>
-              </Link>
+              )}
               <Button
                 className={classes.delete}
                 variant="contained"
                 color="secondary"
-                onClick={() => openDeleteModal(post.id)}>
+                onClick={() => openDeleteModal(post?.id)}>
                 Delete
               </Button>
             </div>

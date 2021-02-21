@@ -14,8 +14,13 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import IconButton from "@material-ui/core/IconButton";
 import CareCard from "../../../components/Card/CareCard";
 import DeleteCommentFromDetail from "../../../components/Modals/DeleteCommentFromDetail";
-import { destroyComment, postComment } from "../../../services/comments";
+import {
+  destroyComment,
+  postComment,
+  putComment,
+} from "../../../services/comments";
 import TextField from "@material-ui/core/TextField";
+import EditCommentFromDetail from "../../../components/Modals/EditCommentFromDetail";
 
 export default function InsightDetail({ getOneInsight, handleDelete }) {
   const [insight, setInsight] = useState(null);
@@ -24,6 +29,8 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
   const [loaded, setLoaded] = useState(false);
   const [openInsightDelete, setOpenInsightDelete] = useState(false);
   const [openCommentDelete, setOpenCommentDelete] = useState(false);
+  const [openCommentEdit, setOpenCommentEdit] = useState(false);
+
   const [formData, setFormData] = useState({
     content: "",
   });
@@ -65,7 +72,6 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
   const COMMENTS = insight.comments.map((comment) => {
     const handleCommentDelete = async (insightId, commentId) => {
       await destroyComment(insightId, commentId);
-
       setInsight((prevState) => ({
         ...prevState,
         comments: prevState.comments.filter((comment) => {
@@ -76,6 +82,23 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
       setOpenCommentDelete(false);
     };
 
+    const handleCommentUpdate = async (insightId, commentData, commentId) => {
+      const editedComment = await putComment(insightId, commentData, commentId);
+
+      const updatedComment = {
+        ...editedComment,
+        user: currentUser,
+      };
+
+      setInsight((prevState) => ({
+        ...prevState,
+        comments: prevState.comments.map((comment) => {
+          return comment.id === Number(commentId) ? updatedComment : comment;
+        }),
+      }));
+      setOpenCommentEdit(false);
+    };
+
     return (
       <>
         <CareCard
@@ -83,8 +106,10 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
           user={comment?.user}
           post={comment}
           openDeleteModal={handleDeleteCommentOpen}
+          openEditModal={() => setOpenCommentEdit(comment.id)}
           description={comment?.content}
           commentStyles={true}
+          EditIsLink={false}
         />
 
         <DeleteCommentFromDetail
@@ -94,6 +119,15 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
           handleOpen={handleDeleteOpen}
           onDelete={handleCommentDelete}
           handleClose={() => setOpenCommentDelete(false)}
+        />
+
+        <EditCommentFromDetail
+          insight={insight}
+          comment={comment}
+          openEdit={openCommentEdit === comment.id}
+          onSave={handleCommentUpdate}
+          setOpenEdit={setOpenCommentEdit}
+          handleClose={() => setOpenCommentEdit(false)}
         />
       </>
     );
