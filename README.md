@@ -444,3 +444,4 @@ export default function ratingLogic(ratingParam, iconParam) {
 
 - Replaced pure white with eggshell white for light mode for eye comfort and style.
 - Users can now comment, edit comments, and delete comments on insights.
+- You can also now see a user's liked insights inside his profile page
