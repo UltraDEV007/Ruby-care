@@ -88,6 +88,7 @@ function InsightCard({
     </>
   );
 
+  const commentsJSX = <></>;
   return (
     <>
       <CareCard
