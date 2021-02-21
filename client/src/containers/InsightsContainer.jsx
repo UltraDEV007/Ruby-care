@@ -84,6 +84,7 @@ export default function InsightsContainer({ darkMode }) {
           <InsightDetail
             getOneInsight={getOneInsight}
             handleDelete={handleDelete}
+            setInsightsLoaded={setLoaded}
           />
         </Route>
         <Route path="/insights">
