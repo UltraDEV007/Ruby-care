@@ -12,6 +12,7 @@ import {
   DialogContent,
   DialogActions,
 } from "../../Form/DialogComponents";
+import { compareTakenWithSelectedTime } from "../../../utils/compareDateWithCurrentTime";
 
 export default function MedEdit({
   RXGuideMeds,
@@ -38,8 +39,8 @@ export default function MedEdit({
       const oneMed = meds?.find((med) => {
         return med?.id === Number(id);
       });
-      const { name, medication_class, image, reason, time } = oneMed;
-      setFormData({ name, medication_class, image, time, reason });
+      const { name, medication_class, image, reason, time, is_taken } = oneMed;
+      setFormData({ name, medication_class, image, time, reason, is_taken });
     };
     if (meds?.length) {
       prefillFormData();
@@ -63,6 +64,29 @@ export default function MedEdit({
       let date = new Date(value);
       value = date.toISOString();
     }
+
+    const foundMed = meds?.find((med) => {
+      return med?.id === Number(id);
+    });
+
+    if (foundMed.is_taken) {
+      if (
+        compareTakenWithSelectedTime(foundMed.taken_date, formData.time) === 1
+      ) {
+        setFormData((prevState) => ({
+          ...prevState,
+          is_taken: false,
+          taken_date: null,
+        }));
+      } else {
+        setFormData((prevState) => ({
+          ...prevState,
+          is_taken: true,
+          taken_date: formData.time,
+        }));
+      }
+    }
+
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
