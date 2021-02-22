@@ -32,6 +32,7 @@ export default function MedDetail({
         time,
         reason,
         is_taken: true,
+        taken_date: new Date().toISOString(),
       });
     };
     if (med.id) {
