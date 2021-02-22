@@ -444,3 +444,8 @@ export default function ratingLogic(ratingParam, iconParam) {
 - Replaced pure white background color with eggshell white for light mode for eye comfort and style.
 - Users can now comment, edit comments, and delete comments on insights.
 - You can also now see a user's liked insights inside his profile page
+
+<strong>Feb 21st, 2020:</strong>
+
+- Fixed a bug where sometimes a taken medicine wouldn't get saved to the database.
+
