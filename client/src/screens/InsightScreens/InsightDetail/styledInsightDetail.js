@@ -2,7 +2,6 @@ import { grey, yellow } from "@material-ui/core/colors";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  background: ${({ darkMode }) => (darkMode === "dark" ? grey[800] : "#fff")};
   .content-container {
     margin: 0 auto;
     display: flex;

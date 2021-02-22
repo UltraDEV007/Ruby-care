@@ -22,7 +22,11 @@ import {
 import TextField from "@material-ui/core/TextField";
 import EditCommentFromDetail from "../../../components/Modals/EditCommentFromDetail";
 
-export default function InsightDetail({ getOneInsight, handleDelete }) {
+export default function InsightDetail({
+  getOneInsight,
+  handleDelete,
+  setInsightsLoaded,
+}) {
   const [insight, setInsight] = useState(null);
   const [{ currentUser }] = useStateValue();
   const [darkMode] = useContext(DarkModeContext);
@@ -78,7 +82,7 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
           return comment.id !== Number(commentId);
         }),
       }));
-
+      setInsightsLoaded(false);
       setOpenCommentDelete(false);
     };
 
@@ -153,6 +157,7 @@ export default function InsightDetail({ getOneInsight, handleDelete }) {
       ...prevState,
       comments: [...prevState.comments, newComment],
     }));
+    setInsightsLoaded(false); // to refetch all Insights in insights page to recount the comment count for the icon.
   };
 
   const handleSubmitComment = async (e) => {
