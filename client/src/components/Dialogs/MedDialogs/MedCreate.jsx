@@ -18,10 +18,11 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
     reason: "",
     image: "",
     time: "",
+    is_taken: false,
   });
 
   const MEDS = React.Children.toArray(
-    RXGuideMeds.map(med => <option>{med.fields.name}</option>)
+    RXGuideMeds.map((med) => <option>{med.fields.name}</option>)
   );
 
   const handleChange = (e) => {
@@ -85,9 +86,9 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
               value={formData.name}
               onChange={handleSelectedMed}
               style={{ margin: "10px" }}>
-            <option value="" selected disabled hidden>
-              Select a medication
-            </option>
+              <option value="" selected disabled hidden>
+                Select a medication
+              </option>
               {MEDS}
             </NativeSelect>
           </div>

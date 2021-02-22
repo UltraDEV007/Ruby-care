@@ -25,15 +25,11 @@ export default function MedCard({
   const [isRefreshed, setIsRefreshed] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
   const [openDetail, setOpenDetail] = useState(false);
-  const [taken, setTaken] = useState(false);
   const [rerender, toggleRerender] = useState(false);
   let timerId = useRef(null);
 
   const onSave = (id, formData) => {
     handleUpdate(id, formData);
-    if (compareDateWithCurrentTime(med.time) === 1) {
-      setTaken(false);
-    }
     setIsRefreshed(true);
     setTimeout(async () => {
       setIsRefreshed(false);
@@ -65,7 +61,6 @@ export default function MedCard({
 
   const onTake = (id, medData) => {
     handleUpdate(id, medData);
-    setTaken(true);
     setOpenDetail(false);
   };
 
@@ -119,14 +114,15 @@ export default function MedCard({
               <CircularProgress style={{ height: "80px", width: "80px" }} />
             </div>
           )}
-          {!taken && compareDateWithCurrentTime(med.time) < 0 ? (
+          {console.log(med)}
+          {!med.is_taken && compareDateWithCurrentTime(med.time) < 0 ? (
             <div onClick={handleDetailOpen} className="time">
               <Typography>
                 You have to take {med?.name} at <br />
                 <Moment format="MMM/DD/yyyy hh:mm A">{med?.time}</Moment>
               </Typography>
             </div>
-          ) : !taken && compareDateWithCurrentTime(med.time) === 1 ? (
+          ) : !med.is_taken && compareDateWithCurrentTime(med.time) === 1 ? (
             <div onClick={handleDetailOpen} className="time">
               <Typography>
                 You were supposed to take {med?.name} at <br />
@@ -141,6 +137,7 @@ export default function MedCard({
               </Typography>
             </div>
           )}
+
           <div
             className="buttons"
             style={openOptions ? { display: "flex" } : { display: "none" }}>
@@ -173,7 +170,6 @@ export default function MedCard({
             openDetail={openDetail}
             onDelete={onDelete}
             onTake={onTake}
-            taken={taken}
             handleDetailClose={handleDetailClose}
           />
         )}
@@ -183,7 +179,7 @@ export default function MedCard({
         <Switch>
           <Route path="/medications/:id/edit">
             <MedEdit
-              taken={taken}
+              taken={med.is_taken}
               meds={meds}
               onSave={onSave}
               RXGuideMeds={RXGuideMeds}

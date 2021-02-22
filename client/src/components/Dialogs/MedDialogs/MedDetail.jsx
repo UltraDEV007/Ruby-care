@@ -17,7 +17,6 @@ export default function MedDetail({
   handleDetailClose,
   onDelete,
   onTake,
-  taken,
 }) {
   const [medData, setMedData] = useState({});
 
@@ -26,7 +25,14 @@ export default function MedDetail({
   useEffect(() => {
     const getMedData = () => {
       const { name, medication_class, image, reason, time } = med;
-      setMedData({ name, medication_class, image, time, reason });
+      setMedData({
+        name,
+        medication_class,
+        image,
+        time,
+        reason,
+        is_taken: true,
+      });
     };
     if (med.id) {
       getMedData();
@@ -77,14 +83,14 @@ export default function MedDetail({
         </Typography>
       </DialogContent>
       <DialogTitle>
-        {compareDateWithCurrentTime(med?.time) < 0 && taken === false ? (
+        {compareDateWithCurrentTime(med?.time) < 0 && !med.is_taken ? (
           <Typography>
             You have to take {med?.name}&nbsp;
             <Moment from={currentTime?.toISOString()}>{med?.time}</Moment>
           </Typography>
-        ) : compareDateWithCurrentTime(med?.time) === 1 && taken === false ? (
+        ) : compareDateWithCurrentTime(med?.time) === 1 && !med.is_taken ? (
           <Typography>Did you take {med?.name}?</Typography>
-        ) : compareDateWithCurrentTime(med?.time) === 1 && taken === true ? (
+        ) : compareDateWithCurrentTime(med?.time) === 1 && med.is_taken ? (
           <Typography>
             You Took {med?.name} at&nbsp;
             <Moment format="MMM/DD/yyyy hh:mm A">{med.updated_at}</Moment>
@@ -97,10 +103,11 @@ export default function MedDetail({
         )}
       </DialogTitle>
       <DialogActions>
-        {compareDateWithCurrentTime(med?.time) === 1 && taken === false ? (
+        {compareDateWithCurrentTime(med?.time) === 1 &&
+        med.is_taken === false ? (
           <Button
             variant="contained"
-            color="secondary"
+            color="primary"
             onClick={handleDetailClose}>
             <>Not yet</>
           </Button>
@@ -112,10 +119,10 @@ export default function MedDetail({
             <>Exit</>
           </Button>
         )}
-        {compareDateWithCurrentTime(med?.time) === 1 && taken === false ? (
+        {compareDateWithCurrentTime(med?.time) === 1 && !med.is_taken ? (
           <Button
             variant="contained"
-            color="primary"
+            color="secondary"
             className="delete-button"
             onClick={() => onTake(med.id, medData)}>
             Yes

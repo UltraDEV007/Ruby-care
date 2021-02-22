@@ -26,8 +26,10 @@ export default function MedEdit({
     medication_class: "",
     reason: "",
     image: "",
-    time: "",
+    time: new Date(),
+    is_taken: false,
   });
+
   const { name } = formData;
   const { id } = useParams();
 
@@ -92,8 +94,7 @@ export default function MedEdit({
     <Dialog
       onClose={handleClose}
       aria-labelledby="customized-dialog-title"
-      open={handleOpen}
-    >
+      open={handleOpen}>
       <DialogTitle id="customized-dialog-title" onClose={handleClose}>
         <Typography className="title">Edit Medication</Typography>
       </DialogTitle>
@@ -110,8 +111,7 @@ export default function MedEdit({
               style={{ marginLeft: "10px" }}
               defaultValue="select"
               value={name}
-              onChange={handleSelectedMed}
-            >
+              onChange={handleSelectedMed}>
               {MEDS}
             </NativeSelect>
           </div>
@@ -172,8 +172,7 @@ export default function MedEdit({
               to="/"
               component={Link}
               variant="contained"
-              color="secondary"
-            >
+              color="secondary">
               Cancel
             </Button>
           </DialogActions>
