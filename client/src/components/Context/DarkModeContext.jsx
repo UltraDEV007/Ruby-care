@@ -9,11 +9,7 @@ const DarkModeContext = createContext();
 function DarkModeProvider({ children }) {
   const [darkMode, setDarkMode] = useState(() => {
     const themeState = localStorage.getItem("darkMode");
-    if (themeState) {
-      return themeState === "light" ? "light" : "dark";
-    }
-    localStorage.setItem("darkMode", "light");
-    return "light";
+    return themeState ? themeState : "light"
   }); // handleThemeChange in src/screens/main/Settings.jsx lines 87-99;
 
   const palletType = darkMode === "dark" ? "dark" : "light";
