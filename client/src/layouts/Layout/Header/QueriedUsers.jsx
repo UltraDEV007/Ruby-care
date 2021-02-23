@@ -4,7 +4,7 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import styled from "styled-components";
 
 const StyledLink = styled(Link)`
-  color: ${({ darkMode }) => (darkMode === "dark" ? "black " : "white")};
+  color: ${({ themeState }) => (themeState === "dark" ? "black " : "white")};
   text-decoration: none;
   overflow-wrap: break-word;
   font-size: 0.6rem;
@@ -22,7 +22,7 @@ const StyledLink = styled(Link)`
   }
 
   .user-icon {
-    color: ${({ darkMode }) => (darkMode === "dark" ? "black" : "#fff")};
+    color: ${({ themeState }) => (themeState === "dark" ? "black" : "#fff")};
     margin-right: 8px;
     font-size: 30px;
   }
@@ -36,14 +36,13 @@ const StyledLink = styled(Link)`
   }
 `;
 
-function QueriedUsers({ user, darkMode }) {
+function QueriedUsers({ user, themeState }) {
   return (
     <StyledLink
       key={user.id}
-      darkMode={darkMode}
+      themeState={themeState}
       to={`/users/${user.id}`}
-      className="link"
-    >
+      className="link">
       {!user?.image ? (
         <AccountCircleIcon className="user-icon" />
       ) : (

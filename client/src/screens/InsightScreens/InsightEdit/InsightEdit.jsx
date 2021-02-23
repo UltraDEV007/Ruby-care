@@ -3,11 +3,11 @@ import { useParams, useHistory } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
-import { DarkModeContext } from "../../../components/Context/DarkModeContext";
+import { ThemeStateContext } from "../../../components/Context/ThemeStateContext";
 import { Div, Form } from "./styledInsightEdit";
 
 export default function InsightEdit({ handleUpdate, insights }) {
-  const [darkMode] = useContext(DarkModeContext);
+  const [themeState] = useContext(ThemeStateContext);
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -45,7 +45,7 @@ export default function InsightEdit({ handleUpdate, insights }) {
   };
 
   return (
-    <Div darkMode={darkMode}>
+    <Div themeState={themeState}>
       <div className="title-container">
         <Typography className="title">Edit Insight</Typography>
       </div>

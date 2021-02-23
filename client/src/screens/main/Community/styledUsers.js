@@ -12,7 +12,8 @@ const Div = styled.div`
   }
 
   .link {
-    color: ${({ darkMode }) => (darkMode === "dark" ? "inherit " : "inherit")};
+    color: ${({ themeState }) =>
+      themeState === "dark" ? "inherit " : "inherit"};
     text-decoration: none;
     overflow-wrap: break-word;
     display: flex;

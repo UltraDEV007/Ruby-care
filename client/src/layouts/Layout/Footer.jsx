@@ -4,7 +4,7 @@ import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import { indigo, blue } from "@material-ui/core/colors";
-import { DarkModeContext } from "../../components/Context/DarkModeContext";
+import { ThemeStateContext } from "../../components/Context/ThemeStateContext";
 import { FOOTER_ROUTES as routes } from "../../utils/navigation";
 
 const useStyles = makeStyles({
@@ -24,8 +24,8 @@ const useStyles = makeStyles({
 });
 
 function Footer() {
-  const [darkMode] = useContext(DarkModeContext);
-  const classes = useStyles({ isDark: darkMode === "dark" });
+  const [themeState] = useContext(ThemeStateContext);
+  const classes = useStyles({ isDark: themeState === "dark" });
   const history = useHistory();
 
   const routerMap = {

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { DarkModeContext } from "../../../components/Context/DarkModeContext";
+import { ThemeStateContext } from "../../../components/Context/ThemeStateContext";
 import OpenNavBar from "./OpenNavBar";
 import { makeStyles } from "@material-ui/core";
 
@@ -45,8 +45,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Burger = ({ open, setOpen, search, setSearch, usersJSX }) => {
-  const [darkMode] = useContext(DarkModeContext);
-  const classes = useStyles({ open, isLight: darkMode === "light" });
+  const [themeState] = useContext(ThemeStateContext);
+  const classes = useStyles({ open, isLight: themeState === "light" });
 
   return (
     <>

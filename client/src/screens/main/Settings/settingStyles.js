@@ -46,12 +46,12 @@ const useStyles = makeStyles((theme) => ({
   },
   card: {
     display: "flex",
-    boxShadow: ({ darkMode }) =>
-      darkMode === "light" ? "default" : `0px 0px 4px 1.2px ${indigo[50]}`,
+    boxShadow: ({ themeState }) =>
+      themeState === "light" ? "default" : `0px 0px 4px 1.2px ${indigo[50]}`,
     marginTop: "20px",
     marginBottom: "30px",
-    background: ({ darkMode }) => darkMode === "light" && "#fff",
-    border: ({ darkMode }) => darkMode === "light" && "1px solid #DBDBDB",
+    background: ({ themeState }) => themeState === "light" && "#fff",
+    border: ({ themeState }) => themeState === "light" && "1px solid #DBDBDB",
   },
   actionsContainer: {
     display: "flex",
@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     padding: "20px",
   },
-  darkModeContainer: {
+  themeStateContainer: {
     display: "flex",
     alignItems: "center",
   },
@@ -85,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
     alignSelf: "center",
     margin: "20px",
     border: (props) =>
-      props.darkMode === "dark" ? "1px solid white" : "1px solid #000",
+      props.themeState === "dark" ? "1px solid white" : "1px solid #000",
     borderRadius: "50%",
     objectFit: "cover",
   },

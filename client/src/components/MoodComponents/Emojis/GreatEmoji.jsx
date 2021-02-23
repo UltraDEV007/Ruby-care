@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
-import { DarkModeContext } from "../../Context/DarkModeContext";
+import { ThemeStateContext } from "../../Context/ThemeStateContext";
 function GreatEmoji() {
-  const [darkMode] = useContext(DarkModeContext);
+  const [themeState] = useContext(ThemeStateContext);
 
   return (
     <>
       <InsertEmoticonIcon
         style={
-          !darkMode
+          !themeState
             ? {
                 border: "1px solid black",
                 background: "#00FF00",

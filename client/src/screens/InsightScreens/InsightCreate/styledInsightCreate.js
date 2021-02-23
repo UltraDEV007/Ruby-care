@@ -4,7 +4,8 @@ import styled from "styled-components";
 const Div = styled.div`
   display: flex;
   flex-direction: column;
-  background: ${({ darkMode }) => (darkMode === "dark" ? grey[800] : "#fff")};
+  background: ${({ themeState }) =>
+    themeState === "dark" ? grey[800] : "#fff"};
   .title-container {
     display: flex;
     flex-direction: column;
@@ -15,7 +16,7 @@ const Div = styled.div`
   }
   .title {
     font-size: 1.2rem;
-    color: ${({ darkMode }) => (darkMode === "dark" ? grey[100] : "#000")};
+    color: ${({ themeState }) => (themeState === "dark" ? grey[100] : "#000")};
     display: flex;
     align-items: center;
   }
@@ -28,7 +29,7 @@ const Div = styled.div`
   .about-container {
     font-size: 1.2rem;
     padding: 10px;
-    color: ${({ darkMode }) => (darkMode === "dark" ? grey[100] : "#000")};
+    color: ${({ themeState }) => (themeState === "dark" ? grey[100] : "#000")};
   }
   .about-icon {
     font-size: 40px;

@@ -11,12 +11,12 @@ let Search = styled.div`
   z-index: 9999999999;
   input {
     font-family: "Montserrat", sans-serif;
-    color: ${({ darkMode }) => (darkMode === "dark" ? "black" : "white")};
+    color: ${({ themeState }) => (themeState === "dark" ? "black" : "white")};
     padding-left: 5px;
   }
 
   .icon {
-    color: ${({ darkMode }) => (darkMode === "dark" ? "black" : "white")};
+    color: ${({ themeState }) => (themeState === "dark" ? "black" : "white")};
   }
 
   .icon.clear {
@@ -34,18 +34,18 @@ let Search = styled.div`
 const StyledTextField = styled(TextField)`
   /* default */
   .MuiInput-underline:before {
-    border-bottom: ${({ darkMode }) =>
-      darkMode === "dark" ? "1px solid black" : "1px solid white"};
+    border-bottom: ${({ themeState }) =>
+      themeState === "dark" ? "1px solid black" : "1px solid white"};
   }
   /* hover (double-ampersand needed for specificity reasons. */
   && .MuiInput-underline:hover:before {
-    border-bottom: ${({ darkMode }) =>
-      darkMode === "dark" ? "1px solid black" : "1px solid white"};
+    border-bottom: ${({ themeState }) =>
+      themeState === "dark" ? "1px solid black" : "1px solid white"};
   }
   /* focused */
   .MuiInput-underline:after {
-    border-bottom: ${({ darkMode }) =>
-      darkMode === "dark" ? "1px solid black" : "1px solid white"};
+    border-bottom: ${({ themeState }) =>
+      themeState === "dark" ? "1px solid black" : "1px solid white"};
   }
 `;
 
@@ -55,12 +55,12 @@ const Dropdown = styled(Card)`
   top: 45px;
   z-index: 999999;
 
-  background: ${({ darkMode }) =>
-    darkMode === "dark" ? yellow[700] : "#3788E5"};
+  background: ${({ themeState }) =>
+    themeState === "dark" ? yellow[700] : "#3788E5"};
   box-shadow: -3px 5px 17px 1px #000;
 `;
 
-function HeaderSearch({ search, setSearch, darkMode, usersJSX, open }) {
+function HeaderSearch({ search, setSearch, themeState, usersJSX, open }) {
   const [placeholder, setPlaceholder] = useState("Search Care");
 
   useEffect(() => {
@@ -81,9 +81,9 @@ function HeaderSearch({ search, setSearch, darkMode, usersJSX, open }) {
 
   return (
     <>
-      <Search open={open} darkMode={darkMode}>
+      <Search open={open} themeState={themeState}>
         <StyledTextField
-          darkMode={darkMode}
+          themeState={themeState}
           type="text"
           placeholder={placeholder}
           value={search}
@@ -98,7 +98,7 @@ function HeaderSearch({ search, setSearch, darkMode, usersJSX, open }) {
         />
         {/* the other dropdown when it's open is moved to OpenNavBar.jsx */}
         {!open && (
-          <Dropdown darkMode={darkMode}>
+          <Dropdown themeState={themeState}>
             <div className="dropdown-items">{search && usersJSX}</div>
           </Dropdown>
         )}

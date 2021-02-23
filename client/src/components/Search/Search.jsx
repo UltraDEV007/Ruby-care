@@ -5,11 +5,11 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
 import TextField from "@material-ui/core/TextField";
 import ClearIcon from "@material-ui/icons/Clear";
-import { DarkModeContext } from "../Context/DarkModeContext";
+import { ThemeStateContext } from "../Context/ThemeStateContext";
 import Form from "./styledSearch";
 
 function Search({ search, setSearch }) {
-  const [darkMode] = useContext(DarkModeContext);
+  const [themeState] = useContext(ThemeStateContext);
   const [searchEnabled, setSearchEnabled] = useState(false);
   let location = useLocation();
 
@@ -43,7 +43,7 @@ function Search({ search, setSearch }) {
   };
 
   return (
-    <Form darkMode={darkMode} onSubmit={handleSubmit}>
+    <Form themeState={themeState} onSubmit={handleSubmit}>
       <TextField
         type="text"
         name="search"

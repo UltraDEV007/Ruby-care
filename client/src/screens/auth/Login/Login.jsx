@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useStateValue } from "../../../components/Context/CurrentUserContext";
-import { DarkModeContext } from "../../../components/Context/DarkModeContext";
+import { ThemeStateContext } from "../../../components/Context/ThemeStateContext";
 import { loginUser } from "../../../services/auth";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
@@ -19,10 +19,10 @@ import { useStyles } from "./loginStyles.js";
 
 export default function Login() {
   const [{ currentUser }, dispatch] = useStateValue();
-  const [darkMode] = useContext(DarkModeContext);
+  const [themeState] = useContext(ThemeStateContext);
   const [showPassword, setShowPassword] = useState(false);
   const history = useHistory();
-  const classes = useStyles({ darkMode, currentUser });
+  const classes = useStyles({ themeState, currentUser });
 
   const handleClickShowPassword = () => {
     setShowPassword((prevState) => !prevState);
@@ -88,8 +88,7 @@ export default function Login() {
           onSubmit={(e) => {
             e.preventDefault();
             handleLogin(formData);
-          }}
-        >
+          }}>
           <div className={classes.inputContainer}>
             <EmailIcon />
             <FormControl>
@@ -125,8 +124,7 @@ export default function Login() {
                     <IconButton
                       aria-label="toggle password visibility"
                       onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                    >
+                      onMouseDown={handleMouseDownPassword}>
                       {showPassword ? (
                         <Visibility className={classes.visibility} />
                       ) : (
@@ -156,8 +154,7 @@ export default function Login() {
             className={classes.link}
             target="_blank"
             rel="noreferrer"
-            href="http://www.github.com/dannymichaels/care"
-          >
+            href="http://www.github.com/dannymichaels/care">
             Daniel Michael &copy; 2020
           </a>
         </Typography>

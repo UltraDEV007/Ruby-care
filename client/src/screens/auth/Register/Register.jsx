@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useStateValue } from "../../../components/Context/CurrentUserContext";
-import { DarkModeContext } from "../../../components/Context/DarkModeContext";
+import { ThemeStateContext } from "../../../components/Context/ThemeStateContext";
 import { registerUser } from "../../../services/auth";
 import { Link, useHistory } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
@@ -35,7 +35,7 @@ export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
   const [passwordAlert, setPasswordAlert] = useState(false);
-  const [darkMode] = useContext(DarkModeContext);
+  const [themeState] = useContext(ThemeStateContext);
   const [emailValidityAlert, setEmailValidityAlert] = useState(false);
   const [imagePreview, setImagePreview] = useState(false);
   const [passwordConfirmAlert, setPasswordConfirmAlert] = useState(false);
@@ -122,7 +122,7 @@ export default function Register() {
     setImagePreview(false);
   };
 
-  const classes = useStyles({ darkMode, currentUser, imagePreview });
+  const classes = useStyles({ themeState, currentUser, imagePreview });
 
   return (
     <>
@@ -141,7 +141,7 @@ export default function Register() {
             <>
               <Typography
                 className={
-                  darkMode === "light" ? classes.user : classes.userDark
+                  themeState === "light" ? classes.user : classes.userDark
                 }>
                 You already have an account, is this you?
                 <br />
@@ -195,7 +195,7 @@ export default function Register() {
               <FormControl>
                 <InputLabel
                   className={
-                    darkMode === "light" ? classes.label : classes.darkLabel
+                    themeState === "light" ? classes.label : classes.darkLabel
                   }
                   htmlFor="name">
                   Name
@@ -203,7 +203,7 @@ export default function Register() {
                 <Input
                   required
                   className={
-                    darkMode === "light"
+                    themeState === "light"
                       ? classes.inputField
                       : classes.inputFieldDark
                   }
@@ -220,7 +220,7 @@ export default function Register() {
               <FormControl>
                 <InputLabel
                   className={
-                    darkMode === "light" ? classes.label : classes.darkLabel
+                    themeState === "light" ? classes.label : classes.darkLabel
                   }
                   htmlFor="email">
                   Email Address
@@ -230,7 +230,7 @@ export default function Register() {
                   id="email"
                   type="text"
                   className={
-                    darkMode === "light"
+                    themeState === "light"
                       ? classes.inputField
                       : classes.inputFieldDark
                   }
@@ -261,7 +261,7 @@ export default function Register() {
               <FormControl>
                 <InputLabel
                   className={
-                    darkMode === "light"
+                    themeState === "light"
                       ? classes.passwordLabel
                       : classes.darkPasswordLabel
                   }
@@ -271,7 +271,7 @@ export default function Register() {
                 <Input
                   required
                   className={
-                    darkMode === "light"
+                    themeState === "light"
                       ? classes.passwordField
                       : classes.passwordFieldDark
                   }
@@ -312,7 +312,7 @@ export default function Register() {
               <FormControl>
                 <InputLabel
                   className={
-                    darkMode === "light"
+                    themeState === "light"
                       ? classes.passwordLabel
                       : classes.darkPasswordLabel
                   }
@@ -322,7 +322,7 @@ export default function Register() {
                 <Input
                   required
                   className={
-                    darkMode === "light"
+                    themeState === "light"
                       ? classes.passwordField
                       : classes.passwordFieldDark
                   }
@@ -415,7 +415,7 @@ export default function Register() {
             <Button
               type="submit"
               className={
-                darkMode === "light"
+                themeState === "light"
                   ? classes.registerButton
                   : classes.registerButtonDark
               }>
@@ -424,12 +424,14 @@ export default function Register() {
           </form>
           <Typography
             className={
-              darkMode === "light" ? classes.login : classes.loginDark
+              themeState === "light" ? classes.login : classes.loginDark
             }>
             Already have an account? &nbsp;
             <Link
               className={
-                darkMode === "light" ? classes.loginLink : classes.loginLinkDark
+                themeState === "light"
+                  ? classes.loginLink
+                  : classes.loginLinkDark
               }
               to="/login">
               Login
@@ -437,7 +439,9 @@ export default function Register() {
           </Typography>
           <br />
           <Typography
-            className={darkMode === "light" ? classes.user : classes.userDark}>
+            className={
+              themeState === "light" ? classes.user : classes.userDark
+            }>
             <a
               className={classes.link}
               target="_blank"

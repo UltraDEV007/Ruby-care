@@ -4,13 +4,13 @@ import Search from "../../../components/Search/Search";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Layout from "../../../layouts/Layout/Layout";
 import { checkUserLength } from "../../../utils/checkUserLength";
-import { DarkModeContext } from "../../../components/Context/DarkModeContext";
+import { ThemeStateContext } from "../../../components/Context/ThemeStateContext";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ScrollToTopOnMount from "../../../components/Helpers/ScrollToTopOnMount";
 import Div from "./styledUsers";
 
 const Users = ({ allUsers, loaded }) => {
-  const [darkMode] = useContext(DarkModeContext);
+  const [themeState] = useContext(ThemeStateContext);
   const [search, setSearch] = useState("");
 
   const getQueriedUsers = () =>
@@ -21,10 +21,9 @@ const Users = ({ allUsers, loaded }) => {
   const usersJSX = getQueriedUsers().map((user) => (
     <Link
       key={user.id}
-      darkMode={darkMode}
+      themeState={themeState}
       to={`/users/${user.id}`}
-      className="link"
-    >
+      className="link">
       {!user?.image ? (
         <AccountCircleIcon className="user-icon" />
       ) : (
@@ -36,7 +35,7 @@ const Users = ({ allUsers, loaded }) => {
 
   return (
     <Layout title="Community">
-      <Div darkMode={{ darkMode }}>
+      <Div themeState={{ themeState }}>
         <ScrollToTopOnMount />
         <div className="title-container">
           <p> Search for a user!</p>
@@ -44,9 +43,7 @@ const Users = ({ allUsers, loaded }) => {
         <Search setSearch={setSearch} />
         <div className="users-container">
           <>
-            <p className="users-title">
-              {checkUserLength(usersJSX, loaded)}
-            </p>
+            <p className="users-title">{checkUserLength(usersJSX, loaded)}</p>
             {!loaded ? (
               <LinearProgress style={{ margin: "50px auto", width: "30vw" }} />
             ) : (

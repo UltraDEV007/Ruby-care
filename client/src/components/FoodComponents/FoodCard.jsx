@@ -4,7 +4,7 @@ import Card from "@material-ui/core/Card";
 import { Link, Route, Switch } from "react-router-dom";
 import Moment from "react-moment";
 import "moment-timezone";
-import { DarkModeContext } from "../Context/DarkModeContext";
+import { ThemeStateContext } from "../Context/ThemeStateContext";
 import { indigo } from "@material-ui/core/colors/";
 import ratingLogic from "../../utils/ratingLogic";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -20,7 +20,7 @@ export default function FoodCard({
   openOptions,
   handleDelete,
 }) {
-  const [darkMode] = useContext(DarkModeContext);
+  const [themeState] = useContext(ThemeStateContext);
   const [isRefreshed, setIsRefreshed] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
   const [openDetail, setOpenDetail] = useState(false);
@@ -46,7 +46,7 @@ export default function FoodCard({
     <>
       <Card
         style={
-          darkMode === "light"
+          themeState === "light"
             ? { boxShadow: "default" }
             : { boxShadow: `0px 0px 4px 1.2px ${indigo[50]}` }
         }

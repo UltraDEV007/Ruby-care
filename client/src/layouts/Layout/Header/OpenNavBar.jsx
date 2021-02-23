@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import { DarkModeContext } from "../../../components/Context/DarkModeContext";
+import { ThemeStateContext } from "../../../components/Context/ThemeStateContext";
 import CurrentUserContainer from "./CurrentUserContainer";
 import HeaderSearch from "./HeaderSearch";
 import { yellow, blue } from "@material-ui/core/colors";
@@ -53,8 +53,8 @@ const Dropdown = styled(Card)`
   top: 110px;
   z-index: 999999;
 
-  background: ${({ darkMode }) =>
-    darkMode === "dark" ? yellow[700] : "#3788E5"};
+  background: ${({ themeState }) =>
+    themeState === "dark" ? yellow[700] : "#3788E5"};
   box-shadow: ${({ isSearching }) =>
     isSearching ? "-3px 5px 17px 1px #000" : ""};
   .dropdown-items {
@@ -65,17 +65,17 @@ const Dropdown = styled(Card)`
 `;
 
 function OpenNavBar({ open, search, setSearch, usersJSX }) {
-  const [darkMode] = useContext(DarkModeContext);
+  const [themeState] = useContext(ThemeStateContext);
   return (
-    <Ul open={open} isLight={darkMode === "light"}>
+    <Ul open={open} isLight={themeState === "light"}>
       <li>
         <HeaderSearch
-          darkMode={darkMode}
+          themeState={themeState}
           search={search}
           setSearch={setSearch}
           open={open}
         />
-        <Dropdown isSearching={search} darkMode={darkMode}>
+        <Dropdown isSearching={search} themeState={themeState}>
           <div className="dropdown-items">{search && usersJSX}</div>
         </Dropdown>
       </li>

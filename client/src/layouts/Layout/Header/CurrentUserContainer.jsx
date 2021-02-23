@@ -3,7 +3,7 @@ import { Typography } from "@material-ui/core";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { useHistory, useLocation, Link } from "react-router-dom";
 import { useStateValue } from "../../../components/Context/CurrentUserContext";
-import { DarkModeContext } from "../../../components/Context/DarkModeContext";
+import { ThemeStateContext } from "../../../components/Context/ThemeStateContext";
 import { useStyles } from "./headerStyles";
 import { removeToken } from "../../../services/auth";
 import LogoutIcon from "@material-ui/icons/ExitToApp";
@@ -20,7 +20,7 @@ function CurrentUserContainer({ isMenuShowing }) {
   };
 
   const classes = useStyles();
-  const [darkMode] = useContext(DarkModeContext);
+  const [themeState] = useContext(ThemeStateContext);
 
   return (
     <>
@@ -29,7 +29,7 @@ function CurrentUserContainer({ isMenuShowing }) {
           <Typography
             component={Link}
             style={
-              darkMode === "light"
+              themeState === "light"
                 ? { textDecoration: "none", color: "#fff" }
                 : { textDecoration: "none", color: "#000" }
             }

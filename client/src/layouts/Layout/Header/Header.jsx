@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import { DarkModeContext } from "../../../components/Context/DarkModeContext";
+import { ThemeStateContext } from "../../../components/Context/ThemeStateContext";
 import { Link, useLocation } from "react-router-dom";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { useStyles } from "./headerStyles";
@@ -19,10 +19,10 @@ export default function Header({ title, allUsers }) {
   const [leftSearch, setLeftSearch] = useState(false);
   const [currentTime, setCurrentTime] = useState(Date.now());
   const [search, setSearch] = useState("");
-  const [darkMode] = useContext(DarkModeContext);
+  const [themeState] = useContext(ThemeStateContext);
   const [isMenuShowing, setIsMenuShowing] = useState(false);
 
-  const classes = useStyles({ darkMode, isMenuShowing });
+  const classes = useStyles({ themeState, isMenuShowing });
   let location = useLocation();
 
   useEffect(() => {
@@ -39,7 +39,7 @@ export default function Header({ title, allUsers }) {
 
   const usersJSX = getQueriedUsers()
     .slice(0, 6)
-    .map((user) => <QueriedUsers darkMode={darkMode} user={user} />);
+    .map((user) => <QueriedUsers themeState={themeState} user={user} />);
 
   return (
     <>
@@ -62,7 +62,7 @@ export default function Header({ title, allUsers }) {
               {leftSearch && (
                 <HeaderSearch
                   usersJSX={usersJSX}
-                  darkMode={darkMode}
+                  themeState={themeState}
                   search={search}
                   setSearch={setSearch}
                 />
@@ -80,7 +80,7 @@ export default function Header({ title, allUsers }) {
                 <CurrentUserContainer
                   Typography={Typography}
                   Link={Link}
-                  darkMode={darkMode}
+                  themeState={themeState}
                   classes={classes}
                   AccountCircleIcon={AccountCircleIcon}
                 />

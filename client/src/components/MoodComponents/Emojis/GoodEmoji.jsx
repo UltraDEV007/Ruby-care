@@ -1,15 +1,15 @@
 import React, { useContext } from "react";
 import SentimentSatisfiedSharpIcon from "@material-ui/icons/SentimentSatisfiedSharp";
-import { DarkModeContext } from "../../Context/DarkModeContext";
+import { ThemeStateContext } from "../../Context/ThemeStateContext";
 
 function GoodEmoji() {
-  const [darkMode] = useContext(DarkModeContext);
+  const [themeState] = useContext(ThemeStateContext);
 
   return (
     <>
       <SentimentSatisfiedSharpIcon
         style={
-          !darkMode
+          !themeState
             ? {
                 border: "1px solid black",
                 background: "#228B22",

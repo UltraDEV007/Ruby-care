@@ -3,12 +3,12 @@ import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
-import { DarkModeContext } from "../../../components/Context/DarkModeContext";
+import { ThemeStateContext } from "../../../components/Context/ThemeStateContext";
 import HelpIcon from "@material-ui/icons/Help";
 import { Div, Form } from "./styledInsightCreate.js";
 
 export default function InsightCreate(props) {
-  const [darkMode] = useContext(DarkModeContext);
+  const [themeState] = useContext(ThemeStateContext);
   const [openAbout, setOpenAbout] = useState(false);
 
   const handleOpen = () => {
@@ -35,7 +35,7 @@ export default function InsightCreate(props) {
   };
 
   return (
-    <Div darkMode={darkMode}>
+    <Div themeState={themeState}>
       <div className="title-container">
         <Typography className="title">
           Help the community by sharing an insight!
@@ -107,8 +107,7 @@ export default function InsightCreate(props) {
             to="/insights"
             component={Link}
             variant="contained"
-            color="secondary"
-          >
+            color="secondary">
             Cancel
           </Button>
         </div>
