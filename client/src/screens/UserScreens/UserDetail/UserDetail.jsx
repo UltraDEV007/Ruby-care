@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import Moment from "react-moment";
 import Typography from "@material-ui/core/Typography";
@@ -9,7 +9,6 @@ import {
   checkedLikedInsights,
 } from "../../../utils/checkInsights";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import { goBack } from "../../../utils/goBack";
 import { toTitleCase } from "../../../utils/toTitleCase";
 import { getAge } from "../../../utils/getAge";
 import Wrapper from "./styledUserDetail";
@@ -22,6 +21,8 @@ export default function UserDetail({ getOneUser }) {
   const [darkMode] = useContext(DarkModeContext);
   const [loaded, setLoaded] = useState(false);
   const { id } = useParams();
+
+  const { goBack } = useHistory();
 
   useEffect(() => {
     const getData = async () => {
@@ -62,7 +63,7 @@ export default function UserDetail({ getOneUser }) {
       <div className="content-container">
         <div className="title-container">
           <div className="arrow-container">
-            <IconButton className="arrow-icon" onClick={goBack}>
+            <IconButton className="arrow-icon" onClick={() => goBack()}>
               <ArrowBackIcon className="arrow-icon" />
             </IconButton>
           </div>
@@ -95,7 +96,10 @@ export default function UserDetail({ getOneUser }) {
         <br />
         <hr className="bottom-hr" />
         <div className="buttons">
-          <Button variant="contained" color="secondary" onClick={goBack}>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => goBack()}>
             Go Back
           </Button>
         </div>

@@ -8,9 +8,7 @@ const Wrapper = styled.div`
     flex-direction: column;
 
     footer {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
+      display: block;
     }
 
     .buttons {
@@ -27,7 +25,7 @@ const Wrapper = styled.div`
     color: ${({ darkMode }) => (darkMode === "dark" ? grey[100] : "#000")};
   }
 
-  .insight-body {
+  .insight-page {
     margin: 0 auto;
     margin-top: 20px;
     color: ${({ darkMode }) => (darkMode === "dark" ? grey[100] : "#000")};
@@ -119,6 +117,16 @@ const Wrapper = styled.div`
     min-height: 600px;
   }
 
+  .inner-column-button {
+    width: 98%;
+    max-width: 1100px;
+    padding-top: 20px;
+    min-height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .insight-text {
     line-height: 1.5rem;
     font-size: clamp(12px, 10vw, 16px);
@@ -135,7 +143,6 @@ const Wrapper = styled.div`
     font-size: 1.6rem;
     font-size: clamp(1rem, 4vw, 4vh);
     padding: 20px;
-    margin-top: 20px;
     text-align: center;
   }
 

@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import { useStateValue } from "../../../components/Context/CurrentUserContext";
 import Moment from "react-moment";
 import Typography from "@material-ui/core/Typography";
 import { DarkModeContext } from "../../../components/Context/DarkModeContext";
-import { goBack } from "../../../utils/goBack";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import DeleteInsightFromDetail from "../../../components/Modals/DeleteInsightFromDetail";
 import Wrapper from "./styledInsightDetail";
@@ -34,10 +33,11 @@ export default function InsightDetail({
   const [openInsightDelete, setOpenInsightDelete] = useState(false);
   const [openCommentDelete, setOpenCommentDelete] = useState(false);
   const [openCommentEdit, setOpenCommentEdit] = useState(false);
-
   const [formData, setFormData] = useState({
     content: "",
   });
+
+  const { goBack } = useHistory();
 
   const { id } = useParams();
 
@@ -177,7 +177,7 @@ export default function InsightDetail({
         <div className="content-container">
           <div className="title-container">
             <div className="arrow-container">
-              <IconButton className="arrow-icon" onClick={goBack}>
+              <IconButton className="arrow-icon" onClick={() => goBack()}>
                 <ArrowBackIcon className="arrow-icon" />
               </IconButton>
             </div>
@@ -225,10 +225,15 @@ export default function InsightDetail({
             </>
           )}
           <hr />
-          <main className="insight-body">
+          <main className="insight-page">
             <div className="inner-column">
               <p className="insight-text">{insight?.body}</p>
-              <section className="insight-comments">
+            </div>
+
+            <hr />
+
+            <section className="insight-comments">
+              <div className="inner-column">
                 <br />
                 <Typography className="comments-title">
                   Comment Section
@@ -268,16 +273,21 @@ export default function InsightDetail({
                     Submit Comment
                   </Button>
                 </form>
-              </section>
-            </div>
+              </div>
+            </section>
           </main>
 
           <br />
           <hr className="hr-bottom" />
           <footer>
-            <Button variant="contained" color="secondary" onClick={goBack}>
-              Go Back
-            </Button>
+            <div className="inner-column-button">
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={() => goBack()}>
+                Go Back
+              </Button>
+            </div>
           </footer>
         </div>
       </Wrapper>

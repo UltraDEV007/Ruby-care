@@ -1,10 +1,9 @@
 import { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import { DarkModeContext } from "../../../components/Context/DarkModeContext";
-import { goBack } from "../../../utils/goBack";
 import { Div, Form } from "./styledInsightEdit";
 
 export default function InsightEdit({ handleUpdate, insights }) {
@@ -16,6 +15,8 @@ export default function InsightEdit({ handleUpdate, insights }) {
   });
   const { title, description, body } = formData;
   const { id } = useParams();
+
+  const { goBack } = useHistory();
 
   useEffect(() => {
     const prefillFormData = () => {
@@ -97,11 +98,10 @@ export default function InsightEdit({ handleUpdate, insights }) {
             Submit
           </Button>
           <Button
-            onClick={goBack}
+            onClick={() => goBack()}
             className="cancel"
             variant="contained"
-            color="secondary"
-          >
+            color="secondary">
             Cancel
           </Button>
         </div>
