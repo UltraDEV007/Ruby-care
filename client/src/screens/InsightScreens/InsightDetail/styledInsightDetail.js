@@ -125,7 +125,8 @@ const Wrapper = styled.div`
     min-height: 20px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; 
+    margin: 0 auto;
   }
 
   .insight-text {
