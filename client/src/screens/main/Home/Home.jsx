@@ -12,7 +12,7 @@ import SymptomsContainer from "../../../containers/SymptomsContainer";
 import MedsContainer from "../../../containers/MedsContainer";
 import FoodsContainer from "../../../containers/FoodsContainer";
 import Layout from "../../../layouts/Layout/Layout";
-import { DarkModeContext } from "../../../components/Context/DarkModeContext";
+import { ThemeStateContext } from "../../../components/Context/ThemeStateContext";
 import { CurrentUserContext } from "../../../components/Context/CurrentUserContext";
 import { getAllAffirmations } from "../../../services/affirmations";
 import { checkValidity } from "../../../utils/checkValidity";
@@ -22,7 +22,7 @@ import RXGuideLogo from "../../../components/MedComponents/RXGuideLogo";
 import LinearProgressLoading from "../../../components/Loading/LinearProgressLoading.jsx";
 
 export default function Home() {
-  const [darkMode] = useContext(DarkModeContext);
+  const [themeState] = useContext(ThemeStateContext);
   const [currentUser] = useContext(CurrentUserContext);
   const [affirmations, setAffirmations] = useState([]);
   const [loadedAffirmation, setLoadedAffirmation] = useState(false);
@@ -37,10 +37,10 @@ export default function Home() {
     fetchAffirmations();
   }, [currentUser]);
 
-  const classes = useStyles({ darkMode });
+  const classes = useStyles({ themeState });
 
   if (!loadedAffirmation) {
-    return <LinearProgressLoading darkMode={darkMode} />;
+    return <LinearProgressLoading themeState={themeState} />;
   }
 
   return checkValidity(location.pathname) ? (

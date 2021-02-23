@@ -38,8 +38,8 @@ const Form = styled.form`
     width: 100px;
     align-self: center;
     margin-bottom: 5px;
-    border: ${({ darkMode }) =>
-      darkMode === "dark" ? "1px solid white" : "1px solid black"};
+    border: ${({ themeState }) =>
+      themeState === "dark" ? "1px solid white" : "1px solid black"};
     border-radius: 50%;
     object-fit: cover;
   }
@@ -50,13 +50,13 @@ const Form = styled.form`
     margin-bottom: 5px;
   }
   .icon-button {
-    color: ${({ darkMode }) => (darkMode === "dark" ? "white" : "black")};
+    color: ${({ themeState }) => (themeState === "dark" ? "white" : "black")};
   }
   .icon-button.clear {
     display: ${({ image }) => (!image ? "none" : "auto")};
   }
   .visibility {
-    color: ${({ darkMode }) => (darkMode === "dark" ? "white" : "black")};
+    color: ${({ themeState }) => (themeState === "dark" ? "white" : "black")};
   }
   .alert {
     color: red;

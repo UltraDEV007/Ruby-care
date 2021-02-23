@@ -5,7 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import { useContext, useState, useEffect } from "react";
 import { useStateValue } from "../../../components/Context/CurrentUserContext";
-import { DarkModeContext } from "../../../components/Context/DarkModeContext";
+import { ThemeStateContext } from "../../../components/Context/ThemeStateContext";
 import Moment from "react-moment";
 import "moment-timezone";
 import ScrollToTopOnMount from "../../../components/Helpers/ScrollToTopOnMount";
@@ -21,7 +21,7 @@ import { useHistory } from "react-router-dom";
 
 export default function Settings() {
   const [{ currentUser }, dispatch] = useStateValue();
-  const [darkMode, setDarkMode] = useContext(DarkModeContext);
+  const [themeState, setThemeState] = useContext(ThemeStateContext);
   const [openEdit, setOpenEdit] = useState(false);
   const [allUsers, setAllUsers] = useState([]);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
@@ -72,7 +72,7 @@ export default function Settings() {
     history.push("/login");
   };
 
-  const classes = useStyles({ darkMode });
+  const classes = useStyles({ themeState });
 
   // useState assigns a default value for a variable, an annonymous function is used to set the default value,
   // we have to use an annonymous funciton because the initial value is decided based on the logic for lines 63-68
@@ -87,13 +87,13 @@ export default function Settings() {
   const handleThemeChange = () => {
     setSwitchState(switchState === true ? false : true);
 
-    if (darkMode === "light") {
-      setDarkMode("dark");
-      localStorage.setItem("darkMode", "dark");
+    if (themeState === "light") {
+      setThemeState("dark");
+      localStorage.setItem("themeState", "dark");
       localStorage.setItem("switchState", true);
     } else {
-      setDarkMode("light");
-      localStorage.setItem("darkMode", "light");
+      setThemeState("light");
+      localStorage.setItem("themeState", "light");
       localStorage.setItem("switchState", false);
     }
   };
@@ -156,12 +156,12 @@ export default function Settings() {
         <div className="card-actions">
           <Card className={classes.card}>
             <CardActions className={classes.actionsContainer}>
-              <Typography className={classes.darkModeContainer}>
-                <Brightness4Icon className={classes.darkModeIcon} />
+              <Typography className={classes.themeStateContainer}>
+                <Brightness4Icon className={classes.themeStateIcon} />
                 &nbsp;Dark mode
               </Typography>
               <Switch
-                className={classes.darkModeSwitch}
+                className={classes.themeStateSwitch}
                 checked={switchState}
                 onChange={handleThemeChange}
               />

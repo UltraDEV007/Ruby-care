@@ -7,7 +7,7 @@ import Home from "./screens/main/Home/Home";
 import Settings from "./screens/main/Settings/Settings";
 import InsightsContainer from "./containers/InsightsContainer";
 import UsersContainer from "./containers/UsersContainer";
-import { DarkModeProvider } from "./components/Context/DarkModeContext";
+import { ThemeStateProvider } from "./components/Context/ThemeStateContext";
 import NotFound from "./screens/Error/NotFound";
 import FirefoxBrowser from "./screens/Error/FirefoxBrowser";
 import { useHistory } from "react-router-dom";
@@ -38,7 +38,7 @@ function App() {
     );
   }
   return (
-    <DarkModeProvider>
+    <ThemeStateProvider>
       <Paper style={{ minHeight: "100vh" }}>
         <Switch>
           <Route path="/login" component={Login} />
@@ -50,7 +50,7 @@ function App() {
           <Route path="*" component={NotFound} />
         </Switch>
       </Paper>
-    </DarkModeProvider>
+    </ThemeStateProvider>
   );
 }
 

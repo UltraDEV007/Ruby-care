@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Layout from "../../../layouts/Layout/Layout";
 import InsightCard from "../../../components/InsightComponents/InsightCard";
-import { DarkModeContext } from "../../../components/Context/DarkModeContext";
+import { ThemeStateContext } from "../../../components/Context/ThemeStateContext";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Typography from "@material-ui/core/Typography";
 import Search from "../../../components/Search/Search";
@@ -10,7 +10,7 @@ import ScrollToTopOnMount from "../../../components/Helpers/ScrollToTopOnMount";
 import Wrapper from "./styledInsights.js";
 
 export default function Insights(props) {
-  const [darkMode] = useContext(DarkModeContext);
+  const [themeState] = useContext(ThemeStateContext);
   const [openDelete, setOpenDelete] = useState(false);
 
   const onDelete = (id) => {
@@ -38,7 +38,7 @@ export default function Insights(props) {
   const insightsJSX = getQueriedInsights().map((insight) => (
     <InsightCard
       key={insight.id}
-      darkMode={darkMode}
+      themeState={themeState}
       updated={props.updated}
       insights={props.insights}
       insight={insight}
@@ -52,7 +52,7 @@ export default function Insights(props) {
 
   return (
     <Layout title="Insights">
-      <Wrapper darkMode={darkMode}>
+      <Wrapper themeState={themeState}>
         <ScrollToTopOnMount />
         <div className="sentence-container">
           <Typography className="sentence">

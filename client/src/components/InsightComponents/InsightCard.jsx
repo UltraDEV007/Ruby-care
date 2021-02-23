@@ -17,10 +17,10 @@ function InsightCard({
   handleClose,
   openDelete,
   onDelete,
-  darkMode,
+  themeState,
 }) {
   const [{ currentUser }] = useStateValue();
-  const classes = useStyles({ darkMode });
+  const classes = useStyles({ themeState });
   const [allLikes, setAllLikes] = useState([]);
   const [liked, setLiked] = useState(false);
   const [likeDisabled, setLikeDisabled] = useState(true);

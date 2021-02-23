@@ -24,8 +24,8 @@ const Wrapper = styled.div`
     text-decoration: none;
   }
   .span {
-    color: ${({ darkMode }) =>
-      darkMode === "light" ? blue[500] : yellow[700]};
+    color: ${({ themeState }) =>
+      themeState === "light" ? blue[500] : yellow[700]};
   }
 
   @media screen and (min-width: 600px) {

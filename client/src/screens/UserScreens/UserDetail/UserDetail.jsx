@@ -3,7 +3,7 @@ import { Link, useParams, useHistory } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import Moment from "react-moment";
 import Typography from "@material-ui/core/Typography";
-import { DarkModeContext } from "../../../components/Context/DarkModeContext";
+import { ThemeStateContext } from "../../../components/Context/ThemeStateContext";
 import {
   checkInsights,
   checkedLikedInsights,
@@ -18,7 +18,7 @@ import IconButton from "@material-ui/core/IconButton";
 
 export default function UserDetail({ getOneUser }) {
   const [user, setUser] = useState(null);
-  const [darkMode] = useContext(DarkModeContext);
+  const [themeState] = useContext(ThemeStateContext);
   const [loaded, setLoaded] = useState(false);
   const { id } = useParams();
 
@@ -53,13 +53,13 @@ export default function UserDetail({ getOneUser }) {
   );
 
   if (!loaded) {
-    return <LinearProgressLoading darkMode={darkMode} />;
+    return <LinearProgressLoading themeState={themeState} />;
   }
 
   const userDate = user?.created_at?.toLocaleString();
 
   return (
-    <Wrapper darkMode={darkMode}>
+    <Wrapper themeState={themeState}>
       <div className="content-container">
         <div className="title-container">
           <div className="arrow-container">

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import Card from "@material-ui/core/Card";
 import { useStateValue } from "../Context/CurrentUserContext";
-import { DarkModeContext } from "../Context/DarkModeContext";
+import { ThemeStateContext } from "../Context/ThemeStateContext";
 import Button from "@material-ui/core/Button";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import Typography from "@material-ui/core/Typography";
@@ -25,8 +25,8 @@ export default function CareCard({
   editIsLink,
   openEditModal,
 }) {
-  const [darkMode] = useContext(DarkModeContext);
-  const styleProps = { isLight: darkMode === "light" };
+  const [themeState] = useContext(ThemeStateContext);
+  const styleProps = { isLight: themeState === "light" };
 
   const classes = commentStyles
     ? commentCardStyles(styleProps)

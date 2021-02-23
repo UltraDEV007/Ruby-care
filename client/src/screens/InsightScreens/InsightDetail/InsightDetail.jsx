@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 import { useStateValue } from "../../../components/Context/CurrentUserContext";
 import Moment from "react-moment";
 import Typography from "@material-ui/core/Typography";
-import { DarkModeContext } from "../../../components/Context/DarkModeContext";
+import { ThemeStateContext } from "../../../components/Context/ThemeStateContext";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import DeleteInsightFromDetail from "../../../components/Modals/DeleteInsightFromDetail";
 import Wrapper from "./styledInsightDetail";
@@ -28,7 +28,7 @@ export default function InsightDetail({
 }) {
   const [insight, setInsight] = useState(null);
   const [{ currentUser }] = useStateValue();
-  const [darkMode] = useContext(DarkModeContext);
+  const [themeState] = useContext(ThemeStateContext);
   const [loaded, setLoaded] = useState(false);
   const [openInsightDelete, setOpenInsightDelete] = useState(false);
   const [openCommentDelete, setOpenCommentDelete] = useState(false);
@@ -70,7 +70,7 @@ export default function InsightDetail({
   }, [getOneInsight, id]);
 
   if (!loaded) {
-    return <LinearProgressLoading darkMode={darkMode} />;
+    return <LinearProgressLoading themeState={themeState} />;
   }
 
   const COMMENTS = insight.comments.map((comment) => {
@@ -173,7 +173,7 @@ export default function InsightDetail({
 
   return (
     <>
-      <Wrapper darkMode={darkMode}>
+      <Wrapper themeState={themeState}>
         <div className="content-container">
           <div className="title-container">
             <div className="arrow-container">

@@ -4,7 +4,7 @@ import Card from "@material-ui/core/Card";
 import { Link, Route, Switch } from "react-router-dom";
 import Moment from "react-moment";
 import "moment-timezone";
-import { DarkModeContext } from "../Context/DarkModeContext";
+import { ThemeStateContext } from "../Context/ThemeStateContext";
 import { indigo } from "@material-ui/core/colors/";
 import { emojiLogic } from "../../utils/emojiLogic";
 import MoodEdit from "../Dialogs/MoodDialogs/MoodEdit";
@@ -20,7 +20,7 @@ export default function MoodCard({
   moods,
   setMoods,
 }) {
-  const [darkMode] = useContext(DarkModeContext);
+  const [themeState] = useContext(ThemeStateContext);
   const [openEdit, setOpenEdit] = useState(false);
   const [isRefreshed, setIsRefreshed] = useState(false);
   const [openDetail, setOpenDetail] = useState(false);
@@ -54,7 +54,7 @@ export default function MoodCard({
     <>
       <Card
         style={
-          darkMode === "light"
+          themeState === "light"
             ? { boxShadow: "default" }
             : { boxShadow: `0px 0px 4px 1.2px ${indigo[50]}` }
         }

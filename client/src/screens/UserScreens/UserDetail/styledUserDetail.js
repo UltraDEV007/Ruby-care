@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   .title-container {
     align-self: center;
     margin-top: 40px;
-    color: ${({ darkMode }) => (darkMode === "dark" ? grey[100] : "#000")};
+    color: ${({ themeState }) => (themeState === "dark" ? grey[100] : "#000")};
   }
   .title {
     font-size: 1.6rem;
@@ -47,8 +47,8 @@ const Wrapper = styled.div`
     height: clamp(50px, 100px, 150px);
     align-self: center;
     margin: 10px;
-    border: ${({ darkMode }) =>
-      darkMode === "dark" ? "1px solid white" : "1px solid black"};
+    border: ${({ themeState }) =>
+      themeState === "dark" ? "1px solid white" : "1px solid black"};
     border-radius: 50%;
     object-fit: cover;
   }
@@ -57,7 +57,7 @@ const Wrapper = styled.div`
     margin-top: 20px;
     padding: 20px;
     min-height: 400px;
-    color: ${({ darkMode }) => (darkMode === "dark" ? grey[100] : "#000")};
+    color: ${({ themeState }) => (themeState === "dark" ? grey[100] : "#000")};
   }
   .insights-container {
     display: flex;
@@ -101,7 +101,8 @@ const Wrapper = styled.div`
     font-size: clamp(0.9rem, 2vw, 2vh);
   }
   a {
-    color: ${({ darkMode }) => (darkMode === "dark" ? yellow[700] : blue[600])};
+    color: ${({ themeState }) =>
+      themeState === "dark" ? yellow[700] : blue[600]};
     text-decoration: none;
     overflow-wrap: break-word;
     font-size: 1.5rem;

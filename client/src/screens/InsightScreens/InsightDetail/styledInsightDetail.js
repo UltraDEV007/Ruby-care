@@ -22,20 +22,20 @@ const Wrapper = styled.div`
     align-self: center;
     margin-top: 40px;
     text-align: center;
-    color: ${({ darkMode }) => (darkMode === "dark" ? grey[100] : "#000")};
+    color: ${({ themeState }) => (themeState === "dark" ? grey[100] : "#000")};
   }
 
   .insight-page {
     margin: 0 auto;
     margin-top: 20px;
-    color: ${({ darkMode }) => (darkMode === "dark" ? grey[100] : "#000")};
+    color: ${({ themeState }) => (themeState === "dark" ? grey[100] : "#000")};
     text-align: left;
   }
 
   .insight-comments {
     display: "block";
     margin-top: 20px;
-    color: ${({ darkMode }) => (darkMode === "dark" ? grey[100] : "#000")};
+    color: ${({ themeState }) => (themeState === "dark" ? grey[100] : "#000")};
     text-align: left;
   }
 
@@ -80,8 +80,8 @@ const Wrapper = styled.div`
 
   .user-name:hover {
     text-decoration: underline;
-    text-decoration-color: ${({ darkMode }) =>
-      darkMode === "dark" ? yellow[700] : "#000"};
+    text-decoration-color: ${({ themeState }) =>
+      themeState === "dark" ? yellow[700] : "#000"};
     cursor: pointer;
     transition: transform 250ms ease-in-out;
     cursor: pointer;
@@ -98,7 +98,7 @@ const Wrapper = styled.div`
 
   .link {
     text-decoration: none;
-    color: ${({ darkMode }) => (darkMode === "dark" ? "#fff" : "#000")};
+    color: ${({ themeState }) => (themeState === "dark" ? "#fff" : "#000")};
     cursor: pointer;
   }
 

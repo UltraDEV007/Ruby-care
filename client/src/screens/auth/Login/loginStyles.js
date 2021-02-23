@@ -20,7 +20,7 @@ const useStyles = makeStyles({
     padding: "15px",
     marginTop: "10px",
     textShadow: "0.5px 4px 10px #999",
-    color: (props) => props.darkMode === "dark" && yellow[700],
+    color: (props) => props.themeState === "dark" && yellow[700],
   },
   logo: {
     maxWidth: "100px",
@@ -34,7 +34,7 @@ const useStyles = makeStyles({
   loginButton: {
     margin: "20px auto",
     padding: "20px",
-    color: (props) => (props.darkMode === "light" ? "#62B5D9" : yellow[700]),
+    color: (props) => (props.themeState === "light" ? "#62B5D9" : yellow[700]),
     fontSize: "28px",
     fontFamily: ["Montserrat", "sans-serif"].join(","),
     textTransform: "capitalize",
@@ -44,7 +44,7 @@ const useStyles = makeStyles({
     fontSize: "26px",
     textDecoration: "none",
     textAlign: "center",
-    color: ({ darkMode }) => darkMode === "dark" && "#fff",
+    color: ({ themeState }) => themeState === "dark" && "#fff",
   },
   user: {
     fontFamily: ["Montserrat", "sans-serif"].join(","),
@@ -56,20 +56,20 @@ const useStyles = makeStyles({
     flexDirection: "column",
     alignItems: "center",
     textAlign: "center",
-    color: (props) => props.Darkmode === "dark" && "#fff",
+    color: (props) => props.themeState === "dark" && "#fff",
   },
   registerLink: {
     textDecoration: "none",
-    color: (props) => (props.darkMode === "light" ? "#62B5D9" : yellow[700]),
+    color: (props) => (props.themeState === "light" ? "#62B5D9" : yellow[700]),
   },
   inputField: {
-    color: (props) => (props.darkMode === "light" ? "black" : "white"),
+    color: (props) => (props.themeState === "light" ? "black" : "white"),
     marginBottom: "20px",
     width: "300px",
     marginLeft: "10px",
   },
   passwordField: {
-    color: ({ darkMode }) => (darkMode === "light" ? "black" : "white"),
+    color: ({ themeState }) => (themeState === "light" ? "black" : "white"),
     marginBottom: "20px",
     width: "300px",
   },
@@ -79,14 +79,14 @@ const useStyles = makeStyles({
   inputContainer: {
     display: "flex",
     alignItems: "center",
-    color: ({ darkMode }) => (darkMode === "light" ? "black" : "white"),
+    color: ({ themeState }) => (themeState === "light" ? "black" : "white"),
   },
   label: {
-    color: (props) => (props.darkMode === "light" ? "#000" : "#fff"),
+    color: (props) => (props.themeState === "light" ? "#000" : "#fff"),
     marginLeft: "10px",
   },
   passwordLabel: {
-    color: ({ darkMode }) => (darkMode === "light" ? "#000" : "#fff"),
+    color: ({ themeState }) => (themeState === "light" ? "#000" : "#fff"),
   },
   userLoggedImage: {
     height: "130px",
@@ -94,12 +94,12 @@ const useStyles = makeStyles({
     alignSelf: "center",
     marginBottom: "5px",
     marginTop: "20px",
-    border: ({ darkMode }) =>
-      darkMode === "dark" ? "1px solid white" : "1px solid #000",
+    border: ({ themeState }) =>
+      themeState === "dark" ? "1px solid white" : "1px solid #000",
     borderRadius: "50%",
   },
   visibility: {
-    color: (props) => (props.darkMode === "dark" ? "#fff" : "#000"),
+    color: (props) => (props.themeState === "dark" ? "#fff" : "#000"),
   },
   link: {
     textDecoration: "none",

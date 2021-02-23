@@ -2,8 +2,8 @@ import React from "react";
 import { useStyles } from "./linearLoadingStyles";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Paper from "@material-ui/core/Paper";
-function LinearProgressLoading({ darkMode }) {
-  const classes = useStyles({ darkMode });
+function LinearProgressLoading({ themeState }) {
+  const classes = useStyles({ themeState });
   return (
     <Paper className={classes.root}>
       <div className={classes.loadingWrapper}>

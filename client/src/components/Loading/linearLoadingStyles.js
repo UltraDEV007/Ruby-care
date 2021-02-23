@@ -3,7 +3,7 @@ import { grey } from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    background: (props) => (props.darkMode === "light" ? "#fff" : grey[700]),
+    background: (props) => (props.themeState === "light" ? "#fff" : grey[700]),
   },
   "@keyframes float": {
     "0%": {
@@ -38,7 +38,8 @@ const useStyles = makeStyles((theme) => ({
     flexFlow: "column nowrap",
     minHeight: "100vh",
     maxHeight: "100%",
-    background: ({ darkMode }) => (darkMode === "dark" ? grey[800] : "#fff"),
+    background: ({ themeState }) =>
+      themeState === "dark" ? grey[800] : "#fff",
   },
   loadingLogoDiv: {
     display: "flex",

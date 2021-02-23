@@ -26,7 +26,7 @@ import {
   DialogActions,
 } from "../../Form/DialogComponents";
 import Form from "./StyledUserEdit";
-import { DarkModeContext } from "../../Context/DarkModeContext";
+import { ThemeStateContext } from "../../Context/ThemeStateContext";
 import {
   checkEmailUniqueuess,
   checkEmailValidity,
@@ -58,7 +58,7 @@ export default function UserEdit({
   const [passwordAlert, setPasswordAlert] = useState(false);
   const [allConditionsAreNotMet, setAllConditionsAreNotMet] = useState(true);
 
-  const [darkMode] = useContext(DarkModeContext);
+  const [themeState] = useContext(ThemeStateContext);
 
   const handleImageClear = () => {
     setFormData((prevState) => ({
@@ -173,7 +173,7 @@ export default function UserEdit({
         <Typography className="title">Edit Account</Typography>
       </DialogTitle>
 
-      <Form darkMode={darkMode} image={image} onSubmit={handleSubmit}>
+      <Form themeState={themeState} image={image} onSubmit={handleSubmit}>
         <DialogContent dividers>
           <div className="user-image-container">
             {image ? (

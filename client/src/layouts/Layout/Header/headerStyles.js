@@ -26,8 +26,8 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
   },
   text: {
-    color: ({ darkMode }) =>
-      darkMode === "dark" ? { color: "#000" } : { color: "#fff" },
+    color: ({ themeState }) =>
+      themeState === "dark" ? { color: "#000" } : { color: "#fff" },
     textDecoration: "none",
   },
   headerLeft: {

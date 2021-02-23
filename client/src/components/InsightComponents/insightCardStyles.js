@@ -8,7 +8,7 @@ const useStyles = makeStyles({
     justifyContent: "flex-end",
   },
   likedInsight: {
-    color: ({ darkMode }) => (darkMode === "dark" ? yellow[700] : red[500]),
+    color: ({ themeState }) => (themeState === "dark" ? yellow[700] : red[500]),
     cursor: "pointer",
   },
   unLikedInsight: {

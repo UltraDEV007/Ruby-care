@@ -4,14 +4,14 @@ import { checkValidity } from "../../utils/checkValidity";
 import Typography from "@material-ui/core/Typography";
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
-import { DarkModeContext } from "../../components/Context/DarkModeContext";
+import { ThemeStateContext } from "../../components/Context/ThemeStateContext";
 import { yellow, grey, blue } from "@material-ui/core/colors";
 import { NavLink } from "react-router-dom";
 
 const ErrorWrapper = styled.div`
   min-height: 100vh;
-  background: ${({ darkMode }) =>
-    darkMode === "light" ? grey[250] : grey[800]};
+  background: ${({ themeState }) =>
+    themeState === "light" ? grey[250] : grey[800]};
 
   .button {
     padding: 10px;
@@ -27,7 +27,7 @@ const ErrorWrapper = styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;
-    color: ${({ darkMode }) => (darkMode === "light" ? "#000" : "#fff")};
+    color: ${({ themeState }) => (themeState === "light" ? "#000" : "#fff")};
     padding: 20px;
     overflow-wrap: break-word;
   }
@@ -36,7 +36,8 @@ const ErrorWrapper = styled.div`
     margin-top: 10%;
     font-size: 2rem;
     font-family: "montserrat", sans-serif;
-    color: ${({ darkMode }) => (darkMode === "light" ? "red" : yellow[700])};
+    color: ${({ themeState }) =>
+      themeState === "light" ? "red" : yellow[700]};
   }
 
   .paragraph {
@@ -44,7 +45,7 @@ const ErrorWrapper = styled.div`
     padding: "10px";
     margin-bottom: "20px";
     text-align: center;
-    color: ${({ darkMode }) => (darkMode === "light" ? blue[600] : "#fff")};
+    color: ${({ themeState }) => (themeState === "light" ? blue[600] : "#fff")};
   }
 
   @media screen and (min-width: 1000px) {
@@ -73,14 +74,14 @@ const ErrorWrapper = styled.div`
 `;
 
 function NotFound() {
-  const [darkMode] = useContext(DarkModeContext);
+  const [themeState] = useContext(ThemeStateContext);
   let location = useLocation();
 
   return checkValidity(location.pathname) ? (
     <></>
   ) : (
     <>
-      <ErrorWrapper darkMode={darkMode}>
+      <ErrorWrapper themeState={themeState}>
         <div className="text-container">
           <Typography className="title">ERROR 404,</Typography>
           <Typography className="paragraph">
@@ -91,8 +92,7 @@ function NotFound() {
             variant="contained"
             color="secondary"
             component={NavLink}
-            to="/"
-          >
+            to="/">
             Go Back
           </Button>
         </div>

@@ -5,7 +5,8 @@ const Div = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background: ${({ darkMode }) => (darkMode === "light" ? "#fff" : grey[800])};
+  background: ${({ themeState }) =>
+    themeState === "light" ? "#fff" : grey[800]};
 
   .title-container {
     display: flex;
@@ -16,7 +17,7 @@ const Div = styled.div`
   }
   .title {
     font-size: 1.2rem;
-    color: ${({ darkMode }) => (darkMode === "dark" ? grey[100] : "#000")};
+    color: ${({ themeState }) => (themeState === "dark" ? grey[100] : "#000")};
   }
   @media screen and (min-width: 1000px) {
     .title {

@@ -19,7 +19,7 @@ const useStyles = makeStyles(() => ({
     padding: "15px",
     marginTop: "10px",
     textShadow: "0.5px 4px 10px #999",
-    color: (props) => props.darkMode === "dark" && yellow[700],
+    color: (props) => props.themeState === "dark" && yellow[700],
   },
   logo: {
     maxWidth: "100px",
@@ -108,7 +108,7 @@ const useStyles = makeStyles(() => ({
     marginLeft: "10px",
   },
   birthdayField: {
-    color: (props) => (props.darkMode === "light" ? "black" : "white"),
+    color: (props) => (props.themeState === "light" ? "black" : "white"),
     marginBottom: "20px",
     width: "300px",
     marginLeft: "0",
@@ -129,7 +129,7 @@ const useStyles = makeStyles(() => ({
   inputContainer: {
     display: "flex",
     alignItems: "center",
-    color: (props) => (props.darkMode === "light" ? "black" : "white"),
+    color: (props) => (props.themeState === "light" ? "black" : "white"),
   },
   darkPasswordLabel: {
     color: "#fff",
@@ -152,8 +152,8 @@ const useStyles = makeStyles(() => ({
     width: "40px",
     borderRadius: "40px",
     objectFit: "cover",
-    border: ({ darkMode }) =>
-      darkMode === "dark" ? "1px solid #fff" : "1px solid #000",
+    border: ({ themeState }) =>
+      themeState === "dark" ? "1px solid #fff" : "1px solid #000",
   },
   bigIcon: {
     height: "100px",
@@ -161,9 +161,9 @@ const useStyles = makeStyles(() => ({
     alignSelf: "center",
     marginBottom: "5px",
     border: (props) =>
-      props.imagePreview + props.darkMode === "light"
+      props.imagePreview + props.themeState === "light"
         ? "1px solid black"
-        : props.imagePreview + props.darkMode === "dark" && "1px solid white",
+        : props.imagePreview + props.themeState === "dark" && "1px solid white",
     borderRadius: (props) => props.imagePreview && "50%",
   },
   bigUserImage: {
@@ -171,17 +171,17 @@ const useStyles = makeStyles(() => ({
     width: "100px",
     alignSelf: "center",
     marginBottom: "5px",
-    border: ({ darkMode }) =>
-      darkMode === "dark" ? "1px solid #fff" : "1px solid #000",
+    border: ({ themeState }) =>
+      themeState === "dark" ? "1px solid #fff" : "1px solid #000",
     borderRadius: "50%",
     objectFit: "cover",
   },
   cameraIcon: {
     cursor: "pointer",
-    color: (props) => props.darkMode === "light" && "#000",
+    color: (props) => props.themeState === "light" && "#000",
   },
   visibility: {
-    color: (props) => (props.darkMode === "dark" ? "#fff" : "#000"),
+    color: (props) => (props.themeState === "dark" ? "#fff" : "#000"),
   },
   passwordIcon: {
     marginRight: "-10px",
