@@ -9,7 +9,12 @@ const ThemeStateContext = createContext();
 function ThemeStateProvider({ children }) {
   const [themeState, setThemeState] = useState(() => {
     const localTheme = localStorage.getItem("themeState");
-    return localTheme ? localTheme : "light";
+    if (localTheme) {
+      return localTheme.match(/^dark$/i) ? "dark" : "light";
+    } else {
+      localStorage.setItem("themeState", "light");
+      return "light";
+    }
   }); // handleThemeChange in src/screens/main/Settings.jsx lines 87-99;
 
   const palletType = themeState === "dark" ? "dark" : "light";

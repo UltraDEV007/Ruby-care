@@ -84,6 +84,19 @@ export default function Settings() {
     return false;
   });
 
+  useEffect(() => {
+    // if people are exploiting with application window.
+    let existingPreference = localStorage.getItem("themeState");
+    if (existingPreference) {
+      existingPreference.match(/^light$/i)
+        ? setSwitchState(false)
+        : setSwitchState(true);
+    } else {
+      setSwitchState(false);
+      localStorage.setItem("switchState", "false");
+    }
+  }, []);
+
   const handleThemeChange = () => {
     setSwitchState(switchState === true ? false : true);
 
