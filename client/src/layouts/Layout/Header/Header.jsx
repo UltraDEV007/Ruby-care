@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useTheme } from "@material-ui/core/styles";
+import { Box, Grid, useMediaQuery } from "@material-ui/core";
 import Moment from "react-moment";
 import "moment-timezone";
 
@@ -12,29 +14,26 @@ import CurrentUserContainer from "./CurrentUserContainer";
 
 // Context
 import { ThemeStateContext } from "../../../context/ThemeStateContext";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 // Icons
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { useStyles } from "./headerStyles";
 import LocationIcons from "./LocationIcons";
-
-// Helpers
-// $TODO: use Material-UI useMediaQuery instead of this useEffect
-import HandleResizeEvents from "./HandleResizeEvents";
 
 // Views
 import QueriedUsers from "./QueriedUsers";
 import Burger from "./Burger";
 
 export default function Header({ title, allUsers }) {
-  const [leftSearch, setLeftSearch] = useState(false);
   const [currentTime, setCurrentTime] = useState(Date.now());
   const [search, setSearch] = useState("");
-  const [themeState] = useContext(ThemeStateContext);
   const [isMenuShowing, setIsMenuShowing] = useState(false);
 
-  const classes = useStyles({ themeState, isMenuShowing });
+  const [themeState] = useContext(ThemeStateContext);
+
+  const { breakpoints } = useTheme();
   let location = useLocation();
+  const classes = useStyles({ themeState, isMenuShowing });
 
   useEffect(() => {
     const interval = setInterval(() => setCurrentTime(Date.now()), 1000);
@@ -64,19 +63,15 @@ export default function Header({ title, allUsers }) {
                 {title}
               </Typography>
 
-              <HandleResizeEvents
-                setLeftSearch={setLeftSearch}
-                setIsMenuShowing={setIsMenuShowing}
-                isMenuShowing={isMenuShowing}
-              />
-
-              {leftSearch && (
-                <HeaderSearch
-                  usersJSX={usersJSX}
-                  themeState={themeState}
-                  search={search}
-                  setSearch={setSearch}
-                />
+              {useMediaQuery(breakpoints.up("md")) && (
+                <Box mx={2}>
+                  <HeaderSearch
+                    usersJSX={usersJSX}
+                    themeState={themeState}
+                    search={search}
+                    setSearch={setSearch}
+                  />
+                </Box>
               )}
             </div>
 

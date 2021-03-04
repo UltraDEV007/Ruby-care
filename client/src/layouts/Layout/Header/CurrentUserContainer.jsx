@@ -10,17 +10,18 @@ import LogoutIcon from "@material-ui/icons/ExitToApp";
 
 function CurrentUserContainer({ isMenuShowing }) {
   const [{ currentUser }, dispatch] = useStateValue();
+  const [themeState] = useContext(ThemeStateContext);
+  const classes = useStyles();
+
   const { pathname } = useLocation();
   const history = useHistory();
+
   const handleLogout = () => {
     dispatch({ type: "REMOVE_USER" });
     localStorage.removeItem("authToken");
     removeToken();
     history.push("/login");
   };
-
-  const classes = useStyles();
-  const [themeState] = useContext(ThemeStateContext);
 
   return (
     <>
