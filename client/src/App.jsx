@@ -1,20 +1,13 @@
 import "./App.css";
 import { Paper } from "@material-ui/core";
-import { Route, Switch } from "react-router-dom";
-import Login from "./screens/auth/Login/Login";
-import Register from "./screens/auth/Register/Register";
-import Home from "./screens/main/Home/Home";
-import Settings from "./screens/main/Settings/Settings";
-import InsightsContainer from "./containers/InsightsContainer";
-import UsersContainer from "./containers/UsersContainer";
 import { ThemeStateProvider } from "./context/ThemeStateContext";
-import NotFound from "./screens/Error/NotFound";
 import FirefoxBrowser from "./screens/Error/FirefoxBrowser";
 import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
 import { verifyUser } from "./services/auth";
 import { useStateValue } from "./context/CurrentUserContext";
 import { firefoxAgent } from "./utils/detectBrowsers";
+import AppRouter from "./Router/AppRouter";
 
 function App() {
   const [, dispatch] = useStateValue();
@@ -40,15 +33,7 @@ function App() {
   return (
     <ThemeStateProvider>
       <Paper style={{ minHeight: "100vh" }}>
-        <Switch>
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-          <Route path="/insights" component={InsightsContainer} />
-          <Route path="/settings" component={Settings} />
-          <Route path="/users" component={UsersContainer} />
-          <Route path="/" component={Home} />
-          <Route path="*" component={NotFound} />
-        </Switch>
+        <AppRouter />
       </Paper>
     </ThemeStateProvider>
   );
