@@ -425,7 +425,7 @@ export default function ratingLogic(ratingParam, iconParam) {
 
 - You can now add an image with actual file upload instead of pasting a link.
 
-<strong>Jan 1st, 2020:</strong>
+<strong>Jan 1st, 2021:</strong>
 
 - You can now write a reason for how you felt when creating/editing a mood.
 
@@ -433,18 +433,22 @@ export default function ratingLogic(ratingParam, iconParam) {
 
 - A User can now delete his account if wanting to in the settings page, he will be asked by a confirmation modal to confirm that he indeed wants to delete it.
 
-<strong>Jan 6th, 2020:</strong>
+<strong>Jan 6th, 2021:</strong>
 
 - Fixed an exploit where users could keep 2 tabs open and like posts twice.
 - Improved loading times for fetching posts in insights page
 - When you select a time necessary to take a medicine, it will now rerender live instead of needing to manually cause a rerender or reload.
 
-<strong>Feb 20th, 2020:</strong>
+<strong>Feb 20th, 2021:</strong>
 
 - Replaced pure white background color with eggshell white for light mode for eye comfort and style.
 - Users can now comment, edit comments, and delete comments on insights.
 - You can also now see a user's liked insights inside his profile page
 
-<strong>Feb 21st, 2020:</strong>
+<strong>Feb 21st, 2021:</strong>
 
 - Fixed a bug where sometimes a taken medicine wouldn't get saved to the database.
+
+<strong>March 4th, 2021:</strong>
+
+- Created PrivateRoute.jsx, Created AllUsersContext and AllUsersReducer.js
