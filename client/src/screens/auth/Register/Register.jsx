@@ -1,37 +1,47 @@
 import React, { useState, useContext } from "react";
-import { useStateValue } from "../../../components/Context/CurrentUserContext";
-import { ThemeStateContext } from "../../../components/Context/ThemeStateContext";
-import { registerUser } from "../../../services/auth";
 import { Link, useHistory } from "react-router-dom";
+
+// Context
+import { useStateValue } from "../../../context/CurrentUserContext";
+import { ThemeStateContext } from "../../../context/ThemeStateContext";
+import {
+  AllUsersDispatchContext,
+  AllUsersStateContext,
+} from "../../../context/AllUsersContext";
+
+// Services and Utils
+import { toTitleCase } from "../../../utils/toTitleCase";
+import { getAge } from "../../../utils/getAge";
+import { registerUser } from "../../../services/auth";
+import {
+  checkEmailValidity,
+  checkPasswordLength,
+} from "../../../utils/authUtils";
+
+// Components
+import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import Visibility from "@material-ui/icons/Visibility";
-import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
+import NativeSelect from "@material-ui/core/NativeSelect";
+import FormHelperText from "@material-ui/core/FormHelperText";
+
+// Icons
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import EmailIcon from "@material-ui/icons/Email";
 import LockIcon from "@material-ui/icons/Lock";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import NativeSelect from "@material-ui/core/NativeSelect";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import { toTitleCase } from "../../../utils/toTitleCase";
-import TextField from "@material-ui/core/TextField";
-import { getAge } from "../../../utils/getAge";
+import ClearIcon from "@material-ui/icons/Clear";
+
+// Styles
 import { useStyles } from "./registerStyles";
 import EventIcon from "@material-ui/icons/Event";
 import CameraIcon from "@material-ui/icons/CameraAlt";
-import {
-  checkEmailValidity,
-  checkPasswordLength,
-} from "../../../utils/authUtils";
-import ClearIcon from "@material-ui/icons/Clear";
-import {
-  AllUsersDispatchContext,
-  AllUsersStateContext,
-} from "../../../context/AllUsersContext";
 
 export default function Register() {
   const [{ currentUser }, dispatch] = useStateValue();
