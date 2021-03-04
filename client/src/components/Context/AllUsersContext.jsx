@@ -4,23 +4,30 @@ export const AllUsersStateContext = createContext();
 export const AllUsersDispatchContext = createContext();
 
 const usersReducer = (state, action) => {
-  const { payload } = action;
+  const { type, payload } = action;
 
-  switch (action.type) {
+  switch (type) {
     case "INIT":
       return {
         allUsers: payload,
       };
+    case "USER_CREATED":
+      return state.allUsers.push(payload.createdUser);
+
     case "UPDATE_USERS":
       return {
         ...state,
         allUsers: [...state.allUsers, payload],
       };
     case "USER_REMOVED":
-      return {
-        ...state,
-        allUsers: [state.allUsers.filter((user) => user.id !== payload.id)],
-      };
+      try {
+        return {
+          ...state,
+          allUsers: [state.allUsers.filter((user) => user.id !== payload.id)],
+        };
+      } catch (error) {
+        return state;
+      }
     default:
       return state;
   }
