@@ -3,7 +3,7 @@ import Foods from "../components/FoodComponents/Foods.jsx";
 import { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { destroyFood, getAllFoods, postFood, putFood } from "../services/foods";
-import { CurrentUserContext } from "../components/Context/CurrentUserContext";
+import { CurrentUserContext } from "../context/CurrentUserContext";
 
 export default function FoodsContainer() {
   const [currentUser] = useContext(CurrentUserContext);

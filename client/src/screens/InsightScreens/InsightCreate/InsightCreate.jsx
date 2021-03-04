@@ -3,7 +3,7 @@ import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
-import { ThemeStateContext } from "../../../components/Context/ThemeStateContext";
+import { ThemeStateContext } from "../../../context/ThemeStateContext";
 import HelpIcon from "@material-ui/icons/Help";
 import { Div, Form } from "./styledInsightCreate.js";
 

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import SentimentVeryDissatisfiedIcon from "@material-ui/icons/SentimentVeryDissatisfied";
-import { ThemeStateContext } from "../../Context/ThemeStateContext";
+import { ThemeStateContext } from "../../../context/ThemeStateContext";
 function PoorEmoji() {
   const [themeState] = useContext(ThemeStateContext);
 

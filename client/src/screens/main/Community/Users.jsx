@@ -4,7 +4,7 @@ import Search from "../../../components/Search/Search";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Layout from "../../../layouts/Layout/Layout";
 import { checkUserLength } from "../../../utils/checkUserLength";
-import { ThemeStateContext } from "../../../components/Context/ThemeStateContext";
+import { ThemeStateContext } from "../../../context/ThemeStateContext";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ScrollToTopOnMount from "../../../components/Helpers/ScrollToTopOnMount";
 import Div from "./styledUsers";

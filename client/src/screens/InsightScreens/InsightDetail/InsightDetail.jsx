@@ -1,26 +1,37 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
-import Button from "@material-ui/core/Button";
-import { useStateValue } from "../../../components/Context/CurrentUserContext";
 import Moment from "react-moment";
+
+// components
+import TextField from "@material-ui/core/TextField";
+import CareCard from "../../../components/Card/CareCard";
+import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { ThemeStateContext } from "../../../components/Context/ThemeStateContext";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import DeleteInsightFromDetail from "../../../components/Modals/DeleteInsightFromDetail";
-import Wrapper from "./styledInsightDetail";
 import LinearProgressLoading from "../../../components/Loading/LinearProgressLoading";
+
+// Icons
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import IconButton from "@material-ui/core/IconButton";
-import CareCard from "../../../components/Card/CareCard";
-import DeleteCommentFromDetail from "../../../components/Modals/DeleteCommentFromDetail";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+
+// Context
+import { useStateValue } from "../../../context/CurrentUserContext";
+import { ThemeStateContext } from "../../../context/ThemeStateContext";
+
+// services
 import {
   destroyComment,
   postComment,
   putComment,
 } from "../../../services/comments";
-import TextField from "@material-ui/core/TextField";
+
+// Views
+import DeleteInsightFromDetail from "../../../components/Modals/DeleteInsightFromDetail";
+import DeleteCommentFromDetail from "../../../components/Modals/DeleteCommentFromDetail";
 import EditCommentFromDetail from "../../../components/Modals/EditCommentFromDetail";
 
+// Styles
+import Wrapper from "./styledInsightDetail";
 export default function InsightDetail({
   getOneInsight,
   handleDelete,

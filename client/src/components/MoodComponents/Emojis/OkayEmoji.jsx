@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import SentimentSatisfiedIcon from "@material-ui/icons/SentimentSatisfied";
-import { ThemeStateContext } from "../../Context/ThemeStateContext";
+import { ThemeStateContext } from "../../../context/ThemeStateContext";
 
 function OkayEmoji() {
   const [themeState] = useContext(ThemeStateContext);

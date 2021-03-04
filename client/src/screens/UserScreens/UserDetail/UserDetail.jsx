@@ -3,7 +3,7 @@ import { Link, useParams, useHistory } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import Moment from "react-moment";
 import Typography from "@material-ui/core/Typography";
-import { ThemeStateContext } from "../../../components/Context/ThemeStateContext";
+import { ThemeStateContext } from "../../../context/ThemeStateContext";
 import {
   checkInsights,
   checkedLikedInsights,

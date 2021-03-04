@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ThemeStateContext } from "../../../components/Context/ThemeStateContext";
+import { ThemeStateContext } from "../../../context/ThemeStateContext";
 import OpenNavBar from "./OpenNavBar";
 import { makeStyles } from "@material-ui/core";
 

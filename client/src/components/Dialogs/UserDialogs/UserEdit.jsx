@@ -1,37 +1,47 @@
 import React, { useContext, useState, useEffect } from "react";
-import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
+
+// Components
+import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
 import Dialog from "@material-ui/core/Dialog";
-import Visibility from "@material-ui/icons/Visibility";
-import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import EmailIcon from "@material-ui/icons/Email";
-import LockIcon from "@material-ui/icons/Lock";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import NativeSelect from "@material-ui/core/NativeSelect";
 import FormHelperText from "@material-ui/core/FormHelperText";
-import { getOneUser } from "../../../services/users";
-import { toTitleCase } from "../../../utils/toTitleCase";
-import CameraIcon from "@material-ui/icons/CameraAlt";
-import ClearIcon from "@material-ui/icons/Clear";
+
 import {
   DialogTitle,
   DialogContent,
   DialogActions,
 } from "../../Form/DialogComponents";
 import Form from "./StyledUserEdit";
-import { ThemeStateContext } from "../../Context/ThemeStateContext";
+
+// Icons
+import IconButton from "@material-ui/core/IconButton";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
+
+import EmailIcon from "@material-ui/icons/Email";
+import LockIcon from "@material-ui/icons/Lock";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import CameraIcon from "@material-ui/icons/CameraAlt";
+import ClearIcon from "@material-ui/icons/Clear";
+
+// Services and Utils
+import { getOneUser } from "../../../services/users";
+import { toTitleCase } from "../../../utils/toTitleCase";
 import {
   checkEmailUniqueuess,
   checkEmailValidity,
   checkPasswordLength,
 } from "../../../utils/authUtils";
+
+// Context
+import { ThemeStateContext } from "../../../context/ThemeStateContext";
 
 export default function UserEdit({
   handleOpen,

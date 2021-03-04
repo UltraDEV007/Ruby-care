@@ -7,13 +7,13 @@ import Home from "./screens/main/Home/Home";
 import Settings from "./screens/main/Settings/Settings";
 import InsightsContainer from "./containers/InsightsContainer";
 import UsersContainer from "./containers/UsersContainer";
-import { ThemeStateProvider } from "./components/Context/ThemeStateContext";
+import { ThemeStateProvider } from "./context/ThemeStateContext";
 import NotFound from "./screens/Error/NotFound";
 import FirefoxBrowser from "./screens/Error/FirefoxBrowser";
 import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
 import { verifyUser } from "./services/auth";
-import { useStateValue } from "./components/Context/CurrentUserContext";
+import { useStateValue } from "./context/CurrentUserContext";
 import { firefoxAgent } from "./utils/detectBrowsers";
 
 function App() {

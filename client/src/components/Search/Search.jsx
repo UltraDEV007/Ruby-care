@@ -5,7 +5,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
 import TextField from "@material-ui/core/TextField";
 import ClearIcon from "@material-ui/icons/Clear";
-import { ThemeStateContext } from "../Context/ThemeStateContext";
+import { ThemeStateContext } from "../../context/ThemeStateContext";
 import Form from "./styledSearch";
 
 function Search({ search, setSearch }) {

@@ -1,20 +1,30 @@
 import { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { useStateValue } from "../../../components/Context/CurrentUserContext";
-import { ThemeStateContext } from "../../../components/Context/ThemeStateContext";
+
+// Context
+import { useStateValue } from "../../../context/CurrentUserContext";
+import { ThemeStateContext } from "../../../context/ThemeStateContext";
+
+// Services and Utilities
 import { loginUser } from "../../../services/auth";
+import { getAge } from "../../../utils/getAge";
+
+// Components
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import Visibility from "@material-ui/icons/Visibility";
-import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
+
+// Icons
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import IconButton from "@material-ui/core/IconButton";
 import EmailIcon from "@material-ui/icons/Email";
 import LockIcon from "@material-ui/icons/Lock";
-import { getAge } from "../../../utils/getAge";
+
+// Styles
 import { useStyles } from "./loginStyles.js";
 
 export default function Login() {

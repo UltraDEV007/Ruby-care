@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import { ThemeStateContext } from "../../../components/Context/ThemeStateContext";
+import { ThemeStateContext } from "../../../context/ThemeStateContext";
 import CurrentUserContainer from "./CurrentUserContainer";
 import HeaderSearch from "./HeaderSearch";
 import { yellow, blue } from "@material-ui/core/colors";

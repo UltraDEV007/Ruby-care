@@ -1,10 +1,6 @@
-import React, { createContext, useMemo, useRef } from "react";
-import useAsyncReducer from "../../hooks/useAsyncReducer";
-import { getAllUsers } from "../../services/users";
-export const AllUsersStateContext = createContext();
-export const AllUsersDispatchContext = createContext();
+import { getAllUsers } from "../services/users";
 
-const usersReducer = (state, action) => {
+export const usersReducer = (state, action) => {
   return new Promise(async (resolve) => {
     const { type, payload } = action;
     switch (type) {
@@ -53,33 +49,3 @@ const usersReducer = (state, action) => {
     }
   });
 };
-
-const AllUsersContextProvider = ({ children }) => {
-  const initialUsersState = {
-    allUsers: [],
-    usersAreLoading: true,
-  };
-
-  const [state, dispatchAllUsers] = useAsyncReducer(
-    usersReducer,
-    initialUsersState
-  );
-
-  const dispatch = useRef(dispatchAllUsers);
-
-  useMemo(async () => {
-    dispatch.current({
-      type: "INIT",
-    });
-  }, []);
-
-  return (
-    <AllUsersStateContext.Provider value={state}>
-      <AllUsersDispatchContext.Provider value={dispatchAllUsers}>
-        {children}
-      </AllUsersDispatchContext.Provider>
-    </AllUsersStateContext.Provider>
-  );
-};
-
-export default AllUsersContextProvider;

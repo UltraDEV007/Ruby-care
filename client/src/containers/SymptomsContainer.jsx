@@ -8,7 +8,7 @@ import {
   postSymptom,
   putSymptom,
 } from "../services/symptoms";
-import { CurrentUserContext } from "../components/Context/CurrentUserContext";
+import { CurrentUserContext } from "../context/CurrentUserContext";
 
 export default function SymptomsContainer() {
   const [currentUser] = useContext(CurrentUserContext);

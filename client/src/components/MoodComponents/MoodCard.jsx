@@ -4,7 +4,7 @@ import Card from "@material-ui/core/Card";
 import { Link, Route, Switch } from "react-router-dom";
 import Moment from "react-moment";
 import "moment-timezone";
-import { ThemeStateContext } from "../Context/ThemeStateContext";
+import { ThemeStateContext } from "../../context/ThemeStateContext";
 import { indigo } from "@material-ui/core/colors/";
 import { emojiLogic } from "../../utils/emojiLogic";
 import MoodEdit from "../Dialogs/MoodDialogs/MoodEdit";

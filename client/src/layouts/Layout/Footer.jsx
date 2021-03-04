@@ -4,7 +4,7 @@ import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import { indigo, blue } from "@material-ui/core/colors";
-import { ThemeStateContext } from "../../components/Context/ThemeStateContext";
+import { ThemeStateContext } from "../../context/ThemeStateContext";
 import { FOOTER_ROUTES as routes } from "../../utils/navigation";
 
 const useStyles = makeStyles({

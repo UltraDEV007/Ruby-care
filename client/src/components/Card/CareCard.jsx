@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import Card from "@material-ui/core/Card";
-import { useStateValue } from "../Context/CurrentUserContext";
-import { ThemeStateContext } from "../Context/ThemeStateContext";
+import { useStateValue } from "../../context/CurrentUserContext";
+import { ThemeStateContext } from "../../context/ThemeStateContext";
 import Button from "@material-ui/core/Button";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import Typography from "@material-ui/core/Typography";

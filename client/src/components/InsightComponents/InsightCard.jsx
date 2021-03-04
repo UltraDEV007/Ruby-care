@@ -1,13 +1,13 @@
-import { useStateValue } from "../Context/CurrentUserContext";
-import DeleteInsight from "../Modals/DeleteInsight";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { useStyles } from "./insightCardStyles.js";
+import { useStateValue } from "../../context/CurrentUserContext";
+import { destroyLike, postLike } from "../../services/likes";
+import DeleteInsight from "../Modals/DeleteInsight";
 import UnlikedIcon from "@material-ui/icons/FavoriteBorder";
 import LikedIcon from "@material-ui/icons/Favorite";
-import React, { useState, useEffect } from "react";
-import { destroyLike, postLike } from "../../services/likes";
 import IconButton from "@material-ui/core/IconButton";
 import CareCard from "../../components/Card/CareCard";
-import { useHistory } from "react-router-dom";
 import ForumIcon from "@material-ui/icons/Forum";
 
 function InsightCard({

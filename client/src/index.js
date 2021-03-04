@@ -4,9 +4,9 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
-import { CurrentUserProvider } from "./components/Context/CurrentUserContext";
-import reducer, { initialState } from "./reducer";
-import AllUsersContextProvider from "./components/Context/AllUsersContext";
+import { CurrentUserProvider } from "./context/CurrentUserContext";
+import reducer, { initialState } from "./reducers/currentUserReducer";
+import AllUsersContextProvider from "./context/AllUsersContext";
 
 ReactDOM.render(
   <React.StrictMode>

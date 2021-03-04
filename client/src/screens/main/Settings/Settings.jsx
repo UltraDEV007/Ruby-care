@@ -1,27 +1,37 @@
 import Layout from "../../../layouts/Layout/Layout";
-import Switch from "@material-ui/core/Switch";
-import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
-import { useContext, useState, useEffect } from "react";
-import { useStateValue } from "../../../components/Context/CurrentUserContext";
-import { ThemeStateContext } from "../../../components/Context/ThemeStateContext";
+import { useHistory } from "react-router-dom";
 import Moment from "react-moment";
 import "moment-timezone";
-import ScrollToTopOnMount from "../../../components/Helpers/ScrollToTopOnMount";
-import Brightness4Icon from "@material-ui/icons/Brightness4";
-import { getAge } from "../../../utils/getAge";
-import { destroyUser, putUser } from "../../../services/users";
-import UserEdit from "../../../components/Dialogs/UserDialogs/UserEdit";
-import Button from "@material-ui/core/Button";
-import { useStyles } from "./settingStyles";
-import UserDelete from "../../../components/Modals/UserDelete";
-import { removeToken } from "../../../services/auth";
-import { useHistory } from "react-router-dom";
+
+// Context
+import { useContext, useState, useEffect } from "react";
+import { useStateValue } from "../../../context/CurrentUserContext";
+import { ThemeStateContext } from "../../../context/ThemeStateContext";
 import {
   AllUsersDispatchContext,
   AllUsersStateContext,
-} from "../../../components/Context/AllUsersContext";
+} from "../../../context/AllUsersContext";
+
+// Services and Utils
+import { getAge } from "../../../utils/getAge";
+import { destroyUser, putUser } from "../../../services/users";
+import ScrollToTopOnMount from "../../../components/Helpers/ScrollToTopOnMount";
+import { removeToken } from "../../../services/auth";
+
+// Views
+import UserEdit from "../../../components/Dialogs/UserDialogs/UserEdit";
+import UserDelete from "../../../components/Modals/UserDelete";
+
+// Components and Icons
+import Switch from "@material-ui/core/Switch";
+import Card from "@material-ui/core/Card";
+import Button from "@material-ui/core/Button";
+import Brightness4Icon from "@material-ui/icons/Brightness4";
+
+// Styles
+import { useStyles } from "./settingStyles";
 
 export default function Settings() {
   const [{ currentUser }, dispatch] = useStateValue();

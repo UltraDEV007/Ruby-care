@@ -1,18 +1,29 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import Moment from "react-moment";
+import "moment-timezone";
+
+// Components
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import { ThemeStateContext } from "../../../components/Context/ThemeStateContext";
-import { Link, useLocation } from "react-router-dom";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import { useStyles } from "./headerStyles";
 import HeaderSearch from "./HeaderSearch";
-import LocationIcons from "./LocationIcons";
-import QueriedUsers from "./QueriedUsers";
-import Moment from "react-moment";
-import "moment-timezone";
-import HandleResizeEvents from "./HandleResizeEvents";
 import CurrentUserContainer from "./CurrentUserContainer";
+
+// Context
+import { ThemeStateContext } from "../../../context/ThemeStateContext";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+
+// Icons
+import { useStyles } from "./headerStyles";
+import LocationIcons from "./LocationIcons";
+
+// Helpers
+// $TODO: use Material-UI useMediaQuery instead of this useEffect
+import HandleResizeEvents from "./HandleResizeEvents";
+
+// Views
+import QueriedUsers from "./QueriedUsers";
 import Burger from "./Burger";
 
 export default function Header({ title, allUsers }) {
