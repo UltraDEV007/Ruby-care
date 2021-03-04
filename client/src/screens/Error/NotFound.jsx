@@ -4,7 +4,7 @@ import { checkValidity } from "../../utils/checkValidity";
 import Typography from "@material-ui/core/Typography";
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
-import { ThemeStateContext } from "../../components/Context/ThemeStateContext";
+import { ThemeStateContext } from "../../context/ThemeStateContext";
 import { yellow, grey, blue } from "@material-ui/core/colors";
 import { NavLink } from "react-router-dom";
 

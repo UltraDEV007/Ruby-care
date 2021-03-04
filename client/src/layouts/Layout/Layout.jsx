@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import Header from "./Header/Header";
 import Footer from "./Footer";
-import { AllUsersStateContext } from "../../components/Context/AllUsersContext";
+import { AllUsersStateContext } from "../../context/AllUsersContext";
 
 function Layout({ title, children }) {
   const { allUsers } = useContext(AllUsersStateContext);

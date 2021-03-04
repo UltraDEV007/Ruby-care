@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Layout from "../../../layouts/Layout/Layout";
 import InsightCard from "../../../components/InsightComponents/InsightCard";
-import { ThemeStateContext } from "../../../components/Context/ThemeStateContext";
+import { ThemeStateContext } from "../../../context/ThemeStateContext";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Typography from "@material-ui/core/Typography";
 import Search from "../../../components/Search/Search";
