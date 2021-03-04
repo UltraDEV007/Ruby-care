@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import SentimentSatisfiedSharpIcon from "@material-ui/icons/SentimentSatisfiedSharp";
-import { ThemeStateContext } from "../../Context/ThemeStateContext";
+import { ThemeStateContext } from "../../../context/ThemeStateContext";
 
 function GoodEmoji() {
   const [themeState] = useContext(ThemeStateContext);

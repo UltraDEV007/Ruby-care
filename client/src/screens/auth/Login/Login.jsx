@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 
 // Context
 import { useStateValue } from "../../../context/CurrentUserContext";
-import { ThemeStateContext } from "../../context/ThemeStateContext";
+import { ThemeStateContext } from "../../../context/ThemeStateContext";
 
 // Services and Utilities
 import { loginUser } from "../../../services/auth";

@@ -24,7 +24,7 @@ import NotFound from "../../Error/NotFound";
 
 // Context
 import { ThemeStateContext } from "../../../context/ThemeStateContext";
-import { CurrentUserContext } from "../../context/CurrentUserContext";
+import { CurrentUserContext } from "../../../context/CurrentUserContext";
 
 // Services and Utilities
 import { getAllAffirmations } from "../../../services/affirmations";

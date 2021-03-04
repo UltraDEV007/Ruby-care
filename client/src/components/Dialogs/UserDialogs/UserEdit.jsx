@@ -41,7 +41,7 @@ import {
 } from "../../../utils/authUtils";
 
 // Context
-import { ThemeStateContext } from "../../context/ThemeStateContext";
+import { ThemeStateContext } from "../../../context/ThemeStateContext";
 
 export default function UserEdit({
   handleOpen,

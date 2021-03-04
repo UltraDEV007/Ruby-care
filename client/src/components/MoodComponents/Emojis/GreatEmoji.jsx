@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
-import { ThemeStateContext } from "../../Context/ThemeStateContext";
+import { ThemeStateContext } from "../../../context/ThemeStateContext";
 function GreatEmoji() {
   const [themeState] = useContext(ThemeStateContext);
 
