@@ -12,22 +12,25 @@ const usersReducer = (state, action) => {
         allUsers: payload,
       };
     case "USER_CREATED":
-      return state.allUsers.push(payload.createdUser);
-
-    case "UPDATE_USERS":
       return {
         ...state,
         allUsers: [...state.allUsers, payload],
       };
+    case "UPDATE_USERS":
+      return {
+        ...state,
+        allUsers: state.allUsers.map((user) =>
+          user.id === Number(payload.id) ? payload : user
+        ),
+      };
     case "USER_REMOVED":
-      try {
-        return {
-          ...state,
-          allUsers: [state.allUsers.filter((user) => user.id !== payload.id)],
-        };
-      } catch (error) {
-        return state;
-      }
+      return {
+        ...state,
+        allUsers: state.allUsers.filter(
+          (user) => user.id !== Number(payload.id)
+        ),
+      };
+
     default:
       return state;
   }
