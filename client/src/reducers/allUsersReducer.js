@@ -3,6 +3,7 @@ import { getAllUsers } from "../services/users";
 export const usersReducer = (state, action) => {
   return new Promise(async (resolve) => {
     const { type, payload } = action;
+
     switch (type) {
       case "INIT":
         try {
@@ -20,6 +21,7 @@ export const usersReducer = (state, action) => {
           return state;
         }
         return state;
+
       case "UPDATE_USERS":
         try {
           resolve({
@@ -32,6 +34,7 @@ export const usersReducer = (state, action) => {
           return state;
         }
         return state;
+
       case "USER_REMOVED":
         try {
           resolve({
@@ -44,6 +47,7 @@ export const usersReducer = (state, action) => {
           return state;
         }
         return state;
+
       default:
         return state;
     }

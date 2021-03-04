@@ -38,10 +38,6 @@ const Ul = styled.ul`
   span:hover {
     cursor: pointer;
   }
-  img {
-    width: 100px;
-    object-fit: contain;
-  }
   a {
     text-decoration: none;
   }
