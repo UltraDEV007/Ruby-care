@@ -31,7 +31,7 @@ import ClearIcon from "@material-ui/icons/Clear";
 import {
   AllUsersDispatchContext,
   AllUsersStateContext,
-} from "../../../components/Context/AllUsersContext";
+} from "../../../context/AllUsersContext";
 
 export default function Register() {
   const [{ currentUser }, dispatch] = useStateValue();

@@ -21,7 +21,7 @@ import { useHistory } from "react-router-dom";
 import {
   AllUsersDispatchContext,
   AllUsersStateContext,
-} from "../../../components/Context/AllUsersContext";
+} from "../../../context/AllUsersContext";
 
 export default function Settings() {
   const [{ currentUser }, dispatch] = useStateValue();
