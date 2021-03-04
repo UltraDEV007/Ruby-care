@@ -62,7 +62,7 @@ export default function Register() {
     const userData = await registerUser(registerData);
     dispatch({ type: "SET_USER", currentUser: userData });
 
-    await dispatchAllUsers({ type: "USER_CREATED", payload: userData });
+    dispatchAllUsers({ type: "USER_CREATED", payload: userData });
 
     history.push("/");
   };

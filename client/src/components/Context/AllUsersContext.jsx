@@ -16,6 +16,14 @@ const usersReducer = (state, action) => {
           return state;
         }
         return state;
+
+      case "USER_CREATED":
+        try {
+          resolve({ ...state, allUsers: [...state.allUsers, payload] });
+        } catch (error) {
+          return state;
+        }
+        return state;
       case "UPDATE_USERS":
         try {
           resolve({
