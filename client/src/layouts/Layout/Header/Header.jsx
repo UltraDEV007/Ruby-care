@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useTheme } from "@material-ui/core/styles";
-import { Box, Grid, useMediaQuery } from "@material-ui/core";
+import { Box, useMediaQuery } from "@material-ui/core";
 import Moment from "react-moment";
 import "moment-timezone";
 
