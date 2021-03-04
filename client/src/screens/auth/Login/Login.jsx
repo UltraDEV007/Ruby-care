@@ -45,7 +45,12 @@ export default function Login() {
   const handleLogin = async (loginData) => {
     loginData.email = loginData?.email?.toLowerCase();
     const userData = await loginUser(loginData);
-    dispatch({ type: "SET_USER", currentUser: userData });
+
+    dispatch({
+      type: "SET_USER",
+      currentUser: userData,
+    });
+
     history.push("/");
   };
 

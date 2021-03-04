@@ -114,7 +114,6 @@ export default function MedCard({
               <CircularProgress style={{ height: "80px", width: "80px" }} />
             </div>
           )}
-          {console.log(med)}
           {!med.is_taken && compareDateWithCurrentTime(med.time) < 0 ? (
             <div onClick={handleDetailOpen} className="time">
               <Typography>

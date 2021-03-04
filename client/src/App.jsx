@@ -11,17 +11,17 @@ import AppRouter from "./Router/AppRouter";
 
 function App() {
   const [, dispatch] = useStateValue();
-  const history = useHistory();
+  // const history = useHistory();
   useEffect(() => {
     const handleVerify = async () => {
       const userData = await verifyUser();
       dispatch({ type: "SET_USER", currentUser: userData });
-      if (!userData) {
-        history.push("/login");
-      }
+      // if (!userData) {
+      //   history.push("/login");
+      // }
     };
     handleVerify();
-  }, [history, dispatch]);
+  }, [dispatch]);
 
   if (firefoxAgent) {
     return (
