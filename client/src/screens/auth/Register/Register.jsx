@@ -28,7 +28,10 @@ import {
   checkPasswordLength,
 } from "../../../utils/authUtils";
 import ClearIcon from "@material-ui/icons/Clear";
-import { AllUsersStateContext } from "../../../components/Context/AllUsersContext";
+import {
+  AllUsersDispatchContext,
+  AllUsersStateContext,
+} from "../../../components/Context/AllUsersContext";
 
 export default function Register() {
   const [{ currentUser }, dispatch] = useStateValue();
@@ -41,6 +44,7 @@ export default function Register() {
   const [passwordConfirmAlert, setPasswordConfirmAlert] = useState(false);
   const [emailUniquenessAlert, setEmailUniquenessAlert] = useState(false);
   const { allUsers } = useContext(AllUsersStateContext);
+  const dispatchAllUsers = useContext(AllUsersDispatchContext);
 
   const history = useHistory();
 
@@ -56,6 +60,9 @@ export default function Register() {
     registerData.email = registerData?.email?.toLowerCase();
     const userData = await registerUser(registerData);
     dispatch({ type: "SET_USER", currentUser: userData });
+
+    await dispatchAllUsers({ type: "USER_CREATED", payload: userData });
+
     history.push("/");
   };
   const [formData, setFormData] = useState({
