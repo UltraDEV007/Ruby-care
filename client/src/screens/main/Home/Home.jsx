@@ -1,25 +1,35 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+
+// Styles and Assets
 import { useStyles } from "./homeStyles.js";
+import RXGuideLogo from "../../../components/MedComponents/RXGuideLogo";
+
+// Components
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import LinearProgressLoading from "../../../components/Loading/LinearProgressLoading.jsx";
+
+// Containers and Views
+import Layout from "../../../layouts/Layout/Layout";
 import MoodsContainer from "../../../containers/MoodsContainer";
 import AffirmationsContainer from "../../../containers/AffirmationsContainer";
 import SymptomsContainer from "../../../containers/SymptomsContainer";
 import MedsContainer from "../../../containers/MedsContainer";
 import FoodsContainer from "../../../containers/FoodsContainer";
-import Layout from "../../../layouts/Layout/Layout";
-import { ThemeStateContext } from "../../../components/Context/ThemeStateContext";
-import { CurrentUserContext } from "../../../components/Context/CurrentUserContext";
+import NotFound from "../../Error/NotFound";
+
+// Context
+import { ThemeStateContext } from "../../../context/ThemeStateContext";
+import { CurrentUserContext } from "../../context/CurrentUserContext";
+
+// Services and Utilities
 import { getAllAffirmations } from "../../../services/affirmations";
 import { checkValidity } from "../../../utils/checkValidity";
-import NotFound from "../../Error/NotFound";
 import ScrollToTopOnMount from "../../../components/Helpers/ScrollToTopOnMount";
-import RXGuideLogo from "../../../components/MedComponents/RXGuideLogo";
-import LinearProgressLoading from "../../../components/Loading/LinearProgressLoading.jsx";
 
 export default function Home() {
   const [themeState] = useContext(ThemeStateContext);
