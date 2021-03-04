@@ -1,5 +1,5 @@
-export const checkUserLength = (users, loaded) => {
-  if (!loaded) {
+export const checkUserLength = (users, loading) => {
+  if (loading) {
     return <>Loading...</>;
   }
 

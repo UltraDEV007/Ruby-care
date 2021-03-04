@@ -9,7 +9,7 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ScrollToTopOnMount from "../../../components/Helpers/ScrollToTopOnMount";
 import Div from "./styledUsers";
 
-const Users = ({ allUsers, loaded }) => {
+const Users = ({ allUsers, usersAreLoading }) => {
   const [themeState] = useContext(ThemeStateContext);
   const [search, setSearch] = useState("");
 
@@ -43,8 +43,10 @@ const Users = ({ allUsers, loaded }) => {
         <Search setSearch={setSearch} />
         <div className="users-container">
           <>
-            <p className="users-title">{checkUserLength(usersJSX, loaded)}</p>
-            {!loaded ? (
+            <p className="users-title">
+              {checkUserLength(usersJSX, usersAreLoading)}
+            </p>
+            {usersAreLoading ? (
               <LinearProgress style={{ margin: "50px auto", width: "30vw" }} />
             ) : (
               <div className="queried-users">{usersJSX}</div>

@@ -23,12 +23,12 @@ import { getAge } from "../../../utils/getAge";
 import { useStyles } from "./registerStyles";
 import EventIcon from "@material-ui/icons/Event";
 import CameraIcon from "@material-ui/icons/CameraAlt";
-import FetchUsers from "../../../components/Helpers/FetchUsers";
 import {
   checkEmailValidity,
   checkPasswordLength,
 } from "../../../utils/authUtils";
 import ClearIcon from "@material-ui/icons/Clear";
+import { AllUsersStateContext } from "../../../components/Context/AllUsersContext";
 
 export default function Register() {
   const [{ currentUser }, dispatch] = useStateValue();
@@ -40,7 +40,8 @@ export default function Register() {
   const [imagePreview, setImagePreview] = useState(false);
   const [passwordConfirmAlert, setPasswordConfirmAlert] = useState(false);
   const [emailUniquenessAlert, setEmailUniquenessAlert] = useState(false);
-  const [allUsers, setAllUsers] = useState([]);
+  const { allUsers } = useContext(AllUsersStateContext);
+
   const history = useHistory();
 
   const handleClickShowPassword = () => {
@@ -126,7 +127,6 @@ export default function Register() {
 
   return (
     <>
-      <FetchUsers setAllUsers={setAllUsers} />
       <div className={classes.root}>
         <div className={classes.middleWrapper}>
           <div className={classes.logoContainer}>

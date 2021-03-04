@@ -1,21 +1,12 @@
-import { useState, useEffect } from "react";
+import { useContext } from "react";
 import { Switch, Route } from "react-router-dom";
-import { getAllUsers, getOneUser } from "../services/users";
+import { getOneUser } from "../services/users";
 import UserDetail from "../screens/UserScreens/UserDetail/UserDetail";
 import Users from "../screens/main/Community/Users";
+import { AllUsersStateContext } from "../components/Context/AllUsersContext";
 
 export default function UsersContainer() {
-  const [allUsers, setAllUsers] = useState([]);
-  const [loaded, setLoaded] = useState(false);
-
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const userData = await getAllUsers();
-      setAllUsers(userData);
-      setLoaded(true);
-    };
-    fetchUsers();
-  }, []);
+  const { allUsers, usersAreLoading } = useContext(AllUsersStateContext);
 
   return (
     <>
@@ -24,7 +15,7 @@ export default function UsersContainer() {
           <UserDetail getOneUser={getOneUser} />
         </Route>
         <Route path="/users/">
-          <Users loaded={loaded} allUsers={allUsers} />
+          <Users usersAreLoading={usersAreLoading} allUsers={allUsers} />
         </Route>
       </Switch>
     </>

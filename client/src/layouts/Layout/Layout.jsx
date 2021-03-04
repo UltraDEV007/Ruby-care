@@ -1,17 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import Header from "./Header/Header";
 import Footer from "./Footer";
-import { getAllUsers } from "../../services/users";
+import { AllUsersStateContext } from "../../components/Context/AllUsersContext";
 
 function Layout({ title, children }) {
-  const [allUsers, setAllUsers] = useState([]);
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const userData = await getAllUsers();
-      setAllUsers(userData);
-    };
-    fetchUsers();
-  }, []);
+  const { allUsers } = useContext(AllUsersStateContext);
 
   return (
     <>
