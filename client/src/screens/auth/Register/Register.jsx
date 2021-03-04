@@ -1,34 +1,34 @@
-import React, { useState, useContext } from "react";
-import { useStateValue } from "../../../components/Context/CurrentUserContext";
-import { ThemeStateContext } from "../../../components/Context/ThemeStateContext";
-import { registerUser } from "../../../services/auth";
-import { Link, useHistory } from "react-router-dom";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import Visibility from "@material-ui/icons/Visibility";
-import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import Input from "@material-ui/core/Input";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import IconButton from "@material-ui/core/IconButton";
-import EmailIcon from "@material-ui/icons/Email";
-import LockIcon from "@material-ui/icons/Lock";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import NativeSelect from "@material-ui/core/NativeSelect";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import { toTitleCase } from "../../../utils/toTitleCase";
-import TextField from "@material-ui/core/TextField";
-import { getAge } from "../../../utils/getAge";
-import { useStyles } from "./registerStyles";
-import EventIcon from "@material-ui/icons/Event";
-import CameraIcon from "@material-ui/icons/CameraAlt";
-import FetchUsers from "../../../components/Helpers/FetchUsers";
+import React, { useState, useContext } from 'react';
+import { useStateValue } from '../../../components/Context/CurrentUserContext';
+import { ThemeStateContext } from '../../../components/Context/ThemeStateContext';
+import { registerUser } from '../../../services/auth';
+import { Link, useHistory } from 'react-router-dom';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import Input from '@material-ui/core/Input';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import IconButton from '@material-ui/core/IconButton';
+import EmailIcon from '@material-ui/icons/Email';
+import LockIcon from '@material-ui/icons/Lock';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import NativeSelect from '@material-ui/core/NativeSelect';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import { toTitleCase } from '../../../utils/toTitleCase';
+import TextField from '@material-ui/core/TextField';
+import { getAge } from '../../../utils/getAge';
+import { useStyles } from './registerStyles';
+import EventIcon from '@material-ui/icons/Event';
+import CameraIcon from '@material-ui/icons/CameraAlt';
 import {
   checkEmailValidity,
   checkPasswordLength,
-} from "../../../utils/authUtils";
-import ClearIcon from "@material-ui/icons/Clear";
+} from '../../../utils/authUtils';
+import ClearIcon from '@material-ui/icons/Clear';
+import { AllUsersStateContext } from '../../../components/Context/AllUsersContext';
 
 export default function Register() {
   const [{ currentUser }, dispatch] = useStateValue();
@@ -40,7 +40,8 @@ export default function Register() {
   const [imagePreview, setImagePreview] = useState(false);
   const [passwordConfirmAlert, setPasswordConfirmAlert] = useState(false);
   const [emailUniquenessAlert, setEmailUniquenessAlert] = useState(false);
-  const [allUsers, setAllUsers] = useState([]);
+  const { allUsers } = useContext(AllUsersStateContext);
+
   const history = useHistory();
 
   const handleClickShowPassword = () => {
@@ -54,19 +55,19 @@ export default function Register() {
   const handleRegister = async (registerData) => {
     registerData.email = registerData?.email?.toLowerCase();
     const userData = await registerUser(registerData);
-    dispatch({ type: "SET_USER", currentUser: userData });
-    history.push("/");
+    dispatch({ type: 'SET_USER', currentUser: userData });
+    history.push('/');
   };
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    birthday: "",
-    gender: "",
-    image: "",
+    name: '',
+    email: '',
+    password: '',
+    birthday: '',
+    gender: '',
+    image: '',
   });
   const { name, email, password, birthday, gender, image } = formData;
-  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -96,7 +97,7 @@ export default function Register() {
   const onImageSelected = (e) => {
     const img = e.target.files[0];
     const fileReader = new FileReader();
-    fileReader.addEventListener("load", () => {
+    fileReader.addEventListener('load', () => {
       setFormData((prevState) => ({
         ...prevState,
         image: fileReader.result,
@@ -109,15 +110,15 @@ export default function Register() {
   };
 
   const selectImage = () => {
-    document.getElementById("image-upload").click();
+    document.getElementById('image-upload').click();
   };
 
   const handleImageClear = () => {
     setFormData({
       ...formData,
-      image: "",
+      image: '',
     });
-    document.getElementById("image-upload").value = "";
+    document.getElementById('image-upload').value = '';
 
     setImagePreview(false);
   };
@@ -126,7 +127,6 @@ export default function Register() {
 
   return (
     <>
-      <FetchUsers setAllUsers={setAllUsers} />
       <div className={classes.root}>
         <div className={classes.middleWrapper}>
           <div className={classes.logoContainer}>
@@ -141,7 +141,7 @@ export default function Register() {
             <>
               <Typography
                 className={
-                  themeState === "light" ? classes.user : classes.userDark
+                  themeState === 'light' ? classes.user : classes.userDark
                 }>
                 You already have an account, is this you?
                 <br />
@@ -195,7 +195,7 @@ export default function Register() {
               <FormControl>
                 <InputLabel
                   className={
-                    themeState === "light" ? classes.label : classes.darkLabel
+                    themeState === 'light' ? classes.label : classes.darkLabel
                   }
                   htmlFor="name">
                   Name
@@ -203,7 +203,7 @@ export default function Register() {
                 <Input
                   required
                   className={
-                    themeState === "light"
+                    themeState === 'light'
                       ? classes.inputField
                       : classes.inputFieldDark
                   }
@@ -220,7 +220,7 @@ export default function Register() {
               <FormControl>
                 <InputLabel
                   className={
-                    themeState === "light" ? classes.label : classes.darkLabel
+                    themeState === 'light' ? classes.label : classes.darkLabel
                   }
                   htmlFor="email">
                   Email Address
@@ -230,7 +230,7 @@ export default function Register() {
                   id="email"
                   type="text"
                   className={
-                    themeState === "light"
+                    themeState === 'light'
                       ? classes.inputField
                       : classes.inputFieldDark
                   }
@@ -261,7 +261,7 @@ export default function Register() {
               <FormControl>
                 <InputLabel
                   className={
-                    themeState === "light"
+                    themeState === 'light'
                       ? classes.passwordLabel
                       : classes.darkPasswordLabel
                   }
@@ -271,13 +271,13 @@ export default function Register() {
                 <Input
                   required
                   className={
-                    themeState === "light"
+                    themeState === 'light'
                       ? classes.passwordField
                       : classes.passwordFieldDark
                   }
                   name="password"
                   id="password"
-                  type={showPassword ? "text" : "password"}
+                  type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={handleChange}
                   endAdornment={
@@ -312,7 +312,7 @@ export default function Register() {
               <FormControl>
                 <InputLabel
                   className={
-                    themeState === "light"
+                    themeState === 'light'
                       ? classes.passwordLabel
                       : classes.darkPasswordLabel
                   }
@@ -322,13 +322,13 @@ export default function Register() {
                 <Input
                   required
                   className={
-                    themeState === "light"
+                    themeState === 'light'
                       ? classes.passwordField
                       : classes.passwordFieldDark
                   }
                   name="passwordConfirm"
                   id="passwordConfirm"
-                  type={showPasswordConfirm ? "text" : "password"}
+                  type={showPasswordConfirm ? 'text' : 'password'}
                   value={passwordConfirm}
                   onChange={(e) => setPasswordConfirm(e.target.value)}
                   endAdornment={
@@ -370,7 +370,7 @@ export default function Register() {
                 className={classes.birthdayField}
                 name="birthday"
                 InputProps={{
-                  inputProps: { max: "2018-12-12" },
+                  inputProps: { max: '2018-12-12' },
                 }}
                 InputLabelProps={{
                   shrink: true,
@@ -382,11 +382,11 @@ export default function Register() {
             <input
               type="file"
               id="image-upload"
-              style={{ visibility: "hidden" }}
+              style={{ visibility: 'hidden' }}
               onChange={onImageSelected}
             />
             <div className={classes.genderContainer}>
-              <FormHelperText style={{ marginLeft: "-20px" }}>
+              <FormHelperText style={{ marginLeft: '-20px' }}>
                 What's your gender?
               </FormHelperText>
               <FormControl>
@@ -397,17 +397,17 @@ export default function Register() {
                   value={toTitleCase(gender)}
                   onChange={handleChange}
                   inputProps={{
-                    name: "gender",
-                    id: "gender-native-simple",
+                    name: 'gender',
+                    id: 'gender-native-simple',
                   }}>
                   <option value="" selected disabled hidden>
                     Select a gender
                   </option>
-                  <option value={"Male"}>Male</option>
-                  <option value={"Female"}>Female</option>
-                  <option value={"Transgender"}>Transgender</option>
-                  <option value={"Non-binray"}>Non-Binary </option>
-                  <option value={"Other"}>Other</option>
+                  <option value={'Male'}>Male</option>
+                  <option value={'Female'}>Female</option>
+                  <option value={'Transgender'}>Transgender</option>
+                  <option value={'Non-binray'}>Non-Binary </option>
+                  <option value={'Other'}>Other</option>
                 </NativeSelect>
               </FormControl>
             </div>
@@ -415,7 +415,7 @@ export default function Register() {
             <Button
               type="submit"
               className={
-                themeState === "light"
+                themeState === 'light'
                   ? classes.registerButton
                   : classes.registerButtonDark
               }>
@@ -424,12 +424,12 @@ export default function Register() {
           </form>
           <Typography
             className={
-              themeState === "light" ? classes.login : classes.loginDark
+              themeState === 'light' ? classes.login : classes.loginDark
             }>
             Already have an account? &nbsp;
             <Link
               className={
-                themeState === "light"
+                themeState === 'light'
                   ? classes.loginLink
                   : classes.loginLinkDark
               }
@@ -440,7 +440,7 @@ export default function Register() {
           <br />
           <Typography
             className={
-              themeState === "light" ? classes.user : classes.userDark
+              themeState === 'light' ? classes.user : classes.userDark
             }>
             <a
               className={classes.link}

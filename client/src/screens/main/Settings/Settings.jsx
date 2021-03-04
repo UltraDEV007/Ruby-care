@@ -11,30 +11,28 @@ import "moment-timezone";
 import ScrollToTopOnMount from "../../../components/Helpers/ScrollToTopOnMount";
 import Brightness4Icon from "@material-ui/icons/Brightness4";
 import { getAge } from "../../../utils/getAge";
-import { destroyUser, getAllUsers, putUser } from "../../../services/users";
+import { destroyUser, putUser } from "../../../services/users";
 import UserEdit from "../../../components/Dialogs/UserDialogs/UserEdit";
 import Button from "@material-ui/core/Button";
 import { useStyles } from "./settingStyles";
 import UserDelete from "../../../components/Modals/UserDelete";
 import { removeToken } from "../../../services/auth";
 import { useHistory } from "react-router-dom";
+import {
+  AllUsersDispatchContext,
+  AllUsersStateContext,
+} from "../../../components/Context/AllUsersContext";
 
 export default function Settings() {
   const [{ currentUser }, dispatch] = useStateValue();
   const [themeState, setThemeState] = useContext(ThemeStateContext);
   const [openEdit, setOpenEdit] = useState(false);
-  const [allUsers, setAllUsers] = useState([]);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
 
-  const history = useHistory();
+  const { allUsers } = useContext(AllUsersStateContext);
+  const dispatchAllUsers = useContext(AllUsersDispatchContext);
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const userData = await getAllUsers();
-      setAllUsers(userData);
-    };
-    fetchUsers();
-  }, [currentUser]);
+  const history = useHistory();
 
   const handleUpdate = async (id, userData) => {
     userData.email = userData?.email?.toLowerCase();
@@ -44,7 +42,7 @@ export default function Settings() {
     if (index > -1) {
       dispatch({ type: "EDIT_USER", currentUser: updatedUser });
       users.splice(index, 1);
-      setAllUsers([...users, userData]);
+      await dispatchAllUsers({ type: "UPDATE_USERS", payload: userData });
     }
   };
 
@@ -63,9 +61,9 @@ export default function Settings() {
 
   const handleDelete = async (id) => {
     await destroyUser(id);
-    setAllUsers((prevState) =>
-      prevState.filter((currentUser) => currentUser.id !== id)
-    );
+
+    dispatchAllUsers({ type: "USER_REMOVED", payload: currentUser });
+
     dispatch({ type: "REMOVE_USER" });
     localStorage.removeItem("authToken");
     removeToken();

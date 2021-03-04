@@ -6,13 +6,16 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
 import { CurrentUserProvider } from "./components/Context/CurrentUserContext";
 import reducer, { initialState } from "./reducer";
+import AllUsersContextProvider from "./components/Context/AllUsersContext";
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <CurrentUserProvider initialState={initialState} reducer={reducer}>
-        <App />
-      </CurrentUserProvider>
+      <AllUsersContextProvider>
+        <CurrentUserProvider initialState={initialState} reducer={reducer}>
+          <App />
+        </CurrentUserProvider>
+      </AllUsersContextProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")
