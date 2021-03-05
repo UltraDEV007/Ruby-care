@@ -33,6 +33,7 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const history = useHistory();
   const classes = useStyles({ themeState, currentUser });
+  const token = localStorage.getItem("authToken");
 
   const handleClickShowPassword = () => {
     setShowPassword((prevState) => !prevState);
@@ -78,7 +79,7 @@ export default function Login() {
             alt="logo"
           />
         </div>
-        {currentUser && (
+        {currentUser && token && (
           <Typography className={classes.user}>
             You're already logged in, is this you?
             {currentUser?.image && (
