@@ -50,11 +50,7 @@ export default function Home() {
   const classes = useStyles({ themeState });
 
   if (!loadedAffirmation) {
-    return (
-      <Layout title="Home">
-        <LinearProgressLoading themeState={themeState} />
-      </Layout>
-    );
+    return <LinearProgressLoading themeState={themeState} />;
   }
 
   return checkValidity(location.pathname) ? (
