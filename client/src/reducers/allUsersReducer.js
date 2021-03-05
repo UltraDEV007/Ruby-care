@@ -22,7 +22,7 @@ export const usersReducer = (state, action) => {
         }
         return state;
 
-      case "UPDATE_USERS":
+      case "USER_UPDATED":
         try {
           resolve({
             ...state,

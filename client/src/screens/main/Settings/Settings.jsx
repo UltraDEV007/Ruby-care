@@ -52,7 +52,7 @@ export default function Settings() {
     if (index > -1) {
       dispatch({ type: "EDIT_USER", currentUser: updatedUser });
       users.splice(index, 1);
-      await dispatchAllUsers({ type: "UPDATE_USERS", payload: userData });
+      await dispatchAllUsers({ type: "USER_UPDATED", payload: userData });
     }
   };
 
