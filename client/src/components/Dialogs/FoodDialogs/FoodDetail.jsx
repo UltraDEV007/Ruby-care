@@ -3,7 +3,7 @@ import Dialog from "@material-ui/core/Dialog";
 import Typography from "@material-ui/core/Typography";
 import Moment from "react-moment";
 import "moment-timezone";
-import ratingLogic from "../../../utils/ratingLogic";
+import useRating from "../../../hooks/useRating";
 import { foodNameJSX } from "../../../utils/foodUtils";
 import {
   DialogTitle,
@@ -35,7 +35,7 @@ export default function FoodDetail({
           width: "300px",
           overflowWrap: "break-word",
         }}>
-        <Typography> Rating:&nbsp;{ratingLogic(food?.rating, "⭐")}</Typography>
+        <Typography> Rating:&nbsp;{useRating(food?.rating, "⭐")}</Typography>
       </DialogContent>
       <DialogContent
         dividers
