@@ -5,17 +5,17 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
 import { CurrentUserProvider } from "./context/CurrentUserContext";
+import AllUsersProvider from "./context/AllUsersContext";
 import reducer, { initialState } from "./reducers/currentUserReducer";
-import AllUsersContextProvider from "./context/AllUsersContext";
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <AllUsersContextProvider>
+      <AllUsersProvider>
         <CurrentUserProvider initialState={initialState} reducer={reducer}>
           <App />
         </CurrentUserProvider>
-      </AllUsersContextProvider>
+      </AllUsersProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")
