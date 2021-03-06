@@ -77,10 +77,8 @@ function NotFound() {
   const [themeState] = useContext(ThemeStateContext);
   let location = useLocation();
 
-  return checkValidity(location.pathname) ? (
-    <></>
-  ) : (
-    <>
+  return (
+    !checkValidity(location.pathname) && (
       <ErrorWrapper themeState={themeState}>
         <div className="text-container">
           <Typography className="title">ERROR 404,</Typography>
@@ -97,7 +95,7 @@ function NotFound() {
           </Button>
         </div>
       </ErrorWrapper>
-    </>
+    )
   );
 }
 
