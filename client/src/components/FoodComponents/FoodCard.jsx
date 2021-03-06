@@ -6,7 +6,7 @@ import Moment from "react-moment";
 import "moment-timezone";
 import { ThemeStateContext } from "../../context/ThemeStateContext";
 import { indigo } from "@material-ui/core/colors/";
-import useRating from "../../hooks/useRating";
+import ratingLogic from "../../utils/ratingLogic";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import FoodEdit from "../Dialogs/FoodDialogs/FoodEdit";
 import FoodDetail from "../Dialogs/FoodDialogs/FoodDetail";
@@ -59,7 +59,7 @@ export default function FoodCard({
                 {food?.time?.toLocaleString()}
               </Moment>
             </div>
-            <div className="rating">{useRating(food.rating, "⭐")}</div>
+            <div className="rating">{ratingLogic(food.rating, "⭐")}</div>
           </div>
           <div
             className="buttons"

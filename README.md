@@ -177,7 +177,7 @@ src
  |__ goBack.js
  |__ foodUtils.js
  |__ emojiLogic.js
- |__ useRating.js
+ |__ ratingLogic.js
 ```
 
 <br/>
@@ -333,7 +333,7 @@ we return the first result of the foodMap, which is the icon, we surround it wit
 then we use #8199; to add a space, simillar to nbsp but a little bigger of space, and attach it next to the food name,
 if the user's input DOESN"T match one of the names in the foodRegex, it will return an icon with a fork and a knife instead, which is material UI's <RestaurantIcon />, a user still deserves an icon for his food even if it doesnt match :), I'm planning on adding foods every day, so this foodMap and regex list will get bigger and will have more icons to match user's input over time.
 
-### useRating.js
+### ratingLogic.js
 
 This file is responsible for rendering the amount of rating icons depending the value of the rating from 1-5, (for example: when you rate your food in the app)
 
@@ -350,7 +350,7 @@ This file is responsible for rendering the amount of rating icons depending the 
 - "#8199;" just means space each one of the stars by a figure space, think nbsp, but a bit more to the margins of my liking, nbsp's spaces just didn't look right.
 
 ```
-export default function useRating(ratingParam, iconParam) {
+export default function ratingLogic(ratingParam, iconParam) {
   return Array(ratingParam)
     .fill()
     .map(() => (
@@ -367,7 +367,7 @@ export default function useRating(ratingParam, iconParam) {
 > This is how I export it and put it in the JSX
 
 ```
- <div className="rating">{useRating(food.rating, "⭐")}</div>
+ <div className="rating">{ratingLogic(food.rating, "⭐")}</div>
 ```
 
 ## FAQ
