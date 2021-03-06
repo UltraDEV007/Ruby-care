@@ -9,7 +9,7 @@ const ThemeStateContext = createContext();
 function ThemeStateProvider({ children }) {
   const [themeState, setThemeState] = useState(() => {
     const localTheme = localStorage.getItem("themeState");
-    if (localTheme) {
+    if (localTheme !== null) {
       return localTheme.match(/^dark$/i) ? "dark" : "light";
     } else {
       localStorage.setItem("themeState", "light");
