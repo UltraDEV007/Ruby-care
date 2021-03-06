@@ -105,12 +105,11 @@ export default function FoodEdit({ setOpenEdit, onSave, foods }) {
               />
             </div>
 
-            {name && (
               <div className="rating-input-container">
                 <FormHelperText>
                   On a scale of 1 to 5,
                   <br /> how much did you enjoy&nbsp;
-                  {formData.name}?
+                  {name ? name : "it"}?
                 </FormHelperText>
                 <NativeSelect
                   native
@@ -130,7 +129,6 @@ export default function FoodEdit({ setOpenEdit, onSave, foods }) {
                   <option value={5}>⭐ ⭐ ⭐ ⭐ ⭐ </option>
                 </NativeSelect>
               </div>
-            )}
 
             <div className="input-container">
               <TextField

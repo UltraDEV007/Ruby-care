@@ -177,37 +177,37 @@ src
  |__ goBack.js
  |__ foodUtils.js
  |__ emojiLogic.js
- |__ ratingLogic.js
+ |__ getRating.js
 ```
 
 <br/>
 
 #### Component Breakdown
 
-|       Component       |    Type    | state | props | Description                                                                                                                                                                                                                                                                                                                                                                  |
-| :-------------------: | :--------: | :---: | :---: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- | ---------- | --- | --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|        Header         | functional |   y   |   y   | _The header will contain the page name, current time and current user name and logout_                                                                                                                                                                                                                                                                                       |
-|    MoodsContainer     | functional |   y   |   n   | _Moods container will have all axios requests and pass them as props to other Mood components_                                                                                                                                                                                                                                                                               |
-|       MoodCard        | functional |   y   |   y   | _The card will render the Mood info via props._                                                                                                                                                                                                                                                                                                                              |
-|       MoodEdit        | functional |   y   |   y   | _will contain the form to edit a mood_                                                                                                                                                                                                                                                                                                                                       |
-|      MoodCreate       | functional |   y   |   y   | _will contain the form to create a mood_                                                                                                                                                                                                                                                                                                                                     |
-| AffirmationsContainer | functional |   y   |   n   | _Affirmations container will have all axios requests and pass them as props to other affirmation components_                                                                                                                                                                                                                                                                 |
-|   AffirmationsCard    | functional |   y   |   y   | _The cards will render the affirmation info via props._                                                                                                                                                                                                                                                                                                                      |
-|   AffirmationDetail   | functional |   y   |   y   | _AffirmationDetail will render the affirmation content text and have links to edit or delete one_                                                                                                                                                                                                                                                                            |
-|   AffirmationCreate   | functional |   y   |   y   | _AffirmationCreate will have the form to submit text content and create an affirmation_                                                                                                                                                                                                                                                                                      |
-|    AffirmationEdit    | functional |   y   |   y   | _AffirmationEdit will have the input field to edit an affirmation and a submit button_                                                                                                                                                                                                                                                                                       |
-|   InsightsContainer   | functional |   y   |   n   | _Insights container will have all axios requests and pass them as props to other insight components_                                                                                                                                                                                                                                                                         |
-|     InsightsCard      | functional |   y   |   y   | _The cards will render the insight post info via props._                                                                                                                                                                                                                                                                                                                     |
-|     InsightCreate     | functional |   y   |   y   | _InsightCreate will have the form with the input fields to create an insight_                                                                                                                                                                                                                                                                                                |
-|      InsightEdit      | functional |   y   |   y   | _InsightEdit will have the form with the input fields to edit an insight_                                                                                                                                                                                                                                                                                                    |
-|     InsightDetail     | functional |   y   |   y   | _The InsightDetail screen will render the insight title, body and user name_                                                                                                                                                                                                                                                                                                 |
-|  CurrentUserContext   | functional |   y   |   n   | _CurrentUserContext.jsx will contain the provider and context for current user to be used globally throughtout the app_                                                                                                                                                                                                                                                      |
-|         Home          | functional |   n   |   n   | _The Home screen will include all the logged moods and affirmations_                                                                                                                                                                                                                                                                                                         |
-|       Community       | functional |   n   |   n   | _The Community screen will include all insights made by users and the option to edit or delete an insight_                                                                                                                                                                                                                                                                   |
-|         More          | functional |   y   |   y   | _The More page will comtain current user info such as name email and password (will be editable as postmvp feature, and will have a dark mode switcher_                                                                                                                                                                                                                      |
-|        Footer         | functional |   y   |   n   | _The footer will contain the links to the pages_                                                                                                                                                                                                                                                                                                                             | ThemeStateContext | functional | y   | y   | _ThemeStateContext will contain the logic for changing the theme state from light mode to dark mode and saving it to local storage, then wrapping app.jsx with ThemeStateProvider_ |
-|        Header         | functional |   y   |   y   | _The header will contain the logged in user name, page name, and current time_                                                                                                                                                                                                                                                                                               | MedCreate         | functional | y   | y   | \_MedCreate.jsx will fetch all the data from my [2nd project](https://rxguide.netlify.app/)'s API to fetch all medications and then save the medication                            |
-|        MedEdit        | functional |   y   |   y   | _MedEdit.jsx will get the medicine by id and allow us to edit it_                                                                                                                                                                                                                                                                                                            |
+|       Component       |    Type    | state | props | Description 
+| ----------------------| :--------: | :---: | :---: | :--------: |
+|        Header         | functional |   y   |   y   | _The header will contain the page name, current time and current user name and logout_ |
+|    MoodsContainer     | functional |   y   |   n   | _Moods container will have all axios requests and pass them as props to other Mood components_ |
+|       MoodCard        | functional |   y   |   y   | _The card will render the Mood info via props._ |
+|       MoodEdit        | functional |   y   |   y   | _will contain the form to edit a mood_ |
+|      MoodCreate       | functional |   y   |   y   | _will contain the form to create a mood_ |
+| AffirmationsContainer | functional |   y   |   n   | _Affirmations container will have all axios requests and pass them as props to other affirmation components_ |
+|   AffirmationsCard    | functional |   y   |   y   | _The cards will render the affirmation info via props._ |
+|   AffirmationDetail   | functional |   y   |   y   | _AffirmationDetail will render the affirmation content text and have links to edit or delete one_ |
+|   AffirmationCreate   | functional |   y   |   y   | _AffirmationCreate will have the form to submit text content and create an affirmation_ |
+|    AffirmationEdit    | functional |   y   |   y   | _AffirmationEdit will have the input field to edit an affirmation and a submit button_ |
+|   InsightsContainer   | functional |   y   |   n   | _Insights container will have all axios requests and pass them as props to other insight components_|
+|     InsightsCard      | functional |   y   |   y   | _The cards will render the insight post info via props._ |                                                               
+|     InsightCreate     | functional |   y   |   y   | _InsightCreate will have the form with the input fields to create an insight_ |                                           
+|      InsightEdit      | functional |   y   |   y   | _InsightEdit will have the form with the input fields to edit an insight_ |  
+|     InsightDetail     | functional |   y   |   y   | _The InsightDetail screen will render the insight title, body and user name_ |  
+|  CurrentUserContext   | functional |   y   |   n   | _CurrentUserContext.jsx will contain the provider and context for current user to be used globally throughtout the app_ | 
+|         Home          | functional |   n   |   n   | _The Home screen will include all the logged moods and affirmations_ |                                                   
+|       Community       | functional |   n   |   n   | _The Community screen will include all insights made by users and the option to edit or delete an insight_ |  
+|         More          | functional |   y   |   y   | _The More page will comtain current user info such as name email and password (will be editable as postmvp feature, and will have a dark mode switcher_| 
+|        Footer         | functional |   y   |   n   | _The footer will contain the links to the pages_                                                                            | ThemeStateContext | functional | y   | y   | _ThemeStateContext will contain the logic for changing the theme state from light mode to dark mode and saving it to local storage, then wrapping app.jsx with ThemeStateProvider_ |
+|        Header         | functional |   y   |   y   | _The header will contain the logged in user name, page name, and current time_                                             | MedCreate         | functional | y   | y   | _MedCreate.jsx will fetch all the data from my [2nd project](https://rxguide.netlify.app/)'s API to fetch all medications and then save the medication_ |
+|        MedEdit        | functional |   y   |   y   | _MedEdit.jsx will get the medicine by id and allow us to edit it_ |
 |       MedDetail       | functional |   y   |   y   | _MedDetail will conditionally text render based on wether or not the selected time has passed or not, if it has passed, ask the user if he took his medication, if he says yes, set the medicine to "taken" and tell him that he took the medicine at the time that he said he took it and let him decide if he want's to delete it, else, just have exit or delete buttons_ |
 
 <br/>
@@ -252,7 +252,7 @@ src
 
 ![ERD Model](https://i.imgur.com/zr2yx8W.png)
 <br>
-
+ 
 ---
 
 ## Post-MVP
@@ -333,7 +333,7 @@ we return the first result of the foodMap, which is the icon, we surround it wit
 then we use #8199; to add a space, simillar to nbsp but a little bigger of space, and attach it next to the food name,
 if the user's input DOESN"T match one of the names in the foodRegex, it will return an icon with a fork and a knife instead, which is material UI's <RestaurantIcon />, a user still deserves an icon for his food even if it doesnt match :), I'm planning on adding foods every day, so this foodMap and regex list will get bigger and will have more icons to match user's input over time.
 
-### ratingLogic.js
+### getRating.js
 
 This file is responsible for rendering the amount of rating icons depending the value of the rating from 1-5, (for example: when you rate your food in the app)
 
@@ -350,7 +350,7 @@ This file is responsible for rendering the amount of rating icons depending the 
 - "#8199;" just means space each one of the stars by a figure space, think nbsp, but a bit more to the margins of my liking, nbsp's spaces just didn't look right.
 
 ```
-export default function ratingLogic(ratingParam, iconParam) {
+export default function getRating(ratingParam, iconParam) {
   return Array(ratingParam)
     .fill()
     .map(() => (
@@ -367,7 +367,7 @@ export default function ratingLogic(ratingParam, iconParam) {
 > This is how I export it and put it in the JSX
 
 ```
- <div className="rating">{ratingLogic(food.rating, "⭐")}</div>
+ <div className="rating">{getRating(food.rating, "⭐")}</div>
 ```
 
 ## FAQ

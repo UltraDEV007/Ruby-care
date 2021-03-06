@@ -87,12 +87,11 @@ export default function FoodCreate({ open, onSave, handleClose }) {
             />
           </div>
 
-          {formData.name && (
             <div className="rating-input-container">
               <FormHelperText>
                 On a scale of 1 to 5,
                 <br /> how much did you enjoy&nbsp;
-                {formData.name}?
+                {formData.name ? formData.name : "it"}?
               </FormHelperText>
               <NativeSelect
                 native
@@ -111,7 +110,6 @@ export default function FoodCreate({ open, onSave, handleClose }) {
                 <option value={5}>⭐ ⭐ ⭐ ⭐ ⭐ </option>
               </NativeSelect>
             </div>
-          )}
 
           <div className="input-container">
             <TextField
