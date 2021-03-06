@@ -6,7 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import { ThemeStateContext } from "../../../context/ThemeStateContext";
 import {
   checkInsights,
-  checkedLikedInsights,
+  checkLikedInsights,
 } from "../../../utils/checkInsights";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { toTitleCase } from "../../../utils/toTitleCase";
@@ -89,7 +89,7 @@ export default function UserDetail({ getOneUser }) {
         <div className="inner-column">
           <div className="check-insights">{checkInsights(user)}</div>
           <div className="insights-container">{INSIGHTS}</div>
-          <div className="check-likes">{checkedLikedInsights(user)}</div>
+          <div className="check-likes">{checkLikedInsights(user)}</div>
           <div className="likes-container">{LIKED_INSIGHTS}</div>
         </div>
         <br />

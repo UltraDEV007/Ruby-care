@@ -7,7 +7,7 @@ export const checkInsights = (user) => {
   return <h1>{user?.insights?.length}&nbsp;Insights:</h1>;
 };
 
-export const checkedLikedInsights = (user) => {
+export const checkLikedInsights = (user) => {
   if (user?.liked_insights?.length === 0) {
     return <></>;
   } else if (user?.liked_insights.length === 1) {
