@@ -4,6 +4,7 @@ import {
   unstable_createMuiStrictModeTheme as createMuiTheme,
 } from "@material-ui/core/styles";
 import { yellow, red, blue } from "@material-ui/core/colors";
+
 const ThemeStateContext = createContext();
 
 function ThemeStateProvider({ children }) {
