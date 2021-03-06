@@ -1,4 +1,4 @@
-export default function ratingLogic(ratingParam, iconParam) {
+export default function getRating(ratingParam, iconParam) {
   return Array(ratingParam)
     .fill()
     .map(() => (
