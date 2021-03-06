@@ -119,7 +119,10 @@ export default function Settings() {
     }
   };
 
-  const userDate = currentUser?.created_at?.toLocaleString();
+  // have to do this instead of using "currentUser" in order to avoid a bug
+  // where the date changes to current time when updating the user.
+  const userDate = allUsers.find((user) => user.id === Number(currentUser.id))
+    ?.created_at;
 
   return (
     <Layout title="Settings">
