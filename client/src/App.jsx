@@ -1,7 +1,6 @@
 import { useMemo } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { Paper } from "@material-ui/core";
-import { ThemeStateProvider } from "./context/ThemeStateContext";
 import FirefoxBrowser from "./screens/Error/FirefoxBrowser";
 import { verifyUser } from "./services/auth";
 import { useStateValue } from "./context/CurrentUserContext";
@@ -33,11 +32,9 @@ function App() {
   }
 
   return (
-    <ThemeStateProvider>
-      <Paper style={{ minHeight: "100vh" }}>
-        <AppRouter />
-      </Paper>
-    </ThemeStateProvider>
+    <Paper style={{ minHeight: "100vh" }}>
+      <AppRouter />
+    </Paper>
   );
 }
 
