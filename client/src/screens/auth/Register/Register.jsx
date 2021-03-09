@@ -123,7 +123,16 @@ export default function Register() {
       setImagePreview(true);
     });
     if (img) {
-      fileReader.readAsDataURL(img);
+      if (img.type?.includes("image")) {
+        return fileReader.readAsDataURL(img);
+      } else {
+        document.getElementById("image-upload").value = "";
+        return alert(
+          `${img.type
+            .split("/") // get file type string and remove all characters before "/"
+            .pop()} file types aren't allowed! \nplease upload an image file.`
+        );
+      }
     }
   };
 
