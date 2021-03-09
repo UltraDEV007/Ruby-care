@@ -1,23 +1,8 @@
 import { useState } from "react";
+// https://stackoverflow.com/questions/53146795/react-usereducer-async-data-fetch
 
-const useAsyncReducer = (reducer, initialState = null) => {
-  const [state, setState] = useState(initialState);
-
-  const dispatch = async (action) => {
-    const result = reducer(state, action);
-    if (typeof result.then === "function") {
-      try {
-        const newState = await result;
-        setState(newState);
-      } catch (err) {
-        setState({ ...state, error: err });
-      }
-    } else {
-      setState(result);
-    }
-  };
-
+export default function useAsyncReducer(reducer, initState) {
+  const [state, setState] = useState(initState),
+    dispatch = async (action) => setState(await reducer(state, action));
   return [state, dispatch];
-};
-
-export default useAsyncReducer;
+}
