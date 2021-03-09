@@ -4,18 +4,15 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
-import { CurrentUserProvider } from "./context/CurrentUserContext";
-import AllUsersProvider from "./context/AllUsersContext";
-import reducer, { initialState } from "./reducers/currentUserReducer";
+import { Nest } from "./components/Helpers/Nest";
+import { appProviders } from "./utils/appProviders";
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <AllUsersProvider>
-        <CurrentUserProvider initialState={initialState} reducer={reducer}>
-          <App />
-        </CurrentUserProvider>
-      </AllUsersProvider>
+      <Nest elements={appProviders}>
+        <App />
+      </Nest>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")
