@@ -37,11 +37,11 @@ import EmailIcon from "@material-ui/icons/Email";
 import LockIcon from "@material-ui/icons/Lock";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ClearIcon from "@material-ui/icons/Clear";
+import EventIcon from "@material-ui/icons/Event";
+import CameraIcon from "@material-ui/icons/CameraAlt";
 
 // Styles
 import { useStyles } from "./registerStyles";
-import EventIcon from "@material-ui/icons/Event";
-import CameraIcon from "@material-ui/icons/CameraAlt";
 
 export default function Register() {
   const [{ currentUser }, dispatch] = useStateValue();
