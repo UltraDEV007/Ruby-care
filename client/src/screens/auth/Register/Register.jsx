@@ -48,11 +48,13 @@ export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
   const [passwordAlert, setPasswordAlert] = useState(false);
-  const [themeState] = useContext(ThemeStateContext);
   const [emailValidityAlert, setEmailValidityAlert] = useState(false);
   const [imagePreview, setImagePreview] = useState(false);
   const [passwordConfirmAlert, setPasswordConfirmAlert] = useState(false);
   const [emailUniquenessAlert, setEmailUniquenessAlert] = useState(false);
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+  
+  const [themeState] = useContext(ThemeStateContext);
   const { allUsers } = useContext(AllUsersStateContext);
   const dispatchAllUsers = useContext(AllUsersDispatchContext);
 
@@ -85,7 +87,6 @@ export default function Register() {
     image: "",
   });
   const { name, email, password, birthday, gender, image } = formData;
-  const [passwordConfirm, setPasswordConfirm] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
