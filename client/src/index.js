@@ -4,15 +4,15 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
-import { Nest } from "./components/Helpers/Nest";
+import { Nest as ProvidersNest } from "./components/Helpers/Nest";
 import { appProviders } from "./utils/appProviders";
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <Nest elements={appProviders}>
+      <ProvidersNest elements={appProviders}>
         <App />
-      </Nest>
+      </ProvidersNest>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")
