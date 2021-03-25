@@ -32,7 +32,7 @@ import CameraIcon from "@material-ui/icons/CameraAlt";
 import ClearIcon from "@material-ui/icons/Clear";
 
 // Services and Utils
-import { getOneUser } from "../../../services/users";
+import { getOneUser, putUser } from "../../../services/users";
 import { toTitleCase } from "../../../utils/toTitleCase";
 import {
   checkEmailUniqueuess,
@@ -46,9 +46,11 @@ import { ThemeStateContext } from "../../../context/ThemeStateContext";
 export default function UserEdit({
   handleOpen,
   handleClose,
-  onSave,
   currentUser,
   allUsers,
+  dispatchCurrentUser,
+  dispatchAllUsers,
+  setOpenEdit,
 }) {
   const [formData, setFormData] = useState({
     name: "",
@@ -120,6 +122,7 @@ export default function UserEdit({
       [name]: value,
     }));
   };
+
   const handleValidity = () => {
     password && checkPasswordLength(password, setPasswordAlert);
     checkEmailValidity(email, setEmailValidityAlert);
@@ -172,11 +175,20 @@ export default function UserEdit({
     fetchUser();
   }, [currentUser]);
 
-  const handleSubmit = (e) => {
+  const handleUpdate = async (id, userData) => {
+    userData.email = userData?.email?.toLowerCase();
+    const updatedUser = await putUser(id, userData);
+
+    dispatchCurrentUser({ type: "EDIT_USER", currentUser: updatedUser });
+    await dispatchAllUsers({ type: "USER_UPDATED", payload: userData });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     handleValidity();
     checkPasswordLength(password, setPasswordAlert);
-    onSave(currentUser.id, formData);
+    await handleUpdate(currentUser.id, formData);
+    setOpenEdit(false);
   };
 
   return (

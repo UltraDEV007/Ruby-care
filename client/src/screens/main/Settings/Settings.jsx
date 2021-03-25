@@ -1,7 +1,6 @@
 import Layout from "../../../layouts/Layout/Layout";
 import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
-import { useHistory } from "react-router-dom";
 import Moment from "react-moment";
 import "moment-timezone";
 
@@ -16,9 +15,7 @@ import {
 
 // Services and Utils
 import { getAge } from "../../../utils/getAge";
-import { destroyUser, putUser } from "../../../services/users";
 import ScrollToTopOnMount from "../../../components/Helpers/ScrollToTopOnMount";
-import { removeToken } from "../../../services/auth";
 
 // Views
 import UserEdit from "../../../components/Dialogs/UserDialogs/UserEdit";
@@ -42,42 +39,12 @@ export default function Settings() {
   const { allUsers } = useContext(AllUsersStateContext);
   const dispatchAllUsers = useContext(AllUsersDispatchContext);
 
-  const history = useHistory();
-
-  const handleUpdate = async (id, userData) => {
-    userData.email = userData?.email?.toLowerCase();
-    const updatedUser = await putUser(id, userData);
-    let users = [...allUsers];
-    const index = users.findIndex((u) => u.id === updatedUser.id);
-    if (index > -1) {
-      dispatch({ type: "EDIT_USER", currentUser: updatedUser });
-      users.splice(index, 1);
-      await dispatchAllUsers({ type: "USER_UPDATED", payload: userData });
-    }
-  };
-
-  const onSave = (formData, id) => {
-    handleUpdate(formData, id);
-    setOpenEdit(false);
-  };
-
   const handleOpen = () => {
     setOpenEdit(true);
   };
 
   const handleClose = () => {
     setOpenEdit(false);
-  };
-
-  const handleDelete = async (id) => {
-    await destroyUser(id);
-
-    dispatchAllUsers({ type: "USER_REMOVED", payload: currentUser });
-
-    dispatch({ type: "REMOVE_USER" });
-    localStorage.removeItem("authToken");
-    removeToken();
-    history.push("/login");
   };
 
   const classes = useStyles({ themeState });
@@ -163,14 +130,16 @@ export default function Settings() {
         className={classes.manage}
         onClick={handleOpen}
         variant="contained"
-        color="primary">
+        color="primary"
+      >
         Edit Account
       </Button>
       <Button
         className={classes.manage}
         onClick={() => setIsDeleteOpen((prevState) => !prevState)}
         variant="contained"
-        color="primary">
+        color="primary"
+      >
         Delete Account
       </Button>
       <hr />
@@ -196,19 +165,21 @@ export default function Settings() {
       {openEdit && (
         <UserEdit
           allUsers={allUsers}
-          onSave={onSave}
           currentUser={currentUser}
           handleOpen={handleOpen}
-          handleUpdate={handleUpdate}
           handleClose={handleClose}
+          dispatchCurrentUser={dispatch}
+          dispatchAllUsers={dispatchAllUsers}
+          setOpenEdit={setOpenEdit}
         />
       )}
       {isDeleteOpen && (
         <UserDelete
           currentUser={currentUser}
-          handleDelete={handleDelete}
           openDelete={isDeleteOpen}
           setOpenDelete={setIsDeleteOpen}
+          dispatchAllUsers={dispatchAllUsers}
+          dispatchCurrentUser={dispatch}
         />
       )}
     </Layout>

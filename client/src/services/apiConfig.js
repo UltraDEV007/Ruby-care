@@ -6,7 +6,7 @@ const baseUrl =
     : "http://localhost:3000";
 
 const api = axios.create({
-  baseURL: "https://heroku-care.herokuapp.com/",
+  baseURL: baseUrl,
 });
 
 export default api;
