@@ -1,47 +1,47 @@
-import React, { useState, useContext } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useState, useContext } from "react";
+import { Link, useHistory } from "react-router-dom";
 
 // Context
-import { useStateValue } from '../../../context/CurrentUserContext';
-import { ThemeStateContext } from '../../../context/ThemeStateContext';
+import { useStateValue } from "../../../context/CurrentUserContext";
+import { ThemeStateContext } from "../../../context/ThemeStateContext";
 import {
   AllUsersDispatchContext,
   AllUsersStateContext,
-} from '../../../context/AllUsersContext';
+} from "../../../context/AllUsersContext";
 
 // Services and Utils
-import { toTitleCase } from '../../../utils/toTitleCase';
-import { getAge } from '../../../utils/getAge';
-import { registerUser } from '../../../services/auth';
+import { toTitleCase } from "../../../utils/toTitleCase";
+import { getAge } from "../../../utils/getAge";
+import { registerUser } from "../../../services/auth";
 import {
   checkEmailValidity,
   checkPasswordLength,
-} from '../../../utils/authUtils';
+} from "../../../utils/authUtils";
 
 // Components
-import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Input from '@material-ui/core/Input';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import IconButton from '@material-ui/core/IconButton';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import FormHelperText from '@material-ui/core/FormHelperText';
+import TextField from "@material-ui/core/TextField";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import Input from "@material-ui/core/Input";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import IconButton from "@material-ui/core/IconButton";
+import NativeSelect from "@material-ui/core/NativeSelect";
+import FormHelperText from "@material-ui/core/FormHelperText";
 
 // Icons
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import EmailIcon from '@material-ui/icons/Email';
-import LockIcon from '@material-ui/icons/Lock';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import ClearIcon from '@material-ui/icons/Clear';
-import EventIcon from '@material-ui/icons/Event';
-import CameraIcon from '@material-ui/icons/CameraAlt';
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import EmailIcon from "@material-ui/icons/Email";
+import LockIcon from "@material-ui/icons/Lock";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import ClearIcon from "@material-ui/icons/Clear";
+import EventIcon from "@material-ui/icons/Event";
+import CameraIcon from "@material-ui/icons/CameraAlt";
 
 // Styles
-import { useStyles } from './registerStyles';
+import { useStyles } from "./registerStyles";
 
 export default function Register() {
   const [{ currentUser }, dispatch] = useStateValue();
@@ -52,13 +52,13 @@ export default function Register() {
   const [imagePreview, setImagePreview] = useState(false);
   const [passwordConfirmAlert, setPasswordConfirmAlert] = useState(false);
   const [emailUniquenessAlert, setEmailUniquenessAlert] = useState(false);
-  const [passwordConfirm, setPasswordConfirm] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState("");
 
   const [themeState] = useContext(ThemeStateContext);
   const { allUsers } = useContext(AllUsersStateContext);
   const dispatchAllUsers = useContext(AllUsersDispatchContext);
 
-  const token = localStorage.getItem('authToken');
+  const token = localStorage.getItem("authToken");
   const history = useHistory();
 
   const handleClickShowPassword = () => {
@@ -72,19 +72,19 @@ export default function Register() {
   const handleRegister = async (registerData) => {
     registerData.email = registerData?.email?.toLowerCase();
     const userData = await registerUser(registerData);
-    dispatch({ type: 'SET_USER', currentUser: userData });
+    dispatch({ type: "SET_USER", currentUser: userData });
 
-    dispatchAllUsers({ type: 'USER_CREATED', payload: userData });
+    dispatchAllUsers({ type: "USER_CREATED", payload: userData });
 
-    history.push('/');
+    history.push("/");
   };
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    birthday: '',
-    gender: '',
-    image: '',
+    name: "",
+    email: "",
+    password: "",
+    birthday: "",
+    gender: "",
+    image: "",
   });
   const { name, email, password, birthday, gender, image } = formData;
 
@@ -116,7 +116,7 @@ export default function Register() {
   const onImageSelected = (e) => {
     const img = e.target.files[0];
     const fileReader = new FileReader();
-    fileReader.addEventListener('load', () => {
+    fileReader.addEventListener("load", () => {
       setFormData((prevState) => ({
         ...prevState,
         image: fileReader.result,
@@ -124,13 +124,13 @@ export default function Register() {
       setImagePreview(true);
     });
     if (img) {
-      if (img.type?.includes('image')) {
+      if (img.type?.includes("image")) {
         return fileReader.readAsDataURL(img);
       } else {
-        document.getElementById('image-upload').value = '';
+        document.getElementById("image-upload").value = "";
         return alert(
           `${img.type
-            .split('/') // get file type string and remove all characters before "/"
+            .split("/") // get file type string and remove all characters before "/"
             .pop()} file types aren't allowed! \nplease upload an image file.`
         );
       }
@@ -138,15 +138,15 @@ export default function Register() {
   };
 
   const selectImage = () => {
-    document.getElementById('image-upload').click();
+    document.getElementById("image-upload").click();
   };
 
   const handleImageClear = () => {
-    setFormData({
-      ...formData,
-      image: '',
-    });
-    document.getElementById('image-upload').value = '';
+    setFormData((prevState) => ({
+      ...prevState,
+      image: "",
+    }));
+    document.getElementById("image-upload").value = "";
 
     setImagePreview(false);
   };
@@ -169,8 +169,9 @@ export default function Register() {
             <>
               <Typography
                 className={
-                  themeState === 'light' ? classes.user : classes.userDark
-                }>
+                  themeState === "light" ? classes.user : classes.userDark
+                }
+              >
                 You already have an account, is this you?
                 <br />
                 Name: {currentUser?.name}
@@ -200,14 +201,16 @@ export default function Register() {
                 <IconButton
                   onMouseDown={(e) => e.preventDefault()}
                   className={classes.clearIcon}
-                  onClick={handleImageClear}>
+                  onClick={handleImageClear}
+                >
                   <ClearIcon className={classes.clearIcon} />
                 </IconButton>
               )}
               <IconButton
                 onMouseDown={(e) => e.preventDefault()}
                 className={classes.iconButton}
-                onClick={selectImage}>
+                onClick={selectImage}
+              >
                 <CameraIcon className={classes.cameraIcon} />
               </IconButton>
             </footer>
@@ -223,15 +226,16 @@ export default function Register() {
               <FormControl>
                 <InputLabel
                   className={
-                    themeState === 'light' ? classes.label : classes.darkLabel
+                    themeState === "light" ? classes.label : classes.darkLabel
                   }
-                  htmlFor="name">
+                  htmlFor="name"
+                >
                   Name
                 </InputLabel>
                 <Input
                   required
                   className={
-                    themeState === 'light'
+                    themeState === "light"
                       ? classes.inputField
                       : classes.inputFieldDark
                   }
@@ -248,9 +252,10 @@ export default function Register() {
               <FormControl>
                 <InputLabel
                   className={
-                    themeState === 'light' ? classes.label : classes.darkLabel
+                    themeState === "light" ? classes.label : classes.darkLabel
                   }
-                  htmlFor="email">
+                  htmlFor="email"
+                >
                   Email Address
                 </InputLabel>
                 <Input
@@ -258,7 +263,7 @@ export default function Register() {
                   id="email"
                   type="text"
                   className={
-                    themeState === 'light'
+                    themeState === "light"
                       ? classes.inputField
                       : classes.inputFieldDark
                   }
@@ -289,33 +294,36 @@ export default function Register() {
               <FormControl>
                 <InputLabel
                   className={
-                    themeState === 'light'
+                    themeState === "light"
                       ? classes.passwordLabel
                       : classes.darkPasswordLabel
                   }
-                  htmlFor="password">
+                  htmlFor="password"
+                >
                   Password
                 </InputLabel>
                 <Input
                   required
                   className={
-                    themeState === 'light'
+                    themeState === "light"
                       ? classes.passwordField
                       : classes.passwordFieldDark
                   }
                   name="password"
                   id="password"
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={handleChange}
                   endAdornment={
                     <InputAdornment
                       className={classes.passwordIcon}
-                      position="end">
+                      position="end"
+                    >
                       <IconButton
                         aria-label="toggle password visibility"
                         onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}>
+                        onMouseDown={handleMouseDownPassword}
+                      >
                         {showPassword ? (
                           <Visibility className={classes.visibility} />
                         ) : (
@@ -340,35 +348,38 @@ export default function Register() {
               <FormControl>
                 <InputLabel
                   className={
-                    themeState === 'light'
+                    themeState === "light"
                       ? classes.passwordLabel
                       : classes.darkPasswordLabel
                   }
-                  htmlFor="passwordConfirm">
+                  htmlFor="passwordConfirm"
+                >
                   Confirm Password
                 </InputLabel>
                 <Input
                   required
                   className={
-                    themeState === 'light'
+                    themeState === "light"
                       ? classes.passwordField
                       : classes.passwordFieldDark
                   }
                   name="passwordConfirm"
                   id="passwordConfirm"
-                  type={showPasswordConfirm ? 'text' : 'password'}
+                  type={showPasswordConfirm ? "text" : "password"}
                   value={passwordConfirm}
                   onChange={(e) => setPasswordConfirm(e.target.value)}
                   endAdornment={
                     <InputAdornment
                       className={classes.passwordIcon}
-                      position="end">
+                      position="end"
+                    >
                       <IconButton
                         aria-label="toggle password visibility"
                         onClick={() =>
                           setShowPasswordConfirm(!showPasswordConfirm)
                         }
-                        onMouseDown={handleMouseDownPassword}>
+                        onMouseDown={handleMouseDownPassword}
+                      >
                         {showPasswordConfirm ? (
                           <Visibility className={classes.visibility} />
                         ) : (
@@ -398,7 +409,7 @@ export default function Register() {
                 className={classes.birthdayField}
                 name="birthday"
                 InputProps={{
-                  inputProps: { max: '2018-12-12' },
+                  inputProps: { max: "2018-12-12" },
                 }}
                 InputLabelProps={{
                   shrink: true,
@@ -410,11 +421,11 @@ export default function Register() {
             <input
               type="file"
               id="image-upload"
-              style={{ visibility: 'hidden' }}
+              style={{ visibility: "hidden" }}
               onChange={onImageSelected}
             />
             <div className={classes.genderContainer}>
-              <FormHelperText style={{ marginLeft: '-20px' }}>
+              <FormHelperText style={{ marginLeft: "-20px" }}>
                 What's your gender?
               </FormHelperText>
               <FormControl>
@@ -425,17 +436,18 @@ export default function Register() {
                   value={toTitleCase(gender)}
                   onChange={handleChange}
                   inputProps={{
-                    name: 'gender',
-                    id: 'gender-native-simple',
-                  }}>
+                    name: "gender",
+                    id: "gender-native-simple",
+                  }}
+                >
                   <option value="" selected disabled hidden>
                     Select a gender
                   </option>
-                  <option value={'Male'}>Male</option>
-                  <option value={'Female'}>Female</option>
-                  <option value={'Transgender'}>Transgender</option>
-                  <option value={'Non-binray'}>Non-Binary </option>
-                  <option value={'Other'}>Other</option>
+                  <option value={"Male"}>Male</option>
+                  <option value={"Female"}>Female</option>
+                  <option value={"Transgender"}>Transgender</option>
+                  <option value={"Non-binray"}>Non-Binary </option>
+                  <option value={"Other"}>Other</option>
                 </NativeSelect>
               </FormControl>
             </div>
@@ -443,38 +455,41 @@ export default function Register() {
             <Button
               type="submit"
               className={
-                themeState === 'light'
+                themeState === "light"
                   ? classes.registerButton
                   : classes.registerButtonDark
-              }>
+              }
+            >
               Register
             </Button>
           </form>
           <Typography
             className={
-              themeState === 'light' ? classes.login : classes.loginDark
-            }>
+              themeState === "light" ? classes.login : classes.loginDark
+            }
+          >
             Already have an account? &nbsp;
             <Link
               className={
-                themeState === 'light'
+                themeState === "light"
                   ? classes.loginLink
                   : classes.loginLinkDark
               }
-              to="/login">
+              to="/login"
+            >
               Login
             </Link>
           </Typography>
           <br />
           <Typography
-            className={
-              themeState === 'light' ? classes.user : classes.userDark
-            }>
+            className={themeState === "light" ? classes.user : classes.userDark}
+          >
             <a
               className={classes.link}
               target="_blank"
               rel="noreferrer"
-              href="http://www.github.com/dannymichaels/care">
+              href="http://www.github.com/dannymichaels/care"
+            >
               Daniel Michael &copy; 2020
             </a>
           </Typography>
