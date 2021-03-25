@@ -90,14 +90,10 @@ export default function UserEdit({
     const img = e.target.files[0];
     const fileReader = new FileReader();
     fileReader.addEventListener("load", () => {
-      setFormData({
-        name: name,
-        email: email,
-        password: password,
-        birthday: birthday,
-        gender: gender,
+      setFormData((prevState) => ({
+        ...prevState,
         image: fileReader.result,
-      });
+      }));
     });
     if (img) {
       if (img.type?.includes("image")) {
@@ -187,7 +183,8 @@ export default function UserEdit({
     <Dialog
       onClose={handleClose}
       aria-labelledby="customized-dialog-title"
-      open={handleOpen}>
+      open={handleOpen}
+    >
       <DialogTitle id="customized-dialog-title" onClose={handleClose}>
         <Typography className="title">Edit Account</Typography>
       </DialogTitle>
@@ -208,13 +205,15 @@ export default function UserEdit({
               <IconButton
                 onMouseDown={(e) => e.preventDefault()}
                 className="icon-button clear"
-                onClick={handleImageClear}>
+                onClick={handleImageClear}
+              >
                 <ClearIcon className="big-camera-icon" />
               </IconButton>
               <IconButton
                 onMouseDown={(e) => e.preventDefault()}
                 className="icon-button"
-                onClick={selectImage}>
+                onClick={selectImage}
+              >
                 <CameraIcon className="big-camera-icon" />
               </IconButton>
             </footer>
@@ -287,7 +286,8 @@ export default function UserEdit({
                     <IconButton
                       aria-label="toggle password visibility"
                       onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}>
+                      onMouseDown={handleMouseDownPassword}
+                    >
                       {showPassword ? (
                         <Visibility className="visibility" />
                       ) : (
@@ -330,7 +330,8 @@ export default function UserEdit({
                       onClick={() =>
                         setShowPasswordConfirm(!showPasswordConfirm)
                       }
-                      onMouseDown={handleMouseDownPassword}>
+                      onMouseDown={handleMouseDownPassword}
+                    >
                       {showPasswordConfirm ? (
                         <Visibility className="visibility" />
                       ) : (
@@ -358,7 +359,8 @@ export default function UserEdit({
               justifyContent: "center",
               flexDirection: "column",
               alignItems: "center",
-            }}>
+            }}
+          >
             <TextField
               id="date"
               required
@@ -392,7 +394,8 @@ export default function UserEdit({
                 inputProps={{
                   name: "gender",
                   id: "gender-native-simple",
-                }}>
+                }}
+              >
                 <option value="" selected disabled hidden>
                   Select a gender
                 </option>
@@ -410,7 +413,8 @@ export default function UserEdit({
               disabled={allConditionsAreNotMet}
               type="submit"
               variant="contained"
-              color="primary">
+              color="primary"
+            >
               Save
             </Button>
             <Button
@@ -418,7 +422,8 @@ export default function UserEdit({
               component={Link}
               onClick={handleClose}
               variant="contained"
-              color="secondary">
+              color="secondary"
+            >
               Cancel
             </Button>
           </DialogActions>
