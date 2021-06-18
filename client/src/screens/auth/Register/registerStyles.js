@@ -1,5 +1,6 @@
-import { yellow } from "@material-ui/core/colors";
+import { yellow, blue } from "@material-ui/core/colors";
 import { makeStyles } from "@material-ui/styles";
+
 const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
@@ -178,7 +179,17 @@ const useStyles = makeStyles(() => ({
   },
   cameraIcon: {
     cursor: "pointer",
-    color: (props) => props.themeState === "light" && "#000",
+    color: ({ themeState, imagePreview }) => {
+      if (themeState === "light" && imagePreview) {
+        return "#000";
+      } else if (themeState === "dark" && !imagePreview) {
+        return yellow[700];
+      } else if (themeState === "dark" && imagePreview) {
+        return "#fff";
+      } else {
+        return blue[500];
+      }
+    },
   },
   visibility: {
     color: (props) => (props.themeState === "dark" ? "#fff" : "#000"),
@@ -192,9 +203,15 @@ const useStyles = makeStyles(() => ({
     flexDirection: "column",
     alignItems: "center",
   },
+  imageContainer: {
+    position: "relative",
+  },
   pictureButtons: {
     display: "flex",
     justifyContent: "center",
+    position: ({ imagePreview }) => !imagePreview && "absolute",
+    right: ({ imagePreview }) => !imagePreview && 0,
+    bottom: ({ imagePreview }) => !imagePreview && "-8px",
   },
   link: {
     textDecoration: "none",
