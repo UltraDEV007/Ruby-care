@@ -62,12 +62,6 @@ export default function CareCard({
             <Moment format="MMM-DD-yyyy hh:mm A">{post?.created_at}</Moment>
           </Typography>
         </div>
-         {post?.updated_at && (<div>
-          <Typography className={classes.date}>
-            Updated at:&nbsp;
-            <Moment format="MMM-DD-yyyy hh:mm A">{post?.updated_at}</Moment>
-          </Typography>
-        </div>)}
         <div>
           <Typography>{description}</Typography>
         </div>
