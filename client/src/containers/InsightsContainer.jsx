@@ -16,6 +16,7 @@ export default function InsightsContainer({ themeState }) {
   const [insights, setInsights] = useState([]);
   const [updated, setUpdated] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const [initialLoaded, setInitialLoaded] = useState(false);
   const [openDelete, setOpenDelete] = useState(false);
   const history = useHistory();
 
@@ -44,6 +45,9 @@ export default function InsightsContainer({ themeState }) {
     const insightData = await getAllInsights();
     setInsights(insightData);
     setLoaded(true);
+    if (!initialLoaded) {
+      setInitialLoaded(true)
+    }
   };
 
   useEffect(() => {
@@ -99,6 +103,7 @@ export default function InsightsContainer({ themeState }) {
             insights={insights}
             handleDelete={handleDelete}
             setLoaded={setLoaded}
+            initialLoaded={initialLoaded}            
           />
         </Route>
       </Switch>
