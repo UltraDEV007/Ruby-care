@@ -81,7 +81,7 @@ const Feed = ({ items, name, attribute, action, type }) => (
             </div>
           )
         ) : (
-          <></>
+          <p>no {name.toLowerCase()} found at this time.</p>
         )
       )}
     </div>
