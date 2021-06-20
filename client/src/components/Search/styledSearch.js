@@ -29,7 +29,7 @@ const Form = styled.form`
   }
 
   input {
-    width: 50vw;
+    width: 68vw;
     font-size: 18px;
     letter-spacing: 0.1px;
     padding: 12px;

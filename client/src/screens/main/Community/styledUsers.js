@@ -3,12 +3,28 @@ import styled from "styled-components";
 const Div = styled.div`
   display: flex;
   justify-content: space-between;
-  flex-flow: row no-wrap;
+  flex-flow: row nowrap;
+
+  .separator-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: -54px;
+    align-self: flex-start;
+  }
+  .loading-title {
+    font-size: 2.3rem;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 5px;
+  }
 
   .users-title {
     font-size: 2.3rem;
     padding: 10px;
+    text-align: left;
     margin-bottom: 5px;
+    width: 100%;
   }
 
   .link {
@@ -53,6 +69,7 @@ const Div = styled.div`
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    align-self: flex-start;
   }
 
   .title-container {

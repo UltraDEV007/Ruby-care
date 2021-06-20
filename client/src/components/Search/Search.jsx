@@ -8,7 +8,7 @@ import ClearIcon from "@material-ui/icons/Clear";
 import { ThemeStateContext } from "../../context/ThemeStateContext";
 import Form from "./styledSearch";
 
-function Search({ search, setSearch }) {
+function Search({ search, setSearch, placeholder }) {
   const [themeState] = useContext(ThemeStateContext);
   const [searchEnabled, setSearchEnabled] = useState(false);
   let location = useLocation();
@@ -48,7 +48,7 @@ function Search({ search, setSearch }) {
         type="text"
         name="search"
         id="search"
-        placeholder={checkPath()}
+        placeholder={placeholder ?? checkPath()}
         value={search}
         onChange={handleSearch}
         inputProps={{ maxLength: 70 }}
