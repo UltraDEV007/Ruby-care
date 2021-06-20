@@ -4,14 +4,40 @@ import styled from "styled-components";
 const Div = styled.div`
   display: flex;
   justify-content: space-between;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
+
+  .top-view-btns {
+    position: absolute;
+    top: 80px;
+    right: 20px;
+    div {
+      cursor: pointer;
+
+      &:hover {
+        color: invert;
+      }
+    }
+  }
+
+  @media screen and (max-width: 1100px) {
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+
+    .separator {
+      display: none;
+    }
+  }
 
   .separator-div {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
     margin-top: -54px;
-    align-self: flex-start;
+    @media screen and (max-width: 1100px) {
+      margin-top: 10px;
+    }
   }
   .loading-title {
     font-size: 2.3rem;
@@ -24,6 +50,9 @@ const Div = styled.div`
     font-size: 2.3rem;
     padding: 10px;
     text-align: left;
+    @media screen and (max-width: 1100px) {
+      text-align: center;
+    }
     margin-bottom: 5px;
     width: 100%;
     font-weight: 300;
@@ -32,6 +61,9 @@ const Div = styled.div`
   .default-title {
     font-size: 2.3rem;
     text-align: left;
+    @media screen and (max-width: 1100px) {
+      text-align: center;
+    }
     margin-bottom: 5px;
     width: 100%;
     font-weight: 300;

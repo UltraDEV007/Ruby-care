@@ -39,7 +39,6 @@ const Feed = ({ items, name, attribute, action, type }) => (
                 >
                   {item[attribute][0].insight_title}
                 </Link>
-                :
               </div>
 
               <div>
