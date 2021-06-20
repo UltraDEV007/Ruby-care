@@ -23,8 +23,9 @@ const Div = styled.div`
     flex-flow: column wrap;
     justify-content: center;
     align-items: center;
-
-    .separator {
+     
+    .separator,
+    #community-users {
       display: none;
     }
   }
