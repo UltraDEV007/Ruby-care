@@ -35,7 +35,7 @@ const Div = styled.div`
     justify-content: space-between;
 
     margin-top: -54px;
-    @media screen and (max-width: 1100px) {
+    @media screen and (max-width: 1300px) {
       margin-top: 10px;
     }
   }
@@ -50,7 +50,7 @@ const Div = styled.div`
     font-size: 2.3rem;
     padding: 10px;
     text-align: left;
-    @media screen and (max-width: 1100px) {
+    @media screen and (max-width: 1300px) {
       text-align: center;
     }
     margin-bottom: 5px;
@@ -61,7 +61,7 @@ const Div = styled.div`
   .default-title {
     font-size: 2.3rem;
     text-align: left;
-    @media screen and (max-width: 1100px) {
+    @media screen and (max-width: 1300px) {
       text-align: center;
     }
     margin-bottom: 5px;
