@@ -452,3 +452,6 @@ export default function getRating(ratingParam, iconParam) {
 <strong>March 4th, 2021:</strong>
 
 - Created PrivateRoute.jsx, Created AllUsersContext and AllUsersReducer.js
+
+<strong>June 20th, 2021:</strong>
+- Updated the community page with likes and comments feed.
