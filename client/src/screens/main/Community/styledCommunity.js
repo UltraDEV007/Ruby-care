@@ -19,7 +19,7 @@ const Div = styled.div`
     }
   }
 
-  @media screen and (max-width: 1100px) {
+  @media screen and (max-width: 1300px) {
     flex-flow: column wrap;
     justify-content: center;
     align-items: center;
