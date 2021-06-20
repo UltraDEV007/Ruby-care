@@ -28,10 +28,10 @@ function InsightCard({
   const { push } = useHistory();
 
   useEffect(() => {
-    const fetchLikes = async () => {
+    const unDisableLikingOnMount = async () => {
       setLikeDisabled(false);
     };
-    fetchLikes();
+    unDisableLikingOnMount();
   }, [insight?.likes]);
 
   useEffect(() => {
