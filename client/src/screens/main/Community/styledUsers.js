@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 const Div = styled.div`
   display: flex;
-  justify-content: center;
-  flex-flow: column wrap;
+  justify-content: space-between;
+  flex-flow: row no-wrap;
 
   .users-title {
     font-size: 2.3rem;
