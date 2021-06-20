@@ -24,7 +24,7 @@ const Users = ({ allUsers }) => {
 
   return (
     <>
-      <p className="users-title">Users</p>
+      <h1 className="users-title">Users</h1>
       <div className="queried-users">{usersJSX}</div>
     </>
   );

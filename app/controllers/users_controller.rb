@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     # render the users but down show password digest and updated at (even if hashed)                        # Mapping through the user to get the likes, mapping through the likes to get the insight name.                                                                     
     render json: @users.map {|user| user.attributes.except('password_digest', 'updated_at').merge( 
       {liked_insights: user.likes.order('created_at DESC').map {|like| like.attributes.slice().merge({ :title => like.insight.title, :insight_id => like.insight_id, :like_id => like.id, :liked_at => like.created_at})}},
-      {comments: user.comments.order('created_at DESC').map {|comment| comment.attributes}}
+      {comments: user.comments.order('created_at DESC').map {|comment| comment.attributes.merge({:insight_title => comment.insight.title})}}
       )}
   end
 

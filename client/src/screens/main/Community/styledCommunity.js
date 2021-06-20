@@ -1,3 +1,4 @@
+import { blue, yellow } from "@material-ui/core/colors";
 import styled from "styled-components";
 
 const Div = styled.div`
@@ -25,6 +26,15 @@ const Div = styled.div`
     text-align: left;
     margin-bottom: 5px;
     width: 100%;
+    font-weight: 300;
+  }
+
+  .default-title {
+    font-size: 2.3rem;
+    text-align: left;
+    margin-bottom: 5px;
+    width: 100%;
+    font-weight: 300;
   }
 
   .link {
@@ -47,6 +57,32 @@ const Div = styled.div`
     text-decoration: underline;
     cursor: pointer;
     transform: translateY(-1.06px);
+  }
+
+  .link-2 {
+    color: ${({ themeState }) =>
+      themeState === "dark" ? yellow[700] : blue[500]};
+    text-decoration: none;
+    overflow-wrap: break-word;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-family: "montserrat", sans-serif;
+    transition: transform 300ms ease-in-out;
+  }
+
+  .link-2:hover {
+    transition: transform 300ms ease-in-out;
+    text-decoration: underline;
+    cursor: pointer;
+    transform: translateY(-1.06px);
+  }
+
+  .small-text {
+    font-size: 1rem;
+    font-family: "montserrat", sans-serif;
   }
 
   .user-icon {

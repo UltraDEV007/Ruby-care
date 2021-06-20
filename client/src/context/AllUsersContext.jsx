@@ -1,4 +1,4 @@
-import React, { createContext, useMemo, useRef } from "react";
+import React, { createContext, useMemo, useRef, useEffect } from "react";
 import useAsyncReducer from "../hooks/useAsyncReducer";
 import { usersReducer } from "../reducers/allUsersReducer";
 
@@ -31,4 +31,4 @@ export default function AllUsersProvider({ children }) {
       </AllUsersDispatchContext.Provider>
     </AllUsersStateContext.Provider>
   );
-};
+}
