@@ -46,7 +46,7 @@ export default function Community({ usersAreLoading, allUsers }) {
         )}
         {!usersAreLoading ? (
           isLargeScreen && (
-            <div className="separator-div">
+            <div className="separator-div" id="community-users">
               <Grid
                 item
                 xs={2}
