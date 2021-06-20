@@ -29,7 +29,6 @@ function InsightCard({
 
   useEffect(() => {
     const fetchLikes = async () => {
-      // setAllLikes(insight.likes);
       setLikeDisabled(false);
     };
     fetchLikes();
