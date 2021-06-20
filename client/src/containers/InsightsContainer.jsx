@@ -98,6 +98,7 @@ export default function InsightsContainer({ themeState }) {
             updated={updated}
             insights={insights}
             handleDelete={handleDelete}
+            setLoaded={setLoaded}
           />
         </Route>
       </Switch>

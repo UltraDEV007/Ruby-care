@@ -46,6 +46,7 @@ export default function Insights(props) {
       handleClose={handleDeleteClose}
       onDelete={onDelete}
       openDelete={openDelete}
+      setLoaded={props.setLoaded}
       handleDelete={props.handleDelete}
     />
   ));

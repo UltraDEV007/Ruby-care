@@ -18,17 +18,18 @@ function InsightCard({
   openDelete,
   onDelete,
   themeState,
+  setLoaded,
 }) {
   const [{ currentUser }] = useStateValue();
   const classes = useStyles({ themeState });
-  const [allLikes, setAllLikes] = useState([]);
+  const [allLikes, setAllLikes] = useState(insight.likes);
   const [liked, setLiked] = useState(false);
   const [likeDisabled, setLikeDisabled] = useState(true);
   const { push } = useHistory();
 
   useEffect(() => {
     const fetchLikes = async () => {
-      setAllLikes(insight.likes);
+      // setAllLikes(insight.likes);
       setLikeDisabled(false);
     };
     fetchLikes();
@@ -52,6 +53,7 @@ function InsightCard({
       });
       setAllLikes((prevState) => [...prevState, newLike]);
       setLikeDisabled(false);
+      setLoaded(false);
     }
   };
 
@@ -67,6 +69,7 @@ function InsightCard({
       setAllLikes((prevState) =>
         prevState.filter((like) => like.id !== likeToDelete?.id)
       );
+      setLoaded(false);
     }
     setLikeDisabled(false);
   };
@@ -79,7 +82,8 @@ function InsightCard({
     <>
       <IconButton
         style={likePointerEvents}
-        onClick={!liked ? handleLike : handleUnlike}>
+        onClick={!liked ? handleLike : handleUnlike}
+      >
         {!liked ? (
           <UnlikedIcon className={classes.unLikedInsight} />
         ) : (
