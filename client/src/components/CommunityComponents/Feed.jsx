@@ -51,8 +51,10 @@ const Feed = ({ items, name, attribute, action, type }) => (
                   editIsLink={false}
                 />
               </div>
+              <br />
             </>
           ) : (
+            <>
             <div
               style={{ display: "flex", alignItems: "center", padding: "8px" }}
             >
@@ -78,7 +80,9 @@ const Feed = ({ items, name, attribute, action, type }) => (
               >
                 {item[attribute][0].title}
               </Link>
-            </div>
+            </div>  
+             <br />
+            </>
           )
         ) : (
           <></>
