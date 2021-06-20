@@ -66,7 +66,7 @@ export default function Insights(props) {
         <br />
         <div className="insights-container">
           <Search setSearch={setSearch} />
-          {!props.loaded && (
+          {!props.intiialLoaded && (
             <LinearProgress style={{ margin: "50px auto", width: "30vw" }} />
           )}
           {insightsJSX}
