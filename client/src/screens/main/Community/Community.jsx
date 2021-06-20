@@ -21,7 +21,7 @@ import { indigo, blue } from "@material-ui/core/colors";
 export default function Community({ usersAreLoading, allUsers }) {
   const [themeState] = useContext(ThemeStateContext);
   const [viewMode, setViewMode] = useState("comments");
-  const {breakpoints} = useTheme();
+  const { breakpoints } = useTheme();
   
   let isDark = themeState === "dark";
   const isLargeScreen = useMediaQuery(breakpoints.up("lg"));
