@@ -7,7 +7,7 @@ const Feed = ({ items, name, attribute, action, type }) => (
     <h1 className="default-title">{name}&nbsp;Feed</h1>
     <div>
       {items.map((item, idx) =>
-        item[attribute].length ? (
+        item[attribute]?.length ? (
           type === "comment" ? (
             <>
               <div
