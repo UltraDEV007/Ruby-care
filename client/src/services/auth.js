@@ -7,7 +7,8 @@ export const loginUser = async (loginData) => {
     api.defaults.headers.common.authorization = `Bearer ${resp?.data?.token}`;
     return resp?.data?.user;
   } catch (error) {
-    alert("Email and/or password do not match");
+    console.log("ERROR", error);
+    // alert("Email and/or password do not match");
     throw error;
   }
 };

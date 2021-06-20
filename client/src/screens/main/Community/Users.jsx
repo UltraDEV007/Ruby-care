@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import Search from "../../../components/Search/Search";
 import LinearProgress from "@material-ui/core/LinearProgress";
-import Layout from "../../../layouts/Layout/Layout";
 import { checkUserLength } from "../../../utils/checkUserLength";
 import { ThemeStateContext } from "../../../context/ThemeStateContext";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
@@ -23,7 +22,8 @@ const Users = ({ allUsers, usersAreLoading }) => {
       key={user.id}
       themeState={themeState}
       to={`/users/${user.id}`}
-      className="link">
+      className="link"
+    >
       {!user?.image ? (
         <AccountCircleIcon className="user-icon" />
       ) : (
@@ -34,27 +34,24 @@ const Users = ({ allUsers, usersAreLoading }) => {
   ));
 
   return (
-    <Layout title="Community">
-      <Div themeState={{ themeState }}>
-        <ScrollToTopOnMount />
-        <div className="title-container">
-          <p> Search for a user!</p>
-        </div>
-        <Search setSearch={setSearch} />
-        <div className="users-container">
-          <>
-            <p className="users-title">
-              {checkUserLength(usersJSX, usersAreLoading)}
-            </p>
-            {usersAreLoading ? (
-              <LinearProgress style={{ margin: "50px auto", width: "30vw" }} />
-            ) : (
-              <div className="queried-users">{usersJSX}</div>
-            )}
-          </>
-        </div>
-      </Div>
-    </Layout>
+    <>
+      <div className="title-container">
+        <p> Search for a user!</p>
+      </div>
+      <Search setSearch={setSearch} />
+      <div className="users-container">
+        <>
+          <p className="users-title">
+            {checkUserLength(usersJSX, usersAreLoading)}
+          </p>
+          {usersAreLoading ? (
+            <LinearProgress style={{ margin: "50px auto", width: "30vw" }} />
+          ) : (
+            <div className="queried-users">{usersJSX}</div>
+          )}
+        </>
+      </div>
+    </>
   );
 };
 
