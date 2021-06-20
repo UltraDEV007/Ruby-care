@@ -1,6 +1,7 @@
 // hooks
 import { useContext, useState } from "react";
 import { useMediaQuery } from "@material-ui/core";
+import { useTheme } from "@material-ui/core/styles";
 
 // components
 import Layout from "../../../layouts/Layout/Layout";
@@ -22,7 +23,7 @@ export default function Community({ usersAreLoading, allUsers }) {
   const [viewMode, setViewMode] = useState("comments");
 
   let isDark = themeState === "dark";
-  const isLargeScreen = useMediaQuery("(max-width:1300px)");
+  const isLargeScreen = useMediaQuery(breakpoints.up("lg"));
 
   return (
     <Layout title="Community">
