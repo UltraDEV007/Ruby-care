@@ -22,7 +22,7 @@ export const compareTakenWithSelectedTime = (takenDate, selectedDate) => {
     // if the takenTime  is less than the selectedTime return -1
     return -1;
   } else if (takenTime > selectedTime) {
-    // if the currentTime is greater than selected time we're returning 1
+    // if the takenTime is greater than selected time we're returning 1
     return 1;
   } else {
     // if the two values are equal return 0
