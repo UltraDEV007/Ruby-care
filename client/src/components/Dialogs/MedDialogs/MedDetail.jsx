@@ -93,8 +93,8 @@ export default function MedDetail({
           <Typography>Did you take {med?.name}?</Typography>
         ) : compareDateWithCurrentTime(med?.time) === 1 && med.is_taken ? (
           <Typography>
-            You Took {med?.name} at&nbsp;
-            <Moment format="MMM/DD/yyyy hh:mm A">{med.updated_at}</Moment>
+            You took {med?.name} at&nbsp;
+            <Moment format="MMM/DD/yyyy hh:mm A">{med?.taken_date}</Moment>
           </Typography>
         ) : (
           <Typography>
