@@ -50,8 +50,9 @@ export default function MoodCreate({ open, onSave, handleClose }) {
   return (
     <Dialog
       onClose={handleClose}
-      aria-labelledby="customized-dialog-title"
-      open={open}>
+      aria-labelledby="create mood window"
+      open={open}
+    >
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -59,7 +60,8 @@ export default function MoodCreate({ open, onSave, handleClose }) {
           // setting the formData to an empty string after submission to avoid the case
           // where the user makes creates another one right after sending one without refreshing.
           setFormData({ ...formData, status: formData.status });
-        }}>
+        }}
+      >
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           {compareDateWithCurrentTime(formData.time) === 1 && formData.time ? (
             <>How were you feeling? </>

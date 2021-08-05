@@ -17,6 +17,7 @@ import {
   checkEmailValidity,
   checkPasswordLength,
 } from "../../../utils/authUtils";
+import moment from "moment";
 
 // Components
 import TextField from "@material-ui/core/TextField";
@@ -409,7 +410,7 @@ export default function Register() {
                 className={classes.birthdayField}
                 name="birthday"
                 InputProps={{
-                  inputProps: { max: "2018-12-12" },
+                  inputProps: { max: moment().format("YYYY-MM-DD") },
                 }}
                 InputLabelProps={{
                   shrink: true,
