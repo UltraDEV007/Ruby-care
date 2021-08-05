@@ -11,7 +11,6 @@ import {
   DialogContent,
   DialogActions,
 } from "../../Form/DialogComponents";
-import moment from "moment";
 
 export default function FoodEdit({ setOpenEdit, onSave, foods }) {
   const history = useHistory("/");
