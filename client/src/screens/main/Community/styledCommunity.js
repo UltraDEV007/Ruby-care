@@ -104,7 +104,7 @@ const Div = styled.div`
     transition: transform 300ms ease-in-out;
     text-decoration: underline;
     cursor: pointer;
-    transform: scale(1.04);
+    transform: translateY(-1.06px);
   }
 
   .small-text {
