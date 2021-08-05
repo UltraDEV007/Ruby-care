@@ -1,5 +1,5 @@
 // hooks
-import { useContext, useState } from "react";
+import { useContext, useState, useMemo } from "react";
 import { useMediaQuery } from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
 
@@ -15,22 +15,20 @@ import Feed from "../../../components/CommunityComponents/Feed";
 // context
 import { ThemeStateContext } from "../../../context/ThemeStateContext";
 
-// utils
-import { indigo, blue } from "@material-ui/core/colors";
-
 export default function Community({ usersAreLoading, allUsers }) {
   const [themeState] = useContext(ThemeStateContext);
   const [viewMode, setViewMode] = useState("comments");
   const { breakpoints } = useTheme();
-  
-  let isDark = themeState === "dark";
+
+  let isDark = useMemo(() => themeState === "dark", [themeState]);
+
   const isLargeScreen = useMediaQuery(breakpoints.up("lg"));
 
   return (
     <Layout title="Community">
       <ScrollToTopOnMount />
 
-      <Div themeState={themeState}>
+      <Div isDark={isDark}>
         {!isLargeScreen && (
           <div className="top-view-btns">
             {viewMode === "comments" ? (
@@ -56,14 +54,7 @@ export default function Community({ usersAreLoading, allUsers }) {
               >
                 <Users usersAreLoading={usersAreLoading} allUsers={allUsers} />
               </Grid>
-              <div
-                className="separator"
-                style={{
-                  width: 1,
-                  backgroundColor: isDark ? indigo[50] : blue[600],
-                  minHeight: "100vh",
-                }}
-              />
+              <div className="separator" />
             </div>
           )
         ) : (
@@ -82,6 +73,8 @@ export default function Community({ usersAreLoading, allUsers }) {
               name="Comments"
               attribute="comments"
               type="comment"
+              justifyContent="center"
+              textAlign="center"
             />
           ) : viewMode === "comments" ? (
             <Feed
@@ -108,14 +101,7 @@ export default function Community({ usersAreLoading, allUsers }) {
             className="separator-div"
             style={{ justifyContent: "flex-start" }}
           >
-            <div
-              className="separator"
-              style={{
-                width: 1,
-                backgroundColor: isDark ? indigo[50] : blue[600],
-                minHeight: "100vh",
-              }}
-            />
+            <div className="separator" />
             <div style={{ marginLeft: "10px", padding: "10px" }}>
               <Feed
                 name="Likes"

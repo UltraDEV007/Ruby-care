@@ -1,10 +1,17 @@
-import { blue, yellow } from "@material-ui/core/colors";
+import { blue, yellow, indigo } from "@material-ui/core/colors";
 import styled from "styled-components";
 
 const Div = styled.div`
   display: flex;
   justify-content: space-between;
   flex-flow: row wrap;
+
+  .separator {
+    width: 1px;
+    color: ${({ isDark }) => (isDark ? "inherit " : "inherit")};
+    background-color: ${({ isDark }) => (isDark ? indigo[50] : blue[600])};
+    min-height: 100vh;
+  }
 
   .top-view-btns {
     position: absolute;
@@ -23,7 +30,7 @@ const Div = styled.div`
     flex-flow: column wrap;
     justify-content: center;
     align-items: center;
-     
+
     .separator,
     #community-users {
       display: none;
@@ -59,20 +66,8 @@ const Div = styled.div`
     font-weight: 300;
   }
 
-  .default-title {
-    font-size: 2.3rem;
-    text-align: left;
-    @media screen and (max-width: 1300px) {
-      text-align: center;
-    }
-    margin-bottom: 5px;
-    width: 100%;
-    font-weight: 300;
-  }
-
   .link {
-    color: ${({ themeState }) =>
-      themeState === "dark" ? "inherit " : "inherit"};
+    color: ${({ isDark }) => (isDark ? "inherit " : "inherit")};
     text-decoration: none;
     overflow-wrap: break-word;
     display: flex;
@@ -93,8 +88,7 @@ const Div = styled.div`
   }
 
   .link-2 {
-    color: ${({ themeState }) =>
-      themeState === "dark" ? yellow[700] : blue[500]};
+    color: ${({ isDark }) => (isDark ? yellow[700] : blue[500])};
     text-decoration: none;
     overflow-wrap: break-word;
     display: flex;
@@ -110,7 +104,7 @@ const Div = styled.div`
     transition: transform 300ms ease-in-out;
     text-decoration: underline;
     cursor: pointer;
-    transform: translateY(-1.06px);
+    transform: scale(1.04);
   }
 
   .small-text {
