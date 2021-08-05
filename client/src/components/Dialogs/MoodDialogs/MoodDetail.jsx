@@ -17,19 +17,15 @@ export default function MoodDetail({
   setOpenDetail,
 }) {
   return (
-    <Dialog
-      onClose={() => setOpenDetail(false)}
-      aria-labelledby="customized-dialog-title"
-      open={openDetail}>
-      <DialogTitle
-        id="customized-dialog-title"
-        onClose={() => setOpenDetail(false)}>
+    <Dialog onClose={() => setOpenDetail(false)} open={openDetail}>
+      <DialogTitle onClose={() => setOpenDetail(false)}>
         <Typography
           style={{
             fontSize: "1.25rem",
             display: "flex",
             alignItems: "center",
-          }}>
+          }}
+        >
           {emojiLogic(mood.status)} &nbsp; {mood?.status}
         </Typography>
       </DialogTitle>
@@ -40,7 +36,8 @@ export default function MoodDetail({
           flexDirection: "column",
           width: "300px",
           overflowWrap: "break-word",
-        }}>
+        }}
+      >
         <Typography>Reason:</Typography>
         <Typography style={{ marginTop: "2px" }}>
           <small>{mood.reason}</small>
@@ -58,14 +55,16 @@ export default function MoodDetail({
         <Button
           variant="contained"
           color="primary"
-          onClick={() => setOpenDetail(false)}>
+          onClick={() => setOpenDetail(false)}
+        >
           Exit
         </Button>
         <Button
           variant="contained"
           color="secondary"
           className="delete-button"
-          onClick={() => onDelete(mood.id)}>
+          onClick={() => onDelete(mood.id)}
+        >
           Delete
         </Button>
       </DialogActions>

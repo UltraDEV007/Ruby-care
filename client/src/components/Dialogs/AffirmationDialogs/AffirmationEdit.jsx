@@ -49,11 +49,7 @@ export default function AffirmationEdit({
   };
 
   return (
-    <Dialog
-      onClose={handleClose}
-      aria-labelledby="customized-dialog-title"
-      open={handleOpen}
-    >
+    <Dialog onClose={handleClose} open={handleOpen}>
       <DialogTitle>
         <Typography className="title">Edit Affirmation</Typography>
       </DialogTitle>

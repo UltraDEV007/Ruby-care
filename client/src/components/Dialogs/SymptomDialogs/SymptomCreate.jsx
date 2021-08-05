@@ -28,10 +28,7 @@ export default function SymptomCreate({ open, onSave, handleClose }) {
   };
 
   return (
-    <Dialog
-      onClose={handleClose}
-      aria-labelledby="customized-dialog-title"
-      open={open}>
+    <Dialog onClose={handleClose} open={open}>
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -39,8 +36,9 @@ export default function SymptomCreate({ open, onSave, handleClose }) {
           // setting the formData to an empty string after submission to avoid the case
           // where the user makes creates another one right after sending one without refreshing.
           setFormData("");
-        }}>
-        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+        }}
+      >
+        <DialogTitle onClose={handleClose}>
           <div style={{ display: "flex", alignItems: "center" }}>
             <CreateIcon style={{ marginRight: "10px" }} />
             Log symptom

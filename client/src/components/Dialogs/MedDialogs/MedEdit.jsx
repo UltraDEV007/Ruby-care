@@ -115,11 +115,8 @@ export default function MedEdit({
   };
 
   return (
-    <Dialog
-      onClose={handleClose}
-      aria-labelledby="customized-dialog-title"
-      open={handleOpen}>
-      <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+    <Dialog onClose={handleClose} open={handleOpen}>
+      <DialogTitle onClose={handleClose}>
         <Typography className="title">Edit Medication</Typography>
       </DialogTitle>
 
@@ -135,7 +132,8 @@ export default function MedEdit({
               style={{ marginLeft: "10px" }}
               defaultValue="select"
               value={name}
-              onChange={handleSelectedMed}>
+              onChange={handleSelectedMed}
+            >
               {MEDS}
             </NativeSelect>
           </div>
@@ -196,7 +194,8 @@ export default function MedEdit({
               to="/"
               component={Link}
               variant="contained"
-              color="secondary">
+              color="secondary"
+            >
               Cancel
             </Button>
           </DialogActions>

@@ -9,16 +9,8 @@ export default function DeleteInsight({
   onDelete,
 }) {
   return (
-    <Dialog
-      onClose={handleClose}
-      aria-labelledby="customized-dialog-title"
-      open={openDelete}
-    >
-      <DialogTitle
-        style={{ minWidth: "200px" }}
-        id="customized-dialog-title"
-        onClose={handleClose}
-      >
+    <Dialog onClose={handleClose} open={openDelete}>
+      <DialogTitle style={{ minWidth: "200px" }} onClose={handleClose}>
         Are you sure?
       </DialogTitle>
       <DialogActions

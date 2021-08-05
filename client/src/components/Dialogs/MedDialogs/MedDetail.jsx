@@ -41,11 +41,8 @@ export default function MedDetail({
   }, [med]);
 
   return (
-    <Dialog
-      onClose={handleDetailClose}
-      aria-labelledby="customized-dialog-title"
-      open={openDetail}>
-      <DialogTitle id="customized-dialog-title" onClose={handleDetailClose}>
+    <Dialog onClose={handleDetailClose} open={openDetail}>
+      <DialogTitle onClose={handleDetailClose}>
         <Typography
           style={{
             display: "flex",
@@ -53,7 +50,8 @@ export default function MedDetail({
             fontSize: "1.3rem",
             fontFamily: "Montserrat, sans-serif",
             padding: "5px",
-          }}>
+          }}
+        >
           <img
             src={med.image}
             style={{ height: "30px", width: "50px" }}
@@ -73,7 +71,8 @@ export default function MedDetail({
           flexDirection: "column",
           width: "300px",
           overflowWrap: "break-word",
-        }}>
+        }}
+      >
         {compareDateWithCurrentTime(med?.time) < 0 ? (
           <Typography>I take {med.name} because...</Typography>
         ) : (
@@ -109,14 +108,16 @@ export default function MedDetail({
           <Button
             variant="contained"
             color="primary"
-            onClick={handleDetailClose}>
+            onClick={handleDetailClose}
+          >
             <>Not yet</>
           </Button>
         ) : (
           <Button
             variant="contained"
             color="primary"
-            onClick={handleDetailClose}>
+            onClick={handleDetailClose}
+          >
             <>Exit</>
           </Button>
         )}
@@ -125,7 +126,8 @@ export default function MedDetail({
             variant="contained"
             color="secondary"
             className="delete-button"
-            onClick={() => onTake(med.id, medData)}>
+            onClick={() => onTake(med.id, medData)}
+          >
             Yes
           </Button>
         ) : (
@@ -133,7 +135,8 @@ export default function MedDetail({
             variant="contained"
             color="secondary"
             className="delete-button"
-            onClick={() => onDelete(med.id)}>
+            onClick={() => onDelete(med.id)}
+          >
             Delete
           </Button>
         )}

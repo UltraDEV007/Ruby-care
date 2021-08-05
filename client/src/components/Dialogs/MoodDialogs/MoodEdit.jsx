@@ -69,12 +69,9 @@ export default function MoodEdit(props) {
   };
 
   return (
-    <Dialog
-      onClose={props.handleClose}
-      aria-labelledby="customized-dialog-title"
-      open={props.handleOpen}>
+    <Dialog onClose={props.handleClose} open={props.handleOpen}>
       <form onSubmit={handleSubmit}>
-        <DialogTitle id="customized-dialog-title" onClose={props.handleClose}>
+        <DialogTitle onClose={props.handleClose}>
           <Typography>Edit Mood</Typography>
         </DialogTitle>
         <DialogContent dividers>
@@ -167,7 +164,8 @@ export default function MoodEdit(props) {
             component={Link}
             variant="contained"
             color="secondary"
-            onClick={props.handleClose}>
+            onClick={props.handleClose}
+          >
             Cancel
           </Button>
         </DialogActions>

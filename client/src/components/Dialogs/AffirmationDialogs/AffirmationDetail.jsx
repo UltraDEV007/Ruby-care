@@ -16,12 +16,8 @@ export default function AffirmationDetail({
   onDelete,
 }) {
   return (
-    <Dialog
-      onClose={handleDetailClose}
-      aria-labelledby="customized-dialog-title"
-      open={openDetail}
-    >
-      <DialogTitle id="customized-dialog-title" onClose={handleDetailClose}>
+    <Dialog onClose={handleDetailClose} open={openDetail}>
+      <DialogTitle onClose={handleDetailClose}>
         {affirmation?.user?.name ? (
           <div style={{ display: "flex", alignItems: "flex-end" }}>
             <img

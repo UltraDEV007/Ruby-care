@@ -63,12 +63,9 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
   };
 
   return (
-    <Dialog
-      onClose={handleClose}
-      aria-labelledby="customized-dialog-title"
-      open={open}>
+    <Dialog onClose={handleClose} open={open}>
       <form onSubmit={handleSubmit}>
-        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+        <DialogTitle onClose={handleClose}>
           <div style={{ display: "flex", alignItems: "center" }}>
             <CreateIcon style={{ margin: "10px" }} />
             Log medication
@@ -85,7 +82,8 @@ export default function MedCreate({ RXGuideMeds, open, onSave, handleClose }) {
               defaultValue="select"
               value={formData.name}
               onChange={handleSelectedMed}
-              style={{ margin: "10px" }}>
+              style={{ margin: "10px" }}
+            >
               <option value="" selected disabled hidden>
                 Select a medication
               </option>

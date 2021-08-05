@@ -9,18 +9,13 @@ export default function DeleteInsightFromDetail({
   onDelete,
 }) {
   return (
-    <Dialog
-      onClose={handleClose}
-      aria-labelledby="customized-dialog-title"
-      open={openDelete}>
-      <DialogTitle
-        style={{ minWidth: "200px" }}
-        id="customized-dialog-title"
-        onClose={handleClose}>
+    <Dialog onClose={handleClose} open={openDelete}>
+      <DialogTitle style={{ minWidth: "200px" }} onClose={handleClose}>
         Are you sure?
       </DialogTitle>
       <DialogActions
-        style={{ display: "flex", justifyContent: "space-evenly" }}>
+        style={{ display: "flex", justifyContent: "space-evenly" }}
+      >
         <Button variant="contained" color="primary" onClick={handleClose}>
           Exit
         </Button>
@@ -28,7 +23,8 @@ export default function DeleteInsightFromDetail({
           variant="contained"
           color="secondary"
           className="delete-button"
-          onClick={() => onDelete(insight.id)}>
+          onClick={() => onDelete(insight.id)}
+        >
           Delete
         </Button>
       </DialogActions>

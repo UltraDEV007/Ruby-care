@@ -18,13 +18,8 @@ export default function FoodDetail({
   setOpenDetail,
 }) {
   return (
-    <Dialog
-      onClose={() => setOpenDetail(false)}
-      aria-labelledby="customized-dialog-title"
-      open={openDetail}>
-      <DialogTitle
-        id="customized-dialog-title"
-        onClose={() => setOpenDetail(false)}>
+    <Dialog onClose={() => setOpenDetail(false)} open={openDetail}>
+      <DialogTitle onClose={() => setOpenDetail(false)}>
         {foodNameJSX(food)}
       </DialogTitle>
       <DialogContent
@@ -34,7 +29,8 @@ export default function FoodDetail({
           flexDirection: "column",
           width: "300px",
           overflowWrap: "break-word",
-        }}>
+        }}
+      >
         <Typography> Rating:&nbsp;{getRating(food?.rating, "⭐")}</Typography>
       </DialogContent>
       <DialogContent
@@ -44,7 +40,8 @@ export default function FoodDetail({
           flexDirection: "column",
           width: "300px",
           overflowWrap: "break-word",
-        }}>
+        }}
+      >
         <Typography>Factors:</Typography>
         <Typography style={{ marginTop: "2px" }}>
           <small>{food?.factors}</small>
@@ -61,14 +58,16 @@ export default function FoodDetail({
         <Button
           variant="contained"
           color="primary"
-          onClick={() => setOpenDetail(false)}>
+          onClick={() => setOpenDetail(false)}
+        >
           Exit
         </Button>
         <Button
           variant="contained"
           color="secondary"
           className="delete-button"
-          onClick={() => onDelete(food.id)}>
+          onClick={() => onDelete(food.id)}
+        >
           Delete
         </Button>
       </DialogActions>

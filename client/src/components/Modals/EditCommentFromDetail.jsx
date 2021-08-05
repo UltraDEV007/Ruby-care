@@ -42,18 +42,16 @@ export default function EditCommentFromDetail({
 
   return (
     <>
-      <Dialog
-        onClose={handleClose}
-        aria-labelledby="customized-dialog-title"
-        open={openEdit}>
-        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+      <Dialog onClose={handleClose} open={openEdit}>
+        <DialogTitle onClose={handleClose}>
           <Typography className="title">Edit Food</Typography>
         </DialogTitle>
         <form
           onSubmit={(e) => {
             e.preventDefault();
             onSave(insight?.id, formData, comment.id);
-          }}>
+          }}
+        >
           <DialogContent dividers>
             <div className="input-container">
               <TextField
@@ -78,7 +76,8 @@ export default function EditCommentFromDetail({
               <Button
                 onClick={handleClose}
                 variant="contained"
-                color="secondary">
+                color="secondary"
+              >
                 Cancel
               </Button>
             </DialogActions>

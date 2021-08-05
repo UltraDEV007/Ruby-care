@@ -7,7 +7,7 @@ export default function FirefoxBrowser({ firefoxAgent }) {
   const [reason, setReason] = useState(false);
 
   return (
-    <Dialog aria-labelledby="customized-dialog-title" open={firefoxAgent}>
+    <Dialog open={firefoxAgent}>
       <DialogTitle>
         {!reason ? (
           <>
@@ -21,13 +21,15 @@ export default function FirefoxBrowser({ firefoxAgent }) {
             <a
               target="_blank"
               href="https://www.google.com/chrome/"
-              rel="noreferrer">
+              rel="noreferrer"
+            >
               Google Chrome,&nbsp;
             </a>
             <a
               target="_blank"
               href="https://support.apple.com/downloads/safari"
-              rel="noreferrer">
+              rel="noreferrer"
+            >
               Safari,&nbsp;
             </a>
             <a target="_blank" href="https://www.opera.com/" rel="noreferrer">
@@ -36,7 +38,8 @@ export default function FirefoxBrowser({ firefoxAgent }) {
             <a
               target="_blank"
               rel="noreferrer"
-              href="https://www.microsoft.com/en-us/edge">
+              href="https://www.microsoft.com/en-us/edge"
+            >
               Microsoft Edge&nbsp;
             </a>
             <br /> <br />
@@ -51,7 +54,8 @@ export default function FirefoxBrowser({ firefoxAgent }) {
         <Button
           color="primary"
           variant="contained"
-          onClick={() => setReason((previousValue) => !previousValue)}>
+          onClick={() => setReason((previousValue) => !previousValue)}
+        >
           {!reason ? (
             <>Why don't you support Firefox?</>
           ) : (

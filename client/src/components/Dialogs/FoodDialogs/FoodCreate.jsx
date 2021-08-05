@@ -33,11 +33,7 @@ export default function FoodCreate({ open, onSave, handleClose }) {
   };
 
   return (
-    <Dialog
-      onClose={handleClose}
-      aria-labelledby="customized-dialog-title"
-      open={open}
-    >
+    <Dialog onClose={handleClose} open={open}>
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -47,7 +43,7 @@ export default function FoodCreate({ open, onSave, handleClose }) {
           setFormData("");
         }}
       >
-        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+        <DialogTitle onClose={handleClose}>
           <div style={{ display: "flex", alignItems: "center" }}>
             <CreateIcon style={{ marginRight: "10px" }} />
             Log food

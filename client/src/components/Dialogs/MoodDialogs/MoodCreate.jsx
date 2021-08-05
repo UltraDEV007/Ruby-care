@@ -48,11 +48,7 @@ export default function MoodCreate({ open, onSave, handleClose }) {
   };
 
   return (
-    <Dialog
-      onClose={handleClose}
-      aria-labelledby="create mood window"
-      open={open}
-    >
+    <Dialog onClose={handleClose} open={open}>
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -62,7 +58,7 @@ export default function MoodCreate({ open, onSave, handleClose }) {
           setFormData({ ...formData, status: formData.status });
         }}
       >
-        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+        <DialogTitle onClose={handleClose}>
           {compareDateWithCurrentTime(formData.time) === 1 && formData.time ? (
             <>How were you feeling? </>
           ) : (

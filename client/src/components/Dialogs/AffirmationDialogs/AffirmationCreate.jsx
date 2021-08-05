@@ -27,11 +27,7 @@ export default function MoodCreate({ open, onSave, handleClose }) {
   let time = new Date();
 
   return (
-    <Dialog
-      onClose={handleClose}
-      aria-labelledby="customized-dialog-title"
-      open={open}
-    >
+    <Dialog onClose={handleClose} open={open}>
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -41,7 +37,7 @@ export default function MoodCreate({ open, onSave, handleClose }) {
           setFormData("");
         }}
       >
-        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+        <DialogTitle onClose={handleClose}>
           <div style={{ display: "flex", alignItems: "center" }}>
             <CreateIcon style={{ marginRight: "10px" }} />
             Write something nice!
