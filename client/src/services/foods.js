@@ -11,12 +11,13 @@ export const getOneFood = async (id) => {
 };
 
 export const postFood = async (foodData) => {
-  const resp = await api.post("/foods", foodData);
+  console.log("POST FOOD");
+  const resp = await api.post("/foods", { food: foodData });
   return resp.data;
 };
 
 export const putFood = async (id, foodData) => {
-  const resp = await api.put(`/foods/${id}`, foodData);
+  const resp = await api.put(`/foods/${id}`, { food: foodData });
   return resp.data;
 };
 

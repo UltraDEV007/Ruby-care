@@ -430,7 +430,6 @@ export default function Register() {
               </FormHelperText>
               <FormControl>
                 <NativeSelect
-                  native
                   required
                   label="gender"
                   value={toTitleCase(gender)}

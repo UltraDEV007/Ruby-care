@@ -40,8 +40,8 @@ export default function Foods({
     ) : (
       foods.map((food) => (
         <FoodCard
-          foods={foods}
           key={food.id}
+          foods={foods}
           setFoods={setFoods}
           updated={updated}
           food={food}

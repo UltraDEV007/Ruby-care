@@ -50,7 +50,8 @@ export default function FoodCard({
             ? { boxShadow: "default" }
             : { boxShadow: `0px 0px 4px 1.2px ${indigo[50]}` }
         }
-        className="food-card">
+        className="food-card"
+      >
         <div className="food-container">
           <div className="hover-container" onClick={() => setOpenDetail(true)}>
             {!isRefreshed ? foodNameJSX(food) : <CircularProgress />}
@@ -63,14 +64,16 @@ export default function FoodCard({
           </div>
           <div
             className="buttons"
-            style={openOptions ? { display: "flex" } : { display: "none" }}>
+            style={openOptions ? { display: "flex" } : { display: "none" }}
+          >
             <Button
               component={Link}
               onClick={() => setOpenEdit(true)}
               to={`/foods/${food.id}/edit`}
               variant="contained"
               color="primary"
-              className="edit-button">
+              className="edit-button"
+            >
               <span role="img" aria-label="edit">
                 🔧
               </span>
@@ -80,7 +83,8 @@ export default function FoodCard({
               variant="contained"
               color="secondary"
               className="delete-button"
-              onClick={() => handleDelete(food.id)}>
+              onClick={() => handleDelete(food.id)}
+            >
               <span role="img" aria-label="delete">
                 🗑️
               </span>

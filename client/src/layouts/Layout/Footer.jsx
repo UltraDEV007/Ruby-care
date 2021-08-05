@@ -57,9 +57,14 @@ function Footer() {
             setValue(newValue);
           }}
           showLabels
-          className={classes.root}>
-          {routes.map((route) => (
-            <BottomNavigationAction label={route.label} icon={route.icon} />
+          className={classes.root}
+        >
+          {routes.map((route, key) => (
+            <BottomNavigationAction
+              label={route.label}
+              icon={route.icon}
+              key={key}
+            />
           ))}
         </BottomNavigation>
       </div>

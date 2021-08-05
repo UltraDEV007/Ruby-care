@@ -11,6 +11,7 @@ import {
   DialogContent,
   DialogActions,
 } from "../../Form/DialogComponents";
+import moment from "moment";
 
 export default function FoodEdit({ setOpenEdit, onSave, foods }) {
   const history = useHistory("/");
@@ -105,30 +106,29 @@ export default function FoodEdit({ setOpenEdit, onSave, foods }) {
               />
             </div>
 
-              <div className="rating-input-container">
-                <FormHelperText>
-                  On a scale of 1 to 5,
-                  <br /> how much did you enjoy&nbsp;
-                  {name ? name : "it"}?
-                </FormHelperText>
-                <NativeSelect
-                  native
-                  required
-                  label="rating"
-                  value={rating}
-                  onChange={handleChange}
-                  inputProps={{
-                    name: "rating",
-                    id: "rating-native-simple",
-                  }}
-                >
-                  <option value={1}>⭐ </option>
-                  <option value={2}>⭐ ⭐ </option>
-                  <option value={3}>⭐ ⭐ ⭐ </option>
-                  <option value={4}>⭐ ⭐ ⭐ ⭐ </option>
-                  <option value={5}>⭐ ⭐ ⭐ ⭐ ⭐ </option>
-                </NativeSelect>
-              </div>
+            <div className="rating-input-container">
+              <FormHelperText>
+                On a scale of 1 to 5,
+                <br /> how much did you enjoy&nbsp;
+                {name ? name : "it"}?
+              </FormHelperText>
+              <NativeSelect
+                required
+                label="rating"
+                value={rating}
+                onChange={handleChange}
+                inputProps={{
+                  name: "rating",
+                  id: "rating-native-simple",
+                }}
+              >
+                <option value={1}>⭐ </option>
+                <option value={2}>⭐ ⭐ </option>
+                <option value={3}>⭐ ⭐ ⭐ </option>
+                <option value={4}>⭐ ⭐ ⭐ ⭐ </option>
+                <option value={5}>⭐ ⭐ ⭐ ⭐ ⭐ </option>
+              </NativeSelect>
+            </div>
 
             <div className="input-container">
               <TextField

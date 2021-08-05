@@ -36,7 +36,8 @@ export default function FoodCreate({ open, onSave, handleClose }) {
     <Dialog
       onClose={handleClose}
       aria-labelledby="customized-dialog-title"
-      open={open}>
+      open={open}
+    >
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -44,7 +45,8 @@ export default function FoodCreate({ open, onSave, handleClose }) {
           // setting the formData to an empty string after submission to avoid the case
           // where the user makes creates another one right after sending one without refreshing.
           setFormData("");
-        }}>
+        }}
+      >
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           <div style={{ display: "flex", alignItems: "center" }}>
             <CreateIcon style={{ marginRight: "10px" }} />
@@ -87,29 +89,29 @@ export default function FoodCreate({ open, onSave, handleClose }) {
             />
           </div>
 
-            <div className="rating-input-container">
-              <FormHelperText>
-                On a scale of 1 to 5,
-                <br /> how much did you enjoy&nbsp;
-                {formData.name ? formData.name : "it"}?
-              </FormHelperText>
-              <NativeSelect
-                native
-                required
-                label="rating"
-                value={formData.rating}
-                onChange={handleChange}
-                inputProps={{
-                  name: "rating",
-                  id: "rating-native-simple",
-                }}>
-                <option value={1}>⭐</option>
-                <option value={2}>⭐ ⭐ </option>
-                <option value={3}>⭐ ⭐ ⭐ </option>
-                <option value={4}>⭐ ⭐ ⭐ ⭐ </option>
-                <option value={5}>⭐ ⭐ ⭐ ⭐ ⭐ </option>
-              </NativeSelect>
-            </div>
+          <div className="rating-input-container">
+            <FormHelperText>
+              On a scale of 1 to 5,
+              <br /> how much did you enjoy&nbsp;
+              {formData.name ? formData.name : "it"}?
+            </FormHelperText>
+            <NativeSelect
+              required
+              label="rating"
+              value={formData.rating}
+              onChange={handleChange}
+              inputProps={{
+                name: "rating",
+                id: "rating-native-simple",
+              }}
+            >
+              <option value={1}>⭐</option>
+              <option value={2}>⭐ ⭐ </option>
+              <option value={3}>⭐ ⭐ ⭐ </option>
+              <option value={4}>⭐ ⭐ ⭐ ⭐ </option>
+              <option value={5}>⭐ ⭐ ⭐ ⭐ ⭐ </option>
+            </NativeSelect>
+          </div>
 
           <div className="input-container">
             <TextField
