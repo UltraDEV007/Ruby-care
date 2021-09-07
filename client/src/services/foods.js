@@ -11,7 +11,6 @@ export const getOneFood = async (id) => {
 };
 
 export const postFood = async (foodData) => {
-  console.log("POST FOOD");
   const resp = await api.post("/foods", { food: foodData });
   return resp.data;
 };
