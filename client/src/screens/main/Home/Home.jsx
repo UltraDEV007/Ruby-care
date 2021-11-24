@@ -58,10 +58,7 @@ export default function Home() {
       <div className={classes.root}>
         <ScrollToTopOnMount />
         <Accordion className={classes.accordion}>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header">
+          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
             <Typography className={classes.heading}>Mood</Typography>
           </AccordionSummary>
           <AccordionDetails>
@@ -72,10 +69,7 @@ export default function Home() {
         </Accordion>
 
         <Accordion className={classes.accordion}>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header">
+          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
             <Typography className={classes.heading}>
               {affirmations?.length === 0 ? (
                 <></>
@@ -102,9 +96,7 @@ export default function Home() {
 
         <Accordion className={classes.accordion}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header">
+            expandIcon={<ExpandMoreIcon />}>
             <Typography className={classes.heading}>Symptoms</Typography>
           </AccordionSummary>
           <AccordionDetails>
@@ -114,10 +106,7 @@ export default function Home() {
           </AccordionDetails>
         </Accordion>
         <Accordion className={classes.accordion}>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header">
+          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
             <Typography className={classes.heading}>Food diary</Typography>
           </AccordionSummary>
           <AccordionDetails>
@@ -128,10 +117,7 @@ export default function Home() {
         </Accordion>
 
         <Accordion className={classes.accordion}>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header">
+          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
             <RXGuideLogo />
           </AccordionSummary>
           <AccordionDetails>
