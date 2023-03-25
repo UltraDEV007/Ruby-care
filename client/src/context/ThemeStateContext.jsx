@@ -13,8 +13,8 @@ function ThemeStateProvider({ children }) {
     if (localTheme !== null) {
       return localTheme.match(/^dark$/i) ? "dark" : "light";
     } else {
-      localStorage.setItem("themeState", "light");
-      return "light";
+      localStorage.setItem("themeState", "dark");
+      return "dark";
     }
   }); // handleThemeChange in src/screens/main/Settings.jsx lines 87-99;
 
