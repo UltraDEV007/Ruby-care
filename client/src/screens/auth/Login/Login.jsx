@@ -31,6 +31,7 @@ export default function Login() {
   const [{ currentUser }, dispatch] = useStateValue();
   const [themeState] = useContext(ThemeStateContext);
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState(null);
   const history = useHistory();
   const classes = useStyles({ themeState, currentUser });
   const token = localStorage.getItem("authToken");
@@ -44,15 +45,19 @@ export default function Login() {
   };
 
   const handleLogin = async (loginData) => {
-    loginData.email = loginData?.email?.toLowerCase();
-    const userData = await loginUser(loginData);
+    try {
+        loginData.email = loginData?.email?.toLowerCase();
+        const userData = await loginUser(loginData);
 
-    dispatch({
-      type: "SET_USER",
-      currentUser: userData,
-    });
+        dispatch({
+          type: "SET_USER",
+        currentUser: userData,
+      });
 
-    history.push("/");
+      history.push("/");
+    } catch (error) {
+      setError(error.response);
+    }
   };
 
   const [formData, setFormData] = useState({
@@ -99,6 +104,12 @@ export default function Login() {
             Gender: {currentUser?.gender}
           </Typography>
         )}
+
+        {error &&
+          <Typography className={classes.user} style={{ color: 'red' }}>
+            {error.statusText}
+          </Typography>
+        }
         <form
           className={classes.form}
           onSubmit={(e) => {
