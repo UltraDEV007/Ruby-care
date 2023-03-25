@@ -46,11 +46,11 @@ export default function Login() {
 
   const handleLogin = async (loginData) => {
     try {
-        loginData.email = loginData?.email?.toLowerCase();
-        const userData = await loginUser(loginData);
+      loginData.email = loginData?.email?.toLowerCase();
+      const userData = await loginUser(loginData);
 
-        dispatch({
-          type: "SET_USER",
+      dispatch({
+        type: "SET_USER",
         currentUser: userData,
       });
 
@@ -105,17 +105,18 @@ export default function Login() {
           </Typography>
         )}
 
-        {error &&
-          <Typography className={classes.user} style={{ color: 'red' }}>
+        {error && (
+          <Typography className={classes.user} style={{ color: "red" }}>
             {error.statusText}
           </Typography>
-        }
+        )}
         <form
           className={classes.form}
           onSubmit={(e) => {
             e.preventDefault();
             handleLogin(formData);
-          }}>
+          }}
+        >
           <div className={classes.inputContainer}>
             <EmailIcon />
             <FormControl>
@@ -151,7 +152,8 @@ export default function Login() {
                     <IconButton
                       aria-label="toggle password visibility"
                       onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}>
+                      onMouseDown={handleMouseDownPassword}
+                    >
                       {showPassword ? (
                         <Visibility className={classes.visibility} />
                       ) : (
@@ -181,8 +183,9 @@ export default function Login() {
             className={classes.link}
             target="_blank"
             rel="noreferrer"
-            href="http://www.github.com/dannymichaels/care">
-            Daniel Michael &copy; 2020
+            href="http://www.github.com/dannymichaels/care"
+          >
+            Daniel Michael &copy; {new Date().getFullYear()}
           </a>
         </Typography>
       </div>
