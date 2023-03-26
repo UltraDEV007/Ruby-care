@@ -30,6 +30,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 import NativeSelect from "@material-ui/core/NativeSelect";
 import FormHelperText from "@material-ui/core/FormHelperText";
+import LinearProgressLoading from "../../../components/Loading/LinearProgressLoading.jsx";
 
 // Icons
 import Visibility from "@material-ui/icons/Visibility";
@@ -54,7 +55,7 @@ export default function Register() {
   const [passwordConfirmAlert, setPasswordConfirmAlert] = useState(false);
   const [emailUniquenessAlert, setEmailUniquenessAlert] = useState(false);
   const [passwordConfirm, setPasswordConfirm] = useState("");
-
+  const [isLoading, setIsLoading] = useState(false);
   const [themeState] = useContext(ThemeStateContext);
   const { allUsers } = useContext(AllUsersStateContext);
   const dispatchAllUsers = useContext(AllUsersDispatchContext);
@@ -71,14 +72,17 @@ export default function Register() {
   };
 
   const handleRegister = async (registerData) => {
+    setIsLoading(true);
     registerData.email = registerData?.email?.toLowerCase();
     const userData = await registerUser(registerData);
     dispatch({ type: "SET_USER", currentUser: userData });
 
     dispatchAllUsers({ type: "USER_CREATED", payload: userData });
 
+    setIsLoading(false);
     history.push("/");
   };
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -153,6 +157,10 @@ export default function Register() {
   };
 
   const classes = useStyles({ themeState, currentUser, imagePreview });
+
+  if (isLoading) {
+    return <LinearProgressLoading themeState={themeState />
+  }
 
   return (
     <>
