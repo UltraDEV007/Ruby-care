@@ -48,7 +48,7 @@ export default function Login() {
 
   const handleLogin = async (loginData) => {
     try {
-      setIsLoading(true)
+      setIsLoading(true);
       loginData.email = loginData?.email?.toLowerCase();
       const userData = await loginUser(loginData);
 
