@@ -16,6 +16,7 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import LinearProgressLoading from "../../../components/Loading/LinearProgressLoading.jsx";
 
 // Icons
 import Visibility from "@material-ui/icons/Visibility";
@@ -32,6 +33,7 @@ export default function Login() {
   const [themeState] = useContext(ThemeStateContext);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
   const classes = useStyles({ themeState, currentUser });
   const token = localStorage.getItem("authToken");
@@ -46,6 +48,7 @@ export default function Login() {
 
   const handleLogin = async (loginData) => {
     try {
+      setIsLoading(true)
       loginData.email = loginData?.email?.toLowerCase();
       const userData = await loginUser(loginData);
 
@@ -53,9 +56,11 @@ export default function Login() {
         type: "SET_USER",
         currentUser: userData,
       });
-
+      
+      setIsLoading(false);
       history.push("/");
     } catch (error) {
+      setIsLoading(false);
       setError(error.response);
     }
   };
@@ -72,6 +77,10 @@ export default function Login() {
       [name]: value,
     }));
   };
+
+  if (isLoading) {
+    return <LinearProgressLoading themeState={themeState} />
+  }
 
   return (
     <>
