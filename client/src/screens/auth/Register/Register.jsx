@@ -159,7 +159,7 @@ export default function Register() {
   const classes = useStyles({ themeState, currentUser, imagePreview });
 
   if (isLoading) {
-    return <LinearProgressLoading themeState={themeState />
+    return <LinearProgressLoading themeState={themeState} />
   }
 
   return (
