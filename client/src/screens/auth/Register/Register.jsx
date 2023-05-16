@@ -453,8 +453,6 @@ export default function Register() {
                   </option>
                   <option value={"Male"}>Male</option>
                   <option value={"Female"}>Female</option>
-                  <option value={"Transgender"}>Transgender</option>
-                  <option value={"Non-binray"}>Non-Binary </option>
                   <option value={"Other"}>Other</option>
                 </NativeSelect>
               </FormControl>
