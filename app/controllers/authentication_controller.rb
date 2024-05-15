@@ -3,7 +3,26 @@ class AuthenticationController < ApplicationController
 
   # POST /auth/login
   def login
-    @user = User.find_by(email: login_params[:email])
+    email = login_params[:email]
+    password = login_params[:password]
+
+    if email == "" || password == "" || email == nil || password == nil
+       render json: {
+        errors: 'unauthorized',
+        message: 'Invalid email or password',
+      }, status: :unauthorized
+      return;
+    end 
+
+    @user = User.find_by(email: email)
+    
+    if (!@user) 
+      render json: {
+        errors: 'unauthorized',
+        message: 'Invalid email or password',
+      }, status: :unauthorized
+    end
+
     if @user.authenticate(login_params[:password]) #authenticate method provided by Bcrypt and 'has_secure_password'
       token = encode({id: @user.id})
       render json: {
@@ -11,7 +30,10 @@ class AuthenticationController < ApplicationController
         token: token
         }, status: :ok
     else
-      render json: { errors: 'unauthorized' }, status: :unauthorized
+      render json: { 
+        errors: 'unauthorized', 
+        message: 'Invalid email or password'
+        }, status: :unauthorized
     end
   end
   

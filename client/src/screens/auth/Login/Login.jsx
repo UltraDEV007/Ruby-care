@@ -56,7 +56,7 @@ export default function Login() {
         type: "SET_USER",
         currentUser: userData,
       });
-      
+
       setIsLoading(false);
       history.push("/");
     } catch (error) {
@@ -79,7 +79,7 @@ export default function Login() {
   };
 
   if (isLoading) {
-    return <LinearProgressLoading themeState={themeState} />
+    return <LinearProgressLoading themeState={themeState} />;
   }
 
   return (
@@ -116,7 +116,7 @@ export default function Login() {
 
         {error && (
           <Typography className={classes.user} style={{ color: "red" }}>
-            {error.statusText}
+            {error.data?.message ?? error?.statusText}
           </Typography>
         )}
         <form
