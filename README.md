@@ -389,3 +389,6 @@ if the user's input DOESN"T match one of the names in the foodRegex, it will ret
 
 <strong>June 20th, 2021:</strong>
 - Updated the community page with likes and comments feed.
+
+<strong>May 15th, 2024</strong>
+- Fix error messsages not showing on login fail.
