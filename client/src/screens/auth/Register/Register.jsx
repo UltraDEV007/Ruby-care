@@ -56,6 +56,7 @@ export default function Register() {
   const [emailUniquenessAlert, setEmailUniquenessAlert] = useState(false);
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [themeState] = useContext(ThemeStateContext);
   const { allUsers } = useContext(AllUsersStateContext);
   const dispatchAllUsers = useContext(AllUsersDispatchContext);
@@ -72,15 +73,21 @@ export default function Register() {
   };
 
   const handleRegister = async (registerData) => {
-    setIsLoading(true);
-    registerData.email = registerData?.email?.toLowerCase();
-    const userData = await registerUser(registerData);
-    dispatch({ type: "SET_USER", currentUser: userData });
+    try {
+      setIsLoading(true);
+      registerData.email = registerData?.email?.toLowerCase();
+      const userData = await registerUser(registerData);
+      dispatch({ type: "SET_USER", currentUser: userData });
 
-    dispatchAllUsers({ type: "USER_CREATED", payload: userData });
+      dispatchAllUsers({ type: "USER_CREATED", payload: userData });
 
-    setIsLoading(false);
-    history.push("/");
+      setIsLoading(false);
+      history.push("/");
+    } catch (error) {
+      setIsLoading(false);
+      setError(error.response);
+      console.log(error);
+    }
   };
 
   const [formData, setFormData] = useState({
@@ -104,12 +111,12 @@ export default function Register() {
   const handleSubmit = (e) => {
     e.preventDefault();
     checkPasswordLength(password, setPasswordAlert);
-    checkEmailValidity(email, setEmailValidityAlert);
-    if (allUsers.find((user) => user.email === email)) {
-      setEmailUniquenessAlert(true);
-    } else {
-      setEmailUniquenessAlert(false);
-    }
+    // checkEmailValidity(email, setEmailValidityAlert);
+    // if (allUsers.find((user) => user.email === email)) {
+    //   setEmailUniquenessAlert(true);
+    // } else {
+    //   setEmailUniquenessAlert(false);
+    // }
     if (password !== passwordConfirm) {
       return setPasswordConfirmAlert(true);
     } else {
@@ -159,7 +166,7 @@ export default function Register() {
   const classes = useStyles({ themeState, currentUser, imagePreview });
 
   if (isLoading) {
-    return <LinearProgressLoading themeState={themeState} />
+    return <LinearProgressLoading themeState={themeState} />;
   }
 
   return (
@@ -195,6 +202,13 @@ export default function Register() {
               <br />
             </>
           )}
+
+          {error && (
+            <Typography className={classes.user} style={{ color: "red" }}>
+              {error.data?.message ?? error?.statusText}
+            </Typography>
+          )}
+
           <div className={classes.imageContainer}>
             {imagePreview ? (
               <img

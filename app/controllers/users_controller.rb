@@ -21,6 +21,15 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
+    email = user_params[:email].strip;
+    existing_user = User.find_by(email: email)
+
+    if existing_user
+      render json: {message: "Email already in use"}, status: :unauthorized
+      return;
+    end
+
+    user_params[:email] = user_params[:email].strip;
     @user = User.new(user_params)
 
     if @user.save
